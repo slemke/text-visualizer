@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Visualistik: Text Mining</title>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <form class="form-inline">
+                <select name="document" class="form-control mr-sm-2" id="document-selector">
+                    <option value="1">Dokument #1</option>
+                    <option value="2">Dokument #2</option>
+                    <option value="3">Dokument #3</option>
+                </select>
+                <button type="submit" class="btn btn-primary my-2 my-sm-0" id="document-selector-submit">Auswählen</button>
+            </form>
+        </nav>
+        <div class="container-fluid" id="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    visualisierung
+                </div>
+                <div class="col-sm-6">
+                    <header>
+                        <h1>Der Titel des Dokuments</h1>
+                    </header>
+                    <article>
+                        <h1 data-id="1">Section</h1>
+                        <p data-id="1">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <ul data-id="1">
+                            <li>
+                                unsorted list
+                            </li>
+                            <li>
+                                unsorted list
+                            </li>
+                            <li>
+                                unsorted list
+                            </li>
+                        </ul>
+                        <h2 data-id="1">Subsection</h2>
+                        <p data-id="2">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <ol data-id="1">
+                            <li>
+                                ordered list
+                            </li>
+                            <li>
+                                ordered list
+                            </li>
+                            <li>
+                                ordered list
+                            </li>
+                        </ol>
+                        <h3 data-id="1">SubSubSection</h3>
+                        <p data-id="3">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/index.js"></script>
+    </body>
+</html>
