@@ -1,0 +1,20 @@
+{
+  "name": "visualistik-textmining",
+  "version": "1.0.0",
+  "description": "Visualisierung zum Thema Text Mining und Verbesserung im Rahmen des Faches Visualistik an der TH Köln",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}
