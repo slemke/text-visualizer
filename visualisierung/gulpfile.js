@@ -2,8 +2,8 @@
 
 var paths = {
 	scripts: [
-        'assets/js/index.js',
-		'assets/js/frontend/*.js'
+		'assets/js/frontend/*.js',
+        'assets/js/index.js'
 	],
 	css: [
 		'assets/css/index.css'
@@ -22,10 +22,10 @@ gulp.task('default', ['css', 'js'], function() {
 
 gulp.task('js', function() {
 	return gulp.src(paths.scripts)
-	.pipe(concat('index.js'))
+	.pipe(concat('temp.js'))
 	.pipe(gulp.dest('assets/js/'))
 	.pipe(rename('index.min.js'))
-	.pipe(uglify())
+	//.pipe(uglify())
 	.pipe(gulp.dest('assets/js/'));
 });
 
@@ -40,7 +40,7 @@ gulp.task('css', function() {
 gulp.task('watch', ['default'], function() {
 
 
-	var css_watcher = gulp.watch('assets/css/style.css', ['css'])
+	var css_watcher = gulp.watch('assets/css/index.css', ['css'])
 
 	var js_watcher = gulp.watch('assets/js/**/*.js', ['js']);
 
