@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Base Template for the IDF (Intermediate Document Format)  -->
+
+<document>
+    <meta>
+        <title></title>
+        <subtitle></subtitle>
+        <authors>
+            <author></author>
+        </authors>
+        <released></released>
+        <isbn></isbn>
+    </meta>
+    <text>
+
+    </text>
+</document>
