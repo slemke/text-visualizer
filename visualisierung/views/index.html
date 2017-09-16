@@ -6,7 +6,7 @@
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="assets/css/index.min.css" rel="stylesheet" />
     </head>
-    <body onresize="initializeCharts()">
+    <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" id="header">
             <form class="form-inline">
                 <select name="document" class="form-control mr-sm-2" id="document-selector">
@@ -15,9 +15,12 @@
                     <option value="3">Dokument #3</option>
                 </select>
                 <select name="analysis" class="form-control mr-sm-2">
-                    <option value="1">Redundanz</option>
-                    <option value="2">Nominalstil</option>
-                    <option value="3">Fremdsprache</option>
+                    <option value="1">Redundanzen</option>
+                    <option value="2">Satzzeichen</option>
+                    <option value="3">Satzlänge</option>
+                    <option value="4">Satzzeichen</option>
+                    <option value="5">Fullwörter</option>
+                    <option value="6">Nominalstil</option>
                 </select>
                 <button type="submit" class="btn btn-primary my-2 my-sm-0" id="document-selector-submit">Auswählen</button>
             </form>
@@ -37,7 +40,6 @@
                                     <div class="legend-container" id="LContainer"></div>
                                     <div class="sunburst-container" id="SBContainer"></div>
                                 </div>
-                                <div class="bubble-container" id="BUContainer"></div>
                                 <div class="breadcrumb-container" id="BCContainer"></div>
                             </div>
                             <div id="data">

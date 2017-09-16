@@ -154,4 +154,10 @@ $(document).ready(function() {
     };
 
     initializeCharts();
+
+    $(window).resize(function() {
+            console.log('sdfgjadskhfgkdasfg');
+            initializeCharts()
+    });
+
 });

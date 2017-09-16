@@ -23,10 +23,7 @@ gulp.task('default', ['css', 'js'], function() {
 
 gulp.task('js', function() {
 	return gulp.src(paths.scripts)
-	.pipe(concat('temp.js'))
-	.pipe(gulp.dest('assets/js/'))
-	.pipe(rename('index.min.js'))
-	//.pipe(uglify())
+	.pipe(concat('index.min.js'))
 	.pipe(gulp.dest('assets/js/'));
 });
 
