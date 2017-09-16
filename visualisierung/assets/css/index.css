@@ -60,3 +60,60 @@
 .tab-pane {
     padding: 10px 5px;
 }
+
+
+
+
+.graph-container {
+    display: inline-block;
+    position: relative;
+    width: 60%;
+    height: 95vh;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.sunburst-container {
+    display: inline-block;
+    position: relative;
+    width: 90%;
+    height: 100%;
+    float: right;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.legend-container {
+    display: inline-block;
+    position: relative;
+    width: 10%;
+    height: 100%;
+    vertical-align: top;
+    float: left;
+    overflow: hidden;
+}
+
+.bubble-container {
+    display: inline-block;
+    position: relative;
+    width: 60%;
+    height: 100vh;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.breadcrumb-container {
+    /*display: inline-block;*/
+    /*position: relative;*/
+    width: 60%;
+    height: 5vh;
+    /*vertical-align: top;*/
+    overflow: hidden;
+    bottom:0;
+    position:fixed;
+    z-index:150;
+}
+
+.legendRect {
+    stroke-width: 2;
+}
