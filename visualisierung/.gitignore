@@ -86,3 +86,8 @@ typings/
 .env
 
 config.js
+
+
+# exclude css / js
+assets/css/index.min.css
+assets/js/index.min.js
