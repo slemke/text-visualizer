@@ -129,8 +129,6 @@ let chapter = {
     }]
 };
 
-//TODO: braedcrumbs anpassen -> wenn eine farbe alle anzeigen (größe anpassen), alle zu malenden kapitel übergeben etc. (evtl form angleichen)
-
 let SBContainer = document.getElementById('SBContainer'),
     LContainer = document.getElementById('LContainer'),
     BCContainer = document.getElementById('BCContainer');
@@ -159,7 +157,7 @@ let wholeSize,
     maxBC;
 
 let chapterColors = ['#552e05', '#7f4e1c', '#a9753f', '#d3a26e', '#fed7ac'];
-let colors = /*['#8acb8a', '#bfcc6d', '#d39f6e', '#d16a6e', '#7d161c']; //*/['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
+let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
 let scales = {'size' : ['(Almost) No Problems', 'Problems Can Be Neglected', 'Problems Could Be Resolved', 'Problems Should be Resolved', 'Problems Must Be Resolved']};
 let activeTopic = 'size';
 
@@ -188,8 +186,6 @@ const initializeAndDrawSunburst = function(chapter) {
         .sum(function (d) { return d.size});
 
     partition(root);
-
-    //maxBC = d3.max(root.descendants()[0].leaves(), function(d) {return d.depth}) + 1;
 
     arc = d3.arc()
         .startAngle(function (d) { return d.x0 })
@@ -592,7 +588,7 @@ const initializeBreadCrumbs = function() {
         .style('stroke', '#000')
         .style('stroke-width', 2);
 
-    bcInnerPadding = height / 5;
+    bcInnerPadding = height / 8;
     bcOuterPadding = height / 10;
     bcGroupWidth = width - 2 * bcOuterPadding;
     bcGroupHeight = height - 2 * bcOuterPadding;
@@ -611,20 +607,20 @@ const getBreadCrumbPath = function(d, i, lastIndex) {
 
     path.push({x: 0, y: bcHeight});
 
-    if (i > 0) {
-        path.push({x: bcWidth * 0.25, y: bcHeight / 2});
-    }
+    /*if (i > 0) {
+     path.push({x: bcWidth * 0.25, y: bcHeight / 2});
+     }*/
 
     path.push({x: 0, y: 0});
 
-    if (i !== lastIndex) {
-        path.push({x: bcWidth, y: 0});
-        path.push({x: bcWidth * 1.25, y: bcHeight / 2});
-        path.push({x: bcWidth, y: bcHeight});
-    } else {
-        path.push({x: bcWidth * 1.25, y: 0});
-        path.push({x: bcWidth * 1.25, y: bcHeight});
-    }
+    //if (i !== lastIndex) {
+    path.push({x: bcWidth, y: 0});
+    // path.push({x: bcWidth * 1.25, y: bcHeight / 2});
+    path.push({x: bcWidth, y: bcHeight});
+    /*} else {
+     path.push({x: bcWidth * 1.25, y: 0});
+     path.push({x: bcWidth * 1.25, y: bcHeight});
+     }*/
 
     path.push({x: 0, y: bcHeight});
 
@@ -641,7 +637,7 @@ const redrawBreadCrumbs = function(chapters, selected) {
 
     maxBC = chapters.length;
     bcHeight = bcGroupHeight;
-    bcWidth = (bcGroupWidth - ((maxBC - 1) * bcInnerPadding)) / (maxBC + 0.25);
+    bcWidth = (bcGroupWidth - ((maxBC - 1) * bcInnerPadding)) / (maxBC);
 
     bcG.selectAll('.breadCrumb')
         .data(chapters)
@@ -665,7 +661,7 @@ const redrawBreadCrumbs = function(chapters, selected) {
 
             d3.select(this)
                 .append('text')
-                .attr('x', bcWidth * 0.25)
+                .attr('x', bcWidth * 0.01)
                 .attr('y', bcHeight / 2)
                 .attr('dy', '.35em')
                 .attr('text-anchor', 'left')
@@ -685,23 +681,8 @@ const redrawBreadCrumbs = function(chapters, selected) {
             switch(event.detail) {
                 case 1:
                     redrawBreadCrumbs(chapters, d);
-                    //highlightChapter([d]);
-                    //updateInformationTexts(d.data.name, getPercentage([d]));
                     blockedMouseover = true;
                     break;
-                /*case 2:
-                    redrawBreadCrumbs(chapters, d);
-                    highlightChapter(d.descendants());
-                    updateInformationTexts(d.data.name + '...', getPercentage(d.descendants()));
-                    blockedMouseover = true;
-                    break;
-                case 3:
-                    redrawBreadCrumbs(chapters, d);
-                    let nodes = getAllWithSameColor(colorThresh(d.data[activeTopic]));
-                    highlightChapter(nodes);
-                    updateInformationTexts(d.data.name + '...', getPercentage(nodes));
-                    blockedMouseover = true;
-                    break;*/
                 default:
                     break
             }
