@@ -2,7 +2,11 @@
 
 $(document).ready(function() {
     var instance = Split(['#visualization', '#text'], {
-        sizes: [60, 40]
+        sizes: [60, 40],
+        onDrag: function() {
+
+            initializeCharts();
+        }
     });
 
     var textClosed = false;
@@ -156,7 +160,6 @@ $(document).ready(function() {
     initializeCharts();
 
     $(window).resize(function() {
-            console.log('sdfgjadskhfgkdasfg');
             initializeCharts()
     });
 
