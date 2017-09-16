@@ -61,14 +61,11 @@
     padding: 10px 5px;
 }
 
-
-
-
 .graph-container {
     display: inline-block;
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 500px;
     vertical-align: top;
     overflow: hidden;
 }
