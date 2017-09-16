@@ -120,5 +120,5 @@ config.js
 
 
 # exclude css / js
-assets/css/index.min.css
-assets/js/index.min.js
+visualisierung/assets/css/index.min.css
+visualisierung/assets/js/index.min.js
