@@ -65,17 +65,17 @@
     display: inline-block;
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 850px;
     vertical-align: top;
     overflow: hidden;
+    /*border: 1px solid #000;*/
 }
 
 .sunburst-container {
     display: inline-block;
     position: relative;
-    width: 90%;
+    width: 85%;
     height: 100%;
-    float: right;
     vertical-align: top;
     overflow: hidden;
 }
@@ -87,6 +87,16 @@
     height: 100%;
     vertical-align: top;
     float: left;
+    overflow: hidden;
+}
+
+.sbSlider-container {
+    display: inline-block;
+    position: relative;
+    width: 5%;
+    height: 100%;
+    vertical-align: top;
+    float: right;
     overflow: hidden;
 }
 
@@ -109,8 +119,4 @@
     bottom:0;
     position:fixed;
     z-index:150;
-}
-
-.legendRect {
-    stroke-width: 2;
 }

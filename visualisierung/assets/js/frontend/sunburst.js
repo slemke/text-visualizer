@@ -2,140 +2,142 @@
  * Created by Dennis Dubbert on 11.09.17.
  */
 let chapter = {
-    "id": 0,
-    "name": "TOPICS",
-    "size": 0,
-    "children": [{
-        "id": 1,
-        "name": "Topic A",
-        "size": 0,
-        "children": [{
-            "id": 2,
-            "name": "Sub A1",
-            "size": 4,
-            "children": [{
-                "id": 3,
-                "name": "Sub A1.1",
-                "size": 2
+    'id': 0,
+    'name': 'TOPICS',
+    'size': 0,
+    'children': [{
+        'id': 1,
+        'name': 'Topic A',
+        'size': 0,
+        'children': [{
+            'id': 2,
+            'name': 'Sub A1',
+            'size': 4,
+            'children': [{
+                'id': 3,
+                'name': 'Sub A1.1',
+                'size': 2
             }, {
-                "id": 4,
-                "name": "Sub A1.2",
-                "size": 5,
-                "children": [{
-                    "id": 25,
-                    "name": "Sub A1.2.1",
-                    "size": 0.5
+                'id': 4,
+                'name': 'Sub A1.2',
+                'size': 5,
+                'children': [{
+                    'id': 25,
+                    'name': 'Sub A1.2.1',
+                    'size': 0.5
                 }, {
-                    "id": 26,
-                    "name": "Sub A1.2.2",
-                    "size": 0.9
+                    'id': 26,
+                    'name': 'Sub A1.2.2',
+                    'size': 0.9
                 }]
             }, {
-                "id": 5,
-                "name": "Sub A1.3",
-                "size": 0.1
+                'id': 5,
+                'name': 'Sub A1.3',
+                'size': 0.1
             }, {
-                "id": 16,
-                "name": "Sub A1.4",
-                "size": 1.2
+                'id': 16,
+                'name': 'Sub A1.4',
+                'size': 1.2
             }, {
-                "id": 17,
-                "name": "Sub A1.5",
-                "size": 3.4
+                'id': 17,
+                'name': 'Sub A1.5',
+                'size': 3.4
             }]
         }, {
-            "id": 6,
-            "name": "Sub A2",
-            "size": 4
+            'id': 6,
+            'name': 'Sub A2',
+            'size': 4
         }, {
-            "id": 18,
-            "name": "Sub A1.2",
-            "size": 5,
-            "children": [{
-                "id": 19,
-                "name": "Sub A1.2.1",
-                "size": 0.4
+            'id': 18,
+            'name': 'Sub A1.2',
+            'size': 5,
+            'children': [{
+                'id': 19,
+                'name': 'Sub A1.2.1',
+                'size': 0.4
             }, {
-                "id": 20,
-                "name": "Sub A1.2.2",
-                "size": 2.9
+                'id': 20,
+                'name': 'Sub A1.2.2',
+                'size': 2.9
             }]
         }, {
-            "id": 21,
-            "name": "Sub A1.3",
-            "size": 0.1
+            'id': 21,
+            'name': 'Sub A1.3',
+            'size': 0.1
         }]
     }, {
-        "id": 7,
-        "name": "Topic B",
-        "size": 0,
-        "children": [{
-            "id": 8,
-            "name": "Sub B1",
-            "size": 3
+        'id': 7,
+        'name': 'Topic B',
+        'size': 0,
+        'children': [{
+            'id': 8,
+            'name': 'Sub B1',
+            'size': 3
         }, {
-            "id": 9,
-            "name": "Sub B2",
-            "size": 3
+            'id': 9,
+            'name': 'Sub B2',
+            'size': 3
         }, {
-            "id": 10,
-            "name": "Sub B3",
-            "size": 3,
-            "children": [{
-                "id": 14,
-                "name": "Sub A1.1.1",
-                "size": 1
+            'id': 10,
+            'name': 'Sub B3',
+            'size': 3,
+            'children': [{
+                'id': 14,
+                'name': 'Sub A1.1.1',
+                'size': 1
             }, {
-                "id": 15,
-                "name": "Sub A1.1.2",
-                "size": 1.5
+                'id': 15,
+                'name': 'Sub A1.1.2',
+                'size': 1.5
             }]
         }]
     }, {
-        "id": 11,
-        "name": "Topic C",
-        "size": 0,
-        "children": [{
-            "id": 12,
-            "name": "Sub A1",
-            "size": 4
+        'id': 11,
+        'name': 'Topic C',
+        'size': 0,
+        'children': [{
+            'id': 12,
+            'name': 'Sub A1',
+            'size': 4
         }, {
-            "id": 13,
-            "name": "Sub A2",
-            "size": 4,
-            "children": [{
-                "id": 23,
-                "name": "Sub A2.1",
-                "size": 0.5
+            'id': 13,
+            'name': 'Sub A2',
+            'size': 4,
+            'children': [{
+                'id': 23,
+                'name': 'Sub A2.1',
+                'size': 0.5
             }, {
-                "id": 24,
-                "name": "Sub A2.2",
-                "size": 0.9,
-                "children": [{
-                    "id": 27,
-                    "name": "Sub A2.2.1",
-                    "size": 0.5
+                'id': 24,
+                'name': 'Sub A2.2',
+                'size': 0.9,
+                'children': [{
+                    'id': 27,
+                    'name': 'Sub A2.2.1',
+                    'size': 0.5
                 }, {
-                    "id": 28,
-                    "name": "Sub A2.2.2",
-                    "size": 0.9
+                    'id': 28,
+                    'name': 'Sub A2.2.2',
+                    'size': 0.9
                 }]
             }]
         }]
     }, {
-        "id": 22,
-        "name": "Topic D",
-        "size": 2.6
+        'id': 22,
+        'name': 'Topic D',
+        'size': 2.6
     }]
 };
 
 let SBContainer = document.getElementById('SBContainer'),
     LContainer = document.getElementById('LContainer'),
-    BCContainer = document.getElementById('BCContainer');
+    BCContainer = document.getElementById('BCContainer'),
+    SBSliderContainer = document.getElementById('SBSliderContainer');
 let bgRect;
 let sbSvg = d3.select('#SBContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let bcSvg = d3.select('#BCContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let lSvg = d3.select('#LContainer').append('svg').attr('id', 'legendSvg').attr('preserveAspectRatio', 'xMidYMid');
+let sbSliderSvg = d3.select('#SBSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 
 let chartSize, bcWidth, bcHeight;
 
@@ -158,7 +160,8 @@ let wholeSize,
 
 let chapterColors = ['#552e05', '#7f4e1c', '#a9753f', '#d3a26e', '#fed7ac'];
 let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
-let scales = {'size' : ['(Almost) No Problems', 'Problems Can Be Neglected', 'Problems Could Be Resolved', 'Problems Should be Resolved', 'Problems Must Be Resolved']};
+let colorTexts = ['(Almost) No Problems', 'Problems Can Be Neglected', 'Problems Could Be Resolved', 'Problems Should be Resolved', 'Problems Must Be Resolved'];
+let sliderScales = {size : [0, 20, 6, '%']};
 let activeTopic = 'size';
 
 const drawSunburst = function(chapter) {
@@ -166,6 +169,7 @@ const drawSunburst = function(chapter) {
     initializeAndDrawSunburst(chapter);
     redrawLegend();
     initializeBreadCrumbs();
+    redrawSlider();
 };
 
 /** All functions for the sunburst */
@@ -224,7 +228,8 @@ const initializeAndDrawSunburst = function(chapter) {
         .append('path')
         .attr('class', 'selected sunburstPart')
         .attr('id', function (d) { return 'chapter' + d.data.id })
-        .attr('display', function (d) { return d.depth ? null : "none"; })
+        .attr('display', function (d) { return d.depth ? null : 'none'; })
+        .style('cursor', 'pointer')
         .attr('d', arc)
         .style('stroke', '#000')
         .on('mouseover', function(d) {
@@ -334,6 +339,89 @@ const appendCircles = function(chartSize) {
         });
 };
 
+const redrawSlider = function() {
+    d3.select('.slider').remove();
+
+    let sliderWidth = SBSliderContainer.clientWidth;
+    let sliderHeight = SBSliderContainer.clientHeight;
+    let spacing = sliderHeight / 10;
+    let handleSize = sliderWidth / 5;
+    let lineSize = sliderWidth / 6;
+    let fontSize = sliderWidth / 4;
+
+    sbSliderSvg.attr('viewBox', '0 0 ' + sliderWidth + ' ' + sliderHeight);
+
+    /** taken and adjusted from: https://bl.ocks.org/mbostock/6452972 */
+
+    let y = d3.scaleLinear()
+        .domain([sliderScales[activeTopic][1], 0])
+        .range([spacing, sliderHeight - spacing])
+        .clamp(true);
+
+    y.ticks(10);
+
+    let slider = sbSliderSvg.append('g')
+        .attr('class', 'slider')
+        .attr('transform', 'translate(' + handleSize * 1.1 + ', 0)');
+
+    slider.append('text')
+        .attr('id', 'scaleText')
+        .attr('x',  - handleSize)
+        .attr('y', spacing - handleSize * 1.5)
+        .attr('text-anchor', 'left')
+        .style('font-size', fontSize + 'px')
+        .style('font-weight', 'bold')
+        .text(sliderScales[activeTopic][2] + sliderScales[activeTopic][3]);
+
+    slider.append('line')
+        .attr('y1', y.range()[0])
+        .attr('y2', y.range()[1])
+        .style('stroke-linecap', 'round')
+        .style('stroke', '#000')
+        .style('stroke-width', handleSize + 'px')
+        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .style('stroke', '#ddd')
+        .style('stroke-width', lineSize + 'px')
+        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr('id', 'track-overlay')
+        .style('pointer-events', 'stroke')
+        .style('stroke', 'transparent')
+        .style('stroke-width', handleSize * 5 + 'px')
+        .style('cursor', 'pointer')
+        .call(d3.drag()
+            .on('start drag', function() {
+                let v = Math.round(y.invert(d3.event.y));
+                d3.select('#scaleText').text(v + sliderScales[activeTopic][3]);
+                handle.attr('cy', y(v));
+            })
+            .on('end', function() {
+                sliderScales[activeTopic][2] = Math.round(y.invert(d3.event.y));
+                changeColorForPercentage();
+                redrawLegend();
+            }));
+
+    slider.insert('g', '.track-overlay')
+        .attr('class', 'ticks')
+        .attr('transform', 'translate(' + fontSize + ', 0)')
+        .selectAll('text')
+        .data(y.ticks())//d3.range(sliderScales[activeTopic][1] + 1))
+        .enter()
+        .append('text')
+        .attr('y', function(d) {return y(d)})
+        .attr('dy', '.35em')
+        .attr('text-anchor', 'left')
+        .style('font-size', fontSize + 'px')
+        .text(function(d) { return d; });
+
+    let handle = slider.insert('circle', '#track-overlay')
+        .attr('class', 'handle')
+        .attr('r', handleSize)
+        .attr('cy', y(sliderScales[activeTopic][2]))
+        .style('fill', '#fff')
+        .style('stroke', '#000')
+        .style('stroke-width', handleSize / 10 + 'px');
+};
+
 const removeAll = function() {
     d3.selectAll('.content').remove();
 };
@@ -352,9 +440,10 @@ const updateInformationTexts = function(name, amount) {
 };
 
 const changeColorForPercentage = function() {
-    let max = d3.max(root.descendants(), function(d) {return d.data[activeTopic]});
-    let min = d3.min(root.descendants(), function(d) {return d.data[activeTopic]});
+    let max = sliderScales[activeTopic][2];
+    let min = sliderScales[activeTopic][0];
     let distance = (max - min) / 5;
+
     let domain = d3.range(4).reduce(function(old){
         return old.concat(old[old.length - 1] + distance);
     }, [distance]);
@@ -372,7 +461,7 @@ const changeColorForPercentage = function() {
 /** legend function */
 
 const redrawLegend = function() {
-    lSvg.selectAll('content').remove();
+    lSvg.selectAll('.content').remove();
 
     let lWidth = LContainer.clientWidth;
     let lHeight = LContainer.clientHeight;
@@ -388,7 +477,7 @@ const redrawLegend = function() {
         .attr('height', lHeight)
         .style('fill', 'rgb(220,220,220)')
         .style('stroke', '#000')
-        .style('stroke-width', 2);
+        .style('stroke-width', 1);
 
     let rootG = lSvg.append('g')
         .attr('class', 'content');
@@ -423,12 +512,13 @@ const redrawLegend = function() {
             .style('fill', colors[i])
             .style('stroke', '#000')
             .each(function() {
+                const band = sliderScales[activeTopic][2] / 5;
                 let lGProzent = lSvg.select('#legendSubGroup' + i)
                     .append('text')
-                    .text((i * 2) + '% - ' + (i * 2 + 2) + '%')
+                    .text(d3.format('.1f')(i * band) + sliderScales[activeTopic][3] + ' - ' + d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
                     .attr('x', lWidth / 2)
                     .attr('dy', '.35em')
-                    .attr('font-size', size / 3)
+                    .attr('font-size', size / 4)
                     .attr('text-anchor', 'middle')
                     .attr('id', 'legendPercent' + i)
                     .style('font-weight', 'bold')
@@ -436,7 +526,7 @@ const redrawLegend = function() {
 
                 let lGText = lSvg.select('#legendSubGroup' + i )
                     .append('text')
-                    .text(scales[activeTopic][i])
+                    .text(colorTexts[i])
                     .attr('x', lWidth / 2)
                     .attr('y', gheight + size)
                     .attr('dy', '1em')
@@ -447,7 +537,7 @@ const redrawLegend = function() {
                     .style('font-weight', 'bold');
 
                 lGProzent.call(wrap, size)
-                    .attr('y', gheight + spacing + (size / 2 - lGProzent.node().getBBox().height / 2));
+                    .attr('y', gheight + spacing + (size / 2.2 - lGProzent.node().getBBox().height / 2));
 
                 lGText.call(wrap, lWidth);
 
@@ -517,11 +607,11 @@ const redrawLegend = function() {
     subG2G3.append('path')
         .attr('id', 'mouseClick')
         .attr('d', arc(path))
-        .style("fill", "#fff")
+        .style('fill', '#fff')
         .style('stroke', '#000')
         .style('stroke-width', 2);
 
-    // <a href="https://icons8.com">Icon pack by Icons8</a>
+    // <a href='https://icons8.com'>Icon pack by Icons8</a>
     subG2G3.append('image')
         .attr('xlink:href', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAADgElEQVRoQ+2agZENQRRF70aACBABIkAEiAARIAJEgAjYCBABIkAEiAARUKeqr+rq7Z7p7umZPz5dtbVb++f/eafvu++9nt0THck6ORIO/ZMgDyVdksT33a0WRd6H6G/sjkIqptZ3Sa8kPYqCfiPpvKQY5J6kZ5KuSfp6SMCSIkDcDSDPQ4BA8OWAAXon6bOkq4eE4N5TqQUA6YQSuUXwTyShyo89gxw6tqb715qd3X8cdv6FpE9Nd9ng4hSENLkY7vs0MTqeOBd+Bwip93YPaZXzCJ64LulbMLBz3+anOt0OvgCY1/HQwVVqSa2PSRUDiC+qG+ugKtWCEChl95eky0nKU5JJSTq+0xIFT0PV28Ah0+UXTxC8+waB0vxuTgTIe4CySrwXLwG1aokuKUIwLyVheHoFi52n4xMUr3uRXg/CJGDzb65SCYQUomOzw/FO2vQXot9TmjG8zX8/aaKbqFQCITjSIk0HjyXMYB5dYmVQCgUxPj+zIZuo1GJ2B1wyfWpqVLpVKNFWibSkNy32Ug9IjelTlQDKlWi8BAyfeSVcQ/qyCShZvXpASqafuikHMgdcaqSkM0CxSi7js0eEHhACzpm+dvfmzJ9TCYW4Z1GlXpAp09cCpSWawkI1jFeqEqNQ9qjdCzLV6WtB4uvYGIJOK6Gv4bXXAZQNOLOWgNj0DJJrjfUETbPlXvxMjyLFhoL0mL5FLUzPSESh+BD6UtH0SxSx6SmtDJKjZikCZzwi3ThOoEbpuP1nY5aC2PRFyRskQGFOoQT+M/jFc97sxywFsekZJvFK7yKNUAEYSiwws70jvtkIEHaNnew1Pan0JaQR85kfBDZtyggQB5KO97WB+FkZMJx1urw2AoSAMSNn/V7T+/xDGe+CGQVCjtOwak2PivaXlVsEMwqkxfSG5j0peDfMSJAa0+MHvEB5xQuM7kNgRoLUmJ5ZipEDH+AHKtQQmJEgc6Y3KH2C9GKh0BCY0SBTpudPEPQaPw+wyYfAjAYpmd6A8eOluM8shlkDxKanpzBmECSPW7mXy26uWS6CWQPEXvBpzmB3KqbYbpg1QGLT4wnKLeeJ2j+iTsH4MHem8a4FYk+QWijkNGuZv3LVbHMQH7r8CCh7PJ2hipXxAwf6UO5R7u7/8yGGgTsLwQtrpVZtCtVeh7JAMWVnx/y/BWQW+D/I7BZtfMHRKPIbzUAQQpxDgKEAAAAASUVORK5CYII=')
         .attr('width', size / 2)
@@ -650,7 +740,8 @@ const redrawBreadCrumbs = function(chapters, selected) {
                 .attr('d', getBreadCrumbPath(d, i, chapters.length - 1))
                 .attr('fill', colorThresh(d.data[activeTopic]) )
                 .style('stroke', '#000')
-                .style('stroke-width', 1);
+                .style('stroke-width', 1)
+                .style('cursor', 'pointer');
 
             d3.select(this)
                 .append('clipPath')
@@ -666,6 +757,7 @@ const redrawBreadCrumbs = function(chapters, selected) {
                 .attr('dy', '.35em')
                 .attr('text-anchor', 'left')
                 .attr('clip-path', 'url(#bcClip' + i + ')')
+                .style('cursor', 'pointer')
                 .style('fill', function() {
                     return (d === selected) ? '#000' : '#fff';
                 })
@@ -698,18 +790,18 @@ const wrap = function(text, width) {
             line = [],
             lineNumber = 0,
             lineHeight = 1.1,
-            y = text.attr("y"),
-            x = text.attr("x"),
-            dy = parseFloat(text.attr("dy")),
-            tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+            y = text.attr('y'),
+            x = text.attr('x'),
+            dy = parseFloat(text.attr('dy')),
+            tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
         while (word = words.pop()) {
             line.push(word);
-            tspan.text(line.join(" "));
+            tspan.text(line.join(' '));
             if (tspan.node().getComputedTextLength() > width) {
                 line.pop();
-                tspan.text(line.join(" "));
+                tspan.text(line.join(' '));
                 line = [word];
-                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
             }
         }
     });
