@@ -161,7 +161,7 @@ let wholeSize,
 let chapterColors = ['#552e05', '#7f4e1c', '#a9753f', '#d3a26e', '#fed7ac'];
 let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
 let colorTexts = ['(Almost) No Problems', 'Problems Can Be Neglected', 'Problems Could Be Resolved', 'Problems Should be Resolved', 'Problems Must Be Resolved'];
-let sliderScales = {size : [0, 20, 6, '%']};
+let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.5,0.5).reverse()]};
 let activeTopic = 'size';
 
 const drawSunburst = function(chapter) {
@@ -358,6 +358,10 @@ const redrawSlider = function() {
         .range([spacing, sliderHeight - spacing])
         .clamp(true);
 
+    let scale = d3.scaleQuantize()
+        .domain([spacing, sliderHeight - spacing])
+        .range(sliderScales[activeTopic][4]);
+
     y.ticks(10);
 
     let slider = sbSliderSvg.append('g')
@@ -390,12 +394,11 @@ const redrawSlider = function() {
         .style('cursor', 'pointer')
         .call(d3.drag()
             .on('start drag', function() {
-                let v = Math.round(y.invert(d3.event.y));
-                d3.select('#scaleText').text(v + sliderScales[activeTopic][3]);
-                handle.attr('cy', y(v));
+                d3.select('#scaleText').text(scale(d3.event.y) + sliderScales[activeTopic][3]);
+                handle.attr('cy', y(scale(d3.event.y)));
             })
             .on('end', function() {
-                sliderScales[activeTopic][2] = Math.round(y.invert(d3.event.y));
+                sliderScales[activeTopic][2] = scale(d3.event.y);
                 changeColorForPercentage();
                 redrawLegend();
             }));
@@ -404,7 +407,7 @@ const redrawSlider = function() {
         .attr('class', 'ticks')
         .attr('transform', 'translate(' + fontSize + ', 0)')
         .selectAll('text')
-        .data(y.ticks())//d3.range(sliderScales[activeTopic][1] + 1))
+        .data(y.ticks())
         .enter()
         .append('text')
         .attr('y', function(d) {return y(d)})
