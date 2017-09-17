@@ -1,139 +1,12 @@
 /**
  * Created by Dennis Dubbert on 11.09.17.
  */
-let chapter = {
-    'id': 0,
-    'name': 'TOPICS',
-    'size': 0,
-    'children': [{
-        'id': 1,
-        'name': 'Topic A',
-        'size': 0,
-        'children': [{
-            'id': 2,
-            'name': 'Sub A1',
-            'size': 4,
-            'children': [{
-                'id': 3,
-                'name': 'Sub A1.1',
-                'size': 2
-            }, {
-                'id': 4,
-                'name': 'Sub A1.2',
-                'size': 5,
-                'children': [{
-                    'id': 25,
-                    'name': 'Sub A1.2.1',
-                    'size': 0.5
-                }, {
-                    'id': 26,
-                    'name': 'Sub A1.2.2',
-                    'size': 0.9
-                }]
-            }, {
-                'id': 5,
-                'name': 'Sub A1.3',
-                'size': 0.1
-            }, {
-                'id': 16,
-                'name': 'Sub A1.4',
-                'size': 1.2
-            }, {
-                'id': 17,
-                'name': 'Sub A1.5',
-                'size': 3.4
-            }]
-        }, {
-            'id': 6,
-            'name': 'Sub A2',
-            'size': 4
-        }, {
-            'id': 18,
-            'name': 'Sub A1.2',
-            'size': 5,
-            'children': [{
-                'id': 19,
-                'name': 'Sub A1.2.1',
-                'size': 0.4
-            }, {
-                'id': 20,
-                'name': 'Sub A1.2.2',
-                'size': 2.9
-            }]
-        }, {
-            'id': 21,
-            'name': 'Sub A1.3',
-            'size': 0.1
-        }]
-    }, {
-        'id': 7,
-        'name': 'Topic B',
-        'size': 0,
-        'children': [{
-            'id': 8,
-            'name': 'Sub B1',
-            'size': 3
-        }, {
-            'id': 9,
-            'name': 'Sub B2',
-            'size': 3
-        }, {
-            'id': 10,
-            'name': 'Sub B3',
-            'size': 3,
-            'children': [{
-                'id': 14,
-                'name': 'Sub A1.1.1',
-                'size': 1
-            }, {
-                'id': 15,
-                'name': 'Sub A1.1.2',
-                'size': 1.5
-            }]
-        }]
-    }, {
-        'id': 11,
-        'name': 'Topic C',
-        'size': 0,
-        'children': [{
-            'id': 12,
-            'name': 'Sub A1',
-            'size': 4
-        }, {
-            'id': 13,
-            'name': 'Sub A2',
-            'size': 4,
-            'children': [{
-                'id': 23,
-                'name': 'Sub A2.1',
-                'size': 0.5
-            }, {
-                'id': 24,
-                'name': 'Sub A2.2',
-                'size': 0.9,
-                'children': [{
-                    'id': 27,
-                    'name': 'Sub A2.2.1',
-                    'size': 0.5
-                }, {
-                    'id': 28,
-                    'name': 'Sub A2.2.2',
-                    'size': 0.9
-                }]
-            }]
-        }]
-    }, {
-        'id': 22,
-        'name': 'Topic D',
-        'size': 2.6
-    }]
-};
 
 let SBContainer = document.getElementById('SBContainer'),
     LContainer = document.getElementById('LContainer'),
     BCContainer = document.getElementById('BCContainer'),
     SBSliderContainer = document.getElementById('SBSliderContainer');
-let bgRect;
+
 let sbSvg = d3.select('#SBContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let bcSvg = d3.select('#BCContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let lSvg = d3.select('#LContainer').append('svg').attr('id', 'legendSvg').attr('preserveAspectRatio', 'xMidYMid');
@@ -160,7 +33,7 @@ let wholeSize,
 
 let chapterColors = ['#552e05', '#7f4e1c', '#a9753f', '#d3a26e', '#fed7ac'];
 let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
-let colorTexts = ['(Almost) No Problems', 'Problems Can Be Neglected', 'Problems Could Be Resolved', 'Problems Should be Resolved', 'Problems Must Be Resolved'];
+//let colorTexts = ['(Almost) No Problems', 'Problems Can Be Neglected', 'Problems Could Be Resolved', 'Problems Should be Resolved', 'Problems Must Be Resolved'];
 let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.5,0.5).reverse()]};
 let activeTopic = 'size';
 
@@ -203,7 +76,7 @@ const initializeAndDrawSunburst = function(chapter) {
         return old + val.data.size
     }, 0);
 
-    bgRect = sbSvg.append('rect')
+    sbSvg.append('rect')
         .attr('class', 'content')
         .attr('id', 'bgRect')
         .attr('width', sbWidth)
@@ -224,7 +97,7 @@ const initializeAndDrawSunburst = function(chapter) {
 
     g.enter()
         .append('g')
-        .attr('class', 'node')
+        .attr('class', 'sunburstNode')
         .append('path')
         .attr('class', 'selected sunburstPart')
         .attr('id', function (d) { return 'chapter' + d.data.id })
@@ -273,7 +146,16 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('font-size', innerRadius / 5 + 'px')
         .attr('font-weight', 'bold')
         .attr('dy', '.35em')
-        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 - innerRadius / 4) + ')');
+        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 - innerRadius / 3) + ')');
+
+     sbSvg.append('text')
+        .text('Size:')
+        .attr('class', 'content')
+        .attr('text-anchor', 'middle')
+        .attr('font-size', innerRadius / 5 + 'px')
+        //.attr('font-weight', 'bold')
+        .attr('dy', '.35em')
+        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2) + ')');
 
     a = sbSvg.append('text')
         .text(d3.format('.2%')(1))
@@ -281,13 +163,13 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('text-anchor', 'middle')
         .attr('font-size', innerRadius / 5 + 'px')
         .attr('dy', '.35em')
-        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 + innerRadius / 4) + ')');
+        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 + innerRadius / 3) + ')');
 
     appendCircles(chartSize);
 };
 
 const getAllWithSameColor = function(color) {
-    return d3.selectAll('.node').data().filter(function(d) {
+    return d3.selectAll('.sunburstNode').data().filter(function(d) {
         return colorThresh(d.data[activeTopic]) === color})
 };
 
@@ -300,7 +182,7 @@ const getPercentage = function(d) {
 };
 
 const appendCircles = function(chartSize) {
-    d3.selectAll('.node')
+    d3.selectAll('.sunburstNode')
         .each(function(d) {
             if (d.data.size) {
                 d3.select(this)
@@ -325,7 +207,7 @@ const appendCircles = function(chartSize) {
                                 blockedMouseover = true;
                                 break;
                             case 3:
-                                let nodes = getAllWithSameColor(colorThresh(d.data[activeTopic]));
+                                let nodes = getAllWithSameColor(colorThresh(d.data.size));
                                 redrawBreadCrumbs(nodes, d);
                                 highlightChapter(nodes);
                                 updateInformationTexts(d.data.name + '...', getPercentage(nodes));
@@ -443,11 +325,10 @@ const updateInformationTexts = function(name, amount) {
 };
 
 const changeColorForPercentage = function() {
-    let max = sliderScales[activeTopic][2];
-    let min = sliderScales[activeTopic][0];
-    let distance = (max - min) / 5;
 
-    let domain = d3.range(4).reduce(function(old){
+    let distance = sliderScales[activeTopic][2] / (colors.length - 1);
+
+    let domain = d3.range(colors.length - 2).reduce(function(old){
         return old.concat(old[old.length - 1] + distance);
     }, [distance]);
 
@@ -455,7 +336,7 @@ const changeColorForPercentage = function() {
         .domain(domain)
         .range(colors);
 
-    d3.selectAll('.node path')
+    d3.selectAll('.sunburstNode path')
         .attr('fill', function(d) {
             return colorThresh(d.data[activeTopic]);
         });
@@ -485,7 +366,7 @@ const redrawLegend = function() {
     let rootG = lSvg.append('g')
         .attr('class', 'content');
 
-    rootG.append('text')
+    let legend = rootG.append('text')
         .text('Legend')
         .attr('x', lWidth / 2)
         .attr('y', 0)
@@ -496,11 +377,24 @@ const redrawLegend = function() {
         .style('font-weight', 'bold')
         .classed('legendText', true);
 
+    let colorText = rootG.append('text')
+        .text('Color = Worst Value Is:')
+        .attr('x', lWidth / 2)
+        .attr('y', legend.node().getBBox().height)
+        .attr('dy', '.8em')
+        .attr('font-size', size / 3)
+        .attr('text-anchor', 'middle')
+        .style('fill', '#000')
+        .style('font-weight', 'bold')
+        .classed('legendText', true)
+        .call(wrap, lWidth);
+
     let subG = rootG.append('g')
         .attr('transform', 'translate(0,' + (lWidth - size) / 2 + ')');
 
     let subG1 = subG.append('g')
-        .attr('id', 'legendSubG1');
+        .attr('id', 'legendSubG1')
+        .attr('transform', 'translate(0, ' + colorText.node().getBBox().height + ')');
 
     colors.forEach(function(d, i) {
         let gheight = subG1.node().getBBox().height + spacing;
@@ -515,21 +409,38 @@ const redrawLegend = function() {
             .style('fill', colors[i])
             .style('stroke', '#000')
             .each(function() {
-                const band = sliderScales[activeTopic][2] / 5;
-                let lGProzent = lSvg.select('#legendSubGroup' + i)
+                const band = sliderScales[activeTopic][2] / (colors.length - 1);
+                /*let lGProzent = lSvg.select('#legendSubGroup' + i)
                     .append('text')
-                    .text(d3.format('.1f')(i * band) + sliderScales[activeTopic][3] + ' - ' + d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
+                    .text(function() {
+                        if (i === 0) {
+                            return '<' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
+                        } else if (i < colors.length - 1) {
+                            return '>' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3] + ' && <' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
+                        } else {
+                            return '>' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3]
+                        }
+                    })
                     .attr('x', lWidth / 2)
                     .attr('dy', '.35em')
-                    .attr('font-size', size / 4)
+                    .attr('font-size', size / 5)
                     .attr('text-anchor', 'middle')
                     .attr('id', 'legendPercent' + i)
                     .style('font-weight', 'bold')
-                    .style('fill', '#000');
+                    .style('fill', '#000');*/
 
                 let lGText = lSvg.select('#legendSubGroup' + i )
                     .append('text')
-                    .text(colorTexts[i])
+                    //.text(colorTexts[i])
+                    .text(function() {
+                        if (i === 0) {
+                            return '<' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
+                        } else if (i < colors.length - 1) {
+                            return '>' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3] + '   &&   <' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
+                        } else {
+                            return '>=' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3]
+                        }
+                    })
                     .attr('x', lWidth / 2)
                     .attr('y', gheight + size)
                     .attr('dy', '1em')
@@ -539,8 +450,8 @@ const redrawLegend = function() {
                     .style('fill', '#000')
                     .style('font-weight', 'bold');
 
-                lGProzent.call(wrap, size)
-                    .attr('y', gheight + spacing + (size / 2.2 - lGProzent.node().getBBox().height / 2));
+                /*lGProzent.call(wrap, size)
+                    .attr('y', gheight + spacing + (size / 2.2 - lGProzent.node().getBBox().height / 2));*/
 
                 lGText.call(wrap, lWidth);
 

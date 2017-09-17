@@ -59,6 +59,13 @@
 
 .tab-pane {
     padding: 10px 5px;
+    width: 100%;
+    height: 850px;
+}
+
+.tab-content {
+    width: 100%;
+    height: 850px;
 }
 
 .graph-container {
@@ -68,7 +75,6 @@
     height: 850px;
     vertical-align: top;
     overflow: hidden;
-    /*border: 1px solid #000;*/
 }
 
 .sunburst-container {
@@ -110,11 +116,8 @@
 }
 
 .breadcrumb-container {
-    /*display: inline-block;*/
-    /*position: relative;*/
     width: 60%;
     height: 5vh;
-    /*vertical-align: top;*/
     overflow: hidden;
     bottom:0;
     position:fixed;
