@@ -112,7 +112,8 @@
     width: 95%;
     height: 100%;
     vertical-align: top;
-    overflow: hidden;
+    z-index: 150;
+    /*overflow: hidden;*/
 }
 
 .breadcrumb-container {

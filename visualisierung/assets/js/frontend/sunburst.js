@@ -41,6 +41,7 @@ const drawSunburst = function(chapter, buData) {
     initializeAndDrawSunburst(chapter);
     redrawLegend();
     redrawSlider();
+    drawBubbleChart();
 };
 
 /** All functions for the sunburst */
@@ -262,7 +263,7 @@ const redrawSlider = function() {
             .on('end', function() {
                 sliderScales[activeTopic][2] = scale(d3.event.y);
                 changeColorForPercentage();
-                adjustBubbleColor();
+                drawBubbles();
                 redrawLegend();
             }));
 
@@ -623,7 +624,7 @@ const redrawBreadCrumbs = function(chapters) {
                 .attr('d', getBreadCrumbPath(false))
                 .attr('id', 'BcPath' + d.data.id)
                 .style('stroke', '#000')
-                .style('stroke-width', 1)
+                .style('stroke-width', 2)
                 .style('cursor', 'pointer');
 
             bc.append('clipPath')
@@ -640,6 +641,8 @@ const redrawBreadCrumbs = function(chapters) {
                 .attr('clip-path', 'url(#bcClip' + i + ')')
                 .attr('pointer-events', 'none')
                 .style('cursor', 'pointer')
+                .style('stroke', '#ddd')
+                .style('stroke-width', 0.5)
                 .style('fill', '#fff')
                 .style('font-size', (bcHeight / 1.5 < bcWidth / 5) ? bcHeight / 1.5 : bcWidth / 5)
                 .style('font-weight', 'bold')
@@ -677,7 +680,8 @@ const redrawBreadCrumbs = function(chapters) {
                     });
                     redrawBreadCrumbs(chapters, d);
                     blockedMouseover = true;
-                    // drawBubbles(bubbleData, bubbleKey);
+                    selectedBubbles = [];
+                    drawBubbleChart();
                     break;
                 default:
                     break
@@ -691,9 +695,7 @@ const redrawBreadCrumbs = function(chapters) {
         .style('fill', cColors(0));
 
     if (chapters[0].children) {
-
         let firstChildren = chapters[0].children;
-
         for (let i = 1; i < firstChildren.length + 1; i++) {
             firstChildren[i - 1].descendants().forEach(function (d) {
                 d3.select('#BcPath' + d.data.id)
@@ -705,103 +707,219 @@ const redrawBreadCrumbs = function(chapters) {
     bcSvg.attr('viewBox', '0 0 ' + width + ' ' + (bcSvg.select('#bcGroup').node().getBBox().height + 2 * bcPadding));
     bcRect.attr('width', width).attr('height', (bcSvg.select('#bcGroup').node().getBBox().height + 2 * bcPadding));
 
-    drawBubbles(bubbleData, bubbleKey);
-    drawBubbleSlider(bubbleData, bubbleKey);
+    drawBubbleChart();
 };
 
 /** BubbleChart-Function */
 let BubbleContainer = document.getElementById('nav-tabContent'),
     bubbleSvg = d3.select('#BUContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid'),
     bubbleSliderSvg = d3.select('#BUSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid'),
-    bubbleMinValue;
+    bubbleMinValue,
+    selectedBubbles = [];
 
-const drawBubbles = function(data, key) {
-    //TODO: Daten filtern anhand von slider-wert
+const drawBubbleChart = function() {
+    bubbleMinValue = null;
+    drawBubbles();
 
-    bubbleKey = key;
-    if(bubbleData.length === 0) bubbleData = data;
-    bubbleSvg.selectAll('.content').remove();
+    let min = d3.min(bubbleData, function(d) {return d[bubbleKey]});
+    let max = d3.max(bubbleData, function(d) {return d[bubbleKey]});
+    drawBubbleSlider(min, max + 0.1);
+};
 
+const drawBubbles = function() {
     let buWidth = BubbleContainer.clientWidth * 0.95;
     let buHeight = BubbleContainer.clientHeight * 0.93;
 
     bubbleSvg.attr('viewBox', '0 0 ' + buWidth + ' ' + buHeight);
 
-    data.sort(function(a, b){return -(a[key] - b[key])});
 
-    let rootNode = {
-        children: data
-    };
+    let data = bubbleData;
+    console.log(bubbleMinValue);
+    if (bubbleMinValue !== null) data = data.filter(function(d) {return d[bubbleKey] >= bubbleMinValue});
 
-    let pack = d3.pack()
-        .size([buWidth, buHeight])
-        .padding(2);
-
-    let root = d3.hierarchy(rootNode)
-        .sum(function(d) {return d[key]});
-
-    pack(root);
-
-    bubbleSvg.append('rect')
-        .attr('class', 'content')
-        .attr('id', 'bgRect')
-        .attr('width', buWidth)
-        .attr('height', buHeight)
-        .style('fill', '#ddd');
-
-    bubbleGroup = bubbleSvg.append('g')
-        .attr('class', 'content')
-        .attr('transform', 'translate(0, 0)');
-
-    bubbleGroup.selectAll('.leafNode')
-        .data(root.leaves())
-        .enter()
-        .append('g')
-        .attr('class', 'leafNode')
-        .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')' })
-        .each(function(d, i) {
-            let group = d3.select(this).style('cursor', 'pointer');
-
-            group.append('clipPath')
-                .attr('id', 'bubbleClip' + i)
-                .attr('class', 'bubbleClip')
-                .append('circle')
-                .attr('r', d.r);
-
-            group.append('circle')
-                .attr('r', d.r)
-                .style('fill', colorThresh(d.data[key]))
-                .style('stroke', '#000')
-                .style('stroke-width', 1);
-
-            let text = group.append('text')
-                .attr('dy', '.35em')
-                .attr('clip-path', 'url(#bubbleClip' + i + ')')
-                .style('fill', '#fff')
-                .style('text-anchor', 'middle')
-                .text(d.data.name.substring(0, d.r / 4));
-
-            text.on('mouseenter', function() {
-                group.moveToFront();
-                group.selectAll('circle')
-                    .transition()
-                    .attr('r', d3.max([d3.min([buWidth, buHeight]) / 10, d.r]));
-                group.select('text')
-                    .transition()
-                    .text(d.data.name.substring(0, d3.max([d3.min([buWidth, buHeight]) / 20, d.r]) / 2));
-            }).on('mouseleave', function() {
-                group.selectAll('circle')
-                    .transition()
-                    .attr('r', d.r);
-                group.select('text')
-                    .transition()
-                    .text(d.data.name.substring(0, d.r / 4));
+    if(data.length > 0) {
+        if (!bubbleMinValue) {
+            bubbleData.sort(function (a, b) {
+                return -(a[bubbleKey] - b[bubbleKey])
             });
-        });
-};
+        }
 
-const updateBubbles = function(data, key) {
-    //TODO: update chart und enter,update,exit prinzip machen
+        let rootNode = {
+            children: data
+        };
+
+        let buPack = d3.pack()
+            .size([buWidth, buHeight])
+            .padding(4);
+
+        let buRoot = d3.hierarchy(rootNode)
+            .sum(function (d) {
+                return d[bubbleKey]
+            });
+
+        buPack(buRoot);
+
+        if (!bubbleGroup) {
+            bubbleGroup = bubbleSvg.append('g')
+                .attr('class', 'buContent')
+                .attr('transform', 'translate(0, 0)');
+        }
+
+
+        let bubbles = bubbleGroup.selectAll('.leafNode')
+            .data(buRoot.leaves());
+
+        bubbles.exit()
+            .remove();
+
+        bubbles.enter()
+            .append('g')
+            .attr('class', 'leafNode')
+            .attr('transform', function (d) {
+                return 'translate(' + d.x + ',' + d.y + ')'
+            })
+            .each(function () {
+                let group = d3.select(this).style('cursor', 'pointer');
+
+                group.append('clipPath')
+                    .attr('class', 'buMask')
+                    .append('circle')
+                    .attr('class', 'maskCircle')
+                    .attr('r', 0);
+
+                group.append('circle')
+                    .attr('r', 0)
+                    .attr('class', 'leafCircle')
+                    .style('stroke', '#000')
+                    .style('stroke-width', 2);
+
+                let text = group.append('text')
+                    .attr('dy', '.35em')
+                    .attr('class', 'leafText')
+                    .style('fill', '#fff')
+                    .style('font-weight', 'bold')
+                    .style('text-anchor', 'middle')
+                    .text(' ');
+            });
+
+        adjustBubbleColor();
+        adjustBubbleOpacity();
+
+        d3.selectAll('.leafNode')
+            .each(function (d, i) {
+                let group = d3.select(this);
+
+                /*group.attr('opacity', function () {
+                    let index = selectedBubbles.findIndex(function (val) {
+                        return val.data.name === d.data.name
+                    });
+                    return (selectedBubbles.length > 0 && index === -1) ? 0.2 : 1
+                });*/
+
+                group.transition()
+                    .duration(500)
+                    .attr('transform', 'translate(' + d.x + ', ' + d.y + ')');
+
+                group.select('.buMask')
+                    .attr('id', 'bubbleClip' + i);
+
+                group.selectAll('.maskCircle')
+                    .transition()
+                    .duration(500)
+                    .attr('r', d.r - 1);
+
+                group.selectAll('.leafCircle')
+                    .on('click', function () {
+                        let index = selectedBubbles.findIndex(function (val) {
+                            return val.data.name === d.data.name
+                        });
+                        (index !== -1) ? selectedBubbles.splice(index, 1) : selectedBubbles.push(d);
+                        adjustBubbleOpacity();
+                    })
+                    .transition()
+                    .duration(500)
+                    .style('fill', colorThresh(d.data[bubbleKey]))
+                    .attr('r', d.r);
+
+                group.select('.leafText')
+                    .attr('clip-path', 'url(#bubbleClip' + i + ')')
+                    .on('mouseenter', function () {
+
+                        let radius = d3.max([d3.min([buWidth, buHeight]) / 10 - 1, d.r - 1]);
+                        /*if (d.x + radius > buWidth)  group.attr('transform', 'translate(' + (d.x - (d.x + radius - buWidth)) + ', ' + d.y + ')');
+                        if (d.x - radius < 0) group.attr('transform', 'translate(' + (d.x + (radius - d.x)) + ', ' + d.y + ')');
+                        if (d.y + radius > buHeight) group.attr('transform', 'translate(' + d.x + ', ' + (d.y - (d.y + radius - buHeight)) + ')');
+                        if (d.y - radius < 0) group.attr('transform', 'translate(' + d.x + ', ' + (d.y + (radius - d.y)) + ')');
+
+                        function appendCircle(x, y) {
+                            group.append('circle')
+                                .attr('class', 'overlayCircle')
+                                .attr('r', radius)
+                                .attr('cx', x)
+                                .attr('cy', y);
+                        }*/
+
+                        group.moveToFront();
+                        group.selectAll('.maskCircle')
+                            .transition()
+                            .attr('r', radius);
+
+                        group.selectAll('.leafCircle')
+                            .transition()
+                            .attr('r', d3.max([d3.min([buWidth, buHeight]) / 10, d.r]));
+
+                        group.select('.leafText')
+                            .transition()
+                            .text(d.data.name.substring(0, radius / 2));
+
+                        group.append('text')
+                            .attr('x', 0)
+                            .attr('y', radius / 2)
+                            .attr('dy', '.35em')
+                            .attr('clip-path', 'url(#bubbleClip' + i + ')')
+                            .attr('class', 'infoText')
+                            .style('fill', '#fff')
+                            .style('font-weight', 'bold')
+                            .style('text-anchor', 'middle')
+                            .text((d.data[bubbleKey] + '').substring(0, radius / 2));
+
+                        group.transition().attr('opacity', 1);
+
+                    }).on('mouseleave', function () {
+                        //group.attr('transform', 'translate(' + d.x + ', ' + d.y + ')');
+
+                        group.selectAll('.maskCircle')
+                            .transition()
+                            .attr('r', d.r - 1);
+
+                        group.selectAll('.leafCircle')
+                            .transition()
+                            .attr('r', d.r);
+
+                        group.select('.leafText')
+                            .transition()
+                            .text(d.data.name.substring(0, d.r / 4));
+
+                        group.select('.infoText').remove();
+
+                        group.transition().attr('opacity', (selectedBubbles.findIndex(function(val) {
+                            return val.data.name === d.data.name
+                        }) === -1) ? 0.2 : 1);
+
+                    }).on('click', function () {
+                        let index = selectedBubbles.findIndex(function (val) {
+                            return val.data.name === d.data.name
+                        });
+                        (index !== -1) ? selectedBubbles.splice(index, 1) : selectedBubbles.push(d);
+                        adjustBubbleOpacity();
+                    })
+                        .transition()
+                        .duration(500)
+                        .text(function (d) {
+                            return d.data.name.substring(0, d.r / 4)
+                        });
+            });
+    } else { d3.selectAll('.leafNode').remove() }
 };
 
 const adjustBubbleColor = function() {
@@ -810,7 +928,16 @@ const adjustBubbleColor = function() {
         .style('fill', function(d) {return colorThresh(d.data[bubbleKey])});
 };
 
-const drawBubbleSlider = function(data, key) {
+const adjustBubbleOpacity = function() {
+    d3.selectAll('.leafNode')
+        .attr('opacity', function(n) {
+            let index = selectedBubbles.findIndex(function(val) {
+                return val.data.name === n.data.name
+            });
+            return (index === -1) ? 0.2 : 1});
+};
+
+const drawBubbleSlider = function(min, max) {
     d3.select('.buSlider').remove();
 
     let sliderWidth = BubbleContainer.clientWidth * 0.05;
@@ -819,12 +946,7 @@ const drawBubbleSlider = function(data, key) {
     let handleSize = sliderWidth / 5;
     let lineSize = sliderWidth / 6;
     let fontSize = sliderWidth / 4;
-    let min = d3.min(data, function(d) {
-        return d[key];
-    });
-    let max = d3.max(data, function(d) {
-        return d[key];
-    });
+
     let dist = max - min;
     let step = dist / 100;
 
@@ -855,9 +977,9 @@ const drawBubbleSlider = function(data, key) {
         .attr('y', spacing - handleSize * 1.5)
         .attr('text-anchor', 'left')
         .attr('pointer-events', 'none')
-        .style('font-size', fontSize + 'px')
+        .style('font-size', fontSize  * 0.8 + 'px')
         .style('font-weight', 'bold')
-        .text('100%');
+        .text('Top 100%');
 
     buSlider.append('line')
         .attr('y1', buY.range()[0])
@@ -876,15 +998,13 @@ const drawBubbleSlider = function(data, key) {
         .style('cursor', 'pointer')
         .call(d3.drag()
             .on('start drag', function() {
-                buSlider.select('#buScaleText').text(Math.round(buY.invert(d3.event.y)) + '%');
+                let newText = Math.round(buY.invert(d3.event.y));
+                buSlider.select('#buScaleText').text('Top ' + newText + '%');
                 handle.attr('cy', buY(buY.invert(d3.event.y)));
             })
             .on('end', function() {
-                //TODO: RESIZE IMAGE
-                //sliderScales[activeTopic][2] = scale(d3.event.y);
-                //changeColorForPercentage();
-                //adjustBubbleColor();
-                //redrawLegend();
+                bubbleMinValue = buScale(buY.invert(d3.event.y));
+                drawBubbles();
             }));
 
     buSlider.insert('g', '.buTrack-overlay')
@@ -899,12 +1019,12 @@ const drawBubbleSlider = function(data, key) {
         .attr('text-anchor', 'left')
         .attr('pointer-events', 'none')
         .style('font-size', fontSize + 'px')
-        .text(function(d) { return d; });
+        .text(function(d) { return d });
 
     let handle = buSlider.insert('circle', '#buTrack-overlay')
         .attr('class', 'handle')
         .attr('r', handleSize)
-        .attr('cy', buY(100))
+        .attr('cy', (bubbleMinValue) ? buY(buY.invert(bubbleMinValue)) : buY(100))
         .style('fill', '#fff')
         .style('stroke', '#000')
         .style('stroke-width', handleSize / 10 + 'px');
