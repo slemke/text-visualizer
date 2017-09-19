@@ -28,15 +28,12 @@ $(document).ready(function() {
     let chapter = {
        "id": 0,
        "name": "TOPICS",
-       "size": 0,
        "children": [{
            "id": 1,
            "name": "Topic A",
-           "size": 1.124,
            "children": [{
                "id": 2,
                "name": "Sub A1",
-               "size": 1.125,
                "children": [{
                    "id": 3,
                    "name": "Sub A1.1",
@@ -44,7 +41,6 @@ $(document).ready(function() {
                }, {
                    "id": 4,
                    "name": "Sub A1.2",
-                   "size": 2.25,
                    "children": [{
                        "id": 25,
                        "name": "Sub A1.2.1",
@@ -73,26 +69,24 @@ $(document).ready(function() {
                "size": 5.625
            }, {
                "id": 18,
-               "name": "Sub A1.2",
-               "size": 5,
+               "name": "Sub A3",
                "children": [{
                    "id": 19,
-                   "name": "Sub A1.2.1",
+                   "name": "Sub A3.1",
                    "size": 0.4
                }, {
                    "id": 20,
-                   "name": "Sub A1.2.2",
+                   "name": "Sub A3.2",
                    "size": 2.9
                }]
            }, {
                "id": 21,
-               "name": "Sub A1.3",
-               "size": 0.1
+               "name": "Sub A4",
+               "size": 1
            }]
        }, {
            "id": 7,
            "name": "Topic B",
-           "size": 0,
            "children": [{
                "id": 8,
                "name": "Sub B1",
@@ -104,7 +98,6 @@ $(document).ready(function() {
            }, {
                "id": 10,
                "name": "Sub B3",
-               "size": 3,
                "children": [{
                    "id": 14,
                    "name": "Sub A1.1.1",
@@ -118,30 +111,27 @@ $(document).ready(function() {
        }, {
            "id": 11,
            "name": "Topic C",
-           "size": 0,
            "children": [{
                "id": 12,
-               "name": "Sub A1",
+               "name": "Sub C1",
                "size": 4
            }, {
                "id": 13,
-               "name": "Sub A2",
-               "size": 4,
+               "name": "Sub C2",
                "children": [{
                    "id": 23,
-                   "name": "Sub A2.1",
+                   "name": "Sub C2.1",
                    "size": 0.5
                }, {
                    "id": 24,
-                   "name": "Sub A2.2",
-                   "size": 0.9,
+                   "name": "Sub C2.2",
                    "children": [{
                        "id": 27,
-                       "name": "Sub A2.2.1",
+                       "name": "Sub C2.2.1",
                        "size": 0.5
                    }, {
                        "id": 28,
-                       "name": "Sub A2.2.2",
+                       "name": "Sub C2.2.2",
                        "size": 0.9
                    }]
                }]
@@ -150,1473 +140,1234 @@ $(document).ready(function() {
            "id": 22,
            "name": "Topic D",
            "size": 2.6
+       }, {
+           "id": 29,
+           "name": "Topic E",
+           "size": 6
        }]
     };
 
     const bubbleData = [
         {
-            "_id": "59bed687f284bca9b666e8af",
-            "amount": 12,
-            "name": "Carissa Beach"
-        },
-        {
-            "_id": "59bed6870e08fe3915983464",
-            "amount": 65,
-            "name": "Dawson Shepard"
-        },
-        {
-            "_id": "59bed687de8d297dfda9315c",
-            "amount": 61,
-            "name": "Noel Downs"
-        },
-        {
-            "_id": "59bed687fa503918c68b8123",
+            "_id": "59bf0571c593bfba60354dbf",
             "amount": 3,
-            "name": "Reeves Harrington"
+            "name": "Ola Payne"
         },
         {
-            "_id": "59bed6870357752f54087bd1",
-            "amount": 96,
-            "name": "Georgia Irwin"
-        },
-        {
-            "_id": "59bed6873484484ed54adc18",
-            "amount": 88,
-            "name": "Saunders Cummings"
-        },
-        {
-            "_id": "59bed687864e9c644cd18c44",
-            "amount": 39,
-            "name": "Katharine Sandoval"
-        },
-        {
-            "_id": "59bed687b7b23122dcc5e83d",
-            "amount": 59,
-            "name": "Jeanie Nguyen"
-        },
-        {
-            "_id": "59bed687af1b014d78cd5c7b",
-            "amount": 24,
-            "name": "Ramona Daniel"
-        },
-        {
-            "_id": "59bed687763a638ad8ada2fb",
-            "amount": 89,
-            "name": "Stuart Sanford"
-        },
-        {
-            "_id": "59bed6875eafb42717a19942",
-            "amount": 58,
-            "name": "Callahan Salas"
-        },
-        {
-            "_id": "59bed6877649d324fe17363f",
-            "amount": 90,
-            "name": "Donovan Montgomery"
-        },
-        {
-            "_id": "59bed68701e9f125ebbf5fdf",
-            "amount": 20,
-            "name": "Isabel Delacruz"
-        },
-        {
-            "_id": "59bed6874c2104496fe0b6b9",
-            "amount": 25,
-            "name": "Zelma Levy"
-        },
-        {
-            "_id": "59bed687c7a2305d2fad4141",
-            "amount": 75,
-            "name": "Stevenson Christian"
-        },
-        {
-            "_id": "59bed687161f8638689671eb",
-            "amount": 82,
-            "name": "Duran Crosby"
-        },
-        {
-            "_id": "59bed6878e0fee263c1ca604",
-            "amount": 31,
-            "name": "Frazier Wagner"
-        },
-        {
-            "_id": "59bed68799879ec6e660d3ff",
-            "amount": 91,
-            "name": "Christina Farmer"
-        },
-        {
-            "_id": "59bed6876897c533ed9c730d",
-            "amount": 84,
-            "name": "Luz Wilkins"
-        },
-        {
-            "_id": "59bed6871f6054ee70b7f802",
-            "amount": 37,
-            "name": "Lizzie Moon"
-        },
-        {
-            "_id": "59bed687ce6bead36b94e25c",
-            "amount": 31,
-            "name": "Bell Guthrie"
-        },
-        {
-            "_id": "59bed6870a050c46d160a91b",
-            "amount": 25,
-            "name": "Campos Cooke"
-        },
-        {
-            "_id": "59bed6871ee5e33a3d85bcda",
-            "amount": 73,
-            "name": "Howe Oneal"
-        },
-        {
-            "_id": "59bed687287c011cb3a8c66a",
-            "amount": 25,
-            "name": "Angelique Jacobs"
-        },
-        {
-            "_id": "59bed687fd23289923c34f5c",
-            "amount": 8,
-            "name": "Etta Russell"
-        },
-        {
-            "_id": "59bed687dac8b534744cb35f",
-            "amount": 61,
-            "name": "Boone Bryan"
-        },
-        {
-            "_id": "59bed687df7fa2f84d9b2eb7",
-            "amount": 90,
-            "name": "Mercedes Rios"
-        },
-        {
-            "_id": "59bed68792ae8f0fe779494a",
-            "amount": 62,
-            "name": "Barton Mcgowan"
-        },
-        {
-            "_id": "59bed6873d7e55ff6afa6231",
-            "amount": 60,
-            "name": "Maura Tucker"
-        },
-        {
-            "_id": "59bed6876e3ccd010229e62b",
-            "amount": 18,
-            "name": "Spencer Boyer"
-        },
-        {
-            "_id": "59bed687c7eff1452639e8b5",
-            "amount": 42,
-            "name": "Frost Clarke"
-        },
-        {
-            "_id": "59bed6871a987daf4daa1319",
-            "amount": 45,
-            "name": "Pansy Fuentes"
-        },
-        {
-            "_id": "59bed68796bd7c90d5abc715",
-            "amount": 64,
-            "name": "Millie Sims"
-        },
-        {
-            "_id": "59bed687fcb758522383bf0f",
-            "amount": 19,
-            "name": "Vanessa Miller"
-        },
-        {
-            "_id": "59bed687ed14d16b4f053f80",
-            "amount": 48,
-            "name": "Lorraine Lowe"
-        },
-        {
-            "_id": "59bed68796b8563be124d893",
-            "amount": 24,
-            "name": "Florence Rosales"
-        },
-        {
-            "_id": "59bed68755b2e5e69d7abc37",
-            "amount": 90,
-            "name": "Lucas Chandler"
-        },
-        {
-            "_id": "59bed687d3f2cb5cac1b67ab",
-            "amount": 50,
-            "name": "Duffy Benjamin"
-        },
-        {
-            "_id": "59bed6876efea08e38eab5ce",
-            "amount": 60,
-            "name": "Fernandez Hayes"
-        },
-        {
-            "_id": "59bed6879bb1a555a1a4318d",
-            "amount": 54,
-            "name": "Jessica Buck"
-        },
-        {
-            "_id": "59bed68720fa44b0f41bbb8f",
-            "amount": 26,
-            "name": "Kelley Mayo"
-        },
-        {
-            "_id": "59bed687955e5556388a39ca",
-            "amount": 49,
-            "name": "Klein Burke"
-        },
-        {
-            "_id": "59bed687d3d6d247daa62ad4",
-            "amount": 43,
-            "name": "Norris Perez"
-        },
-        {
-            "_id": "59bed6876e3894e362e26184",
-            "amount": 58,
-            "name": "Kristen English"
-        },
-        {
-            "_id": "59bed6876b38b47af063575d",
-            "amount": 98,
-            "name": "Corina Talley"
-        },
-        {
-            "_id": "59bed687b97e49108f683219",
-            "amount": 33,
-            "name": "Deidre Allen"
-        },
-        {
-            "_id": "59bed687a94b867a4612ef9e",
-            "amount": 79,
-            "name": "Candy Thornton"
-        },
-        {
-            "_id": "59bed6873ffe855516e2c6dc",
-            "amount": 35,
-            "name": "Navarro Harvey"
-        },
-        {
-            "_id": "59bed687f0f100deed734c4b",
-            "amount": 73,
-            "name": "Helena Combs"
-        },
-        {
-            "_id": "59bed6871b7ed42965d709ed",
-            "amount": 55,
-            "name": "Berg Juarez"
-        },
-        {
-            "_id": "59bed687c5fe284a21899b09",
-            "amount": 41,
-            "name": "Howard Holloway"
-        },
-        {
-            "_id": "59bed6874dd29998dcfac3e8",
-            "amount": 11,
-            "name": "Freeman Hutchinson"
-        },
-        {
-            "_id": "59bed68735c180d9b161c585",
-            "amount": 23,
-            "name": "Valenzuela Ramsey"
-        },
-        {
-            "_id": "59bed6876bd61382f8cae5e6",
-            "amount": 64,
-            "name": "Lancaster Joyce"
-        },
-        {
-            "_id": "59bed687887877197b5732be",
-            "amount": 5,
-            "name": "Fry Caldwell"
-        },
-        {
-            "_id": "59bed687560f97ecc9caa658",
-            "amount": 29,
-            "name": "May Boone"
-        },
-        {
-            "_id": "59bed687f18bc702623242bd",
-            "amount": 73,
-            "name": "Cleveland Hooper"
-        },
-        {
-            "_id": "59bed687cab0793e5a401e3a",
-            "amount": 62,
-            "name": "Sophia Navarro"
-        },
-        {
-            "_id": "59bed687a93e96a00d4e3199",
-            "amount": 15,
-            "name": "Audra Mason"
-        },
-        {
-            "_id": "59bed6879a7febc4f83e24f2",
-            "amount": 17,
-            "name": "Evans Knox"
-        },
-        {
-            "_id": "59bed6876d4f960fe3c10503",
-            "amount": 61,
-            "name": "Alvarez Goff"
-        },
-        {
-            "_id": "59bed687acf0a35105aba802",
-            "amount": 91,
-            "name": "Lorna Day"
-        },
-        {
-            "_id": "59bed687024fa0dc78d74792",
-            "amount": 6,
-            "name": "Jacklyn Maldonado"
-        },
-        {
-            "_id": "59bed68737aa3424dad74340",
-            "amount": 20,
-            "name": "Chaney Stephenson"
-        },
-        {
-            "_id": "59bed687d2229c31d40bef26",
-            "amount": 40,
-            "name": "Kelly Barnes"
-        },
-        {
-            "_id": "59bed6871117418b44693769",
-            "amount": 55,
-            "name": "Sherrie Coffey"
-        },
-        {
-            "_id": "59bed687d9c065e709b0f3dd",
+            "_id": "59bf0571b4e341a4a08f364f",
             "amount": 9,
-            "name": "Holder Berger"
+            "name": "Antoinette Porter"
         },
         {
-            "_id": "59bed6878fd630def3f0a7f7",
-            "amount": 90,
-            "name": "Shelly Kirk"
-        },
-        {
-            "_id": "59bed68793e14dfc8b25d195",
-            "amount": 99,
-            "name": "Elisabeth Copeland"
-        },
-        {
-            "_id": "59bed6874cc6103caee54c40",
-            "amount": 43,
-            "name": "Sawyer Solomon"
-        },
-        {
-            "_id": "59bed687a8534aedf95bf1b0",
-            "amount": 59,
-            "name": "Judith Reyes"
-        },
-        {
-            "_id": "59bed6878ee3558abc4c118b",
-            "amount": 85,
-            "name": "Patricia Christensen"
-        },
-        {
-            "_id": "59bed687c7fe4d518840f137",
-            "amount": 44,
-            "name": "Patsy Singleton"
-        },
-        {
-            "_id": "59bed687c6206e94683d7f64",
-            "amount": 21,
-            "name": "Roxie Sanchez"
-        },
-        {
-            "_id": "59bed687d380cc30a36ba272",
-            "amount": 44,
-            "name": "Tanya Melendez"
-        },
-        {
-            "_id": "59bed6872efdbc49b6ae7133",
-            "amount": 42,
-            "name": "Leslie Richmond"
-        },
-        {
-            "_id": "59bed687d30943f0a71fcba0",
-            "amount": 19,
-            "name": "Althea Berry"
-        },
-        {
-            "_id": "59bed68706e7978e664e3ef5",
-            "amount": 8,
-            "name": "Marcella Richards"
-        },
-        {
-            "_id": "59bed687a52e05a595908703",
-            "amount": 6,
-            "name": "Maritza Cervantes"
-        },
-        {
-            "_id": "59bed687fe8e79e89006228e",
-            "amount": 29,
-            "name": "Potts Vaughan"
-        },
-        {
-            "_id": "59bed687d109e42b662ae0e7",
-            "amount": 57,
-            "name": "Mullins Hunt"
-        },
-        {
-            "_id": "59bed68700b0dd2ecbc347f2",
-            "amount": 87,
-            "name": "Walker Briggs"
-        },
-        {
-            "_id": "59bed6870230a790a427795b",
-            "amount": 9,
-            "name": "Mildred Mckinney"
-        },
-        {
-            "_id": "59bed68708a480f6c5ac5ca3",
-            "amount": 7,
-            "name": "Harmon Preston"
-        },
-        {
-            "_id": "59bed68706f4414bf8dcc58c",
-            "amount": 65,
-            "name": "Steele Dejesus"
-        },
-        {
-            "_id": "59bed6877fb96239119adad0",
-            "amount": 59,
-            "name": "Priscilla Slater"
-        },
-        {
-            "_id": "59bed68721afeb5ea36ec31c",
-            "amount": 14,
-            "name": "Hale Herman"
-        },
-        {
-            "_id": "59bed687a5ef2d94b7620fcd",
-            "amount": 75,
-            "name": "Gomez Hyde"
-        },
-        {
-            "_id": "59bed687778d5dd8742c98ec",
-            "amount": 35,
-            "name": "Russo Mccray"
-        },
-        {
-            "_id": "59bed6874c0508c5a3ce7a67",
-            "amount": 9,
-            "name": "Briggs George"
-        },
-        {
-            "_id": "59bed687326bfea314aec7c7",
-            "amount": 38,
-            "name": "Joanne Castaneda"
-        },
-        {
-            "_id": "59bed687390c0b16e4f9f096",
-            "amount": 70,
-            "name": "Hughes Suarez"
-        },
-        {
-            "_id": "59bed687f25ddb1fc20c158f",
-            "amount": 72,
-            "name": "Berry Mueller"
-        },
-        {
-            "_id": "59bed687b183481587d7cfb6",
-            "amount": 31,
-            "name": "Calhoun Alexander"
-        },
-        {
-            "_id": "59bed687798f3b97565226d8",
-            "amount": 98,
-            "name": "Cruz Ramirez"
-        },
-        {
-            "_id": "59bed687c308c43050d5eb28",
-            "amount": 27,
-            "name": "Robin White"
-        },
-        {
-            "_id": "59bed687c84131e1785d6987",
-            "amount": 44,
-            "name": "Cheryl Frazier"
-        },
-        {
-            "_id": "59bed6874509b3689b57c533",
-            "amount": 88,
-            "name": "Wolfe Wiggins"
-        },
-        {
-            "_id": "59bed687d6244c130e9a463e",
-            "amount": 61,
-            "name": "Cecelia May"
-        },
-        {
-            "_id": "59bed687405b3a786d726d58",
-            "amount": 27,
-            "name": "Paige Stokes"
-        },
-        {
-            "_id": "59bed687590847d6394c9dc0",
-            "amount": 23,
-            "name": "Sue Sweeney"
-        },
-        {
-            "_id": "59bed687efe994d617987e45",
-            "amount": 3,
-            "name": "Shepard Evans"
-        },
-        {
-            "_id": "59bed68759aa2bb5f74ce7fa",
-            "amount": 88,
-            "name": "Josefina Dorsey"
-        },
-        {
-            "_id": "59bed6870c030274a1e7e3f5",
-            "amount": 93,
-            "name": "Peck Shaffer"
-        },
-        {
-            "_id": "59bed687e77ec91888632df7",
-            "amount": 58,
-            "name": "Horton Larson"
-        },
-        {
-            "_id": "59bed6871525413d119d181d",
-            "amount": 17,
-            "name": "Albert Rodgers"
-        },
-        {
-            "_id": "59bed687b2d001151dd2ee4e",
-            "amount": 68,
-            "name": "Rosetta Martinez"
-        },
-        {
-            "_id": "59bed687a99f3e44c288596e",
-            "amount": 51,
-            "name": "Glenda Ingram"
-        },
-        {
-            "_id": "59bed687defb9267d97a3ff1",
-            "amount": 16,
-            "name": "York Parrish"
-        },
-        {
-            "_id": "59bed687be06771c231fdaf1",
-            "amount": 74,
-            "name": "Odessa Hays"
-        },
-        {
-            "_id": "59bed687f2814667f48e2a9a",
-            "amount": 14,
-            "name": "Terrell Carey"
-        },
-        {
-            "_id": "59bed68792764f397c36df6d",
-            "amount": 46,
-            "name": "Ellis Townsend"
-        },
-        {
-            "_id": "59bed687c49cf7b26a0b2e76",
-            "amount": 81,
-            "name": "Haley Duran"
-        },
-        {
-            "_id": "59bed687ab650fc50eaa8115",
-            "amount": 100,
-            "name": "Alta Odom"
-        },
-        {
-            "_id": "59bed687f32018ff9f4fb0d9",
-            "amount": 4,
-            "name": "Carlene Hanson"
-        },
-        {
-            "_id": "59bed687fa4d13172e5fa443",
-            "amount": 40,
-            "name": "Santos Murphy"
-        },
-        {
-            "_id": "59bed687e0ec09ef0c47afbb",
-            "amount": 5,
-            "name": "Katina Walsh"
-        },
-        {
-            "_id": "59bed6878f311c7c720d7140",
+            "_id": "59bf0571c07052b63344d404",
             "amount": 2,
-            "name": "Brooks Foley"
+            "name": "Welch Prince"
         },
         {
-            "_id": "59bed687e9342f8b1abef313",
-            "amount": 65,
-            "name": "Riley Carver"
+            "_id": "59bf05714a7443062ae527d9",
+            "amount": 1,
+            "name": "Wolf Guerrero"
         },
         {
-            "_id": "59bed687376a3a813bad103f",
-            "amount": 67,
-            "name": "Latonya Moody"
+            "_id": "59bf05715775f72d3cd19200",
+            "amount": 6,
+            "name": "Katharine Schmidt"
         },
         {
-            "_id": "59bed687bc31acbac4ee7c34",
+            "_id": "59bf0571fc0809b7a2d2a01a",
+            "amount": 5,
+            "name": "Hollie Blackburn"
+        },
+        {
+            "_id": "59bf05714e69fa86d65e4927",
+            "amount": 4,
+            "name": "Lester Slater"
+        },
+        {
+            "_id": "59bf05717f534bf9a2e763a5",
+            "amount": 3,
+            "name": "Naomi Mejia"
+        },
+        {
+            "_id": "59bf0571f612520675221187",
+            "amount": 2,
+            "name": "Harriett Baldwin"
+        },
+        {
+            "_id": "59bf0571c514573ab223549f",
+            "amount": 1,
+            "name": "Snow Melton"
+        },
+        {
+            "_id": "59bf0571927e9e499790678b",
+            "amount": 4,
+            "name": "Barr Wood"
+        },
+        {
+            "_id": "59bf05714a32ef659614597d",
+            "amount": 5,
+            "name": "Cristina Harris"
+        },
+        {
+            "_id": "59bf057135c13c5721ff9960",
+            "amount": 8,
+            "name": "Valerie Drake"
+        },
+        {
+            "_id": "59bf0571ba40ac4152f29d30",
+            "amount": 3,
+            "name": "Jamie Fields"
+        },
+        {
+            "_id": "59bf0571a3b91eb89479b635",
+            "amount": 9,
+            "name": "Deleon Vang"
+        },
+        {
+            "_id": "59bf0571bd47510e334889e2",
+            "amount": 2,
+            "name": "Elizabeth Durham"
+        },
+        {
+            "_id": "59bf057193de39056214310b",
+            "amount": 3,
+            "name": "Erickson Greene"
+        },
+        {
+            "_id": "59bf0571c8a623d3508bb7f5",
+            "amount": 2,
+            "name": "Kirsten Snider"
+        },
+        {
+            "_id": "59bf0571d70f7268f0b59e18",
+            "amount": 4,
+            "name": "Glass Curry"
+        },
+        {
+            "_id": "59bf0571928b26cf436bbcec",
+            "amount": 10,
+            "name": "Alice Hamilton"
+        },
+        {
+            "_id": "59bf05717c7671f7ba433baa",
+            "amount": 4,
+            "name": "Isabelle Albert"
+        },
+        {
+            "_id": "59bf05718e673d52edb7100f",
+            "amount": 8,
+            "name": "Rhoda Miranda"
+        },
+        {
+            "_id": "59bf05710aa55774a578f9c0",
+            "amount": 8,
+            "name": "Farrell Hodge"
+        },
+        {
+            "_id": "59bf05712a55b806caa44145",
+            "amount": 1,
+            "name": "Blake Frazier"
+        },
+        {
+            "_id": "59bf0571ded13cbaa3566333",
+            "amount": 6,
+            "name": "Betty Hull"
+        },
+        {
+            "_id": "59bf057146e3681b4a6b1c68",
+            "amount": 4,
+            "name": "Jerri Torres"
+        },
+        {
+            "_id": "59bf0571dc65b246cc3e0522",
+            "amount": 3,
+            "name": "Mclean Holcomb"
+        },
+        {
+            "_id": "59bf0571ae1d312ab5b890b3",
             "amount": 7,
-            "name": "Cote Hubbard"
+            "name": "Koch Mathews"
         },
         {
-            "_id": "59bed687ffb05593d898899b",
-            "amount": 49,
-            "name": "Allyson Mcmahon"
-        },
-        {
-            "_id": "59bed6878557c1485b3aa0d7",
-            "amount": 80,
-            "name": "Pacheco Carney"
-        },
-        {
-            "_id": "59bed6875bdc26d859028b5c",
-            "amount": 96,
-            "name": "Iris Figueroa"
-        },
-        {
-            "_id": "59bed6874a44b17f534409b0",
-            "amount": 63,
-            "name": "Lynnette Berg"
-        },
-        {
-            "_id": "59bed687daf03902cf96de1c",
-            "amount": 5,
-            "name": "Tia Jefferson"
-        },
-        {
-            "_id": "59bed687107ab75573d3958b",
-            "amount": 27,
-            "name": "Stacy Newton"
-        },
-        {
-            "_id": "59bed687d4fe88626398433e",
-            "amount": 98,
-            "name": "Mcdonald Anthony"
-        },
-        {
-            "_id": "59bed68736be8569080cac65",
-            "amount": 17,
-            "name": "Madelyn Salazar"
-        },
-        {
-            "_id": "59bed687db68e94e0999c55a",
-            "amount": 11,
-            "name": "Flossie Kerr"
-        },
-        {
-            "_id": "59bed687916798d878e2a072",
-            "amount": 86,
-            "name": "Lacy Harding"
-        },
-        {
-            "_id": "59bed687e2deb2f374189ed3",
-            "amount": 91,
-            "name": "Tonya Gilmore"
-        },
-        {
-            "_id": "59bed68754313c64c8cfc068",
-            "amount": 88,
-            "name": "Glenna Lamb"
-        },
-        {
-            "_id": "59bed6876b03c3f6e77e7df0",
-            "amount": 15,
-            "name": "Lindsey Woodward"
-        },
-        {
-            "_id": "59bed68767b0211a83e8bd82",
-            "amount": 33,
-            "name": "Samantha Cleveland"
-        },
-        {
-            "_id": "59bed687a2cd74bbd170ae0a",
-            "amount": 9,
-            "name": "Adela Acosta"
-        },
-        {
-            "_id": "59bed687467a4acb8fb7dc20",
-            "amount": 24,
-            "name": "Hopkins Galloway"
-        },
-        {
-            "_id": "59bed6874bb043ce5931f177",
-            "amount": 90,
-            "name": "Le Erickson"
-        },
-        {
-            "_id": "59bed687fc005549b666816f",
-            "amount": 91,
-            "name": "Webster Merrill"
-        },
-        {
-            "_id": "59bed687d9ca20ecbee985eb",
-            "amount": 81,
-            "name": "Richards Carroll"
-        },
-        {
-            "_id": "59bed687256cfbee1ffd385a",
-            "amount": 52,
-            "name": "Mayo Burks"
-        },
-        {
-            "_id": "59bed687d76f8dc5927c4813",
-            "amount": 28,
-            "name": "Merle Wilson"
-        },
-        {
-            "_id": "59bed687223e6680f2495b11",
-            "amount": 50,
-            "name": "Dunlap Garner"
-        },
-        {
-            "_id": "59bed6878344567bdde12244",
-            "amount": 29,
-            "name": "Ortiz Velasquez"
-        },
-        {
-            "_id": "59bed687995e234d7b6268f6",
-            "amount": 50,
-            "name": "Coleen Case"
-        },
-        {
-            "_id": "59bed6879c43d50f4d92a583",
-            "amount": 25,
-            "name": "Ferguson Newman"
-        },
-        {
-            "_id": "59bed68733a6257fadaaf1fd",
-            "amount": 40,
-            "name": "Ronda Hinton"
-        },
-        {
-            "_id": "59bed687cae9a82cfbe601cf",
-            "amount": 38,
-            "name": "Sandra Daniels"
-        },
-        {
-            "_id": "59bed687fe56be3c5c02f8ae",
-            "amount": 97,
-            "name": "Debbie Sosa"
-        },
-        {
-            "_id": "59bed6877bc21e9f10dcb916",
-            "amount": 50,
-            "name": "Jaime Rivers"
-        },
-        {
-            "_id": "59bed687c3afcca8f3c74158",
+            "_id": "59bf05710155ed7b0ac15afc",
             "amount": 1,
-            "name": "Christi Kinney"
+            "name": "Francis Bernard"
         },
         {
-            "_id": "59bed687067ec214ee168a75",
-            "amount": 96,
-            "name": "Johnnie Hale"
+            "_id": "59bf0571c32dc701146a7930",
+            "amount": 2,
+            "name": "Randolph Sherman"
         },
         {
-            "_id": "59bed6878cda00f65e0b54bc",
-            "amount": 37,
-            "name": "Harriett Mcpherson"
+            "_id": "59bf05712258f4ff4296d09c",
+            "amount": 2,
+            "name": "Grant Jenkins"
         },
         {
-            "_id": "59bed687b9b9a59da8d9d907",
-            "amount": 88,
-            "name": "Charmaine Carrillo"
-        },
-        {
-            "_id": "59bed68729c6a1a3b0f8e445",
-            "amount": 28,
-            "name": "Strickland Henry"
-        },
-        {
-            "_id": "59bed687aa6c0773c8286e7a",
-            "amount": 100,
-            "name": "Maryellen Hawkins"
-        },
-        {
-            "_id": "59bed687b9c07d84cf1ac730",
-            "amount": 77,
-            "name": "Leigh Cortez"
-        },
-        {
-            "_id": "59bed68787788b9d67265bee",
-            "amount": 40,
-            "name": "Sanford Le"
-        },
-        {
-            "_id": "59bed687c5ad9f5da714b2f1",
-            "amount": 12,
-            "name": "Mathews Morris"
-        },
-        {
-            "_id": "59bed687e3ac292015da70c5",
-            "amount": 92,
-            "name": "Sweeney Leonard"
-        },
-        {
-            "_id": "59bed687d18729188a47aa9e",
-            "amount": 62,
-            "name": "Natalie Ross"
-        },
-        {
-            "_id": "59bed687226e49c1d0e26374",
-            "amount": 86,
-            "name": "Melba Richardson"
-        },
-        {
-            "_id": "59bed6875a0f71be0d27f13d",
-            "amount": 94,
-            "name": "Mcfarland Franco"
-        },
-        {
-            "_id": "59bed68737d76c4aa18de9af",
-            "amount": 83,
-            "name": "Barker Blankenship"
-        },
-        {
-            "_id": "59bed68737ca2a17d9e9bf55",
-            "amount": 56,
-            "name": "Giles Rice"
-        },
-        {
-            "_id": "59bed6876a61b5d0c0992c23",
-            "amount": 36,
-            "name": "Webb Cohen"
-        },
-        {
-            "_id": "59bed687d213f7f3f8d4483a",
-            "amount": 41,
-            "name": "Hebert Keller"
-        },
-        {
-            "_id": "59bed687acd8abea456413bb",
-            "amount": 89,
-            "name": "Selena Atkinson"
-        },
-        {
-            "_id": "59bed6873877f44e2b3157f6",
-            "amount": 31,
-            "name": "Marsh Carpenter"
-        },
-        {
-            "_id": "59bed6876d3c201f7a1c24f0",
-            "amount": 5,
-            "name": "Wise Warner"
-        },
-        {
-            "_id": "59bed6878d9ff0fd14eef55e",
-            "amount": 14,
-            "name": "Delaney Tate"
-        },
-        {
-            "_id": "59bed687396185502fd3a168",
-            "amount": 45,
-            "name": "Dale Phelps"
-        },
-        {
-            "_id": "59bed6875fe3fe6dae46c33a",
-            "amount": 1,
-            "name": "Jami Mcintyre"
-        },
-        {
-            "_id": "59bed6879158c091cd5c715d",
-            "amount": 19,
-            "name": "Mindy Wiley"
-        },
-        {
-            "_id": "59bed687272438d607a176ab",
-            "amount": 23,
-            "name": "Vaughan Booth"
-        },
-        {
-            "_id": "59bed6876135b3dfd8b59839",
-            "amount": 30,
-            "name": "Mckinney Ford"
-        },
-        {
-            "_id": "59bed687db2c659a398e0f6d",
-            "amount": 13,
-            "name": "Helene Mills"
-        },
-        {
-            "_id": "59bed687624e891b89814dfb",
-            "amount": 4,
-            "name": "Verna Chapman"
-        },
-        {
-            "_id": "59bed687c5f2a582f0808018",
-            "amount": 60,
-            "name": "Cassie King"
-        },
-        {
-            "_id": "59bed687a672135a9d087315",
-            "amount": 86,
-            "name": "Stafford Schmidt"
-        },
-        {
-            "_id": "59bed6876fb07a6f03984914",
-            "amount": 82,
-            "name": "Hyde Mccoy"
-        },
-        {
-            "_id": "59bed68735ffa344e28cd5ca",
-            "amount": 15,
-            "name": "Caroline Mendez"
-        },
-        {
-            "_id": "59bed6878ce1c4003629775f",
-            "amount": 81,
-            "name": "Sophie Gordon"
-        },
-        {
-            "_id": "59bed687e8b651c1b7b80610",
-            "amount": 76,
-            "name": "Luann Orr"
-        },
-        {
-            "_id": "59bed687b3dec8e990145a1d",
-            "amount": 82,
-            "name": "Alfreda Duke"
-        },
-        {
-            "_id": "59bed6870a48c2bdc22bbbf7",
-            "amount": 66,
-            "name": "Cobb Bauer"
-        },
-        {
-            "_id": "59bed687ed059f14a493877c",
-            "amount": 26,
-            "name": "Willie Ortega"
-        },
-        {
-            "_id": "59bed6873a3b533b84f5b20b",
-            "amount": 97,
-            "name": "Silva Beasley"
-        },
-        {
-            "_id": "59bed687170cd78fb9d77797",
-            "amount": 97,
-            "name": "Lena Davis"
-        },
-        {
-            "_id": "59bed687dc8bfc56baba15f9",
-            "amount": 19,
-            "name": "Oconnor Medina"
-        },
-        {
-            "_id": "59bed68707ac2c5b0481d984",
-            "amount": 55,
-            "name": "Dawn Stewart"
-        },
-        {
-            "_id": "59bed6875f523678e8dbb52c",
-            "amount": 37,
-            "name": "Carmela Randall"
-        },
-        {
-            "_id": "59bed6874196c14514eaac13",
-            "amount": 77,
-            "name": "Underwood Fuller"
-        },
-        {
-            "_id": "59bed68700ade4f3cb8dd88c",
-            "amount": 80,
-            "name": "Robyn Baird"
-        },
-        {
-            "_id": "59bed687ba9e265bedcaf045",
-            "amount": 86,
-            "name": "Louella Mcfarland"
-        },
-        {
-            "_id": "59bed68713cd181ff433da4e",
+            "_id": "59bf05710bee082972f1f318",
             "amount": 9,
-            "name": "Liza Reed"
+            "name": "Flowers Hunt"
         },
         {
-            "_id": "59bed687aa91d1a46c222b35",
-            "amount": 43,
-            "name": "Burton Trujillo"
-        },
-        {
-            "_id": "59bed6875bd9efa621db7e8f",
-            "amount": 53,
-            "name": "Grimes Cruz"
-        },
-        {
-            "_id": "59bed6871f4a444f8d6b1d07",
-            "amount": 17,
-            "name": "Wanda Steele"
-        },
-        {
-            "_id": "59bed6874efe657ea6519881",
-            "amount": 14,
-            "name": "Gates Brewer"
-        },
-        {
-            "_id": "59bed6879026d9dfafdb6c81",
-            "amount": 66,
-            "name": "Melinda Rodriguez"
-        },
-        {
-            "_id": "59bed687c8d0049eb88dc50b",
-            "amount": 51,
-            "name": "Schwartz Bowman"
-        },
-        {
-            "_id": "59bed68747ed1bdfd79905f6",
-            "amount": 47,
-            "name": "Holmes Lindsay"
-        },
-        {
-            "_id": "59bed687928873fb1d104f04",
-            "amount": 62,
-            "name": "Natasha Shelton"
-        },
-        {
-            "_id": "59bed687d50ded3a56e22c1c",
-            "amount": 59,
-            "name": "Ashlee Alford"
-        },
-        {
-            "_id": "59bed6877f836fe85e6ff9b1",
-            "amount": 26,
-            "name": "Sheppard Hudson"
-        },
-        {
-            "_id": "59bed687322811adb4026787",
-            "amount": 45,
-            "name": "Aileen Dunlap"
-        },
-        {
-            "_id": "59bed68702dfc8e9c6331993",
-            "amount": 98,
-            "name": "Stevens Marquez"
-        },
-        {
-            "_id": "59bed68704eeff52ed612eef",
-            "amount": 25,
-            "name": "Lisa Reynolds"
-        },
-        {
-            "_id": "59bed6875d45b2605a1c1d2d",
-            "amount": 79,
-            "name": "Morris Gentry"
-        },
-        {
-            "_id": "59bed68719a47bf3bc69fb0c",
-            "amount": 97,
-            "name": "Kent Bowen"
-        },
-        {
-            "_id": "59bed687b68ca0f3016482d3",
-            "amount": 48,
-            "name": "Dean Burch"
-        },
-        {
-            "_id": "59bed68728ff4ab92577a89d",
-            "amount": 61,
-            "name": "Garcia Norman"
-        },
-        {
-            "_id": "59bed687aa22de6040067c8e",
-            "amount": 49,
-            "name": "Harper Workman"
-        },
-        {
-            "_id": "59bed68760efbf16a4415f4c",
-            "amount": 85,
-            "name": "Inez Mccarthy"
-        },
-        {
-            "_id": "59bed6876199c16ae15e0d45",
-            "amount": 100,
-            "name": "Daniel Miranda"
-        },
-        {
-            "_id": "59bed6873e2c456956cf8695",
-            "amount": 46,
-            "name": "Brady Gonzales"
-        },
-        {
-            "_id": "59bed6873f793209a9b89f9a",
-            "amount": 51,
-            "name": "Fulton Noble"
-        },
-        {
-            "_id": "59bed6870e68b930f77c69b6",
-            "amount": 46,
-            "name": "Barron Hodge"
-        },
-        {
-            "_id": "59bed687f4d7320d5436e6c9",
-            "amount": 38,
-            "name": "Karla Shaw"
-        },
-        {
-            "_id": "59bed6877ac0b5a81719e5db",
-            "amount": 54,
-            "name": "Franks Stanley"
-        },
-        {
-            "_id": "59bed68703b5b84006f8dd91",
-            "amount": 46,
-            "name": "Carver Patterson"
-        },
-        {
-            "_id": "59bed68763d8b3d585a9cda6",
-            "amount": 84,
-            "name": "Lott Mcdaniel"
-        },
-        {
-            "_id": "59bed6871baa96f5957b29df",
-            "amount": 45,
-            "name": "Karin Bishop"
-        },
-        {
-            "_id": "59bed6874c0f745b147840c8",
-            "amount": 100,
-            "name": "Byrd Vang"
-        },
-        {
-            "_id": "59bed6879904ee0bb74a444a",
-            "amount": 33,
-            "name": "Wiley Alston"
-        },
-        {
-            "_id": "59bed68762537ee6e692961c",
-            "amount": 94,
-            "name": "Violet Fitzgerald"
-        },
-        {
-            "_id": "59bed68752c7fbfd41bcbcbb",
-            "amount": 46,
-            "name": "Hicks Howard"
-        },
-        {
-            "_id": "59bed68720e92c714af27521",
-            "amount": 15,
-            "name": "Hobbs Powell"
-        },
-        {
-            "_id": "59bed687ce73e1391ace46f1",
-            "amount": 69,
-            "name": "Espinoza Donovan"
-        },
-        {
-            "_id": "59bed6875569bc218c024be8",
-            "amount": 17,
-            "name": "Kristie Ramos"
-        },
-        {
-            "_id": "59bed687f7c719e5eccc5697",
-            "amount": 12,
-            "name": "Guadalupe Cain"
-        },
-        {
-            "_id": "59bed6872f4bbacc8b10e675",
-            "amount": 4,
-            "name": "Norma Ayers"
-        },
-        {
-            "_id": "59bed6870eb1131eb640e66a",
-            "amount": 83,
-            "name": "Robles Barker"
-        },
-        {
-            "_id": "59bed68718d698b15498573c",
-            "amount": 25,
-            "name": "Jacqueline Melton"
-        },
-        {
-            "_id": "59bed68778ab01b04fb44b27",
-            "amount": 75,
-            "name": "Daphne Casey"
-        },
-        {
-            "_id": "59bed687694be7ca6a159414",
-            "amount": 40,
-            "name": "Craft Pollard"
-        },
-        {
-            "_id": "59bed68782ac55bff8448342",
-            "amount": 78,
-            "name": "Mendoza Cherry"
-        },
-        {
-            "_id": "59bed687034f5e683d315ea5",
-            "amount": 72,
-            "name": "Lupe Mitchell"
-        },
-        {
-            "_id": "59bed68778becd54d5cfc255",
-            "amount": 78,
-            "name": "Tabitha Cobb"
-        },
-        {
-            "_id": "59bed6879d710a3f3be6c136",
-            "amount": 56,
-            "name": "Mcfadden Sanders"
-        },
-        {
-            "_id": "59bed687033e5aee2a4ab944",
-            "amount": 77,
-            "name": "Kay Huffman"
-        },
-        {
-            "_id": "59bed6874b24ffca9278aef1",
-            "amount": 20,
-            "name": "Luisa Sparks"
-        },
-        {
-            "_id": "59bed6873a4fcfdcfe738ce1",
-            "amount": 39,
-            "name": "Alexis Benton"
-        },
-        {
-            "_id": "59bed6878bfab71fd1f3ae88",
-            "amount": 75,
-            "name": "Karen Collins"
-        },
-        {
-            "_id": "59bed68700509cc597f986cc",
-            "amount": 42,
-            "name": "Alberta Haynes"
-        },
-        {
-            "_id": "59bed6876b1420d73e29c898",
-            "amount": 72,
-            "name": "Tameka Cross"
-        },
-        {
-            "_id": "59bed687f1e74a716a1496b9",
-            "amount": 94,
-            "name": "Burke Brennan"
-        },
-        {
-            "_id": "59bed6872a3adb78f6c894a6",
-            "amount": 9,
-            "name": "Kirkland Shepherd"
-        },
-        {
-            "_id": "59bed68747027b74611bba28",
-            "amount": 100,
-            "name": "Manuela Sutton"
-        },
-        {
-            "_id": "59bed687cfc2bd77510ed746",
-            "amount": 40,
-            "name": "Bender Larsen"
-        },
-        {
-            "_id": "59bed687613fd8c8b4a4cd86",
-            "amount": 83,
-            "name": "Jacobson Padilla"
-        },
-        {
-            "_id": "59bed687256b240451a717bc",
-            "amount": 11,
-            "name": "Bush Bowers"
-        },
-        {
-            "_id": "59bed68729fd1b4997f6c199",
-            "amount": 15,
-            "name": "Sarah Short"
-        },
-        {
-            "_id": "59bed6876b219d31543543fb",
-            "amount": 86,
-            "name": "Gilliam Eaton"
-        },
-        {
-            "_id": "59bed687dc4713e174cb0fcd",
-            "amount": 56,
-            "name": "Cannon Moreno"
-        },
-        {
-            "_id": "59bed687ed96671c32792eb9",
-            "amount": 47,
-            "name": "Hess Rollins"
-        },
-        {
-            "_id": "59bed68775db0f9f713ec36e",
-            "amount": 18,
-            "name": "Lawson Foreman"
-        },
-        {
-            "_id": "59bed6871fdd8dba0f92f5ee",
-            "amount": 79,
-            "name": "Russell Wheeler"
-        },
-        {
-            "_id": "59bed6877b090070cbe4f175",
+            "_id": "59bf0571586e6be01472c7df",
             "amount": 10,
-            "name": "Rosemary Ballard"
+            "name": "Sonja Perez"
         },
         {
-            "_id": "59bed68728966c97f11a6203",
-            "amount": 84,
-            "name": "Mann Nash"
+            "_id": "59bf05715b2652cf76bfba7b",
+            "amount": 8,
+            "name": "Richardson Fowler"
         },
         {
-            "_id": "59bed687150ec7e5068e492a",
-            "amount": 26,
-            "name": "Conner Morin"
+            "_id": "59bf0571b11c7a1ae45e7a2b",
+            "amount": 5,
+            "name": "Porter Bishop"
         },
         {
-            "_id": "59bed6879d82cda190f916c3",
-            "amount": 70,
-            "name": "Hester Monroe"
+            "_id": "59bf057121b99c6706c06ecf",
+            "amount": 5,
+            "name": "Jeanie Lynn"
         },
         {
-            "_id": "59bed68757c5ac538fa076c0",
-            "amount": 92,
-            "name": "Vilma Ray"
+            "_id": "59bf05716add9740534adfe1",
+            "amount": 6,
+            "name": "Meredith Castaneda"
         },
         {
-            "_id": "59bed6874eddc39d1be2c103",
-            "amount": 21,
-            "name": "Gutierrez Perry"
+            "_id": "59bf0571eaa0e005afbf41b4",
+            "amount": 6,
+            "name": "Cheri Coleman"
         },
         {
-            "_id": "59bed687390e50753989caf0",
-            "amount": 93,
-            "name": "Claudia Lee"
+            "_id": "59bf05711c7710aa42f738f2",
+            "amount": 2,
+            "name": "Mercado Forbes"
         },
         {
-            "_id": "59bed687631f7afc2eadb2eb",
-            "amount": 93,
-            "name": "Lakisha Middleton"
+            "_id": "59bf0571032acd85004dfe1b",
+            "amount": 5,
+            "name": "Collins Rodriquez"
         },
         {
-            "_id": "59bed687cc851ebc0a5f82d7",
-            "amount": 23,
-            "name": "Hernandez Watkins"
+            "_id": "59bf05718b8eccea6a445899",
+            "amount": 9,
+            "name": "Keisha Logan"
         },
         {
-            "_id": "59bed68724e25a2cf06ee7fe",
-            "amount": 87,
-            "name": "Beatriz Alvarez"
+            "_id": "59bf0571a78972cc5d10276e",
+            "amount": 3,
+            "name": "Sampson Richards"
         },
         {
-            "_id": "59bed687df7a2e308ad39c0a",
-            "amount": 72,
-            "name": "Stout Logan"
+            "_id": "59bf0571cfb76b2e9bb61f84",
+            "amount": 4,
+            "name": "Ethel Bradford"
         },
         {
-            "_id": "59bed687cdd938eb017621c0",
-            "amount": 46,
-            "name": "Farrell Hendricks"
+            "_id": "59bf0571d8bbaa91358e1041",
+            "amount": 9,
+            "name": "Bonner Price"
         },
         {
-            "_id": "59bed68781f250ba388f568b",
-            "amount": 65,
-            "name": "Ross Reilly"
+            "_id": "59bf0571a2334aba1d63582a",
+            "amount": 3,
+            "name": "Shepard Mccarthy"
         },
         {
-            "_id": "59bed6870a7089a8c9737788",
-            "amount": 36,
-            "name": "Marsha Yang"
+            "_id": "59bf0571d069c3900c39e016",
+            "amount": 5,
+            "name": "Reid Acevedo"
         },
         {
-            "_id": "59bed6871ae07da97acb9833",
-            "amount": 10,
-            "name": "Frances Sharp"
-        },
-        {
-            "_id": "59bed68746fb2ab14d8eceb4",
-            "amount": 49,
-            "name": "Holt Porter"
-        },
-        {
-            "_id": "59bed6871540fb9f958be274",
-            "amount": 86,
-            "name": "Berger Roberts"
-        },
-        {
-            "_id": "59bed687173b0ec8fac66465",
-            "amount": 14,
-            "name": "Rocha Robertson"
-        },
-        {
-            "_id": "59bed68777a1becb07aadb49",
-            "amount": 52,
-            "name": "Maldonado Abbott"
-        },
-        {
-            "_id": "59bed687520f4a3d38b51b91",
-            "amount": 87,
-            "name": "Pennington Valdez"
-        },
-        {
-            "_id": "59bed687e4127bdc7c2cbb9d",
-            "amount": 42,
-            "name": "Price Johns"
-        },
-        {
-            "_id": "59bed6874c2b5ffba042c1b9",
-            "amount": 96,
-            "name": "Mollie Bradshaw"
-        },
-        {
-            "_id": "59bed6875d9b23024233e977",
-            "amount": 39,
-            "name": "Barbra Green"
-        },
-        {
-            "_id": "59bed687ded3557a5b72ae4e",
+            "_id": "59bf0571c4016338ee1840ff",
             "amount": 1,
-            "name": "Wilkinson Barron"
+            "name": "Kaufman Silva"
         },
         {
-            "_id": "59bed6876e84073d0c69db71",
-            "amount": 45,
-            "name": "Lillie Rich"
+            "_id": "59bf05719f592cdcbc210833",
+            "amount": 5,
+            "name": "Millie Whitley"
         },
         {
-            "_id": "59bed6873b3402c83133b040",
-            "amount": 98,
-            "name": "Bridges Pace"
+            "_id": "59bf057193b13410517b6f7f",
+            "amount": 7,
+            "name": "Vasquez Hebert"
         },
         {
-            "_id": "59bed6878b777a2cfe6af67b",
-            "amount": 68,
-            "name": "Vang Bennett"
+            "_id": "59bf057128478ffbd723115d",
+            "amount": 6,
+            "name": "Ruby Stewart"
         },
         {
-            "_id": "59bed687575bbc2dd3975aa2",
-            "amount": 71,
-            "name": "Marci Wells"
+            "_id": "59bf0571e9e6de4399524d16",
+            "amount": 8,
+            "name": "Mccray Daugherty"
         },
         {
-            "_id": "59bed687d07d17b6558e4d44",
-            "amount": 21,
-            "name": "Marie Carson"
+            "_id": "59bf05715ea7e5ce2f0da7e2",
+            "amount": 5,
+            "name": "Tamara Martin"
         },
         {
-            "_id": "59bed6875863f3051bf5a31b",
-            "amount": 68,
-            "name": "Deana Peterson"
+            "_id": "59bf0571deac34b9b0776876",
+            "amount": 5,
+            "name": "Marisol Humphrey"
         },
         {
-            "_id": "59bed68728acc8adcff32757",
-            "amount": 26,
-            "name": "Stacie Guerrero"
+            "_id": "59bf0571716124eabc55e75e",
+            "amount": 6,
+            "name": "Curry Russell"
+        },
+        {
+            "_id": "59bf05710e884d9376742b2a",
+            "amount": 2,
+            "name": "Deena Hall"
+        },
+        {
+            "_id": "59bf0571308cb3894c0f932a",
+            "amount": 8,
+            "name": "Foster Young"
+        },
+        {
+            "_id": "59bf0571dc54923f7efe8ecb",
+            "amount": 8,
+            "name": "Briana Eaton"
+        },
+        {
+            "_id": "59bf0571c367fb52028847d0",
+            "amount": 7,
+            "name": "Tabatha Lambert"
+        },
+        {
+            "_id": "59bf0571589c225a38a90010",
+            "amount": 9,
+            "name": "Alexandra Sweet"
+        },
+        {
+            "_id": "59bf05712762befb5ad15568",
+            "amount": 4,
+            "name": "Annabelle Chaney"
+        },
+        {
+            "_id": "59bf0571f4dcfeba93de22b4",
+            "amount": 3,
+            "name": "Brianna Cox"
+        },
+        {
+            "_id": "59bf0571e009dfc01a5bd97b",
+            "amount": 8,
+            "name": "Carson Lucas"
+        },
+        {
+            "_id": "59bf057152412fdbd693b58e",
+            "amount": 2,
+            "name": "Beth Thompson"
+        },
+        {
+            "_id": "59bf057152508dd3d09cfa9d",
+            "amount": 8,
+            "name": "Nikki Wooten"
+        },
+        {
+            "_id": "59bf0571040e0668c629e814",
+            "amount": 9,
+            "name": "Claire Bowers"
+        },
+        {
+            "_id": "59bf0571d60b283fad4fe665",
+            "amount": 4,
+            "name": "Morin Ochoa"
+        },
+        {
+            "_id": "59bf05716907682dd71bcca8",
+            "amount": 6,
+            "name": "Coleman Becker"
+        },
+        {
+            "_id": "59bf0571e8313435ad16e9f1",
+            "amount": 10,
+            "name": "Jenkins Phelps"
+        },
+        {
+            "_id": "59bf0571a1f7d646c2e45128",
+            "amount": 5,
+            "name": "Gallegos Mooney"
+        },
+        {
+            "_id": "59bf05711d50fb63765af6ba",
+            "amount": 9,
+            "name": "Jaime Randall"
+        },
+        {
+            "_id": "59bf0571ce7ded1c784ddff0",
+            "amount": 5,
+            "name": "Stout Blake"
+        },
+        {
+            "_id": "59bf05718234f25c13df569c",
+            "amount": 4,
+            "name": "Aida Horne"
+        },
+        {
+            "_id": "59bf0571824e1fb315e3299a",
+            "amount": 2,
+            "name": "Arline Pugh"
+        },
+        {
+            "_id": "59bf05711793a49cb53d0f90",
+            "amount": 10,
+            "name": "Norris Mathis"
+        },
+        {
+            "_id": "59bf0571db184a27d9145583",
+            "amount": 10,
+            "name": "Rosa Wilkinson"
+        },
+        {
+            "_id": "59bf05715e27ac071f258258",
+            "amount": 1,
+            "name": "Adele Dennis"
+        },
+        {
+            "_id": "59bf0571af26a42764c847aa",
+            "amount": 7,
+            "name": "Mccullough Baird"
+        },
+        {
+            "_id": "59bf0571949d751ce29eb470",
+            "amount": 10,
+            "name": "Phelps Dillard"
+        },
+        {
+            "_id": "59bf057193c71b8fc13ba326",
+            "amount": 2,
+            "name": "Samantha Marquez"
+        },
+        {
+            "_id": "59bf057144e9ce367200ae86",
+            "amount": 9,
+            "name": "Bond Beck"
+        },
+        {
+            "_id": "59bf057102d7cbd7faa2f81d",
+            "amount": 1,
+            "name": "Milagros Gill"
+        },
+        {
+            "_id": "59bf057135d00aab4f52dbe9",
+            "amount": 9,
+            "name": "Wendy Berg"
+        },
+        {
+            "_id": "59bf0571f75a72f2e2f59dbf",
+            "amount": 1,
+            "name": "Strong Fischer"
+        },
+        {
+            "_id": "59bf05718c830877341ce54f",
+            "amount": 8,
+            "name": "Merrill Goodwin"
+        },
+        {
+            "_id": "59bf05713bc6d78c5439c39b",
+            "amount": 7,
+            "name": "Dixie Cunningham"
+        },
+        {
+            "_id": "59bf0571d80707b7a12b4b55",
+            "amount": 5,
+            "name": "Ortiz Delaney"
+        },
+        {
+            "_id": "59bf05718b9ff923af0dbf37",
+            "amount": 1,
+            "name": "Maria Le"
+        },
+        {
+            "_id": "59bf057157619251df8dbaa8",
+            "amount": 7,
+            "name": "Aimee Boyer"
+        },
+        {
+            "_id": "59bf0571f5be781a74266a91",
+            "amount": 7,
+            "name": "Krista Benson"
+        },
+        {
+            "_id": "59bf0571e19ca19150dc75ab",
+            "amount": 8,
+            "name": "Stevens Black"
+        },
+        {
+            "_id": "59bf0571c35d3877e75e3172",
+            "amount": 3,
+            "name": "Gill Carpenter"
+        },
+        {
+            "_id": "59bf0571198ab8c641a1cec2",
+            "amount": 7,
+            "name": "Ronda Wolfe"
+        },
+        {
+            "_id": "59bf0571e0e3de2964b1d396",
+            "amount": 2,
+            "name": "Corinne Yates"
+        },
+        {
+            "_id": "59bf0571fa114ddd3349e8e0",
+            "amount": 8,
+            "name": "Hammond Mcmahon"
+        },
+        {
+            "_id": "59bf05719c5cc6e05e178356",
+            "amount": 3,
+            "name": "Rodriguez Barnes"
+        },
+        {
+            "_id": "59bf0571be09974ca8a0c194",
+            "amount": 10,
+            "name": "Alana Bird"
+        },
+        {
+            "_id": "59bf0571c4ea5da48eaf9b67",
+            "amount": 8,
+            "name": "Shanna Osborn"
+        },
+        {
+            "_id": "59bf05717bc633c762d2ece4",
+            "amount": 2,
+            "name": "Schultz Simpson"
+        },
+        {
+            "_id": "59bf057178b17092fa9ce8d0",
+            "amount": 8,
+            "name": "Beverly Chandler"
+        },
+        {
+            "_id": "59bf0571837abaa77678f936",
+            "amount": 9,
+            "name": "Noreen Parrish"
+        },
+        {
+            "_id": "59bf057104e360ac8ad385fb",
+            "amount": 1,
+            "name": "Burgess Watts"
+        },
+        {
+            "_id": "59bf05713c45927e30fb5bad",
+            "amount": 2,
+            "name": "Pitts Frost"
+        },
+        {
+            "_id": "59bf0571d147ada6eb67af23",
+            "amount": 7,
+            "name": "Terry Good"
+        },
+        {
+            "_id": "59bf0571f4420ac8abdbc8a7",
+            "amount": 9,
+            "name": "Luisa Molina"
+        },
+        {
+            "_id": "59bf057102b0931313ef2938",
+            "amount": 1,
+            "name": "Fields Morrow"
+        },
+        {
+            "_id": "59bf05715a5595023f0db3c8",
+            "amount": 8,
+            "name": "Odom Deleon"
+        },
+        {
+            "_id": "59bf0571bb3f915ff2a9f35d",
+            "amount": 5,
+            "name": "Kelly Yang"
+        },
+        {
+            "_id": "59bf0571786ce1d5491f0c5a",
+            "amount": 7,
+            "name": "Tate Neal"
+        },
+        {
+            "_id": "59bf0571ef646f52c3b2956d",
+            "amount": 2,
+            "name": "Oneill Cain"
+        },
+        {
+            "_id": "59bf0571915d6062957fb118",
+            "amount": 1,
+            "name": "Winters Velasquez"
+        },
+        {
+            "_id": "59bf0571e873dc1de0ff7f2d",
+            "amount": 7,
+            "name": "Manuela Bender"
+        },
+        {
+            "_id": "59bf0571a0957b6064df4473",
+            "amount": 1,
+            "name": "Hayden Daniel"
+        },
+        {
+            "_id": "59bf0571166cc9a3d17842b6",
+            "amount": 9,
+            "name": "Hampton Dyer"
+        },
+        {
+            "_id": "59bf057193eaefc8dd858c4e",
+            "amount": 6,
+            "name": "Consuelo Olson"
+        },
+        {
+            "_id": "59bf0571c359f0942f139263",
+            "amount": 1,
+            "name": "Sandoval Fulton"
+        },
+        {
+            "_id": "59bf05719e91e695b10d3dd4",
+            "amount": 3,
+            "name": "Harrington Mcintosh"
+        },
+        {
+            "_id": "59bf057197262ba4ccb769d4",
+            "amount": 9,
+            "name": "Ila Stevenson"
+        },
+        {
+            "_id": "59bf057173466082c4a824c8",
+            "amount": 3,
+            "name": "Vivian Rush"
+        },
+        {
+            "_id": "59bf0571d191439178e5f07a",
+            "amount": 7,
+            "name": "Bender Ramos"
+        },
+        {
+            "_id": "59bf057176a99a75f01e88d5",
+            "amount": 8,
+            "name": "Cunningham Ford"
+        },
+        {
+            "_id": "59bf05717a1f96d34d72e44b",
+            "amount": 7,
+            "name": "Fuentes Noel"
+        },
+        {
+            "_id": "59bf05713170603c5d0a828f",
+            "amount": 10,
+            "name": "Sykes Malone"
+        },
+        {
+            "_id": "59bf05713ed4bb932658f015",
+            "amount": 9,
+            "name": "Erin Ayers"
+        },
+        {
+            "_id": "59bf0571c3c4b46ef25cc45e",
+            "amount": 5,
+            "name": "Hopkins Olsen"
+        },
+        {
+            "_id": "59bf057142fd3a96769b4328",
+            "amount": 10,
+            "name": "Jeri Pitts"
+        },
+        {
+            "_id": "59bf0571d35c25c6d270e9f8",
+            "amount": 2,
+            "name": "Adams Day"
+        },
+        {
+            "_id": "59bf0571d8c633348aeb57db",
+            "amount": 2,
+            "name": "Holloway Cleveland"
+        },
+        {
+            "_id": "59bf0571f7e7e4f736dc08a1",
+            "amount": 10,
+            "name": "Peck Tucker"
+        },
+        {
+            "_id": "59bf05710847e8ea8ccef488",
+            "amount": 2,
+            "name": "Dalton Collins"
+        },
+        {
+            "_id": "59bf0571dd102ef895acaf2d",
+            "amount": 3,
+            "name": "Gale Lancaster"
+        },
+        {
+            "_id": "59bf05713b70ebca5caa2e13",
+            "amount": 6,
+            "name": "Joseph Vazquez"
+        },
+        {
+            "_id": "59bf05719bc3ff46f29d3693",
+            "amount": 4,
+            "name": "Abbott Rogers"
+        },
+        {
+            "_id": "59bf05719eb1b9ca2fd081cf",
+            "amount": 7,
+            "name": "Vera Kline"
+        },
+        {
+            "_id": "59bf0571b0e1f65e3a083c30",
+            "amount": 6,
+            "name": "Burks Aguirre"
+        },
+        {
+            "_id": "59bf05713f78699b8c07f3f9",
+            "amount": 7,
+            "name": "Marva Castillo"
+        },
+        {
+            "_id": "59bf0571ff954b13a6d5f21d",
+            "amount": 7,
+            "name": "Acosta Carlson"
+        },
+        {
+            "_id": "59bf0571f4f5d6679eedc21f",
+            "amount": 6,
+            "name": "Florence Nash"
+        },
+        {
+            "_id": "59bf05714bdb6982d2395e5f",
+            "amount": 10,
+            "name": "Guerrero Chang"
+        },
+        {
+            "_id": "59bf0571e2e0acab1c9d2ea5",
+            "amount": 9,
+            "name": "Ware Kirby"
+        },
+        {
+            "_id": "59bf0571c1fab833038848a7",
+            "amount": 8,
+            "name": "Dorothy Barron"
+        },
+        {
+            "_id": "59bf0571fe3607ed496d53c0",
+            "amount": 9,
+            "name": "Robbins Dudley"
+        },
+        {
+            "_id": "59bf0571302bf7e5944de36f",
+            "amount": 10,
+            "name": "Rosemary Nelson"
+        },
+        {
+            "_id": "59bf05710487508722cc8c41",
+            "amount": 9,
+            "name": "Flores Nunez"
+        },
+        {
+            "_id": "59bf0571814b610799ef0e4e",
+            "amount": 8,
+            "name": "Opal Blankenship"
+        },
+        {
+            "_id": "59bf057146b166b1110af7d0",
+            "amount": 4,
+            "name": "Lorrie Briggs"
+        },
+        {
+            "_id": "59bf05713b044ed59bfded0d",
+            "amount": 3,
+            "name": "Bettie Chapman"
+        },
+        {
+            "_id": "59bf05712ce14e3a6e7e44a0",
+            "amount": 2,
+            "name": "Sue Barry"
+        },
+        {
+            "_id": "59bf0571d75f11008233ad5c",
+            "amount": 1,
+            "name": "Wilkinson Nguyen"
+        },
+        {
+            "_id": "59bf05715276806ce72dd956",
+            "amount": 4,
+            "name": "Love Carrillo"
+        },
+        {
+            "_id": "59bf05719a77d7c04e3c8b7d",
+            "amount": 4,
+            "name": "Rae Austin"
+        },
+        {
+            "_id": "59bf0571690cd82939a245f6",
+            "amount": 8,
+            "name": "Lou Whitehead"
+        },
+        {
+            "_id": "59bf057163efae8429ae2d67",
+            "amount": 2,
+            "name": "Rose Martinez"
+        },
+        {
+            "_id": "59bf0571a0afc8cd06260cad",
+            "amount": 7,
+            "name": "Guerra Oneal"
+        },
+        {
+            "_id": "59bf05716c7d2f595ac56e58",
+            "amount": 5,
+            "name": "Duke Knight"
+        },
+        {
+            "_id": "59bf057170b1c9de8a0a0eea",
+            "amount": 9,
+            "name": "Mays Guerra"
+        },
+        {
+            "_id": "59bf0571b78655a9fe617e59",
+            "amount": 10,
+            "name": "Terra Reyes"
+        },
+        {
+            "_id": "59bf0571ce866fbf7cf46d53",
+            "amount": 5,
+            "name": "Stacey Salas"
+        },
+        {
+            "_id": "59bf0571a20b6a191bc6929f",
+            "amount": 8,
+            "name": "Nelda Bryant"
+        },
+        {
+            "_id": "59bf057118ad024dc65647d3",
+            "amount": 8,
+            "name": "Dale Bradley"
+        },
+        {
+            "_id": "59bf0571f438ae5dd77f3297",
+            "amount": 5,
+            "name": "Tameka Stuart"
+        },
+        {
+            "_id": "59bf0571f56f37fd70873b29",
+            "amount": 4,
+            "name": "Maryann Fleming"
+        },
+        {
+            "_id": "59bf0571a67269293b590ee8",
+            "amount": 1,
+            "name": "Suzanne Cotton"
+        },
+        {
+            "_id": "59bf057111b2bffcc33c6224",
+            "amount": 5,
+            "name": "Leanne Mcgowan"
+        },
+        {
+            "_id": "59bf057193879f8c606e7f7a",
+            "amount": 8,
+            "name": "Vaughn Powers"
+        },
+        {
+            "_id": "59bf05719dd1750ba082a919",
+            "amount": 7,
+            "name": "Marie Zamora"
+        },
+        {
+            "_id": "59bf05719f6b84975998ef32",
+            "amount": 1,
+            "name": "Ina Osborne"
+        },
+        {
+            "_id": "59bf05717efd30fac454584c",
+            "amount": 8,
+            "name": "Karla Lara"
+        },
+        {
+            "_id": "59bf05717723daa5b84be287",
+            "amount": 3,
+            "name": "Weber Park"
+        },
+        {
+            "_id": "59bf0571f6dd9dd23d8ed382",
+            "amount": 6,
+            "name": "Dixon Norris"
+        },
+        {
+            "_id": "59bf0571dfe6d3af1bd3c449",
+            "amount": 10,
+            "name": "Gilliam Stafford"
+        },
+        {
+            "_id": "59bf05714e4657e00d869151",
+            "amount": 2,
+            "name": "Gayle Vinson"
+        },
+        {
+            "_id": "59bf0571ae6bf0224b5156fc",
+            "amount": 9,
+            "name": "Jenifer Fitzpatrick"
+        },
+        {
+            "_id": "59bf0571883903838dc5b16e",
+            "amount": 3,
+            "name": "Josefina Orr"
+        },
+        {
+            "_id": "59bf057139f8a4dc7c008fd3",
+            "amount": 7,
+            "name": "Cantrell Shaw"
+        },
+        {
+            "_id": "59bf05715d7e3ea9df0d8920",
+            "amount": 2,
+            "name": "Maura Newman"
+        },
+        {
+            "_id": "59bf05719c8a79ef506abbf3",
+            "amount": 1,
+            "name": "Alyssa Howard"
+        },
+        {
+            "_id": "59bf0571a60ae3b374f0f93c",
+            "amount": 9,
+            "name": "West Bolton"
+        },
+        {
+            "_id": "59bf05712b72bead86b7ccc2",
+            "amount": 9,
+            "name": "Daugherty Odom"
+        },
+        {
+            "_id": "59bf0571c8fd969af50b440d",
+            "amount": 5,
+            "name": "Olson Ellison"
+        },
+        {
+            "_id": "59bf05710922b74cb20efcf2",
+            "amount": 5,
+            "name": "Wilcox French"
+        },
+        {
+            "_id": "59bf0571791dfc4a9d2c27f5",
+            "amount": 7,
+            "name": "Day Sampson"
+        },
+        {
+            "_id": "59bf05714e253914af27e36c",
+            "amount": 5,
+            "name": "Good Pollard"
+        },
+        {
+            "_id": "59bf0571a2e10b5b94cb5483",
+            "amount": 5,
+            "name": "Kenya Garcia"
+        },
+        {
+            "_id": "59bf0571d6bcb19d7071a254",
+            "amount": 7,
+            "name": "Doris Avery"
+        },
+        {
+            "_id": "59bf057122f472b17e663456",
+            "amount": 1,
+            "name": "Reyes Sellers"
+        },
+        {
+            "_id": "59bf05718d84dad97a9d3e22",
+            "amount": 6,
+            "name": "Paige Bruce"
+        },
+        {
+            "_id": "59bf0571cb8270ab7de0b3db",
+            "amount": 4,
+            "name": "Minerva Roman"
+        },
+        {
+            "_id": "59bf057182f8ae9129a88d8c",
+            "amount": 6,
+            "name": "Alexis Perry"
+        },
+        {
+            "_id": "59bf05714af9b9879f9ee734",
+            "amount": 7,
+            "name": "Mcmillan Hyde"
+        },
+        {
+            "_id": "59bf0571eb9c9c34b64bc2f6",
+            "amount": 9,
+            "name": "Colette Hale"
+        },
+        {
+            "_id": "59bf0571a2d2552040a8e85c",
+            "amount": 5,
+            "name": "Christina Hudson"
+        },
+        {
+            "_id": "59bf0571731aaaad8419237f",
+            "amount": 10,
+            "name": "Florine Jacobson"
+        },
+        {
+            "_id": "59bf0571b638958d27437959",
+            "amount": 8,
+            "name": "Estes Crosby"
+        },
+        {
+            "_id": "59bf0571b528a1c0b3ef3929",
+            "amount": 9,
+            "name": "Lindsey Salazar"
+        },
+        {
+            "_id": "59bf0571e6ba933c4d4782fc",
+            "amount": 6,
+            "name": "Karyn Cook"
+        },
+        {
+            "_id": "59bf0571ad95005a60b089cc",
+            "amount": 3,
+            "name": "Casey Hardy"
+        },
+        {
+            "_id": "59bf05711de1f0f75eb0955a",
+            "amount": 9,
+            "name": "Aisha Rodgers"
+        },
+        {
+            "_id": "59bf0571a25aa7efb1abe107",
+            "amount": 6,
+            "name": "King Santiago"
+        },
+        {
+            "_id": "59bf0571fe13d12874b9ab93",
+            "amount": 10,
+            "name": "Katelyn Elliott"
+        },
+        {
+            "_id": "59bf057146193423d6b940ae",
+            "amount": 8,
+            "name": "Angie Kane"
+        },
+        {
+            "_id": "59bf0571136c0801e836c363",
+            "amount": 8,
+            "name": "Diaz Francis"
+        },
+        {
+            "_id": "59bf05710c7b6946f19c2cb6",
+            "amount": 5,
+            "name": "Holder Rojas"
+        },
+        {
+            "_id": "59bf057117d86575619d94d9",
+            "amount": 1,
+            "name": "Estela Hopper"
+        },
+        {
+            "_id": "59bf0571cbd905809f61b6dc",
+            "amount": 5,
+            "name": "Merritt Long"
+        },
+        {
+            "_id": "59bf0571c8312df81d50fcd9",
+            "amount": 4,
+            "name": "Hardin Rios"
+        },
+        {
+            "_id": "59bf057116deaf28dafc6d7c",
+            "amount": 6,
+            "name": "House Chen"
+        },
+        {
+            "_id": "59bf0571482a0dc884b68735",
+            "amount": 8,
+            "name": "Baldwin Hinton"
+        },
+        {
+            "_id": "59bf057107274f14c9f8c9b3",
+            "amount": 8,
+            "name": "Lillie Wallace"
+        },
+        {
+            "_id": "59bf057194e11206909557e8",
+            "amount": 3,
+            "name": "Dale Farmer"
+        },
+        {
+            "_id": "59bf05718ee8a371c2ed57cc",
+            "amount": 1,
+            "name": "Cathy Ferrell"
+        },
+        {
+            "_id": "59bf0571be910e74c40e3be3",
+            "amount": 10,
+            "name": "Poole Horn"
+        },
+        {
+            "_id": "59bf057154e71c56cca925ea",
+            "amount": 8,
+            "name": "Patrica Stein"
+        },
+        {
+            "_id": "59bf05718614404ddf246257",
+            "amount": 1,
+            "name": "Mercer Dodson"
+        },
+        {
+            "_id": "59bf0571977abbb3c93b4125",
+            "amount": 5,
+            "name": "Lott Spence"
+        },
+        {
+            "_id": "59bf057119da08a5343cd4cb",
+            "amount": 6,
+            "name": "Lancaster Oneil"
+        },
+        {
+            "_id": "59bf057170bbf9524c517cdc",
+            "amount": 8,
+            "name": "Melva Schwartz"
+        },
+        {
+            "_id": "59bf05717b3a6c61354d5b10",
+            "amount": 9,
+            "name": "Angelita Mccray"
+        },
+        {
+            "_id": "59bf0571aea3f0ecf2087212",
+            "amount": 1,
+            "name": "Chambers Luna"
+        },
+        {
+            "_id": "59bf0571516bd29d07b834d2",
+            "amount": 8,
+            "name": "Jo Hubbard"
+        },
+        {
+            "_id": "59bf05717e308d86931db875",
+            "amount": 6,
+            "name": "Wade Lindsay"
+        },
+        {
+            "_id": "59bf05716b7d0768cd4619da",
+            "amount": 2,
+            "name": "Bethany Church"
+        },
+        {
+            "_id": "59bf05711e7105972d30ae7f",
+            "amount": 8,
+            "name": "Bradshaw Peters"
+        },
+        {
+            "_id": "59bf0571ad61f998f8fa329b",
+            "amount": 4,
+            "name": "Jones Barker"
+        },
+        {
+            "_id": "59bf0571478217eb8f01213e",
+            "amount": 4,
+            "name": "Amanda Sharp"
+        },
+        {
+            "_id": "59bf0571a3cf5777e3aa7ffa",
+            "amount": 8,
+            "name": "Higgins Hurst"
+        },
+        {
+            "_id": "59bf05715b6af9f1fb775476",
+            "amount": 10,
+            "name": "Geraldine Wynn"
+        },
+        {
+            "_id": "59bf057180d66d4847245191",
+            "amount": 8,
+            "name": "Cannon Gonzalez"
+        },
+        {
+            "_id": "59bf0571a8d24db6df641c6f",
+            "amount": 9,
+            "name": "Levy Maynard"
+        },
+        {
+            "_id": "59bf05718d87c4dd8c6f89a6",
+            "amount": 9,
+            "name": "Parsons Holmes"
+        },
+        {
+            "_id": "59bf0571228d33b6ba6d93e0",
+            "amount": 2,
+            "name": "Randi Blevins"
+        },
+        {
+            "_id": "59bf0571609a258bebd79ec0",
+            "amount": 5,
+            "name": "Bridgette Guthrie"
+        },
+        {
+            "_id": "59bf057127f15e6471a9c539",
+            "amount": 1,
+            "name": "Cynthia Talley"
+        },
+        {
+            "_id": "59bf0571824cc36523222e3c",
+            "amount": 1,
+            "name": "Chan Mack"
+        },
+        {
+            "_id": "59bf057135e704b020f8ed9f",
+            "amount": 2,
+            "name": "Bauer Griffin"
+        },
+        {
+            "_id": "59bf05716b2c8dc558fc6e9a",
+            "amount": 2,
+            "name": "Stephens Scott"
+        },
+        {
+            "_id": "59bf0571e02bb4f82cb865a6",
+            "amount": 8,
+            "name": "Hodges Taylor"
+        },
+        {
+            "_id": "59bf05718932acc2063bed3e",
+            "amount": 7,
+            "name": "Talley Witt"
+        },
+        {
+            "_id": "59bf05718174a485daedc9dc",
+            "amount": 2,
+            "name": "Roberta Dejesus"
+        },
+        {
+            "_id": "59bf057118447590c53aea3d",
+            "amount": 7,
+            "name": "Vega Justice"
+        },
+        {
+            "_id": "59bf0571e4b9055d34e727bd",
+            "amount": 2,
+            "name": "Burke Herrera"
+        },
+        {
+            "_id": "59bf05713d3a0988b5ed5911",
+            "amount": 9,
+            "name": "Jolene Cummings"
+        },
+        {
+            "_id": "59bf0571431e1df402af6894",
+            "amount": 4,
+            "name": "Garza Nieves"
         }
     ];
 
     const initializeCharts = function() {
-        drawSunburst(chapter);
-        drawBubbleChart(bubbleData, 'amount');
+        drawSunburst(chapter, bubbleData);
     };
 
     initializeCharts();
-    drawBubbleChart(bubbleData, 'amount');
 
     $(window).resize(function() {
         initializeCharts();
-        drawBubbleChart(bubbleData, 'amount');
     });
 
 });

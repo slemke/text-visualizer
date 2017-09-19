@@ -8,7 +8,7 @@ let SBContainer = document.getElementById('SBContainer'),
     SBSliderContainer = document.getElementById('SBSliderContainer');
 
 let sbSvg = d3.select('#SBContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
-let bcSvg = d3.select('#BCContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
+let bcSvg = d3.select('#BCContainer').append('svg'); //.attr('preserveAspectRatio', 'xMidYMid');
 let lSvg = d3.select('#LContainer').append('svg').attr('id', 'legendSvg').attr('preserveAspectRatio', 'xMidYMid');
 let sbSliderSvg = d3.select('#SBSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 
@@ -24,24 +24,22 @@ let wholeSize,
     colorThresh,
     p,
     a,
-    bcText,
-    bcGroupWidth,
-    bcGroupHeight,
-    bcInnerPadding,
-    bcOuterPadding,
-    maxBC;
+    sbSelection = [];
 
-let chapterColors = ['#552e05', '#7f4e1c', '#a9753f', '#d3a26e', '#fed7ac'];
+
+let chapterColors = [ '#47423f', '#0e6873', '#8c3c61', '#e98548', '#83c6dc', '#af6a40','#584337', '#a08562', '#8c9898', '#5f6d6e', '#87816c', '#b4aa92', '#7d7061', '#917359', '#7d6852', '#bba98b', '#a3906b'];
 let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
-//let colorTexts = ['(Almost) No Problems', 'Problems Can Be Neglected', 'Problems Could Be Resolved', 'Problems Should be Resolved', 'Problems Must Be Resolved'];
 let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.5,0.5).reverse()]};
 let activeTopic = 'size';
+let bubbleGroup;
+let bubbleData;
+let bubbleKey = 'amount';
 
-const drawSunburst = function(chapter) {
+const drawSunburst = function(chapter, buData) {
     removeAll();
+    bubbleData = buData;
     initializeAndDrawSunburst(chapter);
     redrawLegend();
-    initializeBreadCrumbs();
     redrawSlider();
 };
 
@@ -73,7 +71,7 @@ const initializeAndDrawSunburst = function(chapter) {
     let innerRadius = root.descendants()[1].y0;
 
     wholeSize = root.descendants().reduce(function(old, val) {
-        return old + val.data.size
+        return (val.data.size) ? old + val.data.size : old;
     }, 0);
 
     sbSvg.append('rect')
@@ -82,11 +80,15 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('width', sbWidth)
         .attr('height', sbHeight)
         .style('fill', '#fff')
+        .style('cursor', 'pointer')
         .on('click', function() {
             highlightChapter(root.descendants());
             updateInformationTexts(root.data.name, getPercentage(root.descendants()));
-            redrawBreadCrumbs([root], root);
+            sbSelection = root.descendants();
+            bcSelection = root.descendants();
+            redrawBreadCrumbs(root.descendants(), root);
             blockedMouseover = false;
+           // drawBubbles(bubbleData, bubbleKey);
         });
 
     g = sbSvg.append('g')
@@ -99,7 +101,7 @@ const initializeAndDrawSunburst = function(chapter) {
         .append('g')
         .attr('class', 'sunburstNode')
         .append('path')
-        .attr('class', 'selected sunburstPart')
+        .attr('class', 'sunburstSelected sunburstPart')
         .attr('id', function (d) { return 'chapter' + d.data.id })
         .attr('display', function (d) { return d.depth ? null : 'none'; })
         .style('cursor', 'pointer')
@@ -107,34 +109,16 @@ const initializeAndDrawSunburst = function(chapter) {
         .style('stroke', '#000')
         .on('mouseover', function(d) {
             if(!blockedMouseover) {
-                updateInformationTexts(d.data.name, getPercentage([d]));
+                updateInformationTexts(d.data.name, getPercentage(d.descendants()));
             }
         })
         .on('click', function(d) {
-            let event = d3.event;
-            switch(event.detail) {
-                case 1:
-                    redrawBreadCrumbs([d], d);
-                    highlightChapter([d]);
-                    updateInformationTexts(d.data.name, getPercentage([d]));
-                    blockedMouseover = true;
-                    break;
-                case 2:
-                    redrawBreadCrumbs(d.descendants(), d);
-                    highlightChapter(d.descendants());
-                    updateInformationTexts(d.data.name + '...', getPercentage(d.descendants()));
-                    blockedMouseover = true;
-                    break;
-                case 3:
-                    let nodes = getAllWithSameColor(colorThresh(d.data[activeTopic]));
-                    redrawBreadCrumbs(nodes, d);
-                    highlightChapter(nodes);
-                    updateInformationTexts(d.data.name + '...', getPercentage(nodes));
-                    blockedMouseover = true;
-                    break;
-                default:
-                    break
-            }
+            sbSelection = d.descendants();
+            bcSelection = d.descendants();
+            redrawBreadCrumbs(d.descendants(), d);
+            highlightChapter(d.descendants());
+            updateInformationTexts(d.data.name, getPercentage(d.descendants()));
+            blockedMouseover = true;
         });
 
     changeColorForPercentage();
@@ -146,16 +130,17 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('font-size', innerRadius / 5 + 'px')
         .attr('font-weight', 'bold')
         .attr('dy', '.35em')
-        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 - innerRadius / 3) + ')');
+        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 - innerRadius / 3) + ')')
+        .attr('pointer-events', 'none');
 
      sbSvg.append('text')
         .text('Size:')
         .attr('class', 'content')
         .attr('text-anchor', 'middle')
         .attr('font-size', innerRadius / 5 + 'px')
-        //.attr('font-weight', 'bold')
         .attr('dy', '.35em')
-        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2) + ')');
+        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2) + ')')
+         .attr('pointer-events', 'none');
 
     a = sbSvg.append('text')
         .text(d3.format('.2%')(1))
@@ -163,19 +148,31 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('text-anchor', 'middle')
         .attr('font-size', innerRadius / 5 + 'px')
         .attr('dy', '.35em')
-        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 + innerRadius / 3) + ')');
+        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (sbHeight / 2 + innerRadius / 3) + ')')
+        .attr('pointer-events', 'none');
 
     appendCircles(chartSize);
+
+
+
+    if(sbSelection.length > 0) {
+        redrawBreadCrumbs(sbSelection);
+        highlightChapter(sbSelection);
+    } else {
+        sbSelection = root.descendants();
+        bcSelection = root.descendants();
+        redrawBreadCrumbs(root.descendants());
+    }
 };
 
-const getAllWithSameColor = function(color) {
+/*const getAllWithSameColor = function(color) {
     return d3.selectAll('.sunburstNode').data().filter(function(d) {
         return colorThresh(d.data[activeTopic]) === color})
-};
+};*/
 
 const getPercentage = function(d) {
     let size = d.reduce(function(old, val) {
-        return old + val.data.size;
+        return (val.data.size) ? old + val.data.size : old;
     }, 0);
 
     return d3.format('.2%')(size / wholeSize)
@@ -184,45 +181,27 @@ const getPercentage = function(d) {
 const appendCircles = function(chartSize) {
     d3.selectAll('.sunburstNode')
         .each(function(d) {
-            if (d.data.size) {
+            if (!d.data.size && d !== root) {
                 d3.select(this)
                     .append('circle')
-                    .attr('class', 'selected sunburstPart')
+                    .attr('class', 'sunburstSelected sunburstPart')
                     .attr('id', 'circle' + d.data.id)
                     .attr('transform', 'translate(' + arc.centroid(d) + ')')
                     .attr('r', chartSize / 400)
                     .on('click', function(d) {
-                        let event = d3.event;
-                        switch(event.detail) {
-                            case 1:
-                                redrawBreadCrumbs([d], d);
-                                highlightChapter([d]);
-                                updateInformationTexts(d.data.name, getPercentage([d]));
-                                blockedMouseover = true;
-                                break;
-                            case 2:
-                                redrawBreadCrumbs(d.descendants(), d);
-                                highlightChapter(d.descendants());
-                                updateInformationTexts(d.data.name + '...', getPercentage(d.descendants()));
-                                blockedMouseover = true;
-                                break;
-                            case 3:
-                                let nodes = getAllWithSameColor(colorThresh(d.data.size));
-                                redrawBreadCrumbs(nodes, d);
-                                highlightChapter(nodes);
-                                updateInformationTexts(d.data.name + '...', getPercentage(nodes));
-                                blockedMouseover = true;
-                                break;
-                            default:
-                                break
-                        }
+                        sbSelection = d.descendants();
+                        bcSelection = d.descendants();
+                        redrawBreadCrumbs(d.descendants(), d);
+                        highlightChapter(d.descendants());
+                        updateInformationTexts(d.data.name, getPercentage(d.descendants()));
+                        blockedMouseover = true;
                     });
             }
         });
 };
 
 const redrawSlider = function() {
-    d3.select('.slider').remove();
+    d3.select('.sbSlider').remove();
 
     let sliderWidth = SBSliderContainer.clientWidth;
     let sliderHeight = SBSliderContainer.clientHeight;
@@ -247,7 +226,7 @@ const redrawSlider = function() {
     y.ticks(10);
 
     let slider = sbSliderSvg.append('g')
-        .attr('class', 'slider')
+        .attr('class', 'sbSlider')
         .attr('transform', 'translate(' + handleSize * 1.1 + ', 0)');
 
     slider.append('text')
@@ -255,6 +234,7 @@ const redrawSlider = function() {
         .attr('x',  - handleSize)
         .attr('y', spacing - handleSize * 1.5)
         .attr('text-anchor', 'left')
+        .attr('pointer-events', 'none')
         .style('font-size', fontSize + 'px')
         .style('font-weight', 'bold')
         .text(sliderScales[activeTopic][2] + sliderScales[activeTopic][3]);
@@ -282,6 +262,7 @@ const redrawSlider = function() {
             .on('end', function() {
                 sliderScales[activeTopic][2] = scale(d3.event.y);
                 changeColorForPercentage();
+                adjustBubbleColor();
                 redrawLegend();
             }));
 
@@ -295,6 +276,7 @@ const redrawSlider = function() {
         .attr('y', function(d) {return y(d)})
         .attr('dy', '.35em')
         .attr('text-anchor', 'left')
+        .attr('pointer-events', 'none')
         .style('font-size', fontSize + 'px')
         .text(function(d) { return d; });
 
@@ -312,10 +294,14 @@ const removeAll = function() {
 };
 
 const highlightChapter = function(chapters) {
-    d3.selectAll('.sunburstPart').filter('.selected').classed('selected', false).transition().style('opacity', 0.4);
+    d3.selectAll('.sunburstPart')
+        .filter('.sunburstSelected')
+        .classed('sunburstSelected', false)
+        .style('opacity', 0.4);
+
     chapters.forEach(function(e) {
-        d3.select('#chapter' + e.data.id).classed('selected', true).transition().style('opacity', 1);
-        d3.select('#circle' + e.data.id).classed('selected', true).transition().style('opacity', 1);
+        d3.select('#chapter' + e.data.id).classed('sunburstSelected', true).transition().style('opacity', 1);
+        d3.select('#circle' + e.data.id).classed('sunburstSelected', true).transition().style('opacity', 1);
     });
 };
 
@@ -325,7 +311,6 @@ const updateInformationTexts = function(name, amount) {
 };
 
 const changeColorForPercentage = function() {
-
     let distance = sliderScales[activeTopic][2] / (colors.length - 1);
 
     let domain = d3.range(colors.length - 2).reduce(function(old){
@@ -336,10 +321,26 @@ const changeColorForPercentage = function() {
         .domain(domain)
         .range(colors);
 
-    d3.selectAll('.sunburstNode path')
+    //TODO: ohne kinder
+    /*d3.selectAll('.sunburstNode path')
         .attr('fill', function(d) {
-            return colorThresh(d.data[activeTopic]);
+            return (d.data.size > 0) ? colorThresh(d.data[activeTopic]) : colorThresh(0);
+        });*/
+
+    //TODO: mit kinder
+    d3.selectAll('.sunburstNode path')
+        .each(function(d) {
+
+            d3.select(this)
+                .attr('fill', getColorForChapter(d));
         });
+};
+
+const getColorForChapter = function(chapter) {
+    let sum = d3.sum(chapter.descendants(), function(c) {return c.data.size});
+    let mid = sum / chapter.descendants().length;
+
+    return colorThresh(mid);
 };
 
 /** legend function */
@@ -373,17 +374,19 @@ const redrawLegend = function() {
         .attr('dy', '.8em')
         .attr('font-size', lWidth / 4)
         .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
         .style('fill', '#000')
         .style('font-weight', 'bold')
         .classed('legendText', true);
 
     let colorText = rootG.append('text')
-        .text('Color = Worst Value Is:')
+        .text('Color = Worst Value Of The Chapter / Average Of Sub-Chapters:')
         .attr('x', lWidth / 2)
         .attr('y', legend.node().getBBox().height)
         .attr('dy', '.8em')
         .attr('font-size', size / 3)
         .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
         .style('fill', '#000')
         .style('font-weight', 'bold')
         .classed('legendText', true)
@@ -410,28 +413,9 @@ const redrawLegend = function() {
             .style('stroke', '#000')
             .each(function() {
                 const band = sliderScales[activeTopic][2] / (colors.length - 1);
-                /*let lGProzent = lSvg.select('#legendSubGroup' + i)
-                    .append('text')
-                    .text(function() {
-                        if (i === 0) {
-                            return '<' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
-                        } else if (i < colors.length - 1) {
-                            return '>' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3] + ' && <' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
-                        } else {
-                            return '>' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3]
-                        }
-                    })
-                    .attr('x', lWidth / 2)
-                    .attr('dy', '.35em')
-                    .attr('font-size', size / 5)
-                    .attr('text-anchor', 'middle')
-                    .attr('id', 'legendPercent' + i)
-                    .style('font-weight', 'bold')
-                    .style('fill', '#000');*/
 
                 let lGText = lSvg.select('#legendSubGroup' + i )
                     .append('text')
-                    //.text(colorTexts[i])
                     .text(function() {
                         if (i === 0) {
                             return '<' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
@@ -447,11 +431,9 @@ const redrawLegend = function() {
                     .attr('font-size', size / 3)
                     .attr('text-anchor', 'middle')
                     .attr('id', 'legendText' + i)
+                    .attr('pointer-events', 'none')
                     .style('fill', '#000')
                     .style('font-weight', 'bold');
-
-                /*lGProzent.call(wrap, size)
-                    .attr('y', gheight + spacing + (size / 2.2 - lGProzent.node().getBBox().height / 2));*/
 
                 lGText.call(wrap, lWidth);
 
@@ -485,6 +467,7 @@ const redrawLegend = function() {
         .attr('dy', '1em')
         .attr('font-size', size / 3)
         .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
         .style('fill', '#000')
         .style('font-weight', 'bold');
 
@@ -504,12 +487,13 @@ const redrawLegend = function() {
         .attr('r', chartSize / 400);
 
     let subG2G2Text = subG2G2.append('text')
-        .text('Chapter Itself Contains Text')
+        .text('Chapter Has No Introduction')
         .attr('x', 0)
         .attr('y', 0)
         .attr('dy', '1em')
         .attr('font-size', size / 3)
         .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
         .style('fill', '#000')
         .style('font-weight', 'bold');
 
@@ -533,98 +517,41 @@ const redrawLegend = function() {
         .attr('transform', function() {return 'translate(' + (-size / 4) + ', ' + (-size + size/8) + ')'});
 
     let singleText = subG2G3.append('text')
-        .text('Click: Select Chapter')
+        .text('Click: Select Whole Chapter')
         .attr('x', 0)
         .attr('y', 0)
         .attr('dy', '1em')
         .attr('font-size', size / 3)
         .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
         .style('fill', '#000')
         .style('font-weight', 'bold')
         .classed('legendText', true);
 
     singleText.call(wrap, lWidth);
 
-    let doubleText = subG2G3.append('text')
-        .text('Double - Click: Also Select Sub - Chapters')
-        .attr('x', 0)
-        .attr('y', singleText.node().getBBox().height + spacing + singleText.node().getBBox().y)
-        .attr('dy', '1em')
-        .attr('font-size', size / 3)
-        .attr('text-anchor', 'middle')
-        .style('fill', '#000')
-        .style('font-weight', 'bold')
-        .classed('legendText', true);
-
-    doubleText.call(wrap, lWidth);
-
-    let tripleText = subG2G3.append('text')
-        .text('Triple - Click: Select All Chapters With The Same Color')
-        .attr('x', 0)
-        .attr('y', doubleText.node().getBBox().height + spacing + doubleText.node().getBBox().y)
-        .attr('dy', '1em')
-        .attr('font-size', size / 3)
-        .attr('text-anchor', 'middle')
-        .style('fill', '#000')
-        .style('font-weight', 'bold')
-        .classed('legendText', true);
-
-    tripleText.call(wrap, lWidth);
-
     lSvg.select('rect').attr('height', rootG.node().getBBox().height).attr('transform', 'translate(0, ' + ((lHeight / 2) - (rootG.node().getBBox().height / 2)) + ')');
     rootG.attr('transform', 'translate(0, ' + ((lHeight / 2) - (rootG.node().getBBox().height / 2)) + ')');
 };
 
 /** All functions for the breadcrumbs */
-const initializeBreadCrumbs = function() {
-    /** Draw / Initialize all elements for the breadcrumbs */
-    bcSvg.selectAll('content').remove();
 
-    let width = BCContainer.clientWidth;
-    let height = BCContainer.clientHeight;
+let bcSelection = [],
+    bcRect,
+    bcGroupWidth,
+    bcPadding,
+    maxBC = 5;
 
-    bcSvg.attr('viewBox', '0 0 ' + width + ' ' + height);
-    bcText = bcSvg.append('rect')
-        .attr('class', 'content')
-        .attr('width', width)
-        .attr('height', height)
-        .style('fill', '#fff')
-        .style('stroke', '#000')
-        .style('stroke-width', 2);
-
-    bcInnerPadding = height / 8;
-    bcOuterPadding = height / 10;
-    bcGroupWidth = width - 2 * bcOuterPadding;
-    bcGroupHeight = height - 2 * bcOuterPadding;
-
-    bcG = bcSvg.append('g')
-        .attr('id', 'bcGroup')
-        .attr('class', 'content')
-        .attr('transform', 'translate(' + bcOuterPadding + ',' + bcOuterPadding + ')');
-
-    redrawBreadCrumbs([root], root);
-};
-
-const getBreadCrumbPath = function(d, i, lastIndex) {
-
+const getBreadCrumbPath = function(isMask) {
     let path = [];
+
 
     path.push({x: 0, y: bcHeight});
 
-    /*if (i > 0) {
-     path.push({x: bcWidth * 0.25, y: bcHeight / 2});
-     }*/
-
     path.push({x: 0, y: 0});
 
-    //if (i !== lastIndex) {
-    path.push({x: bcWidth, y: 0});
-    // path.push({x: bcWidth * 1.25, y: bcHeight / 2});
-    path.push({x: bcWidth, y: bcHeight});
-    /*} else {
-     path.push({x: bcWidth * 1.25, y: 0});
-     path.push({x: bcWidth * 1.25, y: bcHeight});
-     }*/
+    (isMask) ? path.push({x: bcWidth - bcHeight, y: 0}) : path.push({x: bcWidth, y: 0});
+    (isMask) ? path.push({x: bcWidth - bcHeight, y: bcHeight}) : path.push({x: bcWidth, y: bcHeight});
 
     path.push({x: 0, y: bcHeight});
 
@@ -635,64 +562,358 @@ const getBreadCrumbPath = function(d, i, lastIndex) {
     return pathCreator(path);
 };
 
-const redrawBreadCrumbs = function(chapters, selected) {
-    bcG.selectAll('.breadCrumb').remove();
-    bcSvg.selectAll('.bcClip').remove();
+const redrawBreadCrumbs = function(chapters) {
+    bcSvg.selectAll('.content').remove();
 
-    maxBC = chapters.length;
-    bcHeight = bcGroupHeight;
-    bcWidth = (bcGroupWidth - ((maxBC - 1) * bcInnerPadding)) / (maxBC);
+    let width = BCContainer.clientWidth;
+
+    bcPadding = width / 50;
+    bcGroupWidth = width - 2 * bcPadding;
+
+    bcWidth = (bcGroupWidth - ((maxBC - 1) * bcPadding)) / (maxBC);
+    bcHeight = bcWidth / 5;
+
+    let minDepth = d3.min(chapters, function (d) {
+        return d.depth
+    });
+    let maxDepth = d3.max(chapters, function (d) {
+        return d.depth
+    });
+
+    let depthValues = d3.range(0, (maxDepth + 1 - minDepth) * 2, 2);
+    let depthElementCount = [];
+    depthValues.forEach(function (d, i) {
+        depthElementCount[i] = 0;
+    });
+
+    bcRect = bcSvg.append('rect')
+        .attr('class', 'content')
+        .style('fill', '#fff')
+        .style('stroke', '#000')
+        .style('stroke-width', 2);
+
+    bcG = bcSvg.append('g')
+        .attr('id', 'bcGroup')
+        .attr('class', 'content')
+        .attr('transform', 'translate(' + bcPadding + ',' + bcPadding + ')');
 
     bcG.selectAll('.breadCrumb')
         .data(chapters)
         .enter()
         .append('g')
         .attr('class', 'breadCrumb')
-        .each(function(d, i) {
-            d3.select(this)
-                .append('path')
-                .attr('d', getBreadCrumbPath(d, i, chapters.length - 1))
-                .attr('fill', colorThresh(d.data[activeTopic]) )
+        .each(function (d, i) {
+            let depth = (d.depth - minDepth);
+
+            if (depthElementCount[depth] === 5) {
+                depthElementCount[depth] = 0;
+                for (let i = depth; i <= depthValues.length - 1; i++) {
+                    depthValues[i]++;
+                }
+            }
+
+            let row = depthValues[depth];
+            let column = depthElementCount[depth];
+
+            depthElementCount[depth]++;
+
+            let bc = d3.select(this);
+
+            bc.append('path')
+                .attr('d', getBreadCrumbPath(false))
+                .attr('id', 'BcPath' + d.data.id)
                 .style('stroke', '#000')
                 .style('stroke-width', 1)
                 .style('cursor', 'pointer');
 
-            d3.select(this)
-                .append('clipPath')
+            bc.append('clipPath')
                 .attr('id', 'bcClip' + i)
                 .attr('class', 'bcClip')
                 .append('path')
-                .attr('d', getBreadCrumbPath(d, i, chapters.length - 1));
+                .attr('d', getBreadCrumbPath(true));
 
-            d3.select(this)
-                .append('text')
+            bc.append('text')
                 .attr('x', bcWidth * 0.01)
                 .attr('y', bcHeight / 2)
                 .attr('dy', '.35em')
                 .attr('text-anchor', 'left')
                 .attr('clip-path', 'url(#bcClip' + i + ')')
+                .attr('pointer-events', 'none')
                 .style('cursor', 'pointer')
-                .style('fill', function() {
-                    return (d === selected) ? '#000' : '#fff';
-                })
+                .style('fill', '#fff')
                 .style('font-size', (bcHeight / 1.5 < bcWidth / 5) ? bcHeight / 1.5 : bcWidth / 5)
                 .style('font-weight', 'bold')
-                .text(function(d) { return d.data.name });
+                .text(function (d) {
+                    return d.data.name
+                });
+
+            let rectG = bc.append('g').attr('transform', 'translate(' + (bcWidth - bcHeight) + ', 0)').style('cursor', 'pointer');
+
+            rectG.append('rect')
+                .attr('width', bcHeight)
+                .attr('height', bcHeight)
+                .style('fill', getColorForChapter(d))
+                .style('stroke', '#000')
+                .style('stroke-width', 2);
+
+            if(!d.data.size) {
+                rectG.append('circle')
+                    .attr('class', 'sunburstSelected sunburstPart')
+                    .attr('transform', 'translate(' + bcHeight / 2 + ', ' + bcHeight / 2 + ')')
+                    .attr('r', chartSize / 400)
+            }
+
+            bc.attr('transform', 'translate(' + (column * (bcWidth + bcPadding)) + ', ' + (row * (bcHeight + bcPadding)) + ')')
+                .style('opacity', (bcSelection.indexOf(d) !== -1) ? 1 : 0.2);
         })
-        .attr('transform', function(d, i) {
-            return 'translate(' + (i * (bcWidth + bcInnerPadding)) + ', 0)'
-        })
-        .on('click', function(d) {
+        .on('click', function (d) {
             let event = d3.event;
-            switch(event.detail) {
+            switch (event.detail) {
                 case 1:
+                    let indexD = bcSelection.indexOf(d);
+                    d.descendants().forEach(function (n) {
+                        let indexN = bcSelection.indexOf(n);
+                        (indexD === -1) ? (indexN === -1) ? bcSelection.push(n) : {} : (indexN === -1) ? {} : bcSelection.splice(indexN, 1);
+                    });
                     redrawBreadCrumbs(chapters, d);
                     blockedMouseover = true;
+                    // drawBubbles(bubbleData, bubbleKey);
                     break;
                 default:
                     break
             }
         });
+
+    let cColors = d3.scaleOrdinal(chapterColors)
+        .domain(d3.range((chapters[0].children) ? chapters[0].children.length + 1 : 1));
+
+    d3.select('#BcPath' + chapters[0].data.id)
+        .style('fill', cColors(0));
+
+    if (chapters[0].children) {
+
+        let firstChildren = chapters[0].children;
+
+        for (let i = 1; i < firstChildren.length + 1; i++) {
+            firstChildren[i - 1].descendants().forEach(function (d) {
+                d3.select('#BcPath' + d.data.id)
+                    .style('fill', cColors(i));
+            });
+        }
+    }
+
+    bcSvg.attr('viewBox', '0 0 ' + width + ' ' + (bcSvg.select('#bcGroup').node().getBBox().height + 2 * bcPadding));
+    bcRect.attr('width', width).attr('height', (bcSvg.select('#bcGroup').node().getBBox().height + 2 * bcPadding));
+
+    drawBubbles(bubbleData, bubbleKey);
+    drawBubbleSlider(bubbleData, bubbleKey);
+};
+
+/** BubbleChart-Function */
+let BubbleContainer = document.getElementById('nav-tabContent'),
+    bubbleSvg = d3.select('#BUContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid'),
+    bubbleSliderSvg = d3.select('#BUSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid'),
+    bubbleMinValue;
+
+const drawBubbles = function(data, key) {
+    //TODO: Daten filtern anhand von slider-wert
+
+    bubbleKey = key;
+    if(bubbleData.length === 0) bubbleData = data;
+    bubbleSvg.selectAll('.content').remove();
+
+    let buWidth = BubbleContainer.clientWidth * 0.95;
+    let buHeight = BubbleContainer.clientHeight * 0.93;
+
+    bubbleSvg.attr('viewBox', '0 0 ' + buWidth + ' ' + buHeight);
+
+    data.sort(function(a, b){return -(a[key] - b[key])});
+
+    let rootNode = {
+        children: data
+    };
+
+    let pack = d3.pack()
+        .size([buWidth, buHeight])
+        .padding(2);
+
+    let root = d3.hierarchy(rootNode)
+        .sum(function(d) {return d[key]});
+
+    pack(root);
+
+    bubbleSvg.append('rect')
+        .attr('class', 'content')
+        .attr('id', 'bgRect')
+        .attr('width', buWidth)
+        .attr('height', buHeight)
+        .style('fill', '#ddd');
+
+    bubbleGroup = bubbleSvg.append('g')
+        .attr('class', 'content')
+        .attr('transform', 'translate(0, 0)');
+
+    bubbleGroup.selectAll('.leafNode')
+        .data(root.leaves())
+        .enter()
+        .append('g')
+        .attr('class', 'leafNode')
+        .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')' })
+        .each(function(d, i) {
+            let group = d3.select(this).style('cursor', 'pointer');
+
+            group.append('clipPath')
+                .attr('id', 'bubbleClip' + i)
+                .attr('class', 'bubbleClip')
+                .append('circle')
+                .attr('r', d.r);
+
+            group.append('circle')
+                .attr('r', d.r)
+                .style('fill', colorThresh(d.data[key]))
+                .style('stroke', '#000')
+                .style('stroke-width', 1);
+
+            let text = group.append('text')
+                .attr('dy', '.35em')
+                .attr('clip-path', 'url(#bubbleClip' + i + ')')
+                .style('fill', '#fff')
+                .style('text-anchor', 'middle')
+                .text(d.data.name.substring(0, d.r / 4));
+
+            text.on('mouseenter', function() {
+                group.moveToFront();
+                group.selectAll('circle')
+                    .transition()
+                    .attr('r', d3.max([d3.min([buWidth, buHeight]) / 10, d.r]));
+                group.select('text')
+                    .transition()
+                    .text(d.data.name.substring(0, d3.max([d3.min([buWidth, buHeight]) / 20, d.r]) / 2));
+            }).on('mouseleave', function() {
+                group.selectAll('circle')
+                    .transition()
+                    .attr('r', d.r);
+                group.select('text')
+                    .transition()
+                    .text(d.data.name.substring(0, d.r / 4));
+            });
+        });
+};
+
+const updateBubbles = function(data, key) {
+    //TODO: update chart und enter,update,exit prinzip machen
+};
+
+const adjustBubbleColor = function() {
+    d3.selectAll('.leafNode circle')
+        .transition()
+        .style('fill', function(d) {return colorThresh(d.data[bubbleKey])});
+};
+
+const drawBubbleSlider = function(data, key) {
+    d3.select('.buSlider').remove();
+
+    let sliderWidth = BubbleContainer.clientWidth * 0.05;
+    let sliderHeight = BubbleContainer.clientHeight * 0.93;
+    let spacing = sliderHeight / 10;
+    let handleSize = sliderWidth / 5;
+    let lineSize = sliderWidth / 6;
+    let fontSize = sliderWidth / 4;
+    let min = d3.min(data, function(d) {
+        return d[key];
+    });
+    let max = d3.max(data, function(d) {
+        return d[key];
+    });
+    let dist = max - min;
+    let step = dist / 100;
+
+    bubbleSliderSvg.attr('viewBox', '0 0 ' + sliderWidth + ' ' + sliderHeight);
+
+    bubbleSliderSvg.append('rect').attr('width', sliderWidth).attr('height', sliderHeight).style('fill', '#fff');
+
+    /** taken and adjusted from: https://bl.ocks.org/mbostock/6452972 */
+
+    let buY = d3.scaleLinear()
+        .domain([100, 0])
+        .range([spacing, sliderHeight - spacing])
+        .clamp(true);
+
+    let buScale = d3.scaleQuantize()
+        .domain([0, 100])
+        .range(d3.range(min, max + step, step).reverse());
+
+    buY.ticks(100);
+
+    let buSlider = bubbleSliderSvg.append('g')
+        .attr('class', 'sbSlider')
+        .attr('transform', 'translate(' + handleSize * 1.1 + ', 0)');
+
+    buSlider.append('text')
+        .attr('id', 'buScaleText')
+        .attr('x',  - handleSize)
+        .attr('y', spacing - handleSize * 1.5)
+        .attr('text-anchor', 'left')
+        .attr('pointer-events', 'none')
+        .style('font-size', fontSize + 'px')
+        .style('font-weight', 'bold')
+        .text('100%');
+
+    buSlider.append('line')
+        .attr('y1', buY.range()[0])
+        .attr('y2', buY.range()[1])
+        .style('stroke-linecap', 'round')
+        .style('stroke', '#000')
+        .style('stroke-width', handleSize + 'px')
+        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .style('stroke', '#ddd')
+        .style('stroke-width', lineSize + 'px')
+        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr('id', 'buTrack-overlay')
+        .style('pointer-events', 'stroke')
+        .style('stroke', 'transparent')
+        .style('stroke-width', handleSize * 5 + 'px')
+        .style('cursor', 'pointer')
+        .call(d3.drag()
+            .on('start drag', function() {
+                buSlider.select('#buScaleText').text(Math.round(buY.invert(d3.event.y)) + '%');
+                handle.attr('cy', buY(buY.invert(d3.event.y)));
+            })
+            .on('end', function() {
+                //TODO: RESIZE IMAGE
+                //sliderScales[activeTopic][2] = scale(d3.event.y);
+                //changeColorForPercentage();
+                //adjustBubbleColor();
+                //redrawLegend();
+            }));
+
+    buSlider.insert('g', '.buTrack-overlay')
+        .attr('class', 'ticks')
+        .attr('transform', 'translate(' + fontSize + ', 0)')
+        .selectAll('text')
+        .data(buY.ticks())
+        .enter()
+        .append('text')
+        .attr('y', function(d) {return buY(d)})
+        .attr('dy', '.35em')
+        .attr('text-anchor', 'left')
+        .attr('pointer-events', 'none')
+        .style('font-size', fontSize + 'px')
+        .text(function(d) { return d; });
+
+    let handle = buSlider.insert('circle', '#buTrack-overlay')
+        .attr('class', 'handle')
+        .attr('r', handleSize)
+        .attr('cy', buY(100))
+        .style('fill', '#fff')
+        .style('stroke', '#000')
+        .style('stroke-width', handleSize / 10 + 'px');
+};
+
+d3.selection.prototype.moveToFront = function() {
+    return this.each(function(){
+        this.parentNode.appendChild(this);
+    });
 };
 
 /** taken from: https://bl.ocks.org/mbostock/7555321 */

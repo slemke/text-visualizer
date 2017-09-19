@@ -109,17 +109,16 @@
 .bubble-container {
     display: inline-block;
     position: relative;
-    width: 60%;
-    height: 100vh;
+    width: 95%;
+    height: 100%;
     vertical-align: top;
     overflow: hidden;
 }
 
 .breadcrumb-container {
-    width: 60%;
-    height: 5vh;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
     overflow: hidden;
-    bottom:0;
-    position:fixed;
-    z-index:150;
 }
