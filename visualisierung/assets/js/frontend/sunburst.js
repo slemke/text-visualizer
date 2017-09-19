@@ -963,7 +963,7 @@ const drawBubbleSlider = function(min, max) {
 
     let buScale = d3.scaleQuantize()
         .domain([0, 100])
-        .range(d3.range(min, max + step, step).reverse());
+        .range(d3.range(min, max, step).reverse());
 
     buY.ticks(100);
 
@@ -1001,6 +1001,7 @@ const drawBubbleSlider = function(min, max) {
                 let newText = Math.round(buY.invert(d3.event.y));
                 buSlider.select('#buScaleText').text('Top ' + newText + '%');
                 handle.attr('cy', buY(buY.invert(d3.event.y)));
+                console.log(buScale(buY.invert(d3.event.y)));
             })
             .on('end', function() {
                 bubbleMinValue = buScale(buY.invert(d3.event.y));
