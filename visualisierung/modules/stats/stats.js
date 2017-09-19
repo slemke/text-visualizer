@@ -16,3 +16,5 @@ router.get('/:documentID/statistics/', function(req, res) {
     // return stats based on filter / selection
 
 });
+
+module.exports = router;

@@ -17,3 +17,5 @@ router.get('/:documentID/wordcount/', function(req, res) {
 
     // filter data based on ids
 });
+
+module.exports = router;
