@@ -86,7 +86,7 @@ const initializeAndDrawSunburst = function(chapter) {
             highlightChapter(root.descendants());
             updateInformationTexts(root.data.name, getPercentage(root.descendants()));
             sbSelection = root.descendants();
-            bcSelection = root.descendants();
+            bcSelection = [];
             redrawBreadCrumbs(root.descendants(), root);
             blockedMouseover = false;
            // drawBubbles(bubbleData, bubbleKey);
@@ -115,7 +115,7 @@ const initializeAndDrawSunburst = function(chapter) {
         })
         .on('click', function(d) {
             sbSelection = d.descendants();
-            bcSelection = d.descendants();
+            bcSelection = [];
             redrawBreadCrumbs(d.descendants(), d);
             highlightChapter(d.descendants());
             updateInformationTexts(d.data.name, getPercentage(d.descendants()));
@@ -161,7 +161,7 @@ const initializeAndDrawSunburst = function(chapter) {
         highlightChapter(sbSelection);
     } else {
         sbSelection = root.descendants();
-        bcSelection = root.descendants();
+        bcSelection = [];
         redrawBreadCrumbs(root.descendants());
     }
 };
@@ -191,7 +191,7 @@ const appendCircles = function(chartSize) {
                     .attr('r', chartSize / 400)
                     .on('click', function(d) {
                         sbSelection = d.descendants();
-                        bcSelection = d.descendants();
+                        bcSelection = [];
                         redrawBreadCrumbs(d.descendants(), d);
                         highlightChapter(d.descendants());
                         updateInformationTexts(d.data.name, getPercentage(d.descendants()));
@@ -593,10 +593,68 @@ const redrawBreadCrumbs = function(chapters) {
         .style('stroke', '#000')
         .style('stroke-width', 2);
 
+    let legendBG = bcSvg.append('rect')
+        .attr('class', 'content')
+        .style('fill', 'rgb(220,220,220)')
+        .style('stroke', '#000')
+        .style('stroke-width', 1);
+
     bcG = bcSvg.append('g')
         .attr('id', 'bcGroup')
         .attr('class', 'content')
         .attr('transform', 'translate(' + bcPadding + ',' + bcPadding + ')');
+
+    let rectSize = chartSize / 100;
+
+    let bcLegendGroup = bcG.append('g');
+
+    bcLegendGroup.append('rect')
+        .attr('width', bcWidth)
+        .attr('height', bcHeight)
+        .style('fill', '#fff')
+        .style('stroke', '#000')
+        .style('stroke-width', 2);
+
+    bcLegendGroup.append('text')
+        .attr('dy', '.35em')
+        .attr('x', bcWidth * 0.01)
+        .attr('y', bcHeight / 2)
+        .style('fill', '#000')
+        .style('font-size', bcHeight / 2)
+        .style('font-weight', 'bold')
+        .text('"Chapter name"');
+
+    bcLegendGroup.append('rect')
+        .attr('width', bcHeight)
+        .attr('height', bcHeight)
+        .attr('x', bcWidth - bcHeight)
+        .style('fill', '#fff')
+        .style('stroke', '#000')
+        .style('stroke-width', 2);
+
+    bcLegendGroup.append('rect')
+        .attr('width', rectSize)
+        .attr('height', rectSize)
+        .style('fill', '#fff')
+        .style('stroke', '#000')
+        .style('stroke-width', 2)
+        .attr('transform', 'translate(' + (bcWidth - bcHeight / 2 - rectSize / 2) + ', ' + (bcHeight / 2 - rectSize / 2) + ')');
+
+    bcLegendGroup.append('text')
+        .attr('dy', '.35em')
+        .attr('x', bcWidth + rectSize)
+        .attr('y', bcHeight / 2)
+        .style('fill', '#000')
+        .style('font-size', bcHeight / 2)
+        .style('font-weight', 'bold')
+        .text(' = Chapter Has Sub-Chapters');
+
+    bcLegendGroup.attr('transform', 'translate(' + (bcGroupWidth - bcLegendGroup.node().getBBox().width) + ', 0)');
+
+    legendBG.attr('height', bcHeight + 2 * bcPadding - 1)
+        .attr('width', bcLegendGroup.node().getBBox().width + 2 * bcPadding - 0.5)
+        .attr('x', bcGroupWidth - bcLegendGroup.node().getBBox().width)
+        .attr('y', 0.5);
 
     bcG.selectAll('.breadCrumb')
         .data(chapters)
@@ -644,7 +702,7 @@ const redrawBreadCrumbs = function(chapters) {
                 .style('stroke', '#ddd')
                 .style('stroke-width', 0.5)
                 .style('fill', '#fff')
-                .style('font-size', (bcHeight / 1.5 < bcWidth / 5) ? bcHeight / 1.5 : bcWidth / 5)
+                .style('font-size', bcHeight / 2)
                 .style('font-weight', 'bold')
                 .text(function (d) {
                     return d.data.name
@@ -659,11 +717,14 @@ const redrawBreadCrumbs = function(chapters) {
                 .style('stroke', '#000')
                 .style('stroke-width', 2);
 
-            if(!d.data.size) {
-                rectG.append('circle')
-                    .attr('class', 'sunburstSelected sunburstPart')
-                    .attr('transform', 'translate(' + bcHeight / 2 + ', ' + bcHeight / 2 + ')')
-                    .attr('r', chartSize / 400)
+            if(d.data.children) {
+                rectG.append('rect')
+                    .attr('width', rectSize)
+                    .attr('height', rectSize)
+                    .style('fill', '#fff')
+                    .style('stroke', '#000')
+                    .style('stroke-width', 2)
+                    .attr('transform', 'translate(' + (bcHeight / 2 - rectSize / 2) + ', ' + (bcHeight / 2 - rectSize / 2)+ ')');
             }
 
             bc.attr('transform', 'translate(' + (column * (bcWidth + bcPadding)) + ', ' + (row * (bcHeight + bcPadding)) + ')')
@@ -679,7 +740,6 @@ const redrawBreadCrumbs = function(chapters) {
                         (indexD === -1) ? (indexN === -1) ? bcSelection.push(n) : {} : (indexN === -1) ? {} : bcSelection.splice(indexN, 1);
                     });
                     redrawBreadCrumbs(chapters, d);
-                    blockedMouseover = true;
                     selectedBubbles = [];
                     drawBubbleChart();
                     break;
@@ -714,13 +774,13 @@ const redrawBreadCrumbs = function(chapters) {
 let BubbleContainer = document.getElementById('nav-tabContent'),
     bubbleSvg = d3.select('#BUContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid'),
     bubbleSliderSvg = d3.select('#BUSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid'),
-    bubbleMinValue,
-    selectedBubbles = [];
+    bubbleMinValue = null,
+    selectedBubbles = [],
+    lastPercentage = null;
 
 const drawBubbleChart = function() {
-    bubbleMinValue = null;
     drawBubbles();
-
+    selectedBubbles = [];
     let min = d3.min(bubbleData, function(d) {return d[bubbleKey]});
     let max = d3.max(bubbleData, function(d) {return d[bubbleKey]});
     drawBubbleSlider(min, max + 0.1);
@@ -734,11 +794,10 @@ const drawBubbles = function() {
 
 
     let data = bubbleData;
-    console.log(bubbleMinValue);
     if (bubbleMinValue !== null) data = data.filter(function(d) {return d[bubbleKey] >= bubbleMinValue});
 
     if(data.length > 0) {
-        if (!bubbleMinValue) {
+        if (bubbleMinValue === null) {
             bubbleData.sort(function (a, b) {
                 return -(a[bubbleKey] - b[bubbleKey])
             });
@@ -809,13 +868,6 @@ const drawBubbles = function() {
             .each(function (d, i) {
                 let group = d3.select(this);
 
-                /*group.attr('opacity', function () {
-                    let index = selectedBubbles.findIndex(function (val) {
-                        return val.data.name === d.data.name
-                    });
-                    return (selectedBubbles.length > 0 && index === -1) ? 0.2 : 1
-                });*/
-
                 group.transition()
                     .duration(500)
                     .attr('transform', 'translate(' + d.x + ', ' + d.y + ')');
@@ -846,18 +898,6 @@ const drawBubbles = function() {
                     .on('mouseenter', function () {
 
                         let radius = d3.max([d3.min([buWidth, buHeight]) / 10 - 1, d.r - 1]);
-                        /*if (d.x + radius > buWidth)  group.attr('transform', 'translate(' + (d.x - (d.x + radius - buWidth)) + ', ' + d.y + ')');
-                        if (d.x - radius < 0) group.attr('transform', 'translate(' + (d.x + (radius - d.x)) + ', ' + d.y + ')');
-                        if (d.y + radius > buHeight) group.attr('transform', 'translate(' + d.x + ', ' + (d.y - (d.y + radius - buHeight)) + ')');
-                        if (d.y - radius < 0) group.attr('transform', 'translate(' + d.x + ', ' + (d.y + (radius - d.y)) + ')');
-
-                        function appendCircle(x, y) {
-                            group.append('circle')
-                                .attr('class', 'overlayCircle')
-                                .attr('r', radius)
-                                .attr('cx', x)
-                                .attr('cy', y);
-                        }*/
 
                         group.moveToFront();
                         group.selectAll('.maskCircle')
@@ -886,7 +926,6 @@ const drawBubbles = function() {
                         group.transition().attr('opacity', 1);
 
                     }).on('mouseleave', function () {
-                        //group.attr('transform', 'translate(' + d.x + ', ' + d.y + ')');
 
                         group.selectAll('.maskCircle')
                             .transition()
@@ -979,7 +1018,7 @@ const drawBubbleSlider = function(min, max) {
         .attr('pointer-events', 'none')
         .style('font-size', fontSize  * 0.8 + 'px')
         .style('font-weight', 'bold')
-        .text('Top 100%');
+        .text((lastPercentage !== null) ? 'Top ' + lastPercentage + '%' : 'Top 100%');
 
     buSlider.append('line')
         .attr('y1', buY.range()[0])
@@ -1001,10 +1040,10 @@ const drawBubbleSlider = function(min, max) {
                 let newText = Math.round(buY.invert(d3.event.y));
                 buSlider.select('#buScaleText').text('Top ' + newText + '%');
                 handle.attr('cy', buY(buY.invert(d3.event.y)));
-                console.log(buScale(buY.invert(d3.event.y)));
             })
             .on('end', function() {
                 bubbleMinValue = buScale(buY.invert(d3.event.y));
+                lastPercentage =  Math.round(buY.invert(d3.event.y));
                 drawBubbles();
             }));
 
@@ -1025,7 +1064,7 @@ const drawBubbleSlider = function(min, max) {
     let handle = buSlider.insert('circle', '#buTrack-overlay')
         .attr('class', 'handle')
         .attr('r', handleSize)
-        .attr('cy', (bubbleMinValue) ? buY(buY.invert(bubbleMinValue)) : buY(100))
+        .attr('cy', (lastPercentage !== null) ? buY(lastPercentage) : buY(100))
         .style('fill', '#fff')
         .style('stroke', '#000')
         .style('stroke-width', handleSize / 10 + 'px');
