@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     let chapter = {
        "id": 0,
-       "name": "TOPICS",
+       "name": "TOPICS Of Topicsentertainment blablablablabla blaglablabla oashdiashpdhpasidhipashdpasihd",
        "children": [{
            "id": 1,
            "name": "Topic A",
@@ -37,93 +37,97 @@ $(document).ready(function() {
                "children": [{
                    "id": 3,
                    "name": "Sub A1.1",
-                   "size": 2.24
+                   "children": [{
+                       "id": 4,
+                       "name": "Sub A1.1.1",
+                       "size": 3.374
+                   }]
                }, {
-                   "id": 4,
+                   "id": 5,
                    "name": "Sub A1.2",
                    "children": [{
-                       "id": 25,
+                       "id": 6,
                        "name": "Sub A1.2.1",
                        "size": 3.374
                    }, {
-                       "id": 26,
+                       "id": 7,
                        "name": "Sub A1.2.2",
                        "size": 3.375
                    }]
                }, {
-                   "id": 5,
+                   "id": 8,
                    "name": "Sub A1.3",
                    "size": 4.49
                }, {
-                   "id": 16,
+                   "id": 9,
                    "name": "Sub A1.4",
                    "size": 4.5
                }, {
-                   "id": 17,
+                   "id": 10,
                    "name": "Sub A1.5",
                    "size": 5.624
                }]
            }, {
-               "id": 6,
+               "id": 11,
                "name": "Sub A2",
                "size": 5.625
            }, {
-               "id": 18,
+               "id": 12,
                "name": "Sub A3",
                "children": [{
-                   "id": 19,
+                   "id": 13,
                    "name": "Sub A3.1",
                    "size": 0.4
                }, {
-                   "id": 20,
+                   "id": 14,
                    "name": "Sub A3.2",
                    "size": 2.9
                }]
            }, {
-               "id": 21,
+               "id": 15,
                "name": "Sub A4",
                "size": 1
            }]
        }, {
-           "id": 7,
+           "id": 16,
            "name": "Topic B",
            "children": [{
-               "id": 8,
+               "id": 17,
                "name": "Sub B1",
                "size": 3
            }, {
-               "id": 9,
+               "id": 18,
                "name": "Sub B2",
                "size": 3
            }, {
-               "id": 10,
+               "id": 19,
                "name": "Sub B3",
                "children": [{
-                   "id": 14,
+                   "id": 20,
                    "name": "Sub A1.1.1",
                    "size": 1
                }, {
-                   "id": 15,
+                   "id": 21,
                    "name": "Sub A1.1.2",
                    "size": 1.5
                }]
            }]
        }, {
-           "id": 11,
+           "id": 22,
            "name": "Topic C",
            "children": [{
-               "id": 12,
+               "id": 23,
                "name": "Sub C1",
                "size": 4
            }, {
-               "id": 13,
+               "id": 24,
                "name": "Sub C2",
                "children": [{
-                   "id": 23,
+                   "id": 25,
                    "name": "Sub C2.1",
                    "size": 0.5
                }, {
-                   "id": 24,
+                   "id": 26,
                    "name": "Sub C2.2",
                    "children": [{
                        "id": 27,
@@ -137,11 +141,11 @@ $(document).ready(function() {
                }]
            }]
        }, {
-           "id": 22,
+           "id": 29,
            "name": "Topic D",
            "size": 2.6
        }, {
-           "id": 29,
+           "id": 30,
            "name": "Topic E",
            "size": 6
        }]
@@ -856,7 +860,7 @@ $(document).ready(function() {
         {
             "_id": "59bf0571302bf7e5944de36f",
             "amount": 10,
-            "name": "Rosemary Nelson"
+            "name": "Rosemary Nelson hodahusoidhaäpsidhpih pia spodhaspohdpaoshd pas dpoasj döi asöoidasidoaisüdiasopd poasidaskädkasoödj asoj do ahsoidiashdi aishdlkasdökasldk alskdklashdlk ashdl ashldkhasldkhaslk dhlaskdhlaskhdlka slahdslkahdl sahdlkashdlk asdlahsdlkhas l. oasbdkasbdoibasid iashdpi asöd aspoapsjdoöajsöd asdjasökdjökas aösjdöasjd alskjdakösjdöasjdöasj askjdklasjd alskjdalk sdlkasljdlkasjdlkasjld sakdjlaksjdlkas aksjdlkasjd askljdlaksjd askldjalksjd ."
         },
         {
             "_id": "59bf05710487508722cc8c41",

@@ -3233,8 +3233,8 @@ tbody.collapse.show {
 }
 
 .tab-content > .tab-pane {
-  display: none;
-}
+   display: none;
+ }
 
 .tab-content > .active {
   display: block;
