@@ -3,11 +3,17 @@
 $(document).ready(function() {
     var instance = Split(['#visualization', '#text'], {
         sizes: [60, 40],
+        minSize: 500,
         onDrag: function() {
 
-            initializeCharts();
+            //initializeCharts();
         }
     });
+
+    $('#tabs, #data-tabs').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
 
     var textClosed = false;
 
@@ -1387,7 +1393,7 @@ $(document).ready(function() {
             "name": "Garza Nieves"
         }
     ];
-
+/*
     const initializeCharts = function() {
         drawSunburst(chapter, bubbleData);
     };
@@ -1400,5 +1406,5 @@ $(document).ready(function() {
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         initializeCharts();
-    });
+    });*/
 });

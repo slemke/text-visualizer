@@ -7,7 +7,8 @@ var paths = {
 		'assets/js/index.js'
 	],
 	css: [
-		'assets/css/index.css'
+		'assets/css/index.css',
+		'assets/css/sunburst.css'
 	]
 };
 
