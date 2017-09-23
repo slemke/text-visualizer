@@ -39,9 +39,9 @@ gulp.task('css', function() {
 gulp.task('watch', ['default'], function() {
 
 
-	var css_watcher = gulp.watch('assets/css/index.css', ['css'])
+	var css_watcher = gulp.watch(paths.css, ['css'])
 
-	var js_watcher = gulp.watch('assets/js/**/*.js', ['js']);
+	var js_watcher = gulp.watch(paths.scripts, ['js']);
 
 	css_watcher.on('change', function(event) {
 	  console.log('File ' + event.path + ' was ' + event.type);

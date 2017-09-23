@@ -6,7 +6,7 @@ $(document).ready(function() {
         minSize: 500,
         onDrag: function() {
 
-            //initializeCharts();
+            initializeCharts();
         }
     });
 
@@ -19,6 +19,7 @@ $(document).ready(function() {
 
     $('#collapse-text-button').click(function(event) {
         event.preventDefault();
+        initializeCharts();
 
         if(textClosed) {
             instance.setSizes([60, 40]);
