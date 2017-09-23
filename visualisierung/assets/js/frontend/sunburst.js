@@ -33,12 +33,14 @@ let wholeSize,
     selectedRoot,
     lastSelectedChapter = null,
     dataDocument,
-    cColors;
+    cColors,
+    treeNodeWidth,
+    treeNodeHeight;
 
 
 let chapterColors = [ '#0e6873', '#8c3c61', '#e98548', '#83c6dc', '#af6a40','#584337', '#a08562', '#8c9898', '#5f6d6e', '#87816c', '#b4aa92', '#7d7061', '#917359', '#7d6852', '#bba98b', '#a3906b'];
 let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
-let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.5,0.5).reverse()]};
+let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.1,0.1).reverse()]};
 let activeTopic = 'size';
 let lastInformationText = ['Lastly (De-)Selected Chapter', '. . .', '. . .', 0.2];
 
@@ -97,7 +99,9 @@ const redrawTree = function(chapters) {
     let reduceAmount = nodeDepthMaxAmount * 2;
     let maxDepth = d3.max(root.leaves(), function(l) {return l.depth});
     let nodeWidth = (width - maxStokeWidth * 2) / (maxDepth * 1.5);
+    treeNodeWidth = nodeWidth;
     let nodeHeight = (height - reduceAmount * strokeWidth * 2) / reduceAmount;
+    treeNodeHeight = nodeHeight;
 
     let newRoot = d3.hierarchy(chapters, function(d) {return d.children});
     let tree = d3.tree().size([height, width - nodeWidth - 2 * maxStokeWidth])//.nodeSize([nodeHeight,nodeWidth])
@@ -133,7 +137,7 @@ const redrawTree = function(chapters) {
     let rootG = treeSvg.append('g')
         .attr('class', 'content');
 
-    let links = rootG.selectAll('.link')
+    rootG.selectAll('.link')
         .data(treeNodes.descendants().slice(1))
         .enter()
         .append('path')
@@ -229,6 +233,9 @@ const redrawTree = function(chapters) {
             }
         });
 
+    chapterNodes.append("title")
+        .text(function(d) { return  d.data.name});
+
     chapterNodes.append('path')
         .attr('class', 'treeSelected treePart')
         .attr('id', function (d) { return 'treeChapter' + d.data.id })
@@ -240,13 +247,15 @@ const redrawTree = function(chapters) {
     chapterNodes.append('clipPath')
         .attr('id', function(d) {return 'treeClip' + d.data.id})
         .append('path')
-        .attr('d', getTreeNodePath(nodeWidth - 4, nodeHeight - 4))
-        .attr('transform', 'translate(' + (-nodeWidth / 2 - 2) + ', ' + (-nodeHeight / 2) + ')');
+        .attr('d', function(d) {
+            return (!d.data.size && d.data.id !== root.descendants()[0].data.id) ? getTreeNodePath(nodeWidth - nodeHeight - 2, nodeHeight - 2) : getTreeNodePath(nodeWidth - 2, nodeHeight - 2);
+        })
+        .attr('transform', 'translate(' + (-nodeWidth / 2 - 1) + ', ' + (-nodeHeight / 2) + ')');
 
     chapterNodes.append('text')
         .text(function(d) {return d.data.name})
         .attr('clip-path', function(d) {return 'url(#treeClip' + d.data.id + ')'})
-        .attr('class', 'textSelected treeText')
+        .attr('class', 'treeSelected treePart')
         .attr('id', function(d) {return 'treeText' + d.data.id})
         .attr('x', (-nodeWidth / 2) * 0.95)
         .attr('y', 0)
@@ -258,6 +267,8 @@ const redrawTree = function(chapters) {
     changeColorForPercentage();
 
     rootG.attr('transform', 'translate(' + (nodeWidth / 2 + maxStokeWidth) + ', 0)');
+
+    appendTreeCircles(treeNodeHeight / 10);
 
     if(sbSelection.length > 0) {
         redrawBreadCrumbs();
@@ -604,7 +615,7 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('dy', '.35em')
         .attr('pointer-events', 'none');
 
-    appendCircles(chartSize);
+    appendCircles(chartSize / 300);
 
     if(sbSelection.length > 0) {
         redrawBreadCrumbs();
@@ -623,6 +634,7 @@ const highlightRoot = function(selection) {
         if(selectedRoot.parent) {
             d3.select('#chapter' + selectedRoot.parent.data.id).style('stroke-width', 1);
             d3.select('#treeChapter' + selectedRoot.parent.data.id).style('stroke-width', 2);
+            d3.select('#treeCheck' + selectedRoot.parent.data.id).style('stroke-width', 2);
         }
     }
 
@@ -644,7 +656,8 @@ const highlightRoot = function(selection) {
                     let rootNode = d3.select('#chapter' + selectedRoot.parent.data.id);
                     rootNode.style('stroke-width', 4);
                     let treeRootNode = d3.select('#treeChapter' + selectedRoot.parent.data.id);
-                    treeRootNode.style('stroke-width', 6);
+                    treeRootNode.style('stroke-width', 5);
+                    d3.select('#treeCheck' + selectedRoot.parent.data.id).style('stroke-width', 5);
                     d3.select(rootNode.node().parentNode).moveToFront();
                 } else {
                     selection.forEach(function (e) {
@@ -666,14 +679,16 @@ const highlightRoot = function(selection) {
                             let rootNode = d3.select('#chapter' + selectedRoot.parent.data.id);
                             rootNode.style('stroke-width', 4);
                             let treeRootNode = d3.select('#treeChapter' + selectedRoot.parent.data.id);
-                            treeRootNode.style('stroke-width', 6);
+                            treeRootNode.style('stroke-width', 5);
+                            d3.select('#treeCheck' + selectedRoot.parent.data.id).style('stroke-width', 5);
                             d3.select(rootNode.node().parentNode).moveToFront();
                         }
                     }
                 }
             } else {
                 d3.select('#chapter' + root.descendants()[0].data.id).style('stroke-width', 1);
-                d3.select('#treeChapter' + root.descendants()[0].data.id).style('stroke-width', 1);
+                d3.select('#treeChapter' + root.descendants()[0].data.id).style('stroke-width', 2);
+                d3.select('#treeCheck' + selectedRoot.parent.data.id).style('stroke-width', 2);
             }
         }
     }
@@ -808,17 +823,77 @@ const getPercentage = function(selection, toParent, forColor) {
         }
     }
 };
-//TODO:
+
 const appendCircles = function(chartSize) {
     d3.selectAll('.sunburstNode')
         .each(function(d) {
-            if (!d.data.size && d !== root) {
+            if (!d.data.size && d.data.id !== root.descendants()[0].data.id) {
                 d3.select(this)
                     .append('circle')
                     .attr('class', 'sunburstSelected sunburstPart')
                     .attr('id', 'circle' + d.data.id)
                     .attr('transform', 'translate(' + arc.centroid(d) + ')')
-                    .attr('r', chartSize / 400)
+                    .attr('r', chartSize)
+                    .style('cursor', 'pointer')
+                    .on('click', function(d) {
+                        lastSelectedChapter = d;
+                        addOrRemove(d);
+                        redrawBreadCrumbs();
+                        highlightChapter(sbSelection);
+
+                        if(sbSelection.length > 0) {
+                            let differentRoots = [];
+
+                            sbSelection.forEach(function(e) {
+                                let rootObject = e.ancestors()[e.ancestors().length - 2];
+                                let index = differentRoots.findIndex(function (val) {
+                                    if (val && rootObject) {
+                                        return val.data.id === rootObject.data.id;
+                                    }
+                                });
+                                if(index === -1) differentRoots.push(rootObject);
+                            });
+
+                            if (sbSelection.length >= root.descendants().length - 1) {
+                                updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)));
+                                highlightRoot()
+                            } else if(differentRoots.length > 1) {
+                                updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)), d3.format('.2%')(getPercentage(sbSelection, false)));
+                                highlightRoot(sbSelection);
+                            } else {
+                                updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)), d3.format('.2%')(getPercentage(sbSelection, true)));
+                                highlightRoot(sbSelection)
+                            }
+
+                        } else {
+                            updateInformationTexts();
+                            highlightRoot();
+                        }
+                    });
+            }
+        });
+};
+
+const appendTreeCircles = function(chartSize) {
+    d3.selectAll('.chapterNode')
+        .each(function(d) {
+            if (!d.data.size && d.data.id !== root.descendants()[0].data.id) {
+                let node= d3.select(this);
+
+                node.append('path')
+                    .attr('class', 'treeSelected treePart')
+                    .attr('id', 'treeCheck' + d.data.id )
+                    .attr('d', getTreeNodePath(treeNodeHeight, treeNodeHeight - 2))
+                    .attr('transform', 'translate(' + (treeNodeWidth / 2 - treeNodeHeight) + ', ' + (-treeNodeHeight / 2 + 1) + ')')
+                    .style('fill', 'transparent')
+                    .style('stroke', '#000')
+                    .style('stroke-width', 2);
+
+                node.append('circle')
+                    .attr('class', 'treeSelected treePart')
+                    .attr('id', 'treeCircle' + d.data.id)
+                    .attr('transform', 'translate(' + (treeNodeWidth / 2 - treeNodeHeight / 2) + ', 0)')
+                    .attr('r', chartSize)
                     .style('cursor', 'pointer')
                     .on('click', function(d) {
                         lastSelectedChapter = d;
@@ -880,17 +955,13 @@ const highlightChapter = function(chapters) {
         .classed('linkSelected', false)
         .style('opacity', 0.2);
 
-    d3.selectAll('.treeText')
-        .filter('.textSelected')
-        .classed('textSelected', false)
-        .style('opacity', 0.2);
-
     chapters.forEach(function(e) {
         d3.select('#chapter' + e.data.id).classed('sunburstSelected', true).style('opacity', 1);
         d3.select('#circle' + e.data.id).classed('sunburstSelected', true).style('opacity', 1);
         d3.select('#treeChapter' + e.data.id).classed('treeSelected', true).style('opacity', 1);
-        d3.select('#treeText' + e.data.id).classed('textSelected', true).style('opacity', 1);
-        //d3.select('#treeCircle' + e.data.id).classed('treeSelected', true).style('opacity', 1);
+        d3.select('#treeText' + e.data.id).classed('treeSelected', true).style('opacity', 1);
+        d3.select('#treeCircle' + e.data.id).classed('treeSelected', true).style('opacity', 1);
+        d3.select('#treeCheck' + e.data.id).classed('treeSelected', true).style('opacity', 1);
 
         if(e.children) {
             e.children.forEach(function(c) {
@@ -906,7 +977,9 @@ const highlightChapter = function(chapters) {
             if (sbSelection.findIndex(function(val) {return val.data.id === c.data.id}) !== -1) {
                 d3.select('#link' + c.data.id).classed('linkSelected', true).style('opacity', 1);
                 d3.select('#treeChapter' + root.descendants()[0].data.id).classed('treeSelected', true).style('opacity', 1);
-                d3.select('#treeText' + root.descendants()[0].data.id).classed('textSelected', true).style('opacity', 1);
+                d3.select('#treeText' + root.descendants()[0].data.id).classed('treeSelected', true).style('opacity', 1);
+                d3.select('#treeCircle' + root.descendants()[0].data.id).classed('treeSelected', true).style('opacity', 1);
+                d3.select('#treeCheck' + root.descendants()[0].data.id).classed('treeSelected', true).style('opacity', 1);
             }
         })
     }
@@ -1053,7 +1126,7 @@ const redrawSlider = function() {
         .style('cursor', 'pointer')
         .call(d3.drag()
             .on('start drag', function() {
-                d3.select('#scaleText').text(scale(d3.event.y) + sliderScales[activeTopic][3]);
+                d3.select('#scaleText').text(d3.format('.2')(scale(d3.event.y)) + sliderScales[activeTopic][3]);
                 handle.attr('cy', y(scale(d3.event.y)));
             })
             .on('end', function() {
@@ -1061,6 +1134,7 @@ const redrawSlider = function() {
                 changeColorForPercentage();
                 drawBubbles();
                 redrawLegend();
+                redrawTreeLegend();
                 redrawBreadCrumbs();
             }));
 
