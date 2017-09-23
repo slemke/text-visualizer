@@ -2,10 +2,10 @@
  * Created by Dennis Dubbert on 11.09.17.
  */
 
-let SBContainer = document.getElementById('SBContainer'),
+let SBContainer = document.getElementById('nav-viz-tabContent'),
     SBSliderContainer = document.getElementById('SBSliderContainer'),
     HeaderContainer = document.getElementById('col-sm-12'),
-    TreeContainer = document.getElementById('TreeContainer');
+    TreeContainer = document.getElementById('nav-viz-tabContent');
 
 let sbSvg = d3.select('#SBContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let sbSliderSvg = d3.select('#SBSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
@@ -46,256 +46,226 @@ const drawSunburst = function(chapter, buData) {
     bubbleData = buData;
     dataDocument = chapter;
     initializeAndDrawSunburst(chapter);
+    redrawTree(chapter);
     redrawLegend();
     redrawSlider();
     drawBubbleChart();
 };
 
-//TODO: Breadcrumbs wieder umstellen / svg viewBox wieder anpassen
-
 /** All functions for the tree */
 
+const getTreeNodePath = function(width, height, isMask) {
+    let path = [];
+
+
+    path.push({x: 0, y: height});
+
+    path.push({x: 0, y: 0});
+
+    (isMask) ? path.push({x: width - height, y: 0}) : path.push({x: width, y: 0});
+    (isMask) ? path.push({x: width - height, y: height}) : path.push({x: width, y: height});
+
+    path.push({x: 0, y: height});
+
+    const pathCreator = d3.line()
+        .x(function(d) { return d.x; })
+        .y(function(d) { return d.y; });
+
+    return pathCreator(path);
+};
+
 const redrawTree = function(chapters) {
-     bcSvg.selectAll('.content').remove();
+    treeSvg.selectAll('.content').remove();
 
-     if (chapters.length > 0) {
+    let width = TreeContainer.clientWidth * 0.95 * 0.9;
+    let height = TreeContainer.clientHeight;
 
-        let width = BCContainer.clientWidth;
-        bcPadding = width / 50;
-        bcGroupWidth = width - 2 * bcPadding;
+    treeSvg.attr('viewBox', '0 0 ' + width + ' ' + height);
 
-        bcWidth = (bcGroupWidth - ((maxBC - 1) * bcPadding)) / (maxBC);
-        bcHeight = bcWidth / 5;
+    let nodeDepthCount = [];
 
-        let minDepth = d3.min(chapters, function (d) {
-            return d.depth
+    root.descendants().forEach(function(d) {
+        (nodeDepthCount[d.depth]) ? nodeDepthCount[d.depth]++ : nodeDepthCount[d.depth] = 1;
+    });
+
+    let nodeDepthMaxAmount = d3.max(nodeDepthCount);
+
+    let strokeWidth = 2;
+    let maxStokeWidth = 6;
+    let reduceAmount = nodeDepthMaxAmount * 2;
+    let maxDepth = d3.max(root.leaves(), function(l) {return l.depth});
+    let nodeWidth = (width - maxStokeWidth * 2) / (maxDepth * 1.5);
+    let nodeHeight = (height - reduceAmount * strokeWidth * 2) / reduceAmount;
+
+    let newRoot = d3.hierarchy(chapters, function(d) {return d.children});
+    let tree = d3.tree().size([height, width - nodeWidth - 2 * maxStokeWidth])//.nodeSize([nodeHeight,nodeWidth])
+        .separation(function(a, b) { return (a.parent === b.parent ? 1 : 2); });
+
+    let treeNodes = tree(newRoot);
+
+    treeSvg.append('rect')
+        .attr('class', 'content')
+        .attr('id', 'bgRect')
+        .attr('width', width)
+        .attr('height', height)
+        .style('fill', '#fff')
+        .style('cursor', 'pointer')
+        .on('mouseenter', function() {
+            if (!blockedMouseover) {
+                updateInformationTexts();
+                highlightChapter([]);
+            }
+        })
+        .on('click', function() {
+            sbSelection = [];
+            selectedBubbles = [];
+            blockedMouseover = false;
+            lastSelectedChapter = null;
+
+            highlightChapter([]);
+            updateInformationTexts();
+            highlightRoot();
+            redrawBreadCrumbs();
         });
-        let maxDepth = d3.max(chapters, function (d) {
-            return d.depth
-        });
 
-        let depthValues = d3.range(0, (maxDepth + 1 - minDepth) * 2, 2);
-        let depthElementCount = [];
-        depthValues.forEach(function (d, i) {
-            depthElementCount[i] = 0;
-        });
+    let rootG = treeSvg.append('g')
+        .attr('class', 'content');
 
-        bcRect = bcSvg.append('rect')
-            .attr('class', 'content')
-            .attr('opacity', 0.7)
-            .style('fill', '#fff')
-            .style('stroke', '#000')
-            .style('stroke-width', 2);
+    let links = rootG.selectAll('.link')
+        .data(treeNodes.descendants().slice(1))
+        .enter()
+        .append('path')
+        .attr('clip-path', 'url(#treeClip)')
+        .attr('class', 'link linkSelected')
+        .attr('id', function(d) {return 'link' + d.data.id})
+        .attr('d', function(d) {
+            // taken from: https://bl.ocks.org/d3noob/5537fe63086c4f100114f87f124850dd
+            return 'M' + d.y + ',' + d.x
+                + 'C' + (d.y + d.parent.y) / 2 + ',' + d.x
+                + ' ' + (d.y + d.parent.y) / 2 + ',' + d.parent.x
+                + ' ' + d.parent.y + ',' + d.parent.x;
+        })
+        .style('fill', 'none')
+        .style('stroke', function(d) {
+            return cColors(d.ancestors()[d.ancestors().length - 2].data.id);
+        })
+        .style('stroke-width', 5);
 
-        let legendBG = bcSvg.append('rect')
-            .attr('class', 'content')
-            .attr('opacity', 0.7)
-            .style('fill', 'rgb(220,220,220)')
-            .style('stroke', '#000')
-            .style('stroke-width', 1);
+    rootG.selectAll('.backgroundRect')
+        .data(treeNodes.descendants())
+        .enter()
+        .append('path')
+        .attr('class', 'backgroundRect')
+        .attr('d', getTreeNodePath(nodeWidth, nodeHeight))
+        .attr('transform', function(d) {return 'translate(' + (d.y -nodeWidth / 2) + ', ' + (d.x -nodeHeight / 2) + ')'})
+        .style('fill', '#fff');
 
-        bcG = bcSvg.append('g')
-            .attr('id', 'bcGroup')
-            .attr('class', 'content')
-            .attr('transform', 'translate(' + bcPadding + ',' + bcPadding + ')');
-
-        let rectSize = chartSize / 100;
-
-        let bcLegendGroup = bcG.append('g');
-
-        let legendBCWidth = bcWidth * 1.5;
-
-        bcLegendGroup.append('rect')
-            .attr('width', legendBCWidth)
-            .attr('height', bcHeight)
-            .style('fill', '#fff')
-            .style('stroke', '#000')
-            .style('stroke-width', 2);
-
-        bcLegendGroup.append('rect')
-            .attr('width', bcHeight)
-            .attr('height', bcHeight)
-            .attr('x', legendBCWidth - bcHeight)
-            .style('fill', '#fff')
-            .style('stroke', '#000')
-            .style('stroke-width', 2);
-
-        bcLegendGroup.append('text')
-            .attr('dy', '.35em')
-            .attr('x', legendBCWidth / 2)
-            .attr('y', bcHeight / 2)
-            .attr('text-anchor', 'middle')
-            .style('fill', '#000')
-            .style('font-size', bcHeight / 2.5)
-            .style('font-weight', 'bold')
-            .text('(De-)Select Chapter');
-
-        bcLegendGroup.append('image')
-            .attr('xlink:href', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAADgElEQVRoQ+2agZENQRRF70aACBABIkAEiAARIAJEgAjYCBABIkAEiAARUKeqr+rq7Z7p7umZPz5dtbVb++f/eafvu++9nt0THck6ORIO/ZMgDyVdksT33a0WRd6H6G/sjkIqptZ3Sa8kPYqCfiPpvKQY5J6kZ5KuSfp6SMCSIkDcDSDPQ4BA8OWAAXon6bOkq4eE4N5TqQUA6YQSuUXwTyShyo89gxw6tqb715qd3X8cdv6FpE9Nd9ng4hSENLkY7vs0MTqeOBd+Bwip93YPaZXzCJ64LulbMLBz3+anOt0OvgCY1/HQwVVqSa2PSRUDiC+qG+ugKtWCEChl95eky0nKU5JJSTq+0xIFT0PV28Ah0+UXTxC8+waB0vxuTgTIe4CySrwXLwG1aokuKUIwLyVheHoFi52n4xMUr3uRXg/CJGDzb65SCYQUomOzw/FO2vQXot9TmjG8zX8/aaKbqFQCITjSIk0HjyXMYB5dYmVQCgUxPj+zIZuo1GJ2B1wyfWpqVLpVKNFWibSkNy32Ug9IjelTlQDKlWi8BAyfeSVcQ/qyCShZvXpASqafuikHMgdcaqSkM0CxSi7js0eEHhACzpm+dvfmzJ9TCYW4Z1GlXpAp09cCpSWawkI1jFeqEqNQ9qjdCzLV6WtB4uvYGIJOK6Gv4bXXAZQNOLOWgNj0DJJrjfUETbPlXvxMjyLFhoL0mL5FLUzPSESh+BD6UtH0SxSx6SmtDJKjZikCZzwi3ThOoEbpuP1nY5aC2PRFyRskQGFOoQT+M/jFc97sxywFsekZJvFK7yKNUAEYSiwws70jvtkIEHaNnew1Pan0JaQR85kfBDZtyggQB5KO97WB+FkZMJx1urw2AoSAMSNn/V7T+/xDGe+CGQVCjtOwak2PivaXlVsEMwqkxfSG5j0peDfMSJAa0+MHvEB5xQuM7kNgRoLUmJ5ZipEDH+AHKtQQmJEgc6Y3KH2C9GKh0BCY0SBTpudPEPQaPw+wyYfAjAYpmd6A8eOluM8shlkDxKanpzBmECSPW7mXy26uWS6CWQPEXvBpzmB3KqbYbpg1QGLT4wnKLeeJ2j+iTsH4MHem8a4FYk+QWijkNGuZv3LVbHMQH7r8CCh7PJ2hipXxAwf6UO5R7u7/8yGGgTsLwQtrpVZtCtVeh7JAMWVnx/y/BWQW+D/I7BZtfMHRKPIbzUAQQpxDgKEAAAAASUVORK5CYII=')
-            .attr('width', bcHeight * 0.9)
-            .attr('height', bcHeight * 0.9)
-            .attr('transform', function () {
-                return 'translate(' + 0 + ', ' + bcHeight * 0.05 + ')'
-            });
-
-        bcLegendGroup.append('rect')
-            .attr('width', legendBCWidth)
-            .attr('height', bcHeight)
-            .style('fill', '#fff')
-            .style('stroke', '#000')
-            .style('stroke-width', 2)
-            .attr('transform', function () {
-                return 'translate(' + (legendBCWidth + bcPadding) + ', 0)'
-            });
-
-        bcLegendGroup.append('rect')
-            .attr('width', bcHeight)
-            .attr('height', bcHeight)
-            .attr('x', legendBCWidth * 2 + bcPadding - bcHeight)
-            .style('fill', '#fff')
-            .style('stroke', '#000')
-            .style('stroke-width', 2);
-
-        bcLegendGroup.append('rect')
-            .attr('width', rectSize)
-            .attr('height', rectSize)
-            .style('fill', '#fff')
-            .style('stroke', '#000')
-            .style('stroke-width', 2)
-            .attr('transform', 'translate(' + (legendBCWidth * 2 + bcPadding - bcHeight / 2 - rectSize / 2) + ', ' + (bcHeight / 2 - rectSize / 2) + ')');
-
-        bcLegendGroup.append('text')
-            .attr('dy', '.35em')
-            .attr('x', legendBCWidth + bcPadding + legendBCWidth * 0.05)
-            .attr('y', bcHeight / 2)
-            .attr('text-anchor', 'left')
-            .style('fill', '#000')
-            .style('font-size', bcHeight / 2.5)
-            .style('font-weight', 'bold')
-            .text('Also (De-)Select Sub-Chapters');
-
-        bcLegendGroup.attr('transform', 'translate(' + (bcGroupWidth - bcLegendGroup.node().getBBox().width) + ', 0)');
-
-        legendBG.attr('height', bcHeight + 2 * bcPadding - 1)
-            .attr('width', bcLegendGroup.node().getBBox().width + 2 * bcPadding - 0.5)
-            .attr('x', bcGroupWidth - bcLegendGroup.node().getBBox().width)
-            .attr('y', 0.5);
-
-        bcG.selectAll('.breadCrumb')
-            .data(chapters)
-            .enter()
-            .append('g')
-            .attr('class', 'breadCrumb')
-            .each(function (d, i) {
-                let depth = (d.depth - minDepth);
-
-                if (depthElementCount[depth] === 5) {
-                    depthElementCount[depth] = 0;
-                    for (let i = depth; i <= depthValues.length - 1; i++) {
-                        depthValues[i]++;
-                    }
+    let chapterNodes = rootG.selectAll('.chapterNode')
+        .data(treeNodes.descendants())
+        .enter()
+        .append('g')
+        .attr('class', 'chapterNode')
+        .attr('transform', function(d) {return 'translate(' + d.y + ',' + d.x + ')'})
+        .style('cursor', 'pointer')
+        .on('mouseenter', function(d) {
+            if(!blockedMouseover) {
+                sbSelection = sbSelection.concat(d.descendants());
+                if (d.data.id !== root.descendants()[0].data.id) {
+                    updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), false)), d3.format('.2%')(getPercentage(d.descendants(), true)));
+                    highlightRoot(sbSelection);
+                } else {
+                    updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), false)));
+                    highlightRoot();
                 }
-
-                let row = depthValues[depth];
-                let column = depthElementCount[depth];
-
-                depthElementCount[depth]++;
-
-                let bc = d3.select(this);
-
-                bc.append('path')
-                    .attr('d', getBreadCrumbPath(false))
-                    .attr('id', 'BcPath' + d.data.id)
-                    .style('stroke', '#000')
-                    .style('stroke-width', 2)
-                    .style('cursor', 'pointer');
-
-                bc.append('clipPath')
-                    .attr('id', 'bcClip' + i)
-                    .attr('class', 'bcClip')
-                    .append('path')
-                    .attr('d', getBreadCrumbPath(true));
-
-                bc.append('text')
-                    .attr('x', bcWidth * 0.01)
-                    .attr('y', bcHeight / 2)
-                    .attr('dy', '.35em')
-                    .attr('text-anchor', 'left')
-                    .attr('clip-path', 'url(#bcClip' + i + ')')
-                    .attr('pointer-events', 'none')
-                    .style('cursor', 'pointer')
-                    .style('stroke', '#ddd')
-                    .style('stroke-width', 0.5)
-                    .style('fill', '#fff')
-                    .style('font-size', bcHeight / 2)
-                    .style('font-weight', 'bold')
-                    .text(function (d) {
-                        return d.data.name
+                highlightChapter(d.descendants());
+                d.descendants().forEach(function(c) {
+                    let index = sbSelection.findIndex(function(val) {
+                        return val.data.id === c.data.id
                     });
-
-                let rectG = bc.append('g').attr('transform', 'translate(' + (bcWidth - bcHeight) + ', 0)').style('cursor', 'pointer');
-
-                rectG.append('rect')
-                    .attr('width', bcHeight)
-                    .attr('height', bcHeight)
-                    .style('fill', getColorForChapter(d))
-                    .style('stroke', '#000')
-                    .style('stroke-width', 2);
-
-                if (d.data.children) {
-                    rectG.append('rect')
-                        .attr('width', rectSize)
-                        .attr('height', rectSize)
-                        .style('fill', '#fff')
-                        .style('stroke', '#000')
-                        .style('stroke-width', 2)
-                        .attr('transform', 'translate(' + (bcHeight / 2 - rectSize / 2) + ', ' + (bcHeight / 2 - rectSize / 2) + ')');
-                }
-
-                bc.attr('transform', 'translate(' + (column * (bcWidth + bcPadding)) + ', ' + (row * (bcHeight + bcPadding / 2)) + ')')
-                    .style('opacity', (bcSelection.indexOf(d) !== -1) ? 1 : 0.2);
-            })
-            .on('click', function (d) {
-                let event = d3.event;
-                switch (event.detail) {
-                    case 1:
-                        let indexD = bcSelection.indexOf(d);
-                        d.descendants().forEach(function (n) {
-                            let indexN = bcSelection.indexOf(n);
-                            (indexD === -1) ? (indexN === -1) ? bcSelection.push(n) : {} : (indexN === -1) ? {} : bcSelection.splice(indexN, 1);
-                        });
-
-                        redrawBreadCrumbs(chapters);
-                        selectedBubbles = [];
-                        drawBubbleChart();
-                        break;
-                    default:
-                        break
-                }
-            });
-
-        let cColors = d3.scaleOrdinal(chapterColors)
-            .domain(d3.range((chapters[0].children) ? chapters[0].children.length + 1 : 1));
-
-        d3.select('#BcPath' + chapters[0].data.id)
-            .style('fill', cColors(0));
-
-        if (chapters[0].children) {
-            let firstChildren = chapters[0].children;
-            for (let i = 1; i < firstChildren.length + 1; i++) {
-                firstChildren[i - 1].descendants().forEach(function (d) {
-                    d3.select('#BcPath' + d.data.id)
-                        .style('fill', cColors(i));
+                    sbSelection.splice(index, 1);
                 });
             }
-        }
+            else updateInformationTexts(d.data.name);
+        })
+        .on('mouseleave', function() {
+            if(!blockedMouseover) highlightRoot();
+            else if(lastSelectedChapter !== null) updateInformationTexts(lastSelectedChapter.data.name);
+        })
+        .on('click', function(d) {
+            lastSelectedChapter = d;
+            addOrRemove(d);
+            redrawBreadCrumbs();
+            highlightChapter(sbSelection);
 
-        bcSvg.attr('viewBox', '0 0 ' + width + ' ' + (bcSvg.select('#bcGroup').node().getBBox().height + 2 * bcPadding));
-        bcRect.attr('width', width).attr('height', (bcSvg.select('#bcGroup').node().getBBox().height + 2 * bcPadding));
+            if(sbSelection.length > 0) {
+                let differentRoots = [];
 
-     }
+                sbSelection.forEach(function(e) {
+                    let rootObject = e.ancestors()[e.ancestors().length - 2];
+                    let index = differentRoots.findIndex(function (val) {
+                        if (val && rootObject) {
+                            return val.data.id === rootObject.data.id;
+                        }
+                    });
+                    if(index === -1) differentRoots.push(rootObject);
+                });
 
-     drawBubbleChart();
+                if (sbSelection.length >= root.descendants().length - 1) {
+                    updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)));
+                    highlightRoot()
+                } else if(differentRoots.length > 1) {
+                    updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)), d3.format('.2%')(getPercentage(sbSelection, false)));
+                    highlightRoot(sbSelection);
+                } else {
+                    updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)), d3.format('.2%')(getPercentage(sbSelection, true)));
+                    highlightRoot(sbSelection)
+                }
+
+            } else {
+                updateInformationTexts();
+                highlightRoot();
+            }
+        });
+
+    chapterNodes.append('path')
+        .attr('class', 'treeSelected treePart')
+        .attr('id', function (d) { return 'treeChapter' + d.data.id })
+        .attr('d', getTreeNodePath(nodeWidth, nodeHeight))
+        .attr('transform', 'translate(' + (-nodeWidth / 2) + ', ' + (-nodeHeight / 2) + ')')
+        .style('stroke', '#000')
+        .style('stroke-width', 2);
+
+    chapterNodes.append('clipPath')
+        .attr('id', function(d) {return 'treeClip' + d.data.id})
+        .append('path')
+        .attr('d', getTreeNodePath(nodeWidth - 4, nodeHeight - 4))
+        .attr('transform', 'translate(' + (-nodeWidth / 2 - 2) + ', ' + (-nodeHeight / 2) + ')');
+
+    chapterNodes.append('text')
+        .text(function(d) {return d.data.name})
+        .attr('clip-path', function(d) {return 'url(#treeClip' + d.data.id + ')'})
+        .attr('class', 'textSelected treeText')
+        .attr('id', function(d) {return 'treeText' + d.data.id})
+        .attr('x', (-nodeWidth / 2) * 0.9)
+        .attr('y', 0)
+        .attr('dy', '.35em')
+        .style('fill', '#000')
+        .style('font-size', nodeHeight / 2)
+        .style('font-weight', 'bold');
+
+    changeColorForPercentage();
+
+    rootG.attr('transform', 'translate(' + (nodeWidth / 2 + maxStokeWidth) + ', 0)');
+
+    if(sbSelection.length > 0) {
+        redrawBreadCrumbs();
+        highlightChapter(sbSelection);
+        highlightRoot(sbSelection);
+    } else {
+        sbSelection = [];
+        redrawBreadCrumbs();
+        highlightChapter([]);
+    }
 };
 
 /** All functions for the sunburst */
@@ -318,7 +288,7 @@ const initializeAndDrawSunburst = function(chapter) {
         .text('Navigation');
 
     /*** Draw sunburst and its components (texts, circles etc.) */
-    let sbWidth = SBContainer.clientWidth;
+    let sbWidth = SBContainer.clientWidth * 0.95 * 0.9;
     let sbHeight = SBContainer.clientHeight;
     chartSize = d3.min([sbWidth,sbHeight]);
 
@@ -368,7 +338,6 @@ const initializeAndDrawSunburst = function(chapter) {
             }
         })
         .on('click', function() {
-            bcSelection = [];
             sbSelection = [];
             selectedBubbles = [];
             blockedMouseover = false;
@@ -398,7 +367,7 @@ const initializeAndDrawSunburst = function(chapter) {
         .on('mouseenter', function(d) {
             if(!blockedMouseover) {
                 sbSelection = sbSelection.concat(d.descendants());
-                if (d !== root.descendants()[0]) {
+                if (d.data.id !== root.descendants()[0].data.id) {
                     updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), false)), d3.format('.2%')(getPercentage(d.descendants(), true)));
                     highlightRoot(sbSelection);
                 } else {
@@ -422,8 +391,6 @@ const initializeAndDrawSunburst = function(chapter) {
         .on('click', function(d) {
             lastSelectedChapter = d;
             addOrRemove(d);
-            /*sbSelection = d.descendants();
-            bcSelection = d.descendants();*/
             redrawBreadCrumbs();
             highlightChapter(sbSelection);
 
@@ -537,7 +504,6 @@ const initializeAndDrawSunburst = function(chapter) {
         highlightRoot(sbSelection);
     } else {
         sbSelection = [];
-        bcSelection = [];
         redrawBreadCrumbs();
         highlightChapter([]);
     }
@@ -548,46 +514,58 @@ const highlightRoot = function(selection) {
     if (selectedRoot) {
         if(selectedRoot.parent) {
             d3.select('#chapter' + selectedRoot.parent.data.id).style('stroke-width', 1);
+            d3.select('#treeChapter' + selectedRoot.parent.data.id).style('stroke-width', 2);
         }
     }
 
     if(selection) {
         if(selection.length > 0) {
-            let differentRoots = [];
+            if(selection.length < root.descendants().length - 1) {
+                let differentRoots = [];
 
-            let numberFirstChild = [];
-            root.children.forEach(function(c) {
-                let index = selection.findIndex(function(val) {return val.data.id === c.data.id});
-                if (index !== -1) numberFirstChild.push(c);
-            });
-
-            if (numberFirstChild.length > 1) {
-                selectedRoot = numberFirstChild[0];
-                let rootNode = d3.select('#chapter' + selectedRoot.parent.data.id);
-                rootNode.style('stroke-width', 4);
-                d3.select(rootNode.node().parentNode).moveToFront();
-            } else {
-                selection.forEach(function (e) {
-                    let rootObject = e.ancestors()[e.ancestors().length - 2];
-                    let index = differentRoots.findIndex(function (val) {
-                        return val === rootObject;
+                let numberFirstChild = [];
+                root.children.forEach(function (c) {
+                    let index = selection.findIndex(function (val) {
+                        return val.data.id === c.data.id
                     });
-                    if (index === -1) differentRoots.push(rootObject);
+                    if (index !== -1) numberFirstChild.push(c);
                 });
 
-                if (differentRoots.length === 1) {
-                    let minDepth = getMinDepth(selection);
+                if (numberFirstChild.length > 1) {
+                    selectedRoot = numberFirstChild[0];
+                    let rootNode = d3.select('#chapter' + selectedRoot.parent.data.id);
+                    rootNode.style('stroke-width', 4);
+                    let treeRootNode = d3.select('#treeChapter' + selectedRoot.parent.data.id);
+                    treeRootNode.style('stroke-width', 6);
+                    d3.select(rootNode.node().parentNode).moveToFront();
+                } else {
+                    selection.forEach(function (e) {
+                        let rootObject = e.ancestors()[e.ancestors().length - 2];
+                        let index = differentRoots.findIndex(function (val) {
+                            return val.data.id === rootObject.data.id;
+                        });
+                        if (index === -1) differentRoots.push(rootObject);
+                    });
 
-                    selectedRoot = sbSelection.filter(function (c) {
-                        return c.depth === minDepth;
-                    })[0];
+                    if (differentRoots.length === 1) {
+                        let minDepth = getMinDepth(selection);
 
-                    if (selectedRoot.parent) {
-                        let rootNode = d3.select('#chapter' + selectedRoot.parent.data.id);
-                        rootNode.style('stroke-width', 4);
-                        d3.select(rootNode.node().parentNode).moveToFront();
+                        selectedRoot = sbSelection.filter(function (c) {
+                            return c.depth === minDepth;
+                        })[0];
+
+                        if (selectedRoot.parent) {
+                            let rootNode = d3.select('#chapter' + selectedRoot.parent.data.id);
+                            rootNode.style('stroke-width', 4);
+                            let treeRootNode = d3.select('#treeChapter' + selectedRoot.parent.data.id);
+                            treeRootNode.style('stroke-width', 6);
+                            d3.select(rootNode.node().parentNode).moveToFront();
+                        }
                     }
                 }
+            } else {
+                d3.select('#chapter' + root.descendants()[0].data.id).style('stroke-width', 1);
+                d3.select('#treeChapter' + root.descendants()[0].data.id).style('stroke-width', 1);
             }
         }
     }
@@ -595,50 +573,57 @@ const highlightRoot = function(selection) {
 };
 
 const addOrRemove = function(chapter) {
-    let indexD = sbSelection.findIndex(function(val) {
-        return val.data.id === chapter.data.id
-    });
-    chapter.descendants().forEach(function (n) {
-        let indexN = sbSelection.findIndex(function(val) {
-            return val.data.id === n.data.id
+    if(chapter.data.id === root.descendants()[0].data.id && sbSelection.length >= root.descendants().length - 1) {
+        sbSelection = [];
+    } else {
+        let indexD = sbSelection.findIndex(function (val) {
+            return val.data.id === chapter.data.id
         });
-        (indexD === -1) ? (indexN === -1) ? sbSelection.push(n) : {} : (indexN === -1) ? {} : sbSelection.splice(indexN, 1);
-    });
 
-    let ancestors = chapter.ancestors().filter(function(d) {return d.depth > 0});
-    ancestors.splice(0, 1);
-    if (indexD === -1) {
-        ancestors.forEach(function (n) {
-            let indexN = sbSelection.findIndex(function(val) {
+        chapter.descendants().forEach(function (n) {
+            let indexN = sbSelection.findIndex(function (val) {
                 return val.data.id === n.data.id
             });
-            (indexN === -1) ? sbSelection.push(n) : {};
+            (indexD === -1) ? (indexN === -1) ? sbSelection.push(n) : {} : (indexN === -1) ? {} : sbSelection.splice(indexN, 1);
         });
-    } else {
-        if(chapter.depth === 1) {
-            let indexR = sbSelection.findIndex(function(val) {
-                return val.data.id === root.descendants()[0].data.id
-            });
 
-            if (indexR !== -1) sbSelection.splice(indexR, 1);
-        }
-
-        ancestors.forEach(function(d) {
-            let childSelected = false;
-            let descendants = d.children;
-            descendants.forEach(function(c) {
-                let index = sbSelection.findIndex(function(val) {
-                    return val.data.id === c.data.id
+        let ancestors = chapter.ancestors().filter(function (d) {
+            return d.depth > 0
+        });
+        ancestors.splice(0, 1);
+        if (indexD === -1) {
+            ancestors.forEach(function (n) {
+                let indexN = sbSelection.findIndex(function (val) {
+                    return val.data.id === n.data.id
                 });
-                if (index !== -1) childSelected = true;
+                (indexN === -1) ? sbSelection.push(n) : {};
             });
-            if (!childSelected) {
-                let index = sbSelection.findIndex(function(val) {
-                    return val.data.id === d.data.id
+        } else {
+            if (chapter.depth === 1) {
+                let indexR = sbSelection.findIndex(function (val) {
+                    return val.data.id === root.descendants()[0].data.id
                 });
-                sbSelection.splice(index, 1);
+
+                if (indexR !== -1) sbSelection.splice(indexR, 1);
             }
-        });
+
+            ancestors.forEach(function (d) {
+                let childSelected = false;
+                let descendants = d.children;
+                descendants.forEach(function (c) {
+                    let index = sbSelection.findIndex(function (val) {
+                        return val.data.id === c.data.id
+                    });
+                    if (index !== -1) childSelected = true;
+                });
+                if (!childSelected) {
+                    let index = sbSelection.findIndex(function (val) {
+                        return val.data.id === d.data.id
+                    });
+                    sbSelection.splice(index, 1);
+                }
+            });
+        }
     }
 
     (sbSelection.length > 0) ? blockedMouseover = true : blockedMouseover = false;
@@ -715,7 +700,7 @@ const getPercentage = function(selection, toParent, forColor) {
         }
     }
 };
-
+//TODO:
 const appendCircles = function(chartSize) {
     d3.selectAll('.sunburstNode')
         .each(function(d) {
@@ -730,8 +715,6 @@ const appendCircles = function(chartSize) {
                     .on('click', function(d) {
                         lastSelectedChapter = d;
                         addOrRemove(d);
-                        /*sbSelection = d.descendants();
-                         bcSelection = d.descendants();*/
                         redrawBreadCrumbs();
                         highlightChapter(sbSelection);
 
@@ -773,17 +756,55 @@ const removeAll = function() {
 };
 
 const highlightChapter = function(chapters) {
+    chapters.sort(function(a, b) {return -(a.depth - b.depth)});
     d3.selectAll('.sunburstPart')
         .filter('.sunburstSelected')
         .classed('sunburstSelected', false)
-        .style('opacity', 0.4);
+        .style('opacity', 0.2);
+
+    d3.selectAll('.treePart')
+        .filter('.treeSelected')
+        .classed('treeSelected', false)
+        .style('opacity', 0.2);
+
+    d3.selectAll('.link')
+        .filter('.linkSelected')
+        .classed('linkSelected', false)
+        .style('opacity', 0.2);
+
+    d3.selectAll('.treeText')
+        .filter('.textSelected')
+        .classed('textSelected', false)
+        .style('opacity', 0.2);
 
     chapters.forEach(function(e) {
         d3.select('#chapter' + e.data.id).classed('sunburstSelected', true).style('opacity', 1);
         d3.select('#circle' + e.data.id).classed('sunburstSelected', true).style('opacity', 1);
+        d3.select('#treeChapter' + e.data.id).classed('treeSelected', true).style('opacity', 1);
+        d3.select('#treeText' + e.data.id).classed('textSelected', true).style('opacity', 1);
+        //d3.select('#treeCircle' + e.data.id).classed('treeSelected', true).style('opacity', 1);
+
+        if(e.children) {
+            e.children.forEach(function(c) {
+                if (chapters.findIndex(function(val) {return val.data.id === c.data.id}) !== -1) {
+                    d3.select('#link' + c.data.id).classed('linkSelected', true).style('opacity', 1);
+                }
+            });
+        }
     });
+
+    if(root.children) {
+        root.children.forEach(function(c) {
+            if (sbSelection.findIndex(function(val) {return val.data.id === c.data.id}) !== -1) {
+                d3.select('#link' + c.data.id).classed('linkSelected', true).style('opacity', 1);
+                d3.select('#treeChapter' + root.descendants()[0].data.id).classed('treeSelected', true).style('opacity', 1);
+                d3.select('#treeText' + root.descendants()[0].data.id).classed('textSelected', true).style('opacity', 1);
+            }
+        })
+    }
 };
 
+//TODO:
 const updateInformationTexts = function(name, amountAll, amountParent) {
     if(name) {
         textGroup.attr('opacity', 1);
@@ -834,18 +855,20 @@ const changeColorForPercentage = function() {
         .domain(domain)
         .range(colors);
 
-    //TODO: ohne kinder
-    /*d3.selectAll('.sunburstNode path')
-     .attr('fill', function(d) {
-     return (d.data.size > 0) ? colorThresh(d.data[activeTopic]) : colorThresh(0);
-     });*/
-
-    //TODO: mit kinder
     d3.selectAll('.sunburstNode path')
         .each(function(d) {
             d3.select(this)
                 .attr('fill', function() {
-                    if (d === root) { return '#fff'}
+                    if (d.data.id === root.descendants()[0].data.id) { return '#fff'}
+                    else  return getColorForChapter(d)
+                });
+        });
+
+    d3.selectAll('.treePart')
+        .each(function(d) {
+            d3.select(this)
+                .attr('fill', function() {
+                    if (d.data.id === root.descendants()[0].data.id) { return '#fff'}
                     else  return getColorForChapter(d)
                 });
         });
@@ -883,11 +906,11 @@ const redrawSlider = function() {
 
     let y = d3.scaleLinear()
         .domain([sliderScales[activeTopic][1], 0])
-        .range([spacing, sliderHeight - spacing])
+        .range([spacing + 10, sliderHeight - spacing + 10])
         .clamp(true);
 
     let scale = d3.scaleQuantize()
-        .domain([spacing, sliderHeight - spacing])
+        .domain([spacing + 10, sliderHeight - spacing + 10])
         .range(sliderScales[activeTopic][4]);
 
     y.ticks(10);
@@ -958,13 +981,13 @@ const redrawSlider = function() {
 };
 
 /** legend function */
-let LContainer = document.getElementById('LContainer');
+let LContainer = document.getElementById('nav-viz-tabContent');
 let lSvg = d3.select('#LContainer').append('svg').attr('id', 'legendSvg').attr('preserveAspectRatio', 'xMidYMid');
 
 const redrawLegend = function() {
     lSvg.selectAll('.content').remove();
 
-    let lWidth = LContainer.clientWidth;
+    let lWidth = LContainer.clientWidth * 0.95 * 0.1;
     let lHeight = LContainer.clientHeight;
 
     let size = d3.min([lWidth / 2, lHeight / 22 ]);
@@ -1175,8 +1198,7 @@ const redrawLegend = function() {
 let BCContainer = document.getElementById('BCContainer');
 let bcSvg = d3.select('#BCContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 
-let bcSelection = [],
-    bcRect,
+let bcRect,
     bcGroupWidth,
     bcPadding,
     maxBC = 5;
@@ -1889,12 +1911,12 @@ function describeArc(x, y, radius, startAngle, endAngle){
     let start = polarToCartesian(x, y, radius, endAngle);
     let end = polarToCartesian(x, y, radius, startAngle);
 
-    let largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    let largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
 
     let d = [
-        "M", start.x, start.y,
-        "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
-    ].join(" ");
+        'M', start.x, start.y,
+        'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y
+    ].join(' ');
 
     return d;
 }

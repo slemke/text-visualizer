@@ -147,7 +147,31 @@ $(document).ready(function() {
        }, {
            "id": 30,
            "name": "Topic E",
-           "size": 6
+           "children": [{
+               "id": 31,
+               "name": "Sub E1",
+               "size": 4
+           }, {
+               "id": 32,
+               "name": "Sub E2",
+               "children": [{
+                   "id": 33,
+                   "name": "Sub E2.1",
+                   "size": 0.5
+               }, {
+                   "id": 34,
+                   "name": "Sub E2.2",
+                   "children": [{
+                       "id": 35,
+                       "name": "Sub E2.2.1",
+                       "size": 0.5
+                   }, {
+                       "id": 36,
+                       "name": "Sub E2.2.2",
+                       "size": 0.9
+                   }]
+               }]
+           }]
        }]
     };
 
@@ -1374,4 +1398,7 @@ $(document).ready(function() {
         initializeCharts();
     });
 
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        initializeCharts();
+    });
 });

@@ -79,7 +79,7 @@
 .sunburst-container {
     display: inline-block;
     position: relative;
-    width: 85%;
+    width: 90%;
     height: 100%;
     vertical-align: top;
     overflow: hidden;
@@ -98,8 +98,8 @@
 .tree-container {
     display: inline-block;
     position: relative;
-    width: 100%;
-    height: 90%;
+    width: 90%;
+    height: 100%;
     vertical-align: top;
     overflow: hidden;
 }
@@ -107,9 +107,10 @@
 .treeLegend-container {
     display: inline-block;
     position: relative;
-    width: 100%;
-    height: 10%;
+    width: 10%;
+    height: 100%;
     vertical-align: top;
+    float: left;
     overflow: hidden;
 }
 
@@ -155,4 +156,8 @@
     width: 100%;
     vertical-align: top;
     overflow: hidden;
+}
+
+.link {
+    fill: none;
 }
