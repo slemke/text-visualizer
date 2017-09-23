@@ -10,6 +10,7 @@ let SBContainer = document.getElementById('nav-viz-tabContent'),
 let sbSvg = d3.select('#SBContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let sbSliderSvg = d3.select('#SBSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let treeSvg = d3.select('#TreeContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
+let treeLSvg = d3.select('#TreeLContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 
 let chartSize, bcWidth, bcHeight;
 
@@ -48,6 +49,7 @@ const drawSunburst = function(chapter, buData) {
     initializeAndDrawSunburst(chapter);
     redrawTree(chapter);
     redrawLegend();
+    redrawTreeLegend();
     redrawSlider();
     drawBubbleChart();
 };
@@ -246,7 +248,7 @@ const redrawTree = function(chapters) {
         .attr('clip-path', function(d) {return 'url(#treeClip' + d.data.id + ')'})
         .attr('class', 'textSelected treeText')
         .attr('id', function(d) {return 'treeText' + d.data.id})
-        .attr('x', (-nodeWidth / 2) * 0.9)
+        .attr('x', (-nodeWidth / 2) * 0.95)
         .attr('y', 0)
         .attr('dy', '.35em')
         .style('fill', '#000')
@@ -266,6 +268,112 @@ const redrawTree = function(chapters) {
         redrawBreadCrumbs();
         highlightChapter([]);
     }
+};
+
+const redrawTreeLegend = function() {
+    treeLSvg.selectAll('.content').remove();
+
+    let lWidth = TreeContainer.clientWidth * 0.95 * 0.1;
+    let lHeight = TreeContainer.clientHeight;
+
+    let size = d3.min([lWidth / 2, lHeight / 22 ]);
+    let spacing = size / 5;
+
+    treeLSvg.attr('viewBox', '0 0 ' + lWidth + ' ' + lHeight);
+
+    treeLSvg.append('rect')
+        .attr('class', 'content')
+        .attr('width', lWidth)
+        .attr('height', lHeight)
+        .attr('opacity', 0.7)
+        .style('fill', 'rgb(220,220,220)')
+        .style('stroke', '#000')
+        .style('stroke-width', 2);
+
+    let rootG = treeLSvg.append('g')
+        .attr('class', 'content');
+
+    let legend = rootG.append('text')
+        .text('Legend')
+        .attr('x', lWidth / 2)
+        .attr('y', 0)
+        .attr('dy', '.8em')
+        .attr('font-size', lWidth / 4)
+        .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
+        .style('fill', '#000')
+        .style('font-weight', 'bold')
+        .classed('legendText', true);
+
+    let colorText = rootG.append('text')
+        .text('Color = Worst Value Of The Chapter / Average Of Sub - Chapters:')
+        .attr('x', lWidth / 2)
+        .attr('y', legend.node().getBBox().height)
+        .attr('dy', '.8em')
+        .attr('font-size', size / 3.1)
+        .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
+        .style('fill', '#000')
+        .style('font-weight', 'bold')
+        .classed('legendText', true)
+        .call(wrap, lWidth);
+
+    let subG = rootG.append('g')
+        .attr('transform', 'translate(0,' + (lWidth - size) / 2 + ')');
+
+    let subG1 = subG.append('g')
+        .attr('id', 'legendSubG1')
+        .attr('transform', 'translate(0, ' + colorText.node().getBBox().height + ')');
+
+    colors.forEach(function(d, i) {
+        let gheight = subG1.node().getBBox().height + spacing;
+        subG1.append('g')
+            .attr('class', 'legendSubGroup')
+            .attr('id', 'legendSubGroup' + i)
+            .append('rect')
+            .attr('width', size)
+            .attr('height', size)
+            .attr('x', lWidth / 2 - size / 2)
+            .attr('y', gheight)
+            .style('fill', colors[i])
+            .style('stroke', '#000')
+            .style('stroke-width', 2)
+            .each(function() {
+                const band = sliderScales[activeTopic][2] / (colors.length - 1);
+
+                let lGText = treeLSvg.select('#legendSubGroup' + i )
+                    .append('text')
+                    .text(function() {
+                        if (i === 0) {
+                            return '<' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
+                        } else if (i < colors.length - 1) {
+                            return '>' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3] + '   &&   <' + (d3.format('.1f')(i * band + band) + sliderScales[activeTopic][3])
+                        } else {
+                            return '>=' + d3.format('.1f')(i * band) + sliderScales[activeTopic][3]
+                        }
+                    })
+                    .attr('x', lWidth / 2)
+                    .attr('y', gheight + size)
+                    .attr('dy', '1em')
+                    .attr('font-size', size / 3)
+                    .attr('text-anchor', 'middle')
+                    .attr('id', 'legendText' + i)
+                    .attr('pointer-events', 'none')
+                    .style('fill', '#000')
+                    .style('font-weight', 'bold');
+
+                lGText.call(wrap, lWidth);
+
+                treeLSvg.select('#legendSubGroup' + i).append('rect')
+                    .attr('y', gheight + size + lGText.node().getBBox().height)
+                    .attr('width', lWidth)
+                    .attr('height', spacing)
+                    .style('fill', 'transparent');
+            });
+    });
+
+    treeLSvg.select('rect').attr('height', rootG.node().getBBox().height + 2 * spacing).attr('transform', 'translate(0, ' + ((lHeight / 2) - (rootG.node().getBBox().height / 2) - spacing) + ')');
+    rootG.attr('transform', 'translate(0, ' + ((lHeight / 2) - (rootG.node().getBBox().height / 2)) + ')');
 };
 
 /** All functions for the sunburst */
@@ -804,7 +912,6 @@ const highlightChapter = function(chapters) {
     }
 };
 
-//TODO:
 const updateInformationTexts = function(name, amountAll, amountParent) {
     if(name) {
         textGroup.attr('opacity', 1);
