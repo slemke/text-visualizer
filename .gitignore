@@ -122,3 +122,5 @@ config.js
 # exclude css / js
 visualisierung/assets/css/index.min.css
 visualisierung/assets/js/index.min.js
+visualisierung/.idea/
+visualisierung/package-lock.json
