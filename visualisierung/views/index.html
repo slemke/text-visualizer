@@ -41,6 +41,9 @@
                                 </div>
                             </nav>
 
+                            <div class="col-sm-12" id="col-sm-12">
+                                <a href="#" class="btn btn-primary pull-right" id="collapse-text-button">&raquo;</a>
+                            </div>
 
                             <div id="sunburst">
                                 <ul class="nav nav-tabs" role="tablist" id="tabs">
@@ -52,14 +55,18 @@
                                     </li>
                                 </ul>
 
-                                <div class="tab-content">
+                                <div class="tab-content" id="nav-viz-tabContent">
                                     <div role="tabpanel" class="tab-pane active" id="sunburst-tab">
-                                        asd
+                                        <div class="legend-container" id="LContainer"></div>
+                                        <div class="sunburst-container" id="SBContainer"></div>
+                                        <div class="sbSlider-container" id="SBSliderContainer"></div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="tree-tab">
-                                        def
+                                        <div class="treeLegend-container" id="TreeLContainer"></div>
+                                        <div class="tree-container" id="TreeContainer"></div>
                                     </div>
                                 </div>
+                                <div class="breadcrumb-container" id="BCContainer"></div>
                             </div>
 
                             <div id="data">
@@ -72,12 +79,16 @@
                                     </li>
                                 </ul>
 
-                                <div class="tab-content">
+                                <div class="tab-content" id="nav-tabContent">
                                     <div role="tabpanel" class="tab-pane active" id="statistics-tab">
                                         asd
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="bubble-tab">
-                                        def
+                                        <div class="detail-container" id="DTContainer">
+                                            <div class="text-container" id="TContainer"></div>
+                                            <div class="bubble-container" id="BUContainer"></div>
+                                            <div class="sbSlider-container" id="BUSliderContainer"></div>
+                                        </div>
                                     </div>
                                 </div>
 

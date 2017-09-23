@@ -1393,13 +1393,13 @@ $(document).ready(function() {
             "name": "Garza Nieves"
         }
     ];
-/*
+
     const initializeCharts = function() {
         drawSunburst(chapter, bubbleData);
     };
 
     initializeCharts();
-
+    /*
     $(window).resize(function() {
         initializeCharts();
     });

@@ -390,21 +390,6 @@ const redrawTreeLegend = function() {
 /** All functions for the sunburst */
 
 const initializeAndDrawSunburst = function(chapter) {
-    let headerW = HeaderContainer.clientWidth;
-    let headerH = HeaderContainer.clientHeight;
-
-    d3.select('#col-sm-12').append('svg')
-        .attr('class', 'content')
-        .attr('width', headerW * 0.75)
-        .attr('height', headerH)
-        .append('text')
-        .attr('x', headerW / 2)
-        .attr('y', headerH / 2)
-        .attr('dy', '.35em')
-        .attr('text-anchor', 'middle')
-        .style('font-size', headerH * 0.9)
-        .style('font-weight', 'bold')
-        .text('Navigation');
 
     /*** Draw sunburst and its components (texts, circles etc.) */
     let sbWidth = SBContainer.clientWidth * 0.95 * 0.9;
