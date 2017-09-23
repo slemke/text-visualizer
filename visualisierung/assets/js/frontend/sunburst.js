@@ -4,13 +4,14 @@
 
 let SBContainer = document.getElementById('nav-viz-tabContent'),
     SBSliderContainer = document.getElementById('SBSliderContainer'),
-    HeaderContainer = document.getElementById('col-sm-12'),
+    TreeSliderContainer = document.getElementById('SBSliderContainer'),
     TreeContainer = document.getElementById('nav-viz-tabContent');
 
 let sbSvg = d3.select('#SBContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let sbSliderSvg = d3.select('#SBSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let treeSvg = d3.select('#TreeContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let treeLSvg = d3.select('#TreeLContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
+let treeSliderSvg = d3.select('#TreeSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 
 let chartSize, bcWidth, bcHeight;
 
@@ -48,11 +49,15 @@ const drawSunburst = function(chapter, buData) {
     removeAll();
     bubbleData = buData;
     dataDocument = chapter;
+
     initializeAndDrawSunburst(chapter);
-    redrawTree(chapter);
     redrawLegend();
+    redrawSlider(SBContainer, sbSliderSvg, 'sbSlider');
+
+    redrawTree(chapter);
     redrawTreeLegend();
-    redrawSlider();
+    redrawSlider(TreeContainer, treeSliderSvg, 'treeSlider');
+
     drawBubbleChart();
 };
 
@@ -1055,17 +1060,17 @@ const getWeightedValueForChapter = function(chapter){
     }
 };
 
-const redrawSlider = function() {
-    d3.select('.sbSlider').remove();
+const redrawSlider = function(container, svg, id) {
+    d3.selectAll('.' + id).remove();
 
-    let sliderWidth = SBSliderContainer.clientWidth;
-    let sliderHeight = SBSliderContainer.clientHeight;
+    let sliderWidth = container.clientWidth * 0.05;
+    let sliderHeight = container.clientHeight;
     let spacing = sliderHeight / 10;
     let handleSize = sliderWidth / 5;
     let lineSize = sliderWidth / 6;
     let fontSize = sliderWidth / 4;
 
-    sbSliderSvg.attr('viewBox', '0 0 ' + sliderWidth + ' ' + sliderHeight);
+    svg.attr('viewBox', '0 0 ' + sliderWidth + ' ' + sliderHeight);
 
     /** taken and adjusted from: https://bl.ocks.org/mbostock/6452972 */
 
@@ -1080,8 +1085,8 @@ const redrawSlider = function() {
 
     y.ticks(10);
 
-    let slider = sbSliderSvg.append('g')
-        .attr('class', 'sbSlider')
+    let slider = svg.append('g')
+        .attr('class', id)
         .attr('transform', 'translate(' + handleSize * 1.1 + ', 0)');
 
     slider.append('text')
@@ -1092,7 +1097,7 @@ const redrawSlider = function() {
         .attr('pointer-events', 'none')
         .style('font-size', fontSize + 'px')
         .style('font-weight', 'bold')
-        .text(sliderScales[activeTopic][2] + sliderScales[activeTopic][3]);
+        .text(d3.format('.2')(sliderScales[activeTopic][2]) + sliderScales[activeTopic][3]);
 
     slider.append('line')
         .attr('y1', y.range()[0])

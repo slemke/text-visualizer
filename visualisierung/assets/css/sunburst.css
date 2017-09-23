@@ -5,15 +5,6 @@
     float: left;
 }
 
-.data-pane {
-    width: 100%
-}
-
-.viz-pane {
-    width: 95%;
-}
-
-
 .sunburst-container {
     display: inline-block;
     position: relative;
@@ -36,7 +27,7 @@
 .tree-container {
     display: inline-block;
     position: relative;
-    width: 90%;
+    width: 85%;
     height: 100%;
     vertical-align: top;
     overflow: hidden;

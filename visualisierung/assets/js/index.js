@@ -1399,12 +1399,12 @@ $(document).ready(function() {
     };
 
     initializeCharts();
-    /*
+
     $(window).resize(function() {
         initializeCharts();
     });
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         initializeCharts();
-    });*/
+    });
 });
