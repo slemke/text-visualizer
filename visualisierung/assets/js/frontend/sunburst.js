@@ -3,14 +3,11 @@
  */
 
 let SBContainer = document.getElementById('nav-viz-tabContent'),
-    SBSliderContainer = document.getElementById('SBSliderContainer'),
-    TreeSliderContainer = document.getElementById('SBSliderContainer'),
     TreeContainer = document.getElementById('nav-viz-tabContent');
 
 let sbSvg = d3.select('#SBContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let sbSliderSvg = d3.select('#SBSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let treeSvg = d3.select('#TreeContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
-let treeLSvg = d3.select('#TreeLContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 let treeSliderSvg = d3.select('#TreeSliderContainer').append('svg').attr('preserveAspectRatio', 'xMidYMid');
 
 let chartSize, bcWidth, bcHeight;
@@ -60,6 +57,7 @@ const drawSunburst = function(chapter, buData) {
         redrawTreeLegend();
         redrawSlider(TreeContainer, treeSliderSvg, 'treeSlider');
 
+        redrawBreadCrumbs();
         drawBubbleChart();
     }, 0.5);
 };
@@ -68,7 +66,6 @@ const drawSunburst = function(chapter, buData) {
 
 const getTreeNodePath = function(width, height, isMask) {
     let path = [];
-
 
     path.push({x: 0, y: height});
 
@@ -114,7 +111,7 @@ const redrawTree = function(chapters) {
     treeNodeHeight = nodeHeight;
 
     let newRoot = d3.hierarchy(chapters, function(d) {return d.children});
-    let tree = d3.tree().size([height, width - nodeWidth - 2 * maxStrokeWidth])//.nodeSize([nodeHeight,nodeWidth])
+    let tree = d3.tree().size([height, width - nodeWidth - 2 * maxStrokeWidth])
         .separation(function(a, b) { return (a.parent === b.parent ? 1 : 2); });
 
     let treeNodes = tree(newRoot);
@@ -241,6 +238,7 @@ const redrawTree = function(chapters) {
                 updateInformationTexts();
                 highlightRoot();
             }
+            drawBubbleChart();
         });
 
     chapterNodes.append("title")
@@ -283,7 +281,6 @@ const redrawTree = function(chapters) {
 
 
     if(sbSelection.length > 0) {
-        redrawBreadCrumbs();
         highlightChapter(sbSelection);
         highlightRoot(sbSelection);
     } else {
@@ -373,12 +370,7 @@ const initializeAndDrawSunburst = function(chapter) {
     let sbHeight = SBContainer.clientHeight;
     let windowHeight = $(window).height();
 
-    console.log(windowHeight);
-    console.log(sbHeight);
-
     chartSize = d3.min([windowHeight * 0.9,sbHeight]);
-
-    console.log(chartSize);
 
     sbSvg.attr('viewBox', '0 0 ' + sbWidth + ' ' + chartSize);
 
@@ -510,6 +502,7 @@ const initializeAndDrawSunburst = function(chapter) {
                 updateInformationTexts();
                 highlightRoot();
             }
+            drawBubbleChart();
         });
 
     changeColorForPercentage();
@@ -587,7 +580,6 @@ const initializeAndDrawSunburst = function(chapter) {
     appendCircles(chartSize / 300);
 
     if(sbSelection.length > 0) {
-        redrawBreadCrumbs();
         highlightChapter(sbSelection);
         highlightRoot(sbSelection);
     } else {
@@ -828,6 +820,7 @@ const appendCircles = function(chartSize) {
                             updateInformationTexts();
                             highlightRoot();
                         }
+                        drawBubbleChart();
                     });
             }
         });
@@ -888,6 +881,8 @@ const appendTreeCircles = function(chartSize) {
                             updateInformationTexts();
                             highlightRoot();
                         }
+
+                        drawBubbleChart();
                     });
             }
         });
@@ -1582,8 +1577,6 @@ const redrawBreadCrumbs = function() {
         bcRect.attr('width', width).attr('height', (bcSvg.select('#bcGroup').node().getBBox().height + 2 * bcPadding));
 
     } else bcSvg.attr('viewBox', '0 0 ' + width + ' 10)');
-
-    drawBubbleChart();
 };
 
 /** BubbleChart-Function */
