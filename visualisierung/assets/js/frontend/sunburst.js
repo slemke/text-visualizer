@@ -241,7 +241,7 @@ const redrawTree = function(chapters) {
             drawBubbleChart();
         });
 
-    chapterNodes.append("title")
+    chapterNodes.append('title')
         .text(function(d) { return  d.data.name});
 
     chapterNodes.append('path')
@@ -846,44 +846,7 @@ const appendTreeCircles = function(chartSize) {
                     .attr('id', 'treeCircle' + d.data.id)
                     .attr('transform', 'translate(' + (treeNodeWidth / 2 - treeNodeHeight / 2) + ', 0)')
                     .attr('r', chartSize)
-                    .style('cursor', 'pointer')
-                    .on('click', function(d) {
-                        lastSelectedChapter = d;
-                        addOrRemove(d);
-                        redrawBreadCrumbs();
-                        highlightChapter(sbSelection);
-
-                        if(sbSelection.length > 0) {
-                            let differentRoots = [];
-
-                            sbSelection.forEach(function(e) {
-                                let rootObject = e.ancestors()[e.ancestors().length - 2];
-                                let index = differentRoots.findIndex(function (val) {
-                                    if (val && rootObject) {
-                                        return val.data.id === rootObject.data.id;
-                                    }
-                                });
-                                if(index === -1) differentRoots.push(rootObject);
-                            });
-
-                            if (sbSelection.length >= root.descendants().length - 1) {
-                                updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)));
-                                highlightRoot()
-                            } else if(differentRoots.length > 1) {
-                                updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)), d3.format('.2%')(getPercentage(sbSelection, false)));
-                                highlightRoot(sbSelection);
-                            } else {
-                                updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(sbSelection, false)), d3.format('.2%')(getPercentage(sbSelection, true)));
-                                highlightRoot(sbSelection)
-                            }
-
-                        } else {
-                            updateInformationTexts();
-                            highlightRoot();
-                        }
-
-                        drawBubbleChart();
-                    });
+                    .style('cursor', 'pointer');
             }
         });
 };
@@ -1311,7 +1274,7 @@ let bcSvg = d3.select('#BCContainer').append('svg').attr('preserveAspectRatio', 
 let bcRect,
     bcGroupWidth,
     bcPadding,
-    maxBC = 5;
+    maxBC = 6;
 
 const getBreadCrumbPath = function(isMask) {
     let path = [];
@@ -1471,7 +1434,7 @@ const redrawBreadCrumbs = function() {
                 d.forEach(function(b) {
                     let depth = i;
 
-                    if (depthElementCount[depth] === 5) {
+                    if (depthElementCount[depth] === maxBC) {
                         depthElementCount[depth] = 0;
                         for (let i = depth; i <= depthValues.length - 1; i++) {
                             depthValues[i]++;
@@ -1517,6 +1480,9 @@ const redrawBreadCrumbs = function() {
 
                         drawSunburst(dataDocument, bubbleData);
                     });
+
+                    bc.append('title')
+                        .text(function() { return  b.data.name});
 
                     bc.append('path')
                         .attr('d', getBreadCrumbPath(false))
