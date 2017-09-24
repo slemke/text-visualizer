@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     var textClosed = false;
 
-    $('#collapse-text-button').click(function(event) {
+    /*$('#collapse-text-button').click(function(event) {
         event.preventDefault();
         initializeCharts();
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
             textClosed = true;
             $(this).html('&laquo;');
         }
-    });
+    });*/
 
     let chapter = {
        "id": 0,
