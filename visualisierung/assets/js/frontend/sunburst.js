@@ -24,8 +24,6 @@ let wholeSize,
     z,
     z1,
     a1,
-    a2,
-    a3,
     sbSelection = [],
     innerRadius,
     textGroup,
@@ -175,8 +173,11 @@ const redrawTree = function(chapters) {
         .on('mouseenter', function(d) {
             if(d.data.id !== root.descendants()[0].data.id) {
                 sbSelection = sbSelection.concat(d.descendants());
-                updateInformationTexts(d.data.name, d3.format('.2f')(d3.sum(d.descendants(), function(e) {return e.data.size})), d3.format('.2%')(getPercentage(d.descendants(), true)));
-
+                if(d.descendants().length === 1) {
+                    updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)), d3.format('.2f')(d3.max(d.descendants(), function (c) {
+                        return c.data[activeTopic]
+                    })));
+                } else { updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)))}
                 highlightChapter(sbSelection);
                 d.descendants().forEach(function(c) {
                     let index = sbSelection.findIndex(function(val) {
@@ -201,7 +202,14 @@ const redrawTree = function(chapters) {
         });
 
     chapterNodes.append('title')
-        .text(function(d) { return  d.data.name});
+        .text(function(d) {
+            if(d.descendants().length === 1) {
+                return d.data.name + ' (Worst Value: ' + d3.format('.2f')(d3.max(d.descendants(), function (c) {
+                        return c.data[activeTopic]
+                    })) + ')'
+            } else {return d.data.name}
+        });
+
 
     chapterNodes.append('path')
         .attr('class', 'treeSelected treePart')
@@ -314,36 +322,36 @@ const redrawTreeLegend = function() {
                 lGText.call(wrapY, width / 2, 0);
             });
     });
-
-    let subG2 = legendG.append('g')
-        .attr('transform', 'translate(' + (width / 3 ) + ', ' + (size / 2 + legendG.node().getBBox().height) + ')')
-        .attr('id', 'legendSubG2');
-
-    a2 = subG2.append('text')
-        .text('Worst Value:')
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('dy', '.35em')
-        .attr('font-size', size / 2.5)
-        .attr('text-anchor', 'middle')
-        .attr('pointer-events', 'none')
-        .style('fill', '#000')
-        .style('font-weight', 'bold');
-
-    a2.call(wrap, width * 0.9);
-
-    a3 = subG2.append('text')
-        .text('...')
-        .attr('x', 0)
-        .attr('y', subG2.node().getBBox().height)
-        .attr('dy', '.35em')
-        .attr('font-size', size / 2.5)
-        .attr('text-anchor', 'middle')
-        .attr('pointer-events', 'none')
-        .style('fill', '#000')
-        .style('font-weight', 'bold');
-
-    a3.call(wrap, width * 0.9);
+    //
+    // let subG2 = legendG.append('g')
+    //     .attr('transform', 'translate(' + (width / 3 ) + ', ' + (size / 2 + legendG.node().getBBox().height) + ')')
+    //     .attr('id', 'legendSubG2');
+    //
+    // a2 = subG2.append('text')
+    //     .text('Worst Value:')
+    //     .attr('x', 0)
+    //     .attr('y', 0)
+    //     .attr('dy', '.35em')
+    //     .attr('font-size', size / 2.5)
+    //     .attr('text-anchor', 'middle')
+    //     .attr('pointer-events', 'none')
+    //     .style('fill', '#000')
+    //     .style('font-weight', 'bold');
+    //
+    // a2.call(wrap, width * 0.9);
+    //
+    // a3 = subG2.append('text')
+    //     .text('...')
+    //     .attr('x', 0)
+    //     .attr('y', subG2.node().getBBox().height)
+    //     .attr('dy', '.35em')
+    //     .attr('font-size', size / 2.5)
+    //     .attr('text-anchor', 'middle')
+    //     .attr('pointer-events', 'none')
+    //     .style('fill', '#000')
+    //     .style('font-weight', 'bold');
+    //
+    // a3.call(wrap, width * 0.9);
 
     updateInformationTexts();
 };
@@ -430,8 +438,11 @@ const initializeAndDrawSunburst = function(chapter) {
         .on('mouseenter', function(d) {
             if(d.data.id !== root.descendants()[0].data.id) {
                 sbSelection = sbSelection.concat(d.descendants());
-                updateInformationTexts(d.data.name, d3.format('.2f')(d3.sum(d.descendants(), function(e) {return e.data.size})), d3.format('.2%')(getPercentage(d.descendants(), true)));
-                highlightChapter(sbSelection);
+                if(d.descendants().length === 1) {
+                    updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)), d3.format('.2f')(d3.max(d.descendants(), function (c) {
+                        return c.data[activeTopic]
+                    })));
+                } else { updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)))}                highlightChapter(sbSelection);
                 d.descendants().forEach(function(c) {
                     let index = sbSelection.findIndex(function(val) {
                         return val.data.id === c.data.id
@@ -748,8 +759,11 @@ const appendCircles = function(chartSize) {
                     .on('mouseenter', function(d) {
                         if(d.data.id !== root.descendants()[0].data.id) {
                             sbSelection = sbSelection.concat(d.descendants());
-                            updateInformationTexts(d.data.name, d3.format('.2f')(d3.sum(d.descendants(), function(e) {return e.data.size})), d3.format('.2%')(getPercentage(d.descendants(), true)));
-                            highlightChapter(sbSelection);
+                            if(d.descendants().length === 1) {
+                                updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)), d3.format('.2f')(d3.max(d.descendants(), function (c) {
+                                    return c.data[activeTopic]
+                                })));
+                            } else { updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)))}                            highlightChapter(sbSelection);
                             d.descendants().forEach(function(c) {
                                 let index = sbSelection.findIndex(function(val) {
                                     return val.data.id === c.data.id
@@ -834,38 +848,36 @@ const highlightChapter = function(chapters) {
     }
 };
 
-const updateInformationTexts = function(name, amountAll, amountParent) {
+const updateInformationTexts = function(name, amountParent, amountAll) {
     if(name) {
         textGroup.attr('opacity', 1);
-        a2.attr('opacity', 1);
-        a3.attr('opacity', 1);
         p.text(name).attr('y', innerRadius / 2);
         p.call(wrapY, innerRadius, innerRadius / 5);
     }
-    if (amountAll) {
+    if (amountParent) {
+        if (amountAll) {
 
-        if (amountParent) {
-            a.text(amountParent);
+            a1.text(amountAll);
+            z.text('Size Compared To Parent Chapter:');
+            z1.text('Worst Value:');
+            z.call(wrap, innerRadius);
+            z1.call(wrap, innerRadius);
+
         } else {
-            a.text('. . .');
+            a1.text('. . .');
         }
+        a.text(amountParent);
+    } else {
+        a.text('. . .');
+    }
 
-        a1.text(amountAll);
-        a3.text(amountAll);
-        z.text('Size Compared To Parent Chapter:');
-        z1.text('Worst Value:');
-        z.call(wrap, innerRadius);
-        z1.call(wrap, innerRadius);
-
-    } else if (!name && !amountAll) {
+    if (!name && !amountParent) {
         textGroup.attr('opacity', 0.3);
         p.text('Title Of Selected Chapter')
             .attr('y', innerRadius / 2);
         p.call(wrapY, innerRadius, innerRadius / 5);
         a.text('. . .');
         a1.text('. . .');
-        a3.text('. . .').attr('opacity', 0.3);
-        a2.attr('opacity', 0.3);
     }
 };
 
@@ -1446,7 +1458,7 @@ const drawBubbles = function() {
 
         let buRoot = d3.hierarchy(rootNode)
             .sum(function (d) {
-                return 1//d[bubbleKey]
+                return 0.9//d[bubbleKey]
             });
 
         buPack(buRoot);
