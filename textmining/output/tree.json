@@ -1,0 +1,166 @@
+{
+  "id" : 0,
+  "name" : "Characterizing Guidance in Visual Analytics",
+  "children" : [ {
+    "id" : 1,
+    "name" : "abstract",
+    "children" : [ {
+      "id" : 2,
+      "name" : null,
+      "children" : [ ],
+      "size" : 223
+    } ],
+    "size" : 223
+  }, {
+    "id" : 4,
+    "name" : "Introduction",
+    "children" : [ {
+      "id" : 5,
+      "name" : null,
+      "children" : [ ],
+      "size" : 1505
+    } ],
+    "size" : 1505
+  }, {
+    "id" : 11,
+    "name" : "Guidance: Terminology and General Concepts",
+    "children" : [ {
+      "id" : 12,
+      "name" : "Einleitung",
+      "children" : [ ],
+      "size" : 3338
+    }, {
+      "id" : 14,
+      "name" : "An Illustrating Non-VA Example",
+      "children" : [ ],
+      "size" : 423
+    }, {
+      "id" : 18,
+      "name" : "Definition of Guidance",
+      "children" : [ ],
+      "size" : 1273
+    }, {
+      "id" : 25,
+      "name" : "Conceptual Model of Guidance",
+      "children" : [ {
+        "id" : 31,
+        "name" : "Knowledge Gap",
+        "children" : [ ],
+        "size" : 1002
+      }, {
+        "id" : 43,
+        "name" : "Input and Output",
+        "children" : [ ],
+        "size" : 1074
+      }, {
+        "id" : 56,
+        "name" : "Guidance Degree",
+        "children" : [ ],
+        "size" : 1039
+      } ],
+      "size" : 5866
+    } ],
+    "size" : 10900
+  }, {
+    "id" : 63,
+    "name" : "A review of guidance in visual analytics",
+    "children" : [ {
+      "id" : 64,
+      "name" : "Einleitung",
+      "children" : [ ],
+      "size" : 4611
+    }, {
+      "id" : 66,
+      "name" : "Knowledge Gap",
+      "children" : [ {
+        "id" : 67,
+        "name" : "Type",
+        "children" : [ ],
+        "size" : 1799
+      }, {
+        "id" : 71,
+        "name" : "Domain",
+        "children" : [ ],
+        "size" : 1377
+      } ],
+      "size" : 3176
+    }, {
+      "id" : 79,
+      "name" : "Input and Output",
+      "children" : [ {
+        "id" : 80,
+        "name" : "Input",
+        "children" : [ ],
+        "size" : 2777
+      }, {
+        "id" : 87,
+        "name" : "Output",
+        "children" : [ ],
+        "size" : 1282
+      } ],
+      "size" : 4059
+    }, {
+      "id" : 93,
+      "name" : "Guidance Degree",
+      "children" : [ {
+        "id" : 95,
+        "name" : "Orienting",
+        "children" : [ ],
+        "size" : 657
+      }, {
+        "id" : 99,
+        "name" : "Directing",
+        "children" : [ ],
+        "size" : 356
+      }, {
+        "id" : 102,
+        "name" : "Prescribing",
+        "children" : [ ],
+        "size" : 816
+      } ],
+      "size" : 2942
+    }, {
+      "id" : 106,
+      "name" : "A Detailed Look at Selected Examples",
+      "children" : [ {
+        "id" : 108,
+        "name" : "Example 1: Heterogeneity-Based Guidance",
+        "children" : [ ],
+        "size" : 547
+      }, {
+        "id" : 111,
+        "name" : "Example 2: Signposts for Navigation in Large Graphs",
+        "children" : [ ],
+        "size" : 414
+      }, {
+        "id" : 114,
+        "name" : "Example 3: Model-Driven Guidance",
+        "children" : [ ],
+        "size" : 360
+      } ],
+      "size" : 2254
+    } ],
+    "size" : 17042
+  }, {
+    "id" : 117,
+    "name" : "Discussion and future work",
+    "children" : [ {
+      "id" : 118,
+      "name" : null,
+      "children" : [ ],
+      "size" : 4828
+    } ],
+    "size" : 4828
+  }, {
+    "id" : 131,
+    "name" : "Conclusion",
+    "children" : [ {
+      "id" : 132,
+      "name" : null,
+      "children" : [ ],
+      "size" : 225
+    } ],
+    "size" : 225
+  } ],
+  "size" : 0
+}
