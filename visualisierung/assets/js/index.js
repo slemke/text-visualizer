@@ -1399,7 +1399,10 @@ $(document).ready(function() {
         drawSunburst(chapter, bubbleData);
     };
 
-    $.get('')
+    $.get( "ajax/test.html", function( data ) {
+        $( ".result" ).html( data );
+        alert( "Load was performed." );
+    });
 
     $(window).resize(function() {
         initializeCharts();
