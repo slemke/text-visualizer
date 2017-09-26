@@ -231,6 +231,7 @@ body > .container-fluid, body > .container-fluid > .row {
 
 #text {
     overflow: auto;
+    position: relative;
 }
 
 #overlay_container {
@@ -241,11 +242,29 @@ body > .container-fluid, body > .container-fluid > .row {
     overflow: auto;
 }
 
+#text > .row {
+    overflow: auto;
+}
+
+.circle-container {
+    position: relative;
+    height: 100%;
+}
+
+.sk-fading-circle {
+    position: absolute;
+    top: 50%;
+    margin-top: -20PX;
+    left: 50%;
+    margin-left: -20px;
+}
+
 .sk-circle:before {
     background-color: #FFFFFF !important;
 }
 
 #overlay {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -253,6 +272,35 @@ body > .container-fluid, body > .container-fluid > .row {
     bottom: 0;
     right: 0;
     /* width: 100%; */
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .35);
     z-index: 999;
+}
+
+
+#text header h1 {
+    font-size: 24px;
+}
+
+#text article h1 {
+    font-size: 22px;
+}
+
+#text article h2 {
+    font-size: 20px;
+}
+
+#text article h3 {
+    font-size: 18px;
+}
+
+#text article h4 {
+    font-size: 16px;
+}
+
+#text article h5 {
+    font-size: 14px;
+}
+
+#text article h6 {
+    font-size: 12px;
 }
