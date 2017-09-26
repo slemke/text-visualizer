@@ -53,7 +53,7 @@ const drawSunburst = function(chapter, buData) {
         redrawTreeLegend();
         redrawSlider(TreeContainer, treeSliderSvg, 'treeSlider');
 
-        redrawBreadCrumbs();
+        ////redrawBreadcrumbs();
         drawBubbleChart();
 };
 
@@ -128,7 +128,8 @@ const redrawTree = function(chapters) {
 
             highlightChapter([]);
             updateInformationTexts();
-            redrawBreadCrumbs();
+            //redrawBreadcrumbs();
+            drawBubbleChart();
         });
 
     let rootG = treeSvg.append('g')
@@ -196,7 +197,7 @@ const redrawTree = function(chapters) {
         })
         .on('click', function(d) {
             addOrRemove(d);
-            redrawBreadCrumbs();
+            //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
         });
@@ -249,7 +250,7 @@ const redrawTree = function(chapters) {
         highlightChapter(sbSelection);
     } else {
         sbSelection = [];
-        redrawBreadCrumbs();
+        //redrawBreadcrumbs();
         highlightChapter([]);
     }
 };
@@ -417,7 +418,8 @@ const initializeAndDrawSunburst = function(chapter) {
 
             highlightChapter([]);
             updateInformationTexts();
-            redrawBreadCrumbs();
+            //redrawBreadcrumbs();
+            drawBubbleChart();
         });
 
     g = sbSvg.append('g')
@@ -459,7 +461,7 @@ const initializeAndDrawSunburst = function(chapter) {
         })
         .on('click', function(d) {
             addOrRemove(d);
-            redrawBreadCrumbs();
+            //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
         });
@@ -542,10 +544,9 @@ const initializeAndDrawSunburst = function(chapter) {
         highlightChapter(sbSelection);
     } else {
         sbSelection = [];
-        redrawBreadCrumbs();
+        //redrawBreadcrumbs();
         highlightChapter([]);
     }
-
 };
 
 /*const highlightRoot = function(selection) {
@@ -650,20 +651,30 @@ const addOrRemove = function(chapter) {
     if(chapter.data.id === root.descendants()[0].data.id){
         sbSelection = [];
     } else {
-        if(sbSelection.length > 0 && getRoot(chapter).data.id !== getRoot(sbSelection[0]).data.id) sbSelection = [];
-        let indexD = sbSelection.findIndex(function (val) {
-            return val.data.id === chapter.data.id
-        });
-
-        chapter.descendants().forEach(function (n) {
-            let indexN = sbSelection.findIndex(function (val) {
-                return val.data.id === n.data.id
+        let mode = 0;
+        if(chapter.descendants().length === sbSelection.length) {
+            let equalCount = 0;
+            chapter.descendants().forEach(function(c) {
+                if(sbSelection.findIndex(function(val){return c.data.id === val.data.id}) !== -1) equalCount++;
             });
-            (indexD === -1) ? (indexN === -1) ? sbSelection.push(n) : {} : (indexN === -1) ? {} : sbSelection.splice(indexN, 1);
-        });
+            if (equalCount === chapter.descendants().length) mode = 1;
+        }
+        sbSelection = [];
+        if(mode === 0) {
+            let indexD = sbSelection.findIndex(function (val) {
+                return val.data.id === chapter.data.id
+            });
+
+            chapter.descendants().forEach(function (n) {
+                let indexN = sbSelection.findIndex(function (val) {
+                    return val.data.id === n.data.id
+                });
+                (indexD === -1) ? (indexN === -1) ? sbSelection.push(n) : {} : (indexN === -1) ? {} : sbSelection.splice(indexN, 1);
+            });
 
 
-        checkParent(chapter);
+            checkParent(chapter);
+        }
     }
 };
 
@@ -752,7 +763,7 @@ const appendCircles = function(chartSize) {
                     .style('cursor', 'pointer')
                     .on('click', function(d) {
                         addOrRemove(d);
-                        redrawBreadCrumbs();
+                        //redrawBreadcrumbs();
                         highlightChapter(sbSelection);
                         drawBubbleChart();
                     })
@@ -997,7 +1008,7 @@ const redrawSlider = function(container, svg, id) {
                 drawBubbles();
                 redrawLegend();
                 redrawTreeLegend();
-                redrawBreadCrumbs();
+                //redrawBreadcrumbs();
             }));
 
     slider.insert('g', '.track-overlay')
@@ -1380,6 +1391,7 @@ let bubbleData;
 let bubbleKey = 'amount';
 
 const drawBubbleChart = function() {
+    console.log(sbSelection);
     if(sbSelection.length > 0) {
         drawBubbles();
         let min = d3.min(bubbleData, function (d) {
@@ -1390,6 +1402,7 @@ const drawBubbleChart = function() {
         });
         drawBubbleSlider(min, max + 0.1);
     } else {
+        console.log('remove');
         bubbleGroup = null;
         selectedBubbles = [];
         d3.selectAll('.buContent').remove();
@@ -1681,7 +1694,7 @@ const drawBubbleSlider = function(min, max) {
         .style('stroke', '#000')
         .style('stroke-width', handleSize + 'px')
         .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-        .style('stroke', '#ddd')
+        .style('stroke', '#fff')
         .style('stroke-width', lineSize + 'px')
         .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr('id', 'buTrack-overlay')
@@ -1719,7 +1732,7 @@ const drawBubbleSlider = function(min, max) {
         .attr('class', 'handle')
         .attr('r', handleSize)
         .attr('cy', (lastPercentage !== null) ? buY(lastPercentage) : buY(100))
-        .style('fill', '#fff')
+        .style('fill', '#ddd')
         .style('stroke', '#000')
         .style('stroke-width', handleSize / 10 + 'px');
 };
