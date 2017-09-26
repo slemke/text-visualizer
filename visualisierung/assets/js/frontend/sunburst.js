@@ -978,7 +978,7 @@ const redrawSlider = function(container, svg, id) {
         .style('stroke', '#000')
         .style('stroke-width', handleSize + 'px')
         .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-        .style('stroke', '#ddd')
+        .style('stroke', '#fff')
         .style('stroke-width', lineSize + 'px')
         .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr('id', 'track-overlay')
@@ -1018,7 +1018,7 @@ const redrawSlider = function(container, svg, id) {
         .attr('class', 'handle')
         .attr('r', handleSize)
         .attr('cy', y(sliderScales[activeTopic][2]))
-        .style('fill', '#fff')
+        .style('fill', '#ddd')
         .style('stroke', '#000')
         .style('stroke-width', handleSize / 10 + 'px');
 };
