@@ -1,0 +1,298 @@
+{
+  "id" : 0,
+  "name" : "Characterizing Guidance in Visual Analytics",
+  "children" : [ {
+    "id" : 1,
+    "name" : "abstract",
+    "children" : [ {
+      "id" : 2,
+      "name" : null,
+      "children" : [ ],
+      "size" : 223,
+      "worstSentenceLength" : 29,
+      "worstSentencePunctuation" : 2,
+      "worstStopwordCount" : 94,
+      "worstWordCount" : 7
+    } ],
+    "size" : 223,
+    "worstSentenceLength" : 29,
+    "worstSentencePunctuation" : 2,
+    "worstStopwordCount" : 94,
+    "worstWordCount" : 7
+  }, {
+    "id" : 4,
+    "name" : "Introduction",
+    "children" : [ {
+      "id" : 5,
+      "name" : null,
+      "children" : [ ],
+      "size" : 1505,
+      "worstSentenceLength" : 54,
+      "worstSentencePunctuation" : 13,
+      "worstStopwordCount" : 461,
+      "worstWordCount" : 51
+    } ],
+    "size" : 1505,
+    "worstSentenceLength" : 54,
+    "worstSentencePunctuation" : 13,
+    "worstStopwordCount" : 461,
+    "worstWordCount" : 51
+  }, {
+    "id" : 11,
+    "name" : "Guidance: Terminology and General Concepts",
+    "children" : [ {
+      "id" : 12,
+      "name" : "Einleitung",
+      "children" : [ ],
+      "size" : 3338,
+      "worstSentenceLength" : 66,
+      "worstSentencePunctuation" : 15,
+      "worstStopwordCount" : 1414,
+      "worstWordCount" : 71
+    }, {
+      "id" : 14,
+      "name" : "An Illustrating Non-VA Example",
+      "children" : [ ],
+      "size" : 423,
+      "worstSentenceLength" : 52,
+      "worstSentencePunctuation" : 6,
+      "worstStopwordCount" : 134,
+      "worstWordCount" : 8
+    }, {
+      "id" : 18,
+      "name" : "Definition of Guidance",
+      "children" : [ ],
+      "size" : 1273,
+      "worstSentenceLength" : 56,
+      "worstSentencePunctuation" : 6,
+      "worstStopwordCount" : 318,
+      "worstWordCount" : 37
+    }, {
+      "id" : 25,
+      "name" : "Conceptual Model of Guidance",
+      "children" : [ {
+        "id" : 31,
+        "name" : "Knowledge Gap",
+        "children" : [ ],
+        "size" : 1002,
+        "worstSentenceLength" : 32,
+        "worstSentencePunctuation" : 7,
+        "worstStopwordCount" : 244,
+        "worstWordCount" : 16
+      }, {
+        "id" : 43,
+        "name" : "Input and Output",
+        "children" : [ ],
+        "size" : 1074,
+        "worstSentenceLength" : 37,
+        "worstSentencePunctuation" : 5,
+        "worstStopwordCount" : 213,
+        "worstWordCount" : 20
+      }, {
+        "id" : 56,
+        "name" : "Guidance Degree",
+        "children" : [ ],
+        "size" : 1039,
+        "worstSentenceLength" : 34,
+        "worstSentencePunctuation" : 5,
+        "worstStopwordCount" : 253,
+        "worstWordCount" : 28
+      } ],
+      "size" : 5866,
+      "worstSentenceLength" : 66,
+      "worstSentencePunctuation" : 15,
+      "worstStopwordCount" : 943,
+      "worstWordCount" : 108
+    } ],
+    "size" : 10900,
+    "worstSentenceLength" : 66,
+    "worstSentencePunctuation" : 15,
+    "worstStopwordCount" : 1414,
+    "worstWordCount" : 224
+  }, {
+    "id" : 63,
+    "name" : "A review of guidance in visual analytics",
+    "children" : [ {
+      "id" : 64,
+      "name" : "Einleitung",
+      "children" : [ ],
+      "size" : 4611,
+      "worstSentenceLength" : 78,
+      "worstSentencePunctuation" : 15,
+      "worstStopwordCount" : 1838,
+      "worstWordCount" : 56
+    }, {
+      "id" : 66,
+      "name" : "Knowledge Gap",
+      "children" : [ {
+        "id" : 67,
+        "name" : "Type",
+        "children" : [ ],
+        "size" : 1799,
+        "worstSentenceLength" : 61,
+        "worstSentencePunctuation" : 15,
+        "worstStopwordCount" : 558,
+        "worstWordCount" : 21
+      }, {
+        "id" : 71,
+        "name" : "Domain",
+        "children" : [ ],
+        "size" : 1377,
+        "worstSentenceLength" : 61,
+        "worstSentencePunctuation" : 15,
+        "worstStopwordCount" : 302,
+        "worstWordCount" : 20
+      } ],
+      "size" : 3176,
+      "worstSentenceLength" : 61,
+      "worstSentencePunctuation" : 15,
+      "worstStopwordCount" : 558,
+      "worstWordCount" : 40
+    }, {
+      "id" : 79,
+      "name" : "Input and Output",
+      "children" : [ {
+        "id" : 80,
+        "name" : "Input",
+        "children" : [ ],
+        "size" : 2777,
+        "worstSentenceLength" : 57,
+        "worstSentencePunctuation" : 7,
+        "worstStopwordCount" : 799,
+        "worstWordCount" : 49
+      }, {
+        "id" : 87,
+        "name" : "Output",
+        "children" : [ ],
+        "size" : 1282,
+        "worstSentenceLength" : 57,
+        "worstSentencePunctuation" : 7,
+        "worstStopwordCount" : 279,
+        "worstWordCount" : 30
+      } ],
+      "size" : 4059,
+      "worstSentenceLength" : 57,
+      "worstSentencePunctuation" : 7,
+      "worstStopwordCount" : 799,
+      "worstWordCount" : 79
+    }, {
+      "id" : 93,
+      "name" : "Guidance Degree",
+      "children" : [ {
+        "id" : 95,
+        "name" : "Orienting",
+        "children" : [ ],
+        "size" : 657,
+        "worstSentenceLength" : 45,
+        "worstSentencePunctuation" : 6,
+        "worstStopwordCount" : 134,
+        "worstWordCount" : 12
+      }, {
+        "id" : 99,
+        "name" : "Directing",
+        "children" : [ ],
+        "size" : 356,
+        "worstSentenceLength" : 23,
+        "worstSentencePunctuation" : 3,
+        "worstStopwordCount" : 86,
+        "worstWordCount" : 6
+      }, {
+        "id" : 102,
+        "name" : "Prescribing",
+        "children" : [ ],
+        "size" : 816,
+        "worstSentenceLength" : 68,
+        "worstSentencePunctuation" : 5,
+        "worstStopwordCount" : 205,
+        "worstWordCount" : 18
+      } ],
+      "size" : 2942,
+      "worstSentenceLength" : 68,
+      "worstSentencePunctuation" : 6,
+      "worstStopwordCount" : 439,
+      "worstWordCount" : 43
+    }, {
+      "id" : 106,
+      "name" : "A Detailed Look at Selected Examples",
+      "children" : [ {
+        "id" : 108,
+        "name" : "Example 1: Heterogeneity-Based Guidance",
+        "children" : [ ],
+        "size" : 547,
+        "worstSentenceLength" : 45,
+        "worstSentencePunctuation" : 7,
+        "worstStopwordCount" : 171,
+        "worstWordCount" : 11
+      }, {
+        "id" : 111,
+        "name" : "Example 2: Signposts for Navigation in Large Graphs",
+        "children" : [ ],
+        "size" : 414,
+        "worstSentenceLength" : 33,
+        "worstSentencePunctuation" : 4,
+        "worstStopwordCount" : 101,
+        "worstWordCount" : 9
+      }, {
+        "id" : 114,
+        "name" : "Example 3: Model-Driven Guidance",
+        "children" : [ ],
+        "size" : 360,
+        "worstSentenceLength" : 78,
+        "worstSentencePunctuation" : 13,
+        "worstStopwordCount" : 91,
+        "worstWordCount" : 10
+      } ],
+      "size" : 2254,
+      "worstSentenceLength" : 78,
+      "worstSentencePunctuation" : 13,
+      "worstStopwordCount" : 387,
+      "worstWordCount" : 29
+    } ],
+    "size" : 17042,
+    "worstSentenceLength" : 78,
+    "worstSentencePunctuation" : 15,
+    "worstStopwordCount" : 1838,
+    "worstWordCount" : 210
+  }, {
+    "id" : 117,
+    "name" : "Discussion and future work",
+    "children" : [ {
+      "id" : 118,
+      "name" : null,
+      "children" : [ ],
+      "size" : 4828,
+      "worstSentenceLength" : 63,
+      "worstSentencePunctuation" : 17,
+      "worstStopwordCount" : 1359,
+      "worstWordCount" : 159
+    } ],
+    "size" : 4828,
+    "worstSentenceLength" : 63,
+    "worstSentencePunctuation" : 17,
+    "worstStopwordCount" : 1359,
+    "worstWordCount" : 159
+  }, {
+    "id" : 131,
+    "name" : "Conclusion",
+    "children" : [ {
+      "id" : 132,
+      "name" : null,
+      "children" : [ ],
+      "size" : 225,
+      "worstSentenceLength" : 34,
+      "worstSentencePunctuation" : 3,
+      "worstStopwordCount" : 78,
+      "worstWordCount" : 6
+    } ],
+    "size" : 225,
+    "worstSentenceLength" : 34,
+    "worstSentencePunctuation" : 3,
+    "worstStopwordCount" : 78,
+    "worstWordCount" : 6
+  } ],
+  "size" : 0,
+  "worstSentenceLength" : 0,
+  "worstSentencePunctuation" : 0,
+  "worstStopwordCount" : 0,
+  "worstWordCount" : 0
+}
