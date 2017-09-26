@@ -43,11 +43,11 @@ public class Main {
 
         instance.addTask(task5);
 
-        instance.addTask(task6);
-
         instance.addTask(task7);
 
         instance.addTask(task1);
+
+        instance.addTask(task6);
 
         // add documents
         instance.addDocument(Paths.get("textmining/documents/guidance.xml"));
