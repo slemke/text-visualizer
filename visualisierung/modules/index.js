@@ -12,9 +12,7 @@ router.use('/document', require('./documents/token.js'));
 
 router.use('/document', require('./length/length.js'));
 router.use('/document', require('./punctuation/punctuation.js'));
-router.use('/document', require('./stats/stats.js'));
 router.use('/document', require('./stopwords/stopwords.js'));
-router.use('/document', require('./style/style.js'));
 router.use('/document', require('./wordcount/wordcount.js'));
 
 module.exports = router;

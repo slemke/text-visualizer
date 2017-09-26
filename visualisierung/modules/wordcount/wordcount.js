@@ -1,21 +1,70 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const path = require('path');
 
-router.get('/:documentID/wordcount/', function(req, res) {
+router.get('/:documentid/wordcount/', function(req, res) {
     // returns wordcount for the given document
-    const documentID = req.params.documentID;
+    const documentID = req.params.documentid;
 
-    const chapterID = req.query.chapterID;
+    const id = req.query.id;
 
-    const sectionID = req.query.sectionID;
+    const chapterID = req.query.chapterid;
 
-    const subsectionID = req.query.subsectionID;
+    const sectionID = req.query.sectionid;
 
-    const paragraphID = req.query.paragraphID;
+    const subsectionID = req.query.subsectionid;
 
-    let stopwords = req.query.stopwords;
+    const subsubsectionID = req.query.subsubsectionid;
 
-    // filter data based on ids
+    fs.readFile(path.join(__dirname, '../../db/' + documentID, 'wordcount.json'), 'utf-8', function(err, result) {
+        if(err)
+            res.status(500).end();
+
+        let wordcount = JSON.parse(result);
+
+        if(id != undefined) {
+            punctuation = punctuation.filter(function(obj) {
+                let found = false;
+
+                if(id == obj.chapterID)
+                    found = true;
+
+                if(id == obj.sectionID)
+                    found = true;
+
+                if(id == obj.subsectionID)
+                    found = true;
+
+                if(id == obj.subsubsectionid)
+                    found = true;
+
+                return found;
+            });
+        } else if(chapterID != undefined) {
+            wordcount = wordcount.filter(function(obj) {
+                return obj.chapterID == chapterID;
+            });
+        } else if(sectionID != undefined) {
+            wordcount = wordcount.filter(function(obj) {
+                return obj.sectionID == sectionID;
+            });
+        } else if(subsectionID != undefined) {
+            wordcount = wordcount.filter(function(obj) {
+                return obj.subsectionID == subsectionID;
+            });
+        } else if(subsubsectionID != undefined) {
+            wordcount = wordcount.filter(function(obj) {
+                return obj.subsubsectionID == subsubsectionID;
+            });
+        } else if(paragraphID != undefined) {
+            wordcount = wordcount.filter(function(obj) {
+                return obj.paragraphID == paragraphID;
+            });
+        }
+        res.status(200).json(wordcount);
+
+    });
 });
 
 module.exports = router;
