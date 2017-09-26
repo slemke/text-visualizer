@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: /Users/RosaDoener/Desktop/VI-Projekt/git/vi-projekt/documentation_template/.texpadtmp/template.aux
+The style file: ../abbrv-doi.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ../references.bib
+You've used 1 entry,
+            2598 wiz_defined-function locations,
+            601 strings with 4854 characters,
+and the built_in function-call counts, 1319 in all, are:
+= -- 287
+> -- 53
+< -- 44
++ -- 67
+- -- 21
+* -- 54
+:= -- 203
+add.period$ -- 4
+call.type$ -- 1
+change.case$ -- 13
+chr.to.int$ -- 0
+cite$ -- 1
+duplicate$ -- 10
+empty$ -- 19
+format.name$ -- 20
+if$ -- 338
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 1
+newline$ -- 15
+num.names$ -- 2
+pop$ -- 10
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 8
+stack$ -- 0
+substring$ -- 51
+swap$ -- 1
+text.length$ -- 27
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 0
+while$ -- 4
+width$ -- 2
+write$ -- 45

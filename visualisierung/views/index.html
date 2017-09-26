@@ -7,6 +7,9 @@
         <link href="assets/css/index.min.css" rel="stylesheet" />
     </head>
     <body>
+    <style>
+        h1 {text-align:center;}
+    </style>
         <div class="container-fluid">
             <div class="row">
                 <div id="visualization">
@@ -46,6 +49,7 @@
                             </div>-->
 
                             <div id="sunburst">
+                                <h1>Navigation</h1>
                                 <ul class="nav nav-tabs" role="tablist" id="tabs">
                                     <li role="presentation" class="active">
                                         <a href="#sunburst-tab" data-toggle="tab">Sunburst</a>
@@ -62,49 +66,32 @@
                                         <div class="sbSlider-container" id="SBSliderContainer"></div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="tree-tab">
-                                        <div class="treeLegend-container" id="TreeLContainer"></div>
                                         <div class="tree-container" id="TreeContainer"></div>
+                                        <div class="sbSlider-container" id="TreeSliderContainer"></div>
                                     </div>
                                 </div>
-                                <div class="breadcrumb-container" id="BCContainer"></div>
                             </div>
 
                             <div id="data">
+                                <h1>Details</h1>
                                 <ul class="nav nav-tabs" role="tablist" id="data-tabs">
-                                    <li role="presentation" class="active">
+                                   <!--  <li role="presentation" class="active">
                                         <a href="#statistics-tab" data-toggle="tab">Statistik</a>
-                                    </li>
-                                    <li role="presentation">
+                                    </li> -->
+                                    <li role="presentation" class="active">
                                         <a href="#bubble-tab" data-toggle="tab">Bubble Chart</a>
                                     </li>
                                 </ul>
-
+                               <!--  <div class="breadcrumb-container" id="BCContainer"></div> -->
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div role="tabpanel" class="tab-pane active" id="statistics-tab">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Key</th>
-                                                    <th>Value</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Count</td>
-                                                    <td>123</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane" id="bubble-tab">
+                                    <div role="tabpanel" class="tab-pane active" id="bubble-tab">
                                         <div class="detail-container" id="DTContainer">
                                             <div class="text-container" id="TContainer"></div>
                                             <div class="bubble-container" id="BUContainer"></div>
-                                            <div class="sbSlider-container" id="BUSliderContainer"></div>
+                                            <div class="buSlider-container" id="BUSliderContainer"></div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
