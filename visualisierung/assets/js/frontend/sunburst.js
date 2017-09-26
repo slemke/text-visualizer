@@ -36,7 +36,12 @@ let wholeSize,
 
 let chapterColors = [ '#0e6873', '#8c3c61', '#e98548', '#83c6dc', '#af6a40','#584337', '#a08562', '#8c9898', '#5f6d6e', '#87816c', '#b4aa92', '#7d7061', '#917359', '#7d6852', '#bba98b', '#a3906b'];
 let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
-let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.1,0.1).reverse()]};
+let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.1,0.1).reverse()],
+    worstSentenceLength : [0, 100, 50, '', d3.range(0,101,1).reverse()],
+    worstSentencePunctuation : [0, 50, 25, '', d3.range(0,51,1).reverse()],
+    worstStopwordCount : [0, 20, 10, '', d3.range(0,20.1,0.1).reverse()],
+    worstWordCount : [0, 10, 5, '', d3.range(0,10.1,0.1).reverse()]};
+
 let activeTopic = 'size';
 let lastInformationText = ['Lastly (De-)Selected Chapter', '. . .', '. . .', 0.2];
 
@@ -1389,15 +1394,16 @@ let BubbleContainer = document.getElementById('nav-tabContent'),
 let bubbleGroup = null;
 let bubbleData;
 let bubbleKey = 'amount';
+let keys;
 
 const drawBubbleChart = function() {
     if(sbSelection.length > 0) {
         drawBubbles();
         let min = d3.min(bubbleData, function (d) {
-            return d[bubbleKey]
+            return keys.value(d)
         });
         let max = d3.max(bubbleData, function (d) {
-            return d[bubbleKey]
+            return keys.value(d)
         });
         drawBubbleSlider(min, max + 0.1);
     } else {
@@ -1408,8 +1414,39 @@ const drawBubbleChart = function() {
     }
 };
 
+const getKeys = function() {
+    switch(activeTopic) {
+        case 'worstSentenceLength':
+            return {value: function (element) { return element['length']}, text: function (element) { return element['sentence']}};
+            break;
+        case 'worstSentencePunctuation':
+            return {value: function (element) { return element['count']}, text: function (element) { return element['sentence']}};
+            break;
+        case 'worstStopwordCount':
+            return {
+                value: function (element) { return element['length']}, text: function (element) {
+                    let path = '';
+                    if (element.chaptername !== null) path += (element.chaptername + ' > ');
+                    if (element.sectionname !== null) path += (element.sectionname + ' > ');
+                    if (element.subsectionname !== null) path += (element.subsectionname + ' > ');
+                    if (element.subsubsectionname !== null) path += (element.subsubsectionname + ' > ');
+                    if (element.idInChapter !== null) path += ('Paragraph ' + element.idInChapter);
+                    return path;
+                }
+            };
+            break;
+        case 'worstWordCount':
+            return {value: function (element) { return element['count']}, text: function (element) { return element['word']}}
+            break;
+        default:
+            return {value: function (element) { return element['size']}, text: function (element) { return element['name']}};
+            break;
+    }
+};
+
 const drawBubbles = function() {
     d3.selectAll('.buTextContent').remove();
+    keys = getKeys();
     let buWidth = BubbleContainer.clientWidth * 0.95;
     let height = BubbleContainer.clientHeight * 0.85;
 
@@ -1430,7 +1467,7 @@ const drawBubbles = function() {
     let textFontSize = textFieldHeight / 4;
 
     let data = bubbleData;
-    if (bubbleMinValue !== null) data = data.filter(function(d) {return d[bubbleKey] >= bubbleMinValue});
+    if (bubbleMinValue !== null) data = data.filter(function(d) {return keys.value(d) >= bubbleMinValue});
 
     if(data.length > 0) {
         buTextSvg.append('rect')
@@ -1455,7 +1492,7 @@ const drawBubbles = function() {
 
         if (bubbleMinValue === null) {
             bubbleData.sort(function (a, b) {
-                return -(a[bubbleKey] - b[bubbleKey])
+                return -(keys.value(a) - keys.value(b))
             });
         }
 
@@ -1546,14 +1583,14 @@ const drawBubbles = function() {
                     })
                     .transition()
                     .duration(500)
-                    .style('fill', colorThresh(d.data[bubbleKey]))
+                    .style('fill', colorThresh(keys.value(d.data)))
                     .attr('r', d.r);
 
                 group.select('.leafText')
                     .attr('clip-path', 'url(#bubbleClip' + i + ')')
                     .on('mouseenter', function () {
 
-                        textField.text(d.data.name + ' (' + d.data[bubbleKey] + ')');
+                        textField.text(keys.text(d.data) + ' (' + keys.value(d.data) + ')');
                         textField.call(wrapY, textFieldWidth, textFieldSpacing + 2, true);
 
                         let radius = d3.max([d3.min([buWidth, buHeight]) / 10 - 1, d.r - 1]);
@@ -1580,7 +1617,7 @@ const drawBubbles = function() {
                             .style('fill', '#fff')
                             .style('font-weight', 'bold')
                             .style('text-anchor', 'middle')
-                            .text((d.data[bubbleKey] + '').substring(0, radius / 2));
+                            .text((keys.value(d.data) + '').substring(0, radius / 2));
 
                         group.transition().attr('opacity', 1);
 
@@ -1624,7 +1661,7 @@ const drawBubbles = function() {
 const adjustBubbleColor = function() {
     d3.selectAll('.leafNode circle')
         .transition()
-        .style('fill', function(d) {return colorThresh(d.data[bubbleKey])});
+        .style('fill', function(d) {return colorThresh(keys.value(d.data))});
 };
 
 const adjustBubbleOpacity = function() {
