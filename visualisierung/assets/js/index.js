@@ -1396,7 +1396,6 @@ $(document).ready(function() {
     ];
 
     const initializeCharts = function() {
-        console.log('penis');
         drawSunburst(chapter, bubbleData);
     };
 

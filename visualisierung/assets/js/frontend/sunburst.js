@@ -1391,7 +1391,6 @@ let bubbleData;
 let bubbleKey = 'amount';
 
 const drawBubbleChart = function() {
-    console.log(sbSelection);
     if(sbSelection.length > 0) {
         drawBubbles();
         let min = d3.min(bubbleData, function (d) {
@@ -1402,7 +1401,6 @@ const drawBubbleChart = function() {
         });
         drawBubbleSlider(min, max + 0.1);
     } else {
-        console.log('remove');
         bubbleGroup = null;
         selectedBubbles = [];
         d3.selectAll('.buContent').remove();
