@@ -1498,6 +1498,7 @@ const getKeys = function() {
     switch(activeTopic) {
         case 'worstSentenceLength':
             return {value: function (element) { return element['length']},
+                textValue: function (element) { return element['length']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['length']},
                 highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])},
@@ -1505,6 +1506,7 @@ const getKeys = function() {
             break;
         case 'worstSentencePunctuation':
             return {value: function (element) { return element['count']},
+                textValue: function (element) { return element['length']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['count']},
                 highlight: function(element) {text.highlight.list(chapterID, element['sentenceID'])},
@@ -1520,13 +1522,16 @@ const getKeys = function() {
                     if (element.subsubsectionname !== null) path += (element.subsubsectionname + ' > ');
                     if (element.idInChapter !== null) path += ('Paragraph ' + element.idInChapter);
                     return path;
-                }, color: function (element) { return element['normalized']}, //TODO: AENDERN AUF NORMALIZED WENN DA
+                },
+                textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(element['normalized']) + '%'},
+                color: function (element) { return element['normalized']}, //TODO: AENDERN AUF NORMALIZED WENN DA
                 highlight: function(element) {text.highlight.list(chapterID, element['token'])},
                 id: function(element) {return element['paragraphID']}
             };
             break;
         case 'worstWordCount':
             return {value: function (element) { return element['count']},
+                textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
                 highlight: function(element) {text.highlight.id(chapterID, element['word'])},
@@ -1683,7 +1688,7 @@ const drawBubbles = function() {
                 group.select('.leafText')
                     .attr('clip-path', 'url(#bubbleClip' + i + ')')
                     .on('mouseenter', function () {
-                        textField.text(keys.text(d.data) + ' (' + d3.format('.2f')(keys.value(d.data)) + ')');
+                        textField.text(keys.text(d.data) + ' (' + (keys.textValue(d.data)) + ')');
                         textField.call(wrapY, textFieldWidth, textFieldSpacing + 2, true);
 
                         let radius = d3.max([d3.min([buWidth, buHeight]) / 10 - 1, d.r - 1]);
@@ -1699,6 +1704,7 @@ const drawBubbles = function() {
 
                         group.select('.leafText')
                             .transition()
+                            .style('fill', '#000')
                             .text(keys.text(d.data).substring(0, radius / 2));
 
                         group.append('text')
@@ -1707,10 +1713,10 @@ const drawBubbles = function() {
                             .attr('dy', '.35em')
                             .attr('clip-path', 'url(#bubbleClip' + i + ')')
                             .attr('class', 'infoText')
-                            .style('fill', '#fff')
+                            .style('fill', '#000')
                             .style('font-weight', 'bold')
                             .style('text-anchor', 'middle')
-                            .text(d3.format('.2f')(keys.value(d.data) + '').substring(0, radius / 2));
+                            .text((keys.textValue(d.data) + '').substring(0, radius / 2));
 
                         group.transition().attr('opacity', 1);
 
@@ -1727,6 +1733,7 @@ const drawBubbles = function() {
 
                         group.select('.leafText')
                             .transition()
+                            .style('fill', '#fff')
                             .text(keys.text(d.data).substring(0, d.r / 4));
 
                         group.select('.infoText').remove();
