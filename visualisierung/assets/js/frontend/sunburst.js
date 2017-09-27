@@ -1514,7 +1514,7 @@ const getKeys = function() {
             break;
         case 'worstSentencePunctuation':
             return {value: function (element) { return element['count']},
-                textValue: function (element) { return element['length']},
+                textValue: function (element) { return element['count']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['count']},
                 highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])}};
