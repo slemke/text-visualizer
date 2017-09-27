@@ -1570,9 +1570,11 @@ const drawBubbles = function() {
     let textFontSize = textFieldHeight / 4;
 
     let data = bubbleData;
-    if (bubbleMinValue !== null) data = data.filter(function(d) {return keys.value(d) >= bubbleMinValue});
+    let length = (500 > data.length) ? data.length : 500;
+    let percent = (lastPercentage !== null) ? length / 100 * lastPercentage : length;
+    data = data.slice(0, percent);
+    //if (bubbleMinValue !== null) data = data.filter(function(d) {return keys.value(d) >= bubbleMinValue});
 
-    if (data.length > 500) data = data.slice(0, 500);
 
     if(data.length > 0) {
         buTextSvg.append('rect')
