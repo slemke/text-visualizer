@@ -58,6 +58,7 @@ const traverseAndFix = function(node) {
 
     if(node.children.length > 0) {
         if (node.children.length > 1){
+            node.newSize = node.size;
             delete node.size;
             if(node.children[0].name !== 'Einleitung') {
                 node.hasIntroduction = false;
@@ -1520,7 +1521,8 @@ const getKeys = function() {
             break;
         case 'worstStopwordCount':
             return {
-                value: function (element) { return element['count']}, text: function (element) {
+                value: function (element) { return getNormalize(element)},
+                text: function (element) {
                     let path = '';
                     if (element.chaptername !== null) path += (element.chaptername + ' > ');
                     if (element.sectionname !== null) path += (element.sectionname + ' > ');
@@ -1530,8 +1532,8 @@ const getKeys = function() {
                     return path;
                 },
                 textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(getNormalize(element)) + '%'},
-                color: function (element) { return getNormalize(element)}, //TODO: AENDERN AUF NORMALIZED WENN DA
-                highlight: function(element) {text.highlight.list(chapterID, element['token'])}
+                color: function (element) { return getNormalize(element)},
+                highlight: function(element) {text.highlight.list(getChapterID(element), element['token'])}
             };
             break;
         case 'worstWordCount':
@@ -1539,7 +1541,7 @@ const getKeys = function() {
                 textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
-                highlight: function(element) {text.highlight.id(chapterID, element['word'])}};
+                highlight: function(element) {text.highlight.id(getChapterID(element), element['word'])}};
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};
@@ -1548,14 +1550,25 @@ const getKeys = function() {
 };
 
 const getNormalize = function(element) {
-    let count = element['count'];
+    if(element.count) {
+        let count = element['count'];
+        let cID = getChapterID(element);
+
+        let chapter = root.descendants().filter(function (d) {
+            return d.data.id === cID;
+        });
+        let chapterSize = (chapter[0].data.size) ? chapter[0].data.size : chapter[0].data.newSize;
+        return count / chapterSize * 100;
+    } else return 0;
+};
+
+const getChapterID = function(element) {
     let cID;
-    if(element[])
-    let chapterSize = root.descendants().filter(function (d) {
-        return d.data.id === cID;
-    });
-    console.log(chapterSize);
-    return count / chapterSize * 100;
+    if (element['subsubsectionID']) cID = element['subsubsectionID'];
+    else if (element['subsectionID']) cID = element['subsectionID'];
+    else if (element['sectionID']) cID = element['sectionID'];
+    else if (element['chapterID']) cID = element['chapterID'];
+    return cID;
 };
 
 const drawBubbles = function() {
