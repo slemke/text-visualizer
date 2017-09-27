@@ -15,6 +15,21 @@ body > .container-fluid, body > .container-fluid > .row {
     background-color: #f8f8f8;
 }
 
+.highlight {
+    background-color: #FF0000;
+    color: #FFF;
+}
+
+h1, h2, h3, h4, h5 {
+    text-transform: capitalize;
+}
+
+.heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
 #text .row {
     margin: 20px;
     padding: 20px;
@@ -45,13 +60,17 @@ body > .container-fluid, body > .container-fluid > .row {
     margin: 0 0 20px;
 }
 
+#text p {
+    margin: 0 0 20px;
+}
+
 #visualization, #text {
     float: left;
     height: 100%;
 }
 
 #visualization #sunburst, #visualization #data {
-    padding: 20px;
+    padding: 0 20px 20px;
 }
 
 
@@ -279,6 +298,8 @@ body > .container-fluid, body > .container-fluid > .row {
 
 #text header h1 {
     font-size: 24px;
+    border-bottom: 1px solid #dedede;
+    padding: 0 0 10px 0;
 }
 
 #text article h1 {
@@ -303,4 +324,15 @@ body > .container-fluid, body > .container-fluid > .row {
 
 #text article h6 {
     font-size: 12px;
+}
+
+#back-to-top {
+    position: absolute;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 5px 10px 0;
+    font-size: 20px;
+    right: 50px;
+    bottom: 0px;
+    z-index: 9999;
 }
