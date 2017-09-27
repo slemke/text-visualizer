@@ -1685,7 +1685,6 @@ const drawBubbles = function() {
                         selectedBubbles.push(d);
                         d3.select(this).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
                         keys.highlight(d.data);
-                        //adjustBubbleOpacity();
                     })
                     .transition()
                     .duration(500)
@@ -1723,9 +1722,9 @@ const drawBubbles = function() {
                             .style('fill', '#000')
                             .style('font-weight', 'bold')
                             .style('text-anchor', 'middle')
-                            .text((keys.textValue(d.data) + '').substring(0, radius / 2));
+                            .text((keys.textValue(d.data) + '').substring(0, radius / 4));
 
-                        group//.transition()
+                        group.transition()
                             .attr('opacity', 1);
 
                     }).on('mouseleave', function () {
