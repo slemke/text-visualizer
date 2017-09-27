@@ -13,7 +13,8 @@ $(document).ready(function() {
     $('#document-analysis').change(function() {
         $('#document-analysis option:selected').each(function() {
             let view = $(this).attr('value');
-            // TODO call visualization update
+            activeTopic = view;
+            initializeCharts();
         });
     });
 
@@ -25,20 +26,24 @@ $(document).ready(function() {
 
     // add bootstrap tab functionality
     $('#tabs, #data-tabs').click(function (e) {
-
         // prevent default behavior
         e.preventDefault();
 
         // call bootstrap tab show
         $(this).tab('show');
-    })
+
+        delay(function() {
+            redrawTreeLegend();
+            redrawLegend();
+        }, 0.1);
+    });
 
     // update visualization on resize
     $(window).resize(function() {
 
         // delay function to minimize resize events
         delay(function() {
-            // call visualization update function
+            initializeCharts();
         }, 500);
 
     });
