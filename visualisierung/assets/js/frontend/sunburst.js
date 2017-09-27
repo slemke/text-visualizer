@@ -1645,7 +1645,7 @@ const drawBubbles = function() {
                     .attr('r', 0)
                     .attr('class', 'leafCircle')
                     .attr('opacity', 0)
-                    .style('fill', 'transparent')
+                    .style('fill', '#fff')
                     .style('stroke', '#000')
                     .style('stroke-width', 1);
 

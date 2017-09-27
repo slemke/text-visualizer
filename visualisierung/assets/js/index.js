@@ -14,6 +14,8 @@ $(document).ready(function() {
         $('#document-analysis option:selected').each(function() {
             let view = $(this).attr('value');
             activeTopic = view;
+            lastPercentage = null;
+            bubbleMinValue = null;
             initializeCharts();
         });
     });
