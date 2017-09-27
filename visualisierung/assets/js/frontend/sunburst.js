@@ -241,9 +241,13 @@ const redrawTree = function(chapters) {
             //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
-            if (sbSelection.length > 0) {
-                text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
-            } else text.highlight.scroll(0);
+            setTimeout(function() {
+                setTimeout(function() {
+                    if (sbSelection.length > 0) {
+                        text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
+                    } else text.highlight.scroll(0);
+                }, 500)
+            }, 500)
         });
 
     chapterNodes.append('title')
@@ -509,9 +513,11 @@ const initializeAndDrawSunburst = function(chapter) {
             //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
-            if (sbSelection.length > 0) {
-                text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
-            } else text.highlight.scroll(0);
+            setTimeout(function() {
+                if (sbSelection.length > 0) {
+                    text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
+                } else text.highlight.scroll(0);
+            }, 500)
         });
 
     changeColorForPercentage();
@@ -816,9 +822,11 @@ const appendCircles = function(chartSize) {
                         //redrawBreadcrumbs();
                         highlightChapter(sbSelection);
                         drawBubbleChart();
-                        if (sbSelection.length > 0) {
-                            text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
-                        } else text.highlight.scroll(0);
+                        setTimeout(function() {
+                            if (sbSelection.length > 0) {
+                                text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
+                            } else text.highlight.scroll(0);
+                        }, 500)
                     })
                     .on('mouseenter', function(d) {
                         if(d.data.id !== root.descendants()[0].data.id) {
