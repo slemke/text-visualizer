@@ -1575,6 +1575,7 @@ const drawBubbles = function() {
     let data = bubbleData;
     if (bubbleMinValue !== null) data = data.filter(function(d) {return keys.value(d) >= bubbleMinValue});
 
+    if (data.length > 1000) data = data.slice(0, 1000);
     if(data.length > 0) {
         buTextSvg.append('rect')
             .attr('class', 'buTextContent')
