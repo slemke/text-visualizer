@@ -1,3 +1,53 @@
-\section{Related Work}
-Are there other visualization papers you might want to cite?
-You can cite like this \cite{Isenberg:2017:VMC}, the references are located in the file references.bib.
+\section{Text Mining und Datenstrukturen}
+Um die oben beschrieben Werte visualisieren zu können muss eine entsprechende Datenquelle mit lexikalischen Informationen vorhanden sein.
+
+\subsection{Vorverarbeitung}
+Während eines Text Mining Vorhabens nimmt die Vorarbeitung der Dokumente die meiste Zeit des Projektes ein. Dabei geht es darum geeignete Datenquellen zu recherchieren, aufzubereiten und zu standardisieren. Da sich dieses Projekt primär auf die Visualisierung der Daten konzentriert wurde die Menge der Dokumente begrenzt und die die Vorverarbeitung entsprechend angepasst um zu Zeit sparen. Deswegen wurde das zu Grunde liegende Dokument per Hand in XML standardisiert um Aufwand für Implementierung und Zeit zu sparen. Hierbei wurde XML verwendet, da es nicht nur eine ideale Form der Dokumentenbeschreibung ist, sondern auch dank Data Binding mit Hilfe von JAXB eine schnelle Übersetzung in Java Objekte erlaubt, welches ein schnelles parsen möglichen machen.\\
+
+Nachdem die Dokumente standardisiert sind und dadurch in einem einheitlichen Format vorliegen können die Texte auf den folgenden Ebenen untersucht wurden.
+
+\subsubsection{Morphologisch}
+Die morphologische Untersuchung behandelt die Texte auf Zeichenebene. Dabei werden folgende Methoden auf Wortformen (sogenannte Token) angewendet. Hier einige Beispiele:\\
+
+\begin{itemize}
+\item Tokenisierung
+\item Finden von Satzenden
+\item Stammformreduktion (Stemming)
+\end{itemize}
+
+Üblicherweise beginnt man damit den Text in einzelne Wortformen (Token) zu zerlegen. Dabei wird in westlichen Sprachen üblicherweise das "white-space-tokenizing" verwendet. Dabei werden Strings anhand von Leerzeichen, Tabs, Zeilenumbrüchen und ähnlichen Trennzeichen aufgetrennt. Dabei treten erste Probleme auf, da nicht jede Sprache über Leerzeichen verfügt (Chinesisch) oder Wörter wie "New York" werden als einzelne Worte betrachtet, obwohl sie zusammen gehören.\\
+
+Der nächste Schritt umfasst das Finden von Satzgrenzen. Auch hier treten einige Herausforderungen auf, da beispielsweise nicht jeder Punkt ein Satzende darstellt. So bilden Abkürzungen wie "Dr." oder "et al." keine Satzgrenzen und müssen daher entsprechend dem Token zugeordnet werden.\\
+
+Ein weiterer Schritt ist das Stemming, welcher allerdings oft in Abhängigkeit der Text Mining Ziele durchgeführt wird. So gibt es hier einfache Normalisierungen wie das Auflösen von Ein- und Mehrzahl, welches man auch als "Inflectional Stemming" bezeichnet. Das Ziel dabei ist es die Genauigkeit der folgenden Analyse zu erhöhen, etwa bei statistischen Analysen wie Worthäufigkeiten. Als Gegensatz dazu existiert auch das "Root Stemming", welches eine aggressivere Form des Stemmings darstellt. Dabei geht das Stemming so weit, das Token wie "Application" auf ihren eigentlichen Wortstamm zurückgeführt werden ("apply").\\
+
+Da diese Untersuchungen oft die Grundlage von Text Mining Vorhaben bilden werden auch in diesem Projekt einige der oben genannten Methoden verwendet. So wurden die Texte tokenisiert und die Satzgrenzen entsprechend gekennzeichnet.
+
+\subsubsection{Syntaktisch}
+
+Die syntaktische Ebene befasst sich mit der Untersuchung von Texten auf Satzebene. Dabei werden die Zeichen in Beziehung zueinander gestellt und untersucht. Beispiele dafür sind folgende:\\
+
+\begin{itemize}
+\item Part-of-Speech
+\item Phrase Recognition
+\end{itemize}
+
+Bei dem Part-of-Speech Tagging handelt es sich um das Erkennen von Wortklassen (Nomen, Verben, ...) und die Annotation der Token mit selbigen. Aufgrund der Vielfältigkeit von Sprache (und dem Umstand das eine Sprache lebt) werden hier oft statistische Ansätze verwendet. 
+
+Bei der Phrase Recognition geht es darum Phrasen in Texten zu erkennen. So können POS-Tags dabei helfen bestimmte Wortgruppen zu finden, oder einfache Form wie das "Noun phrase chunking" ermöglichen.\\
+
+Wie bereits oben beschrieben liegt der Fokus auf diversen Messwerten, daher ist eine syntaktische Untersuchung der Texte in diesem Projekt nicht zielführend. Dennoch wurden mit Hilfe von Part-of-Speech Tagging versucht Werte für eine mögliche Erkennung des Nominalstils zu sammeln, welche im Ausblick diskutiert werden.
+
+\subsubsection{Semantisch}
+Die semantische Analyse befasst sich mit der Bedeutung von Wörtern und ihrer digitalen Darstellung. Hier wird oft auf Hintergrundwissen zurück gegriffen, so werden beispielsweise Fachsprachen (Informatik, Medizin, etc) über Ontologien oder Taxonomien modelliert und in den Prozess eingebunden. Damit sollen Probleme wie beispielsweise Mehrdeutigkeit (Word Sense Disambiguation) umgangen werden. \\
+
+Diese Art der Untersuchung erfordert allerdings einen größeren Umfang, als es in diesem Projekt möglich war, daher wurden keine semantischen Untersuchungen durchgeführt.
+
+\subsection{Analyse}
+Der Bereich Text und Data Mining umfasst eine große Mengen an Methoden um diverse Informationen aus Texten zu extrahieren bzw zugänglich zu machen. So werden diese oft in verschiedene Kategorien eingeteilt, wie beispielsweise das Information Retrieval oder Information Extraction. Diese Methoden sind sehr weitreichend und aufwendig. Eine entsprechende Vorstellung und Durchführung sind nicht Ziel dieses Projekts, daher wird an dieser Stelle darauf verzichtet.\\
+
+Stattdessen werden statistische Hilfsmittel genutzt um Daten für die Visualisierungen zu gewinnen. Dabei werden Mittel der deskriptiven Statistik verwendet um die in der Einleitung beschrieben Werte zu ermitteln.
+
+\subsection{Datenstruktur und Implementierung}
+Da die Visualisierung mit Hilfe von d3.js implementiert wird, werden die Daten in JSON bereitgestellt. Die Texte werden mit Hilfe von Open NLP der Apache Software Foundation aufbereitet, welches Java als Programmiersprache nutzt. Außerdem werden hier einige Modelle bereitgestellt um Aufgaben wie Tokenisierung oder Part-of-Speech Tagging durchzuführen. Die Daten werden im Anschluss mit einem Node.js Server gekoppelt um diverse Filteroptionen zu ermöglichen.
+
