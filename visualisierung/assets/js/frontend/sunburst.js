@@ -39,27 +39,64 @@ let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
 let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.1,0.1).reverse()],
     worstSentenceLength : [0, 100, 50, '', d3.range(0,101,1).reverse()],
     worstSentencePunctuation : [0, 50, 25, '', d3.range(0,51,1).reverse()],
-    worstStopwordCount : [0, 20, 10, '', d3.range(0,20.1,0.1).reverse()],
-    worstWordCount : [0, 10, 5, '', d3.range(0,10.1,0.1).reverse()]};
+    worstStopwordCount : [0, 20, 10, '%', d3.range(0,20.1,0.1).reverse()],
+    worstWordCount : [0, 10, 5, '%', d3.range(0,10.1,0.1).reverse()]};
 
-let activeTopic = 'size';
+let activeTopic = 'worstWordCount';
 let lastInformationText = ['Lastly (De-)Selected Chapter', '. . .', '. . .', 0.2];
 
-const drawSunburst = function(chapter, buData) {
-        removeAll();
-        bubbleData = buData;
-        dataDocument = chapter;
+const setData = function(data) {
+    dataDocument = data;
+};
 
-        initializeAndDrawSunburst(chapter);
+const setBubbleData = function(data) {
+    bubbleData = data;
+};
+
+const traverseAndFix = function(node) {
+    node.worstWordCount = (node.worstWordCount / node.size * 100);
+    node.worstStopwordCount = (node.worstStopwordCount / node.size * 100);
+
+    if(node.children.length > 0) {
+        if (node.children.length > 1){
+            delete node.size;
+            if(node.children[0].name !== 'Einleitung') {
+                node.hasIntroduction = false;
+            } else {
+                node.children[0].name = 'Introdution to chapter';
+                node.hasIntroduction = true;
+            }
+        }
+
+        if(node.children[0].name === null) {
+            node.hasIntroduction = true;
+            if(node.children.length === 1) {
+                delete node.children;
+            }
+        }
+
+        if (node.children) node.children.forEach(traverseAndFix);
+    } else {
+        if(node.size > 0) {
+            node.hasIntroduction = true;
+        }
+        delete node.children;
+    }
+};
+
+const drawSunburst = function() {
+        removeAll();
+
+        initializeAndDrawSunburst(dataDocument);
         redrawLegend();
         redrawSlider(SBContainer, sbSliderSvg, 'sbSlider');
 
-        redrawTree(chapter);
+        redrawTree(dataDocument);
         redrawTreeLegend();
         redrawSlider(TreeContainer, treeSliderSvg, 'treeSlider');
 
         ////redrawBreadcrumbs();
-        drawBubbleChart();
+        drawBubbles();
 };
 
 /** All functions for the tree */
@@ -115,6 +152,7 @@ const redrawTree = function(chapters) {
         .separation(function(a, b) { return (a.parent === b.parent ? 1 : 2); });
 
     let treeNodes = tree(newRoot);
+    treeNodes.x = height / 2;
 
     treeSvg.append('rect')
         .attr('class', 'content')
@@ -212,7 +250,7 @@ const redrawTree = function(chapters) {
             if(d.descendants().length === 1) {
                 return d.data.name + ' (Worst Value: ' + d3.format('.2f')(d3.max(d.descendants(), function (c) {
                         return c.data[activeTopic]
-                    })) + ')'
+                    })) + '' + sliderScales[activeTopic][3] + ')'
             } else {return d.data.name}
         });
 
@@ -377,11 +415,11 @@ const initializeAndDrawSunburst = function(chapter) {
     sbSvg.attr('viewBox', '0 0 ' + sbWidth + ' ' + chartSize);
 
     root = d3.hierarchy(chapter)
-        .sum(function (d) { return d.size});
+        .sum(function (d) {return d.size});
 
     let maxDepth = d3.max(root.leaves(), function(d) {return d.depth});
-    innerRadius = chartSize / 5;
-    let radius = chartSize / 2;
+    innerRadius = (chartSize - 10) / 5;
+    let radius = (chartSize - 10) / 2;
     let partsSize = (radius - innerRadius) / maxDepth;
 
     partition = d3.partition()
@@ -410,7 +448,7 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('class', 'content')
         .attr('id', 'bgRect')
         .attr('width', sbWidth)
-        .attr('height', sbHeight)
+        .attr('height', chartSize)
         .style('fill', '#fff')
         .style('cursor', 'pointer')
         .on('mouseenter', function() {
@@ -428,8 +466,9 @@ const initializeAndDrawSunburst = function(chapter) {
         });
 
     g = sbSvg.append('g')
-        .attr('transform', 'translate(' + sbWidth / 2 + ',' + chartSize / 2 + ')')
+        .attr('transform', 'translate(' + sbWidth / 2 + ',' + (chartSize / 2 - 10)+ ')')
         .attr('class', 'sunburstGroup content')
+        .attr('id', 'sbRoot')
         .selectAll('g')
         .data(root.descendants());
 
@@ -449,7 +488,8 @@ const initializeAndDrawSunburst = function(chapter) {
                     updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)), d3.format('.2f')(d3.max(d.descendants(), function (c) {
                         return c.data[activeTopic]
                     })));
-                } else { updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)))}                highlightChapter(sbSelection);
+                } else { updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)))}
+                highlightChapter(sbSelection);
                 d.descendants().forEach(function(c) {
                     let index = sbSelection.findIndex(function(val) {
                         return val.data.id === c.data.id
@@ -493,7 +533,7 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('x', 0)
         .attr('y', innerRadius / 2)
         .attr('text-anchor', 'middle')
-        .attr('font-size', fontSize)
+        .attr('font-size', fontSize / 1.2)
         .attr('font-weight', 'bold')
         .attr('dy', '.35em')
         .attr('pointer-events', 'none')
@@ -544,6 +584,7 @@ const initializeAndDrawSunburst = function(chapter) {
         .attr('pointer-events', 'none');
 
     appendCircles(chartSize / 300);
+
 
     if(sbSelection.length > 0) {
         highlightChapter(sbSelection);
@@ -758,7 +799,7 @@ const getPercentage = function(selection, toParent, forColor) {
 const appendCircles = function(chartSize) {
     d3.selectAll('.sunburstNode')
         .each(function(d) {
-            if (!d.data.size && d.data.id !== root.descendants()[0].data.id) {
+            if (!d.data.hasIntroduction && d.data.id !== root.descendants()[0].data.id) {
                 d3.select(this)
                     .append('circle')
                     .attr('class', 'sunburstSelected sunburstPart')
@@ -779,7 +820,8 @@ const appendCircles = function(chartSize) {
                                 updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)), d3.format('.2f')(d3.max(d.descendants(), function (c) {
                                     return c.data[activeTopic]
                                 })));
-                            } else { updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)))}                            highlightChapter(sbSelection);
+                            } else { updateInformationTexts(d.data.name, d3.format('.2%')(getPercentage(d.descendants(), true)))}
+                            highlightChapter(sbSelection);
                             d.descendants().forEach(function(c) {
                                 let index = sbSelection.findIndex(function(val) {
                                     return val.data.id === c.data.id
@@ -801,7 +843,7 @@ const appendCircles = function(chartSize) {
 const appendTreeCircles = function(chartSize) {
     d3.selectAll('.chapterNode')
         .each(function(d) {
-            if (!d.data.size && d.data.id !== root.descendants()[0].data.id) {
+            if (!d.data.hasIntroduction && d.data.id !== root.descendants()[0].data.id) {
                 let node= d3.select(this);
 
                 node.append('circle')
@@ -873,7 +915,7 @@ const updateInformationTexts = function(name, amountParent, amountAll) {
     if (amountParent) {
         if (amountAll) {
 
-            a1.text(amountAll);
+            a1.text(amountAll + '' + sliderScales[activeTopic][3]);
             z.text('Size Compared To Parent Chapter:');
             z1.text('Worst Value:');
             z.call(wrap, innerRadius);
@@ -1396,16 +1438,43 @@ let bubbleData;
 let bubbleKey = 'amount';
 let keys;
 
+const getParameterName = function() {
+    switch(activeTopic) {
+        case 'worstSentenceLength':
+            return 'length';
+            break;
+        case 'worstSentencePunctuation':
+            return 'punctuation';
+            break;
+        case 'worstStopwordCount':
+            return 'stopwords';
+            break;
+        case 'worstWordCount':
+            return 'wordcount';
+            break;
+        default:
+            return 'size';
+            break;
+    }
+};
+
+
 const drawBubbleChart = function() {
     if(sbSelection.length > 0) {
-        drawBubbles();
-        let min = d3.min(bubbleData, function (d) {
-            return keys.value(d)
+        let chapterID = sbSelection[sbSelection.length -1].data.id;
+        let parameter = getParameterName();
+        $.get( "/document/1/" + parameter + "?id=" + chapterID, function( data ) {
+            bubbleData = data;
+            keys = getKeys();
+            drawBubbles();
+            let min = d3.min(bubbleData, function (d) {
+                return keys.value(d)
+            });
+            let max = d3.max(bubbleData, function (d) {
+                return keys.value(d)
+            });
+            drawBubbleSlider(min, max + 0.1);
         });
-        let max = d3.max(bubbleData, function (d) {
-            return keys.value(d)
-        });
-        drawBubbleSlider(min, max + 0.1);
     } else {
         bubbleGroup = null;
         selectedBubbles = [];
@@ -1436,7 +1505,7 @@ const getKeys = function() {
             };
             break;
         case 'worstWordCount':
-            return {value: function (element) { return element['count']}, text: function (element) { return element['word']}}
+            return {value: function (element) { return element['normalized']}, text: function (element) { return element['word']}};
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}};
@@ -1446,7 +1515,6 @@ const getKeys = function() {
 
 const drawBubbles = function() {
     d3.selectAll('.buTextContent').remove();
-    keys = getKeys();
     let buWidth = BubbleContainer.clientWidth * 0.95;
     let height = BubbleContainer.clientHeight * 0.85;
 
@@ -1490,33 +1558,34 @@ const drawBubbles = function() {
             .style('text-anchor', 'middle')
             .text('. . .');
 
-        if (bubbleMinValue === null) {
-            bubbleData.sort(function (a, b) {
-                return -(keys.value(a) - keys.value(b))
-            });
-        }
+        bubbleData.sort(function (a, b) {
+            return -(keys.value(a) - keys.value(b))
+        });
 
         let rootNode = {
             children: data
         };
 
         let buPack = d3.pack()
-            .size([buWidth, buHeight])
+            .size([buWidth, buHeight-10])
             .padding(4);
 
         let buRoot = d3.hierarchy(rootNode)
             .sum(function (d) {
-                return 0.9//d[bubbleKey]
+                return keys.value(d)
             });
 
         buPack(buRoot);
+
+        buRoot.children = buRoot.children.filter(function(d){
+            console.log(d.r);
+            return d.r > 0});
 
         if (bubbleGroup === null) {
             bubbleGroup = bubbleSvg.append('g')
                 .attr('class', 'buContent')
                 .attr('transform', 'translate(0, 0)');
         }
-
 
         let bubbles = bubbleGroup.selectAll('.leafNode')
             .data(buRoot.leaves());
@@ -1542,6 +1611,7 @@ const drawBubbles = function() {
                 group.append('circle')
                     .attr('r', 0)
                     .attr('class', 'leafCircle')
+                    .attr('opacity', 0)
                     .style('stroke', '#000')
                     .style('stroke-width', 1);
 
@@ -1555,8 +1625,7 @@ const drawBubbles = function() {
             });
 
         adjustBubbleColor();
-        adjustBubbleOpacity();
-
+       // adjustBubbleOpacity();
         d3.selectAll('.leafNode')
             .each(function (d, i) {
                 let group = d3.select(this);
@@ -1571,15 +1640,15 @@ const drawBubbles = function() {
                 group.selectAll('.maskCircle')
                     .transition()
                     .duration(500)
-                    .attr('r', d.r - 1);
+                    .attr('r', d.r);
 
                 group.selectAll('.leafCircle')
                     .on('click', function () {
                         let index = selectedBubbles.findIndex(function (val) {
-                            return val.data.name === d.data.name
+                            return keys.text(val.data) === keys.text(d.data)
                         });
                         (index !== -1) ? selectedBubbles.splice(index, 1) : selectedBubbles.push(d);
-                        adjustBubbleOpacity();
+                        //adjustBubbleOpacity();
                     })
                     .transition()
                     .duration(500)
@@ -1589,8 +1658,7 @@ const drawBubbles = function() {
                 group.select('.leafText')
                     .attr('clip-path', 'url(#bubbleClip' + i + ')')
                     .on('mouseenter', function () {
-
-                        textField.text(keys.text(d.data) + ' (' + keys.value(d.data) + ')');
+                        textField.text(keys.text(d.data) + ' (' + d3.format('.2f')(keys.value(d.data)) + '' + sliderScales[activeTopic][3] +')');
                         textField.call(wrapY, textFieldWidth, textFieldSpacing + 2, true);
 
                         let radius = d3.max([d3.min([buWidth, buHeight]) / 10 - 1, d.r - 1]);
@@ -1606,7 +1674,7 @@ const drawBubbles = function() {
 
                         group.select('.leafText')
                             .transition()
-                            .text(d.data.name.substring(0, radius / 2));
+                            .text(keys.text(d.data).substring(0, radius / 2));
 
                         group.append('text')
                             .attr('x', 0)
@@ -1617,7 +1685,7 @@ const drawBubbles = function() {
                             .style('fill', '#fff')
                             .style('font-weight', 'bold')
                             .style('text-anchor', 'middle')
-                            .text((keys.value(d.data) + '').substring(0, radius / 2));
+                            .text(d3.format('.2f')(keys.value(d.data) + '').substring(0, radius / 2));
 
                         group.transition().attr('opacity', 1);
 
@@ -1634,33 +1702,35 @@ const drawBubbles = function() {
 
                         group.select('.leafText')
                             .transition()
-                            .text(d.data.name.substring(0, d.r / 4));
+                            .text(keys.text(d.data).substring(0, d.r / 4));
 
                         group.select('.infoText').remove();
 
-                        group.transition().attr('opacity', (selectedBubbles.findIndex(function(val) {
-                            return val.data.name === d.data.name
-                        }) === -1) ? 0.3 : 1);
+                        // group.transition().attr('opacity', (selectedBubbles.findIndex(function(val) {
+                        //     return keys.text(val.data) === keys.text(d.data)
+                        // }) === -1) ? 0.3 : 1);
 
                     }).on('click', function () {
                         let index = selectedBubbles.findIndex(function (val) {
-                            return val.data.name === d.data.name
+                            return keys.text(val.data) === keys.text(d.data)
                         });
                         (index !== -1) ? selectedBubbles.splice(index, 1) : selectedBubbles.push(d);
-                        adjustBubbleOpacity();
+                        //adjustBubbleOpacity();
                     })
                         .transition()
                         .duration(500)
                         .text(function (d) {
-                            return d.data.name.substring(0, d.r / 4)
+                            return keys.text(d.data).substring(0, d.r / 4)
                         });
+
             });
     } else { d3.selectAll('.leafNode').remove() }
 };
 
 const adjustBubbleColor = function() {
     d3.selectAll('.leafNode circle')
-        .transition()
+        .transition(500)
+        .attr('opacity', 1)
         .style('fill', function(d) {return colorThresh(keys.value(d.data))});
 };
 
@@ -1668,7 +1738,7 @@ const adjustBubbleOpacity = function() {
     d3.selectAll('.leafNode')
         .attr('opacity', function(n) {
             let index = selectedBubbles.findIndex(function(val) {
-                return val.data.name === n.data.name
+                return keys.text(val.data) === keys.text(n.data)
             });
             return (index === -1) ? 0.3 : 1});
 };

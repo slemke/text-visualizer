@@ -24,7 +24,7 @@ router.get('/:documentid/wordcount/', function(req, res) {
         let wordcount = JSON.parse(result);
 
         if(id != undefined) {
-            punctuation = punctuation.filter(function(obj) {
+            wordcount = wordcount.filter(function(obj) {
                 let found = false;
 
                 if(id == obj.chapterID)

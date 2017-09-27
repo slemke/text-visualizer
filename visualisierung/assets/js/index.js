@@ -1396,12 +1396,14 @@ $(document).ready(function() {
     ];
 
     const initializeCharts = function() {
-        drawSunburst(chapter, bubbleData);
+        drawSunburst();
     };
 
-    $.get( "ajax/test.html", function( data ) {
-        $( ".result" ).html( data );
-        alert( "Load was performed." );
+    $.get( "/document/1/meta/", function( data ) {
+        setBubbleData(bubbleData);
+        setData(data);
+        traverseAndFix(dataDocument);
+        initializeCharts();
     });
 
     $(window).resize(function() {
