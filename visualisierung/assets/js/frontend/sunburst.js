@@ -95,7 +95,7 @@ const drawSunburst = function() {
         redrawTreeLegend();
         redrawSlider(TreeContainer, treeSliderSvg, 'treeSlider');
 
-        ////redrawBreadcrumbs();
+        //redrawBreadcrumbs();
         drawBubbles();
 };
 
@@ -1599,7 +1599,7 @@ const drawBubbles = function() {
             .attr('transform', function (d) {
                 return 'translate(' + d.x + ',' + d.y + ')'
             })
-            .each(function () {
+            .each(function (d) {
                 let group = d3.select(this).style('cursor', 'pointer');
 
                 group.append('clipPath')
@@ -1613,7 +1613,7 @@ const drawBubbles = function() {
                     .attr('class', 'leafCircle')
                     .attr('opacity', 0)
                     .style('stroke', '#000')
-                    .style('stroke-width', 1);
+                    .style('stroke-width', (selectedBubbles.length > 0) ? keys.value(d.data) === keys.value(selectedBubbles[0].data) ? 3 : 1 : 1);
 
                 let text = group.append('text')
                     .attr('dy', '.35em')
@@ -1628,6 +1628,7 @@ const drawBubbles = function() {
        // adjustBubbleOpacity();
         d3.selectAll('.leafNode')
             .each(function (d, i) {
+                let self;
                 let group = d3.select(this);
 
                 group.transition()
@@ -1643,11 +1644,12 @@ const drawBubbles = function() {
                     .attr('r', d.r);
 
                 group.selectAll('.leafCircle')
+                    .each(function() {self = this})
                     .on('click', function () {
-                        let index = selectedBubbles.findIndex(function (val) {
-                            return keys.text(val.data) === keys.text(d.data)
-                        });
-                        (index !== -1) ? selectedBubbles.splice(index, 1) : selectedBubbles.push(d);
+                        d3.selectAll('.activeCircle').classed('activeCircle', false).transition().duration(250).style('stroke-width', 1);
+                        selectedBubbles = [];
+                        selectedBubbles.push(d);
+                        d3.select(this).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
                         //adjustBubbleOpacity();
                     })
                     .transition()
@@ -1711,10 +1713,10 @@ const drawBubbles = function() {
                         // }) === -1) ? 0.3 : 1);
 
                     }).on('click', function () {
-                        let index = selectedBubbles.findIndex(function (val) {
-                            return keys.text(val.data) === keys.text(d.data)
-                        });
-                        (index !== -1) ? selectedBubbles.splice(index, 1) : selectedBubbles.push(d);
+                        d3.selectAll('.activeCircle').classed('activeCircle', false).transition().duration(250).style('stroke-width', 1);
+                        selectedBubbles = [];
+                        selectedBubbles.push(d);
+                        d3.select(self).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
                         //adjustBubbleOpacity();
                     })
                         .transition()
