@@ -1480,7 +1480,9 @@ const drawBubbleChart = function() {
         chapterID = sbSelection[sbSelection.length -1].data.id;
         parameter = getParameterName();
         $.get( "/document/1/" + parameter + "?id=" + chapterID, function( data ) {
+
             keys = getKeys();
+            bubbleData = [];
             bubbleData = data.sort(function (a, b) {
                 return -(keys.value(a) - keys.value(b))
             });
