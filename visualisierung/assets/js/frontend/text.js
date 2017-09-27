@@ -38,9 +38,22 @@ let text = {
 
             this.scroll(id);
         },
+        completeSentence : function(id) {
+            $('.highlight').removeClass('highlight');
+            $('#sentence-' + id).addClass('highlight');
+
+            this.scroll(id);
+        },
         id : function(id, token) {
             $('.highlight').removeClass('highlight');
             $('[data-id="' + id + '"] span[data-token="' + token + '"]').addClass('highlight');
+
+            this.scroll(id);
+        },
+        list : function(id, list) {
+            $('.highlight').removeClass('highlight');
+            for(let i = 0; i < list.length; i++) 
+                $('[data-id="' + id + '"] span[data-id="' + list[i] + '"]').addClass('highlight');
 
             this.scroll(id);
         },
