@@ -61,7 +61,7 @@ let text = {
             if(id == 0)
                 var scrollTo = $('#text .container-fluid .row');
             else
-                var scrollTo = $('[data-id="' + id + '"]');
+                var scrollTo = $('[data-id="' + id + '"]').not('.token, .sentence');
 
             let container = $('#text .container-fluid');
 
