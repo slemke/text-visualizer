@@ -85,6 +85,7 @@ const traverseAndFix = function(node) {
 };
 
 const drawSunburst = function() {
+    console.log('penis');
         removeAll();
 
         initializeAndDrawSunburst(dataDocument);
@@ -138,7 +139,7 @@ const redrawTree = function(chapters) {
     let nodeDepthMaxAmount = d3.max(nodeDepthCount);
 
     let strokeWidth = 2;
-    let reduceAmount = nodeDepthMaxAmount * 2;
+    let reduceAmount = nodeDepthMaxAmount * 1.5 ;
     let maxDepth = d3.max(root.leaves(), function(l) {return l.depth});
     let nodeWidth = (width - maxStrokeWidth * 2) / (maxDepth * 1.5);
     treeNodeWidth = nodeWidth;
@@ -238,12 +239,12 @@ const redrawTree = function(chapters) {
         })
         .on('click', function(d) {
             addOrRemove(d);
-            if (sbSelection.length > 0) {
-                text.highlight.scroll(sbSelection[0].id);
-            } else text.highlight.scroll(0);
             //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
+            if (sbSelection.length > 0) {
+                text.highlight.scroll(sbSelection[0].data.id);
+            } else text.highlight.scroll(0);
         });
 
     chapterNodes.append('title')
@@ -268,7 +269,7 @@ const redrawTree = function(chapters) {
         .attr('id', function(d) {return 'treeClip' + d.data.id})
         .append('path')
         .attr('d', function(d) {
-            return (!d.data.size && d.data.id !== root.descendants()[0].data.id) ? getTreeNodePath(nodeWidth - nodeHeight - 2, nodeHeight - 2) : getTreeNodePath(nodeWidth - 2, nodeHeight - 2);
+            return (!d.data.hasIntroduction && d.data.id !== root.descendants()[0].data.id) ? getTreeNodePath(nodeWidth - nodeHeight - 2, nodeHeight - 2) : getTreeNodePath(nodeWidth - 2, nodeHeight - 2);
         })
         .attr('transform', 'translate(' + (-nodeWidth / 2 - 1) + ', ' + (-nodeHeight / 2) + ')');
 
@@ -507,12 +508,12 @@ const initializeAndDrawSunburst = function(chapter) {
         })
         .on('click', function(d) {
             addOrRemove(d);
-            if (sbSelection.length > 0) {
-                text.highlight.scroll(sbSelection[0].id);
-            } else text.highlight.scroll(0);
             //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
+            if (sbSelection.length > 0) {
+                text.highlight.scroll(sbSelection[0].data.id);
+            } else text.highlight.scroll(0);
         });
 
     changeColorForPercentage();
@@ -813,12 +814,12 @@ const appendCircles = function(chartSize) {
                     .style('cursor', 'pointer')
                     .on('click', function(d) {
                         addOrRemove(d);
-                        if (sbSelection.length > 0) {
-                            text.highlight.scroll(sbSelection[0].id);
-                        } else text.highlight.scroll(0);
                         //redrawBreadcrumbs();
                         highlightChapter(sbSelection);
                         drawBubbleChart();
+                        if (sbSelection.length > 0) {
+                            text.highlight.scroll(sbSelection[0].data.id);
+                        } else text.highlight.scroll(0);
                     })
                     .on('mouseenter', function(d) {
                         if(d.data.id !== root.descendants()[0].data.id) {
@@ -1444,8 +1445,7 @@ let bubbleGroup = null;
 let bubbleData;
 let bubbleKey = 'amount';
 let keys;
-let bubbleColorThresh;
-
+let chapterID, parameter;
 const getParameterName = function() {
     switch(activeTopic) {
         case 'worstSentenceLength':
@@ -1469,8 +1469,8 @@ const getParameterName = function() {
 
 const drawBubbleChart = function() {
     if(sbSelection.length > 0) {
-        let chapterID = sbSelection[sbSelection.length -1].data.id;
-        let parameter = getParameterName();
+        chapterID = sbSelection[sbSelection.length -1].data.id;
+        parameter = getParameterName();
         $.get( "/document/1/" + parameter + "?id=" + chapterID, function( data ) {
             bubbleData = data;
             keys = getKeys();
@@ -1510,11 +1510,15 @@ const getKeys = function() {
                     if (element.subsubsectionname !== null) path += (element.subsubsectionname + ' > ');
                     if (element.idInChapter !== null) path += ('Paragraph ' + element.idInChapter);
                     return path;
-                }, color: function (element) { return element['count']} //TODO: AENDERN AUF NORMALIZED WENN DA
+                }, color: function (element) { return element['count']}, //TODO: AENDERN AUF NORMALIZED WENN DA
+                highlight: function(element) {text.highlight.id(chapterID, element['token'])}
             };
             break;
         case 'worstWordCount':
-            return {value: function (element) { return element['count']}, text: function (element) { return element['word']}, color: function (element) { return element['normalized']}};
+            return {value: function (element) { return element['count']},
+                text: function (element) { return element['word']},
+                color: function (element) { return element['normalized']},
+                highlight: function(element) {text.highlight.id(chapterID, element['word'])}};
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};
@@ -1567,7 +1571,7 @@ const drawBubbles = function() {
             .style('text-anchor', 'middle')
             .text('. . .');
 
-        bubbleData.sort(function (a, b) {
+        data.sort(function (a, b) {
             return -(keys.value(a) - keys.value(b))
         });
 
@@ -1587,7 +1591,8 @@ const drawBubbles = function() {
         buPack(buRoot);
 
         buRoot.children = buRoot.children.filter(function(d){
-            return d.r > 0});
+            return d.r > 0
+        });
 
         if (bubbleGroup === null) {
             bubbleGroup = bubbleSvg.append('g')

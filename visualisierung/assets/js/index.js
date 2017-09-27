@@ -33,8 +33,7 @@ $(document).ready(function() {
         $(this).tab('show');
 
         delay(function() {
-            redrawTreeLegend();
-            redrawLegend();
+            initializeCharts();
         }, 0.1);
     });
 
