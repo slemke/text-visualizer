@@ -1480,7 +1480,6 @@ const drawBubbleChart = function() {
         chapterID = sbSelection[sbSelection.length -1].data.id;
         parameter = getParameterName();
         $.get( "/document/1/" + parameter + "?id=" + chapterID, function( data ) {
-
             keys = getKeys();
             bubbleData = [];
             bubbleData = data.sort(function (a, b) {
@@ -1511,16 +1510,14 @@ const getKeys = function() {
                 textValue: function (element) { return element['length']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['length']},
-                highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])},
-                id: function(element) {return element['sentenceID']}};
+                highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])}};
             break;
         case 'worstSentencePunctuation':
             return {value: function (element) { return element['count']},
                 textValue: function (element) { return element['length']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['count']},
-                highlight: function(element) {text.highlight.list(chapterID, element['sentenceID'])},
-                id: function(element) {return element['sentenceID']}};
+                highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])}};
             break;
         case 'worstStopwordCount':
             return {
@@ -1535,8 +1532,7 @@ const getKeys = function() {
                 },
                 textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(element['normalized']) + '%'},
                 color: function (element) { return element['normalized']}, //TODO: AENDERN AUF NORMALIZED WENN DA
-                highlight: function(element) {text.highlight.list(chapterID, element['token'])},
-                id: function(element) {return element['paragraphID']}
+                highlight: function(element) {text.highlight.list(chapterID, element['token'])}
             };
             break;
         case 'worstWordCount':
@@ -1544,8 +1540,7 @@ const getKeys = function() {
                 textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
-                highlight: function(element) {text.highlight.id(chapterID, element['word'])},
-                id: function(element) {return element['word']}};
+                highlight: function(element) {text.highlight.id(chapterID, element['word'])}};
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};
@@ -1577,7 +1572,8 @@ const drawBubbles = function() {
     let data = bubbleData;
     if (bubbleMinValue !== null) data = data.filter(function(d) {return keys.value(d) >= bubbleMinValue});
 
-    if (data.length > 1000) data = data.slice(0, 1000);
+    if (data.length > 500) data = data.slice(0, 500);
+
     if(data.length > 0) {
         buTextSvg.append('rect')
             .attr('class', 'buTextContent')
@@ -1614,9 +1610,9 @@ const drawBubbles = function() {
 
         buPack(buRoot);
 
-        buRoot.children = buRoot.children.filter(function(d){
+        /*buRoot.children = buRoot.children.filter(function(d){
             return d.r > 0
-        });
+        });*/
 
         if (bubbleGroup === null) {
             bubbleGroup = bubbleSvg.append('g')
@@ -1729,7 +1725,8 @@ const drawBubbles = function() {
                             .style('text-anchor', 'middle')
                             .text((keys.textValue(d.data) + '').substring(0, radius / 2));
 
-                        group.transition().attr('opacity', 1);
+                        group//.transition()
+                            .attr('opacity', 1);
 
                     }).on('mouseleave', function () {
                         textField.text('. . .');
