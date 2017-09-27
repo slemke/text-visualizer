@@ -52,14 +52,18 @@ let text = {
         },
         list : function(id, list) {
             $('.highlight').removeClass('highlight');
-            for(let i = 0; i < list.length; i++) 
+            for(let i = 0; i < list.length; i++)
                 $('[data-id="' + id + '"] span[data-id="' + list[i] + '"]').addClass('highlight');
 
             this.scroll(id);
         },
         scroll : function(id) {
+            if(id == 0)
+                var scrollTo = $('#text .container-fluid .row');
+            else
+                var scrollTo = $('[data-id="' + id + '"]');
+
             let container = $('#text .container-fluid');
-            let scrollTo = $('[data-id="' + id + '"]');
 
             container.animate({
                 scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
