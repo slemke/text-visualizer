@@ -1,13 +1,20 @@
 \BOOKMARK [1][]{section.2}{Einleitung}{}% 1
-\BOOKMARK [1][]{section.3}{Related Work}{}% 2
-\BOOKMARK [1][]{section.4}{Aufbau der Visualisierung}{}% 3
-\BOOKMARK [2][]{subsection.6}{Kapitel\374bersicht: Sunburst-Diagramm}{section.4}% 4
-\BOOKMARK [2][]{subsection.8}{Kapitel\374bersicht: Baum-Diagramm}{section.4}% 5
-\BOOKMARK [2][]{subsection.10}{Detailansicht: Blasen-Diagramm}{section.4}% 6
-\BOOKMARK [2][]{subsection.12}{Text-Viewer}{section.4}% 7
-\BOOKMARK [1][]{section.14}{Discussion}{}% 8
-\BOOKMARK [1][]{section.15}{Personal Contribution}{}% 9
-\BOOKMARK [2][]{subsection.16}{Team member 1}{section.15}% 10
-\BOOKMARK [2][]{subsection.17}{Team member 2}{section.15}% 11
-\BOOKMARK [2][]{subsection.18}{Team member 3}{section.15}% 12
-\BOOKMARK [1][]{section.19}{Conclusion}{}% 13
+\BOOKMARK [1][]{section.3}{Text Mining und Datenstrukturen}{}% 2
+\BOOKMARK [2][]{subsection.4}{Vorverarbeitung}{section.3}% 3
+\BOOKMARK [3][-]{subsubsection.5}{Morphologisch}{subsection.4}% 4
+\BOOKMARK [3][-]{subsubsection.6}{Syntaktisch}{subsection.4}% 5
+\BOOKMARK [3][-]{subsubsection.7}{Semantisch}{subsection.4}% 6
+\BOOKMARK [2][]{subsection.8}{Analyse}{section.3}% 7
+\BOOKMARK [2][]{subsection.9}{Datenstruktur und Implementierung}{section.3}% 8
+\BOOKMARK [1][]{section.10}{Aufbau der Visualisierung}{}% 9
+\BOOKMARK [2][]{subsection.12}{Kapitel\374bersicht: Sunburst-Diagramm}{section.10}% 10
+\BOOKMARK [2][]{subsection.14}{Kapitel\374bersicht: Baum-Diagramm}{section.10}% 11
+\BOOKMARK [2][]{subsection.16}{Detailansicht: Blasen-Diagramm}{section.10}% 12
+\BOOKMARK [2][]{subsection.18}{Text-Viewer}{section.10}% 13
+\BOOKMARK [1][]{section.20}{Diskussion}{}% 14
+\BOOKMARK [2][]{subsection.21}{Unterst\374tzung bei der Suche nach syntaktischen Problemstellen}{section.20}% 15
+\BOOKMARK [1][]{section.22}{Personal Contribution}{}% 16
+\BOOKMARK [2][]{subsection.23}{Team member 1}{section.22}% 17
+\BOOKMARK [2][]{subsection.24}{Team member 2}{section.22}% 18
+\BOOKMARK [2][]{subsection.25}{Team member 3}{section.22}% 19
+\BOOKMARK [1][]{section.26}{Conclusion}{}% 20

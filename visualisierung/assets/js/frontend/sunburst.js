@@ -33,7 +33,6 @@ let wholeSize,
     treeNodeHeight,
     maxStrokeWidth = 6;
 
-
 let chapterColors = [ '#0e6873', '#8c3c61', '#e98548', '#83c6dc', '#af6a40','#584337', '#a08562', '#8c9898', '#5f6d6e', '#87816c', '#b4aa92', '#7d7061', '#917359', '#7d6852', '#bba98b', '#a3906b'];
 let colors = ['#9dd863', '#dddd77', '#F4A460', '#FA8072', '#A52A2A'];
 let sliderScales = {size : [0, 10, 5, '%', d3.range(0,10.1,0.1).reverse()],
@@ -1530,8 +1529,8 @@ const getKeys = function() {
                     if (element.idInChapter !== null) path += ('Paragraph ' + element.idInChapter);
                     return path;
                 },
-                textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(element['normalized']) + '%'},
-                color: function (element) { return element['normalized']}, //TODO: AENDERN AUF NORMALIZED WENN DA
+                textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(getNormalize(element)) + '%'},
+                color: function (element) { return getNormalize(element)}, //TODO: AENDERN AUF NORMALIZED WENN DA
                 highlight: function(element) {text.highlight.list(chapterID, element['token'])}
             };
             break;
@@ -1546,6 +1545,17 @@ const getKeys = function() {
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};
             break;
     }
+};
+
+const getNormalize = function(element) {
+    let count = element['count'];
+    let cID;
+    if(element[])
+    let chapterSize = root.descendants().filter(function (d) {
+        return d.data.id === cID;
+    });
+    console.log(chapterSize);
+    return count / chapterSize * 100;
 };
 
 const drawBubbles = function() {
