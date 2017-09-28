@@ -1065,10 +1065,12 @@ const redrawSlider = function(container, svg, id) {
             .on('end', function() {
                 sliderScales[activeTopic][2] = scale(d3.event.y);
                 changeColorForPercentage();
-                drawBubbleChart();
+                //drawBubbleChart();
+                //adjustBubbleColor();
+                addColorBubble();
                 redrawLegend();
                 redrawTreeLegend();
-                removeBubbleBorder();
+                //removeBubbleBorder();
                 //redrawBreadcrumbs();
             }));
 
@@ -1671,9 +1673,7 @@ const drawBubbles = function() {
                     .attr('r', 0)
                     .attr('class', 'leafCircle')
                     .attr('opacity', 0)
-                    .style('fill', '#fff')
-                    .style('stroke', '#000')
-                    .style('stroke-width', 1);
+                    .style('fill', '#fff');
 
                 let text = group.append('text')
                     .attr('dy', '.35em')
@@ -1685,7 +1685,7 @@ const drawBubbles = function() {
             });
 
         adjustBubbleColor();
-       // adjustBubbleOpacity();
+
         d3.selectAll('.leafNode')
             .each(function (d, i) {
                 let self;
@@ -1709,7 +1709,7 @@ const drawBubbles = function() {
                         d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
                         selectedBubbles = [];
                         selectedBubbles.push(d);
-                        d3.select(this).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
+                        d3.select(this).classed('activeCircle', true).style('stroke-width', 3);
                         keys.highlight(d.data);
                     })
                     .transition()
@@ -1772,17 +1772,12 @@ const drawBubbles = function() {
 
                         group.select('.infoText').remove();
 
-                        // group.transition().attr('opacity', (selectedBubbles.findIndex(function(val) {
-                        //     return keys.text(val.data) === keys.text(d.data)
-                        // }) === -1) ? 0.3 : 1);
-
                     }).on('click', function () {
                         d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
                         selectedBubbles = [];
                         selectedBubbles.push(d);
                         d3.select(self).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
                         keys.highlight(d.data);
-                        //adjustBubbleOpacity();
                     })
                         .transition()
                         .duration(500)
@@ -1800,7 +1795,17 @@ const adjustBubbleColor = function() {
     d3.selectAll('.leafNode circle')
         .transition(500)
         .attr('opacity', 1)
-        .style('fill', function(d) {return colorThresh(keys.color(d.data))});
+        .style('stroke', '#000')
+        .style('stroke-width', 1);
+};
+
+const addColorBubble = function() {
+    d3.selectAll('.leafNode')
+        .each(function(d) {
+            let cirG = d3.select(this);
+            cirG.select('.leafCircle')
+                .style('fill', colorThresh(keys.color(d.data)));
+        });
 };
 
 const adjustBubbleOpacity = function() {
