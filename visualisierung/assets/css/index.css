@@ -20,6 +20,10 @@ body > .container-fluid, body > .container-fluid > .row {
     color: #FFF;
 }
 
+.sentence-highlight {
+    background-color: #ffdfdf;
+}
+
 h1, h2, h3, h4, h5 {
     text-transform: capitalize;
 }

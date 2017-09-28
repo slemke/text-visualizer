@@ -3,11 +3,13 @@ let text = {
         text : function(token) {
             // highlight every token in text
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
             $('span[data-token="' + token + '"]').addClass('highlight');
         },
         chapter : function(id, token) {
             // highlight every token in chapter id
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
             $('#chapter-' + id + ' span[data-token="' + token + '"]').addClass('highlight');
 
             this.scroll(id);
@@ -15,6 +17,7 @@ let text = {
         section : function(id, token) {
             // highlight every token in section id
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
             $('#section-' + id + ' span[data-token="' + token + '"]').addClass('highlight');
 
             this.scroll(id);
@@ -22,41 +25,54 @@ let text = {
         subsection : function(id, token) {
             // highlight every token in subsection id
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
             $('#subsection-' + id + ' span[data-token="' + token + '"]').addClass('highlight');
 
             this.scroll(id);
         },
         paragraph : function(id, token) {
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
             $('#paragraph-' + id + ' span[data-token="' + token + '"]').addClass('highlight');
 
             this.scroll(id);
         },
         sentence : function(id, token) {
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
             $('#sentence-' + id + ' span[data-token="' + token + '"]').addClass('highlight');
 
             this.scroll(id);
         },
         completeSentence : function(id) {
             $('.highlight').removeClass('highlight');
-            console.log(id);
+            $('.sentence').removeClass('sentence-highlight');
             $('#sentence-' + id).addClass('highlight');
 
             this.scroll(id);
         },
         id : function(id, token) {
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
             $('[data-id="' + id + '"] span[data-token="' + token + '"]').addClass('highlight');
 
             this.scroll(id);
         },
         list : function(id, list) {
             $('.highlight').removeClass('highlight');
+            $('.sentence').removeClass('sentence-highlight');
+            $('#sentence-' + id).addClass('sentence-highlight')
+
             for(let i = 0; i < list.length; i++)
                 $('#sentence-' + id + ' span[data-id="' + list[i] + '"]').addClass('highlight');
 
-            this.scroll(list[0]);
+                var scrollTo = $('.token[data-id="' + list[0] + '"]');
+
+                let container = $('#text .container-fluid');
+
+                container.animate({
+                    scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+                }, 2000);
         },
         scroll : function(id) {
             if(id == 0)
