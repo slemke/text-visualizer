@@ -122,9 +122,15 @@ Bei dem Aufbau aller Slider dieser Visualisierung wurde die gewohnte Inkrementie
 \\
 
 \subsection{Text-Viewer}
+Um den Zusammenhang zwischen Visualisierung und Text möglichst deutlich zu machen und den Prozess der Iteration zu unterstützen wurde zusätzlich ein Text Viewer implementiert. So wurden die Daten nach dem Text Mining wieder zusammengesetzt und in HTML mit den gewonnen Informationen versehen. So wurden entsprechende Headline- und DIV-Elemente definiert um die Dokumentstruktur wiederherzustellen. Die vergebenen ID's wurden genutzt um diese über das Document Object Model anzusprechen. 
+
+Die Paragraphen und Sätze wurden hier bewusst durch die einzelnen Token rekonstruiert, anstatt eine einfach Ausgabe des ursprünglichen Textes anzuzeigen. Dadurch lassen sich alle Token, Sätze, usw gezielt ansprechen und können mit Klassen versehen bzw manipuliert werden. Dadurch lassen sich Inhalte aufgrund verschiedener Eigenschaften hervorheben wie in der folgenden Grafik zu sehen ist.
+
 \begin{figure}[!htbp]
  \centering
  \includegraphics[width=\columnwidth]{textview}
  \caption{Text-Viewer (Markierungen verweisen auf F\"ullw\"orter in dem selektierten Unterkapitel "Orienting")}
  \label{fig:sunburst}
 \end{figure}
+
+Durch diesen Effekt lässt sich eine direkte Brücke von den ermittelten Werten zum Text schlagen, was einen erheblichen Informationsgewinn ermöglicht, welcher mit den Visualisierungen allein nicht möglich ist. Durch diese Struktur lässt sich nicht nur der Text anhand von Token und ID's hervorheben, sondern auch zusätzliche Informationen wie Part-of-Speech Tags können genutzt werden, da diese in entsprechenden Data-Attributen vorhanden sind.
