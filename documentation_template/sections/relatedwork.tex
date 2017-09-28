@@ -1,6 +1,6 @@
 \newpage
 \section{Text Mining und Datenstrukturen}
-Um die oben beschrieben Eigenschaften visualisieren zu k\"onnen muss eine entsprechende Datenbasis geschaffen werden, welche durch Text Mining erm\"oglicht wird. Der Prozess teilt sich dabei in folgende Schritte auf:
+Um die oben beschriebenen Eigenschaften visualisieren zu k\"onnen muss eine entsprechende Datenbasis geschaffen werden, welches durch Text Mining erm\"oglicht wird. Der Prozess teilt sich dabei in folgende Schritte auf \cite{Hippner}:
 \begin{itemize}
 \item Aufgabendefinition
 \item Dokumentselektion
@@ -12,35 +12,39 @@ Um die oben beschrieben Eigenschaften visualisieren zu k\"onnen muss eine entspr
 Die in der Einleitung beschrieben Motivation bildet die Aufgabendefinition dieses Projekts. Der n\"achste Schritt umfasst die Recherche und Sammlung von Dokumenten, welche dem Erreichen der vorher formulierten Ziele der Aufgabendefinition dienen. Oft werden dabei Dokumente aus verschiedenen Quellen mit verschiedenen Formaten entnommen. Die Aufbereitung der Dokumente nimmt in einem Text Mining Vorhaben den gr\"oßten Zeitaufwand ein, da hier Formate, Codierungen und Zeichen standardisiert werden m\"ussen. Vor der Anwendung der Ergebnisse m\"ussen die Daten noch interpretiert und evaluiert werden. Dabei kommen oft Experten mit entsprechenden Dom\"anenwissen zum Einsatz, denn auch heute noch kommt Text Mining nicht komplett ohne menschliche Komponente aus.
 
 \subsection{Vorverarbeitung}
-Da sich dieses Projekt prim\"ar auf die Visualisierung der Daten konzentriert wurde die Menge der Dokumente begrenzt und die Vorverarbeitung entsprechend angepasst um Zeit zu sparen. \\
+Da sich dieses Projekt prim\"ar auf die Visualisierung der Daten konzentriert, wurde die Menge der Dokumente begrenzt und die Vorverarbeitung entsprechend angepasst um Zeit zu sparen. \\
 \\
-Hierbei wurde aus Zeitgr\"unden nur ein Dokument gew\"ahlt, welches die M\"oglichkeiten von Text Minung und Visualisierung verdeutlichen soll. Dieses wurde entsprechend mit Hilfe von XML standardisiert. So f\"allt ein Großteil der Zeit f\"ur die Sammlung von Dokumenten und dessen Standardisierung weg, welche f\"ur die Visualisierung genutzt werden kann. \\
-Durch diese Standardisierung l\"asst sich das Dokument nun auf mehreren Ebenen analysieren.
+Hierbei wurde aus Zeitgr\"unden nur ein Dokument gew\"ahlt, welches die M\"oglichkeiten von Text Mining und Visualisierung verdeutlichen soll. Dieses wurde entsprechend mit Hilfe von XML standardisiert. So f\"allt ein Großteil der Zeit f\"ur die Sammlung von Dokumenten und dessen Standardisierung weg, welche stattdessen f\"ur die Visualisierung genutzt werden kann. \\
+Durch diese Standardisierung l\"asst sich das Dokument nun auf mehreren Ebenen analysieren\cite{Weiss}, \cite{Hippner}.
 
 \subsubsection{Morphologisch}
 Die morphologische Untersuchung behandelt die Texte auf Zeichenebene. Dabei werden folgende Verfahren auf Wortformen (sogenannte Token) angewendet. Hier einige Beispiele:\\
+
 \begin{itemize}
 	\item Tokenisierung
 	\item Finden von Satzenden
 	\item Stammformreduktion (Stemming)
 \end{itemize}
-\"Ublicherweise beginnt man damit den Text in einzelne Wortformen (Token) zu zerlegen. Dabei wird in westlichen Sprachen \"ublicherweise das "white-space-tokenizing" verwendet. Dabei werden Strings anhand von Leerzeichen, Tabs, Zeilenumbr\"uchen und \"ahnlichen Trennzeichen aufgetrennt. Dabei treten erste Probleme auf, da nicht jede Sprache \"uber Leerzeichen verf\"ugt (Chinesisch) oder W\"orter wie "New York" werden als einzelne Worte betrachtet, obwohl sie zusammen geh\"oren.\\
+
+\"Ublicherweise beginnt man damit den Text in einzelne Wortformen (Token) zu zerlegen. Dabei wird in westlichen Sprachen das "white-space-tokenizing" verwendet. Dadurch werden Strings anhand von Leerzeichen, Tabs, Zeilenumbr\"uchen und \"ahnlichen Trennzeichen separiert. Hier treten erste Herausforderungen auf, da nicht jede Sprache \"uber Leerzeichen verf\"ugt (Chinesisch) oder W\"orter wie "New York" werden als einzelne Worte betrachtet, obwohl sie zusammen geh\"oren.\\
 \\
-Der n\"achste Schritt umfasst das Finden von Satzgrenzen. Auch hier treten einige Herausforderungen auf, da beispielsweise nicht jeder Punkt ein Satzende darstellt. So bilden Abk\"urzungen wie "Dr." oder "et al." keine Satzgrenzen und m\"ussen daher entsprechend dem Token zugeordnet werden.\\
+Der n\"achste Schritt umfasst das Finden von Satzgrenzen. Auch hier treten einige Herausforderungen auf, da beispielsweise nicht jeder Punkt ein Satzende darstellt. So bilden Abk\"urzungen wie "Dr." oder "et al." keine Satzgrenzen und d\"urfen dementsprechend nicht markiert werden..\\
 \\
-Ein weiterer Schritt ist das Stemming, welcher allerdings oft in Abh\"angigkeit der Text Mining Ziele durchgef\"uhrt wird. So gibt es hier einfache Normalisierungen wie das Aufl\"osen von Ein- und Mehrzahl, welches man auch als "Inflectional Stemming" bezeichnet. Das Ziel dabei ist es die Genauigkeit der folgenden Analyse zu erh\"ohen, etwa bei statistischen Analysen wie Worth\"aufigkeiten. Als Gegensatz dazu existiert auch das "Root Stemming", welches eine aggressivere Form des Stemmings darstellt. Dabei geht das Stemming so weit, das Token wie "Application" auf ihren eigentlichen Wortstamm zur\"uckgef\"uhrt werden ("apply").\\
+Ein weiterer Schritt ist das Stemming, welcher allerdings oft in Abh\"angigkeit der Text Mining Ziele durchgef\"uhrt wird. So gibt es hier einfache Normalisierungen wie das Aufl\"osen von Ein- und Mehrzahl, welches man auch als "Inflectional Stemming" bezeichnet \cite{Weiss}. Das Ziel dabei ist es die Genauigkeit der darauf folgenden Analyse zu erh\"ohen, etwa bei statistischen Analysen wie Worth\"aufigkeiten. Als Gegensatz dazu existiert auch das "Root Stemming", welches eine aggressivere Form des Stemmings darstellt. Dabei geht das Stemming so weit, das Token wie "Application" auf ihren eigentlichen Wortstamm zur\"uckgef\"uhrt werden ("apply").\\
 \\
 Da diese Untersuchungen oft die Grundlage von Text Mining Vorhaben bilden werden auch in diesem Projekt einige der oben genannten Methoden verwendet. So wurden die Texte tokenisiert und die Satzgrenzen entsprechend gekennzeichnet. \\
 \\
-Durch die Tokenisierung des Dokuments lassen sich die notwendigen Worth\"aufigkeiten (genauer: Token)  f\"ur die Visualisierung ermitteln. Zus\"atzlich kann dadurch die Satzl\"ange und das Auftreten von Satzzeichen ermittelt werden, was die Daten f\"ur die Ermittlung der oben beschriebenen Komplexit\"at liefert.
+Durch die Tokenisierung des Dokuments lassen sich die notwendigen Worth\"aufigkeiten f\"ur die Visualisierung ermitteln. Zus\"atzlich kann dadurch die Satzl\"ange und das Auftreten von Satzzeichen ermittelt werden, was die Daten f\"ur die Ermittlung der oben beschriebenen Komplexit\"at liefert.
 
 \subsubsection{Syntaktisch}
-Die syntaktische Ebene befasst sich mit der Untersuchung von Texten auf Satzebene. Dabei werden die Zeichen in Beziehung zueinander gestellt und untersucht. Beispiele daf\"ur sind folgende:
+Die syntaktische Ebene befasst sich mit der Untersuchung von Texten auf Satzebene. Dabei werden die Zeichen in Beziehung zueinander gestellt und analysiert. Beispiele daf\"ur sind folgende:
+
 \begin{itemize}
 \item Part-of-Speech
 \item Phrase Recognition
 \end{itemize}
-Bei dem Part-of-Speech Tagging handelt es sich um das Erkennen von Wortklassen (Nomen, Verben, ...) und die Annotation der Token mit selbigen. Aufgrund der Vielf\"altigkeit von Sprache (und dem Umstand das eine Sprache lebt) werden hier oft statistische Ans\"atze verwendet.\\ 
+
+Bei dem Part-of-Speech Tagging handelt es sich um das Erkennen von Wortklassen (Nomen, Verben, ...) und die Annotation der Token mit diesen. Aufgrund der Vielf\"altigkeit von Sprache (und dem Umstand das eine Sprache lebt) werden hier oft statistische Ans\"atze verwendet.\\ 
 \\
 Bei der Phrase Recognition geht es darum Phrasen in Texten zu erkennen. So k\"onnen POS-Tags dabei helfen bestimmte Wortgruppen zu finden, oder einfache Form wie das "Noun phrase chunking" erm\"oglichen.\\
 \\
@@ -56,7 +60,7 @@ Der Bereich Text und Data Mining umfasst eine große Mengen an Methoden um diver
 \\
 Stattdessen werden statistische Hilfsmittel genutzt um Daten f\"ur die Visualisierungen zu gewinnen. Dabei werden Mittel der deskriptiven Statistik verwendet um die in der Einleitung beschrieben Werte zu ermitteln.\\
 \\
-So ist insbesondere die Häufigkeit diverser Token ein wichtiger Messwert, welcher als Grundlage f\"ur eine qualitative Aussage dienen soll. Dabei handelt es sich um folgende einfache Formel:\\
+So ist insbesondere die Häufigkeit diverser Token ein wichtiger Messwert, welcher als Grundlage f\"ur eine qualitative Aussage dienen soll. Dabei handelt es sich um folgende einfache Formel \cite{Weiss}:\\
 \\
 \centerline{$ tf(t,d) = f_{t,d} $}\\
 \\
