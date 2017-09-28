@@ -40,6 +40,7 @@ let text = {
         },
         completeSentence : function(id) {
             $('.highlight').removeClass('highlight');
+            console.log(id);
             $('#sentence-' + id).addClass('highlight');
 
             this.scroll(id);
@@ -61,7 +62,7 @@ let text = {
             if(id == 0)
                 var scrollTo = $('#text .container-fluid .row');
             else
-                var scrollTo = $('[data-id="' + id + '"]').not('.token, .sentence');
+                var scrollTo = $('[data-id="' + id + '"]').not('.token');
 
             let container = $('#text .container-fluid');
 
