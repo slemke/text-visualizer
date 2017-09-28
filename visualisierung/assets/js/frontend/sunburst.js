@@ -1534,7 +1534,7 @@ const getKeys = function() {
                 },
                 textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(getNormalize(element)) + '%'},
                 color: function (element) { return getNormalize(element)},
-                highlight: function(element) {text.highlight.list(getChapterID(element), element['token'])}
+                highlight: function(element) {text.highlight.list(getChapterID(element), element['token'], 'stopwords')}
             };
             break;
         case 'worstWordCount':
