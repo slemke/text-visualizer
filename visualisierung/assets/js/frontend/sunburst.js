@@ -1535,11 +1535,11 @@ const getKeys = function() {
             };
             break;
         case 'worstWordCount':
-            return {value: function (element) { return element['count']},
+            return {value: function (element) { return element['normalized']},
                 textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
-                highlight: function(element) {text.highlight.id(getChapterID(element), element['word'])}};
+                highlight: function(element) {text.highlight.id(sbSelection[sbSelection.length -1].data.id, element['word'])}};
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};
