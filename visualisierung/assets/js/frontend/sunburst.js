@@ -2009,5 +2009,5 @@ function describeArc(x, y, radius, startAngle, endAngle){
 }
 
 const removeBubbleBorder = function() {
-    d3.selectAll('.activeCircle').classed('activeCircle', false).transition().duration(250).style('stroke-width', 1);
+    d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
 };
