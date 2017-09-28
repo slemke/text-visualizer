@@ -21,7 +21,12 @@ $(document).ready(function() {
     // set up view split
     var instance = Split(['#visualization', '#text'], {
         sizes: [50, 50],
-        minSize: 500
+        minSize: 500,
+        onDrag: function() {
+            delay(function() {
+                initializeCharts();
+            }, 1000);
+        }
     });
 
     // add bootstrap tab functionality
