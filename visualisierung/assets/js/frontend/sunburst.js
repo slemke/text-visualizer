@@ -1539,7 +1539,7 @@ const getKeys = function() {
                 textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
-                highlight: function(element) {text.highlight.id(sbSelection[sbSelection.length -1].data.id, element['word'])}};
+                highlight: function(element) {text.highlight.id(sbSelection[sbSelection.length -1].data.id, element['word'])}};//
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};
@@ -1591,7 +1591,7 @@ const drawBubbles = function() {
     let textFontSize = textFieldHeight / 4;
 
     let data = bubbleData;
-    let length = (500 > data.length) ? data.length : 500;
+    let length = (1000 > data.length) ? data.length : 1000;
     let percent = (lastPercentage !== null) ? length / 100 * lastPercentage : length;
     data = data.slice(0, percent);
     //if (bubbleMinValue !== null) data = data.filter(function(d) {return keys.value(d) >= bubbleMinValue});

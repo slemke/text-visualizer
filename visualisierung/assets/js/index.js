@@ -58,6 +58,7 @@ $(document).ready(function() {
     };
 
     $.get( "/document/1/meta/", function( data ) {
+        console.log(data);
         setBubbleData(bubbleData);
         setData(data);
         traverseAndFix(dataDocument);
