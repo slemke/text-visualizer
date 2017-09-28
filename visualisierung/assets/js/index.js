@@ -14,6 +14,7 @@ $(document).ready(function() {
         $('#document-analysis option:selected').each(function() {
             let view = $(this).attr('value');
             activeTopic = view;
+            removeBubbleBorder();
             initializeCharts();
         });
     });
@@ -57,6 +58,7 @@ $(document).ready(function() {
     };
 
     $.get( "/document/1/meta/", function( data ) {
+        console.log(data);
         setBubbleData(bubbleData);
         setData(data);
         traverseAndFix(dataDocument);

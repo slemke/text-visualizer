@@ -1,5 +1,6 @@
+\newpage
 \section{Text Mining und Datenstrukturen}
-Um die oben beschrieben Eigenschaften visualisieren zu können muss eine entsprechende Datenbasis geschaffen werden, welches durch Text Mining ermöglicht wird. Der Prozess teilt sich dabei in folgende Schritte auf:
+Um die oben beschrieben Eigenschaften visualisieren zu k\"onnen muss eine entsprechende Datenbasis geschaffen werden, welche durch Text Mining erm\"oglicht wird. Der Prozess teilt sich dabei in folgende Schritte auf:
 \begin{itemize}
 \item Aufgabendefinition
 \item Dokumentselektion
@@ -8,74 +9,72 @@ Um die oben beschrieben Eigenschaften visualisieren zu können muss eine entspre
 \item Interpretation / Evaluation
 \item Anwendung
 \end{itemize}
-Die in der Einleitung beschrieben Motivation bildet die Aufgabendefinition dieses Projekts. Der nächste Schritt umfasst die Recherche und Sammlung von Dokumenten, welche dem Erreichen der vorher formulierten Ziele der Aufgabendefinition dienen. Oft werden dabei Dokumente aus verschiedenen Quellen mit verschiedenen Formaten entnommen.  Die Aufbereitung der Dokumente nimmt in einem Text Mining Vorhaben den größten Zeitaufwand ein, da hier Formate, Codierungen und Zeichen standardisiert werden müssen. Vor der Anwendung der Ergebnisse müssen die Daten noch interpretiert und evaluiert werden. Dabei kommen oft Experten mit entsprechenden Domänenwissen zum Einsatz, denn auch heute noch kommt Text Mining nicht komplett ohne menschliche Komponenten aus.
+Die in der Einleitung beschrieben Motivation bildet die Aufgabendefinition dieses Projekts. Der n\"achste Schritt umfasst die Recherche und Sammlung von Dokumenten, welche dem Erreichen der vorher formulierten Ziele der Aufgabendefinition dienen. Oft werden dabei Dokumente aus verschiedenen Quellen mit verschiedenen Formaten entnommen. Die Aufbereitung der Dokumente nimmt in einem Text Mining Vorhaben den gr\"oßten Zeitaufwand ein, da hier Formate, Codierungen und Zeichen standardisiert werden m\"ussen. Vor der Anwendung der Ergebnisse m\"ussen die Daten noch interpretiert und evaluiert werden. Dabei kommen oft Experten mit entsprechenden Dom\"anenwissen zum Einsatz, denn auch heute noch kommt Text Mining nicht komplett ohne menschliche Komponente aus.
 
 \subsection{Vorverarbeitung}
-Da sich dieses Projekt primär auf die Visualisierung der Daten konzentriert wurde die Menge der Dokumente begrenzt und die die Vorverarbeitung entsprechend angepasst um zu Zeit sparen. \\
+Da sich dieses Projekt prim\"ar auf die Visualisierung der Daten konzentriert wurde die Menge der Dokumente begrenzt und die Vorverarbeitung entsprechend angepasst um Zeit zu sparen. \\
 \\
-Hierbei wurde aus Zeitgründen nur ein Dokument gewählt, welches die Möglichkeiten von Text Minung und Visualisierung verdeutlichen soll. Dieses wurde entsprechend mit Hilfe von XML standardisiert. So fällt ein Großteil der Zeit für die Sammlung von Dokumenten und dessen Standardisierung weg, welche in für die Visualisierung genutzt werden kann. \\
-Durch diese Standardisierung lässt sich das Dokument nun auf mehreren Ebenen analysieren.
+Hierbei wurde aus Zeitgr\"unden nur ein Dokument gew\"ahlt, welches die M\"oglichkeiten von Text Minung und Visualisierung verdeutlichen soll. Dieses wurde entsprechend mit Hilfe von XML standardisiert. So f\"allt ein Großteil der Zeit f\"ur die Sammlung von Dokumenten und dessen Standardisierung weg, welche f\"ur die Visualisierung genutzt werden kann. \\
+Durch diese Standardisierung l\"asst sich das Dokument nun auf mehreren Ebenen analysieren.
 
 \subsubsection{Morphologisch}
 Die morphologische Untersuchung behandelt die Texte auf Zeichenebene. Dabei werden folgende Verfahren auf Wortformen (sogenannte Token) angewendet. Hier einige Beispiele:\\
-
 \begin{itemize}
-\item Tokenisierung
-\item Finden von Satzenden
-\item Stammformreduktion (Stemming)
+	\item Tokenisierung
+	\item Finden von Satzenden
+	\item Stammformreduktion (Stemming)
 \end{itemize}
-Üblicherweise beginnt man damit den Text in einzelne Wortformen (Token) zu zerlegen. Dabei wird in westlichen Sprachen üblicherweise das "white-space-tokenizing" verwendet. Dabei werden Strings anhand von Leerzeichen, Tabs, Zeilenumbrüchen und ähnlichen Trennzeichen aufgetrennt. Dabei treten erste Probleme auf, da nicht jede Sprache über Leerzeichen verfügt (Chinesisch) oder Wörter wie "New York" werden als einzelne Worte betrachtet, obwohl sie zusammen gehören.\\
+\"Ublicherweise beginnt man damit den Text in einzelne Wortformen (Token) zu zerlegen. Dabei wird in westlichen Sprachen \"ublicherweise das "white-space-tokenizing" verwendet. Dabei werden Strings anhand von Leerzeichen, Tabs, Zeilenumbr\"uchen und \"ahnlichen Trennzeichen aufgetrennt. Dabei treten erste Probleme auf, da nicht jede Sprache \"uber Leerzeichen verf\"ugt (Chinesisch) oder W\"orter wie "New York" werden als einzelne Worte betrachtet, obwohl sie zusammen geh\"oren.\\
 \\
-Der nächste Schritt umfasst das Finden von Satzgrenzen. Auch hier treten einige Herausforderungen auf, da beispielsweise nicht jeder Punkt ein Satzende darstellt. So bilden Abkürzungen wie "Dr." oder "et al." keine Satzgrenzen und müssen daher entsprechend dem Token zugeordnet werden.\\
+Der n\"achste Schritt umfasst das Finden von Satzgrenzen. Auch hier treten einige Herausforderungen auf, da beispielsweise nicht jeder Punkt ein Satzende darstellt. So bilden Abk\"urzungen wie "Dr." oder "et al." keine Satzgrenzen und m\"ussen daher entsprechend dem Token zugeordnet werden.\\
 \\
-Ein weiterer Schritt ist das Stemming, welcher allerdings oft in Abhängigkeit der Text Mining Ziele durchgeführt wird. So gibt es hier einfache Normalisierungen wie das Auflösen von Ein- und Mehrzahl, welches man auch als "Inflectional Stemming" bezeichnet. Das Ziel dabei ist es die Genauigkeit der folgenden Analyse zu erhöhen, etwa bei statistischen Analysen wie Worthäufigkeiten. Als Gegensatz dazu existiert auch das "Root Stemming", welches eine aggressivere Form des Stemmings darstellt. Dabei geht das Stemming so weit, das Token wie "Application" auf ihren eigentlichen Wortstamm zurückgeführt werden ("apply").\\
+Ein weiterer Schritt ist das Stemming, welcher allerdings oft in Abh\"angigkeit der Text Mining Ziele durchgef\"uhrt wird. So gibt es hier einfache Normalisierungen wie das Aufl\"osen von Ein- und Mehrzahl, welches man auch als "Inflectional Stemming" bezeichnet. Das Ziel dabei ist es die Genauigkeit der folgenden Analyse zu erh\"ohen, etwa bei statistischen Analysen wie Worth\"aufigkeiten. Als Gegensatz dazu existiert auch das "Root Stemming", welches eine aggressivere Form des Stemmings darstellt. Dabei geht das Stemming so weit, das Token wie "Application" auf ihren eigentlichen Wortstamm zur\"uckgef\"uhrt werden ("apply").\\
 \\
 Da diese Untersuchungen oft die Grundlage von Text Mining Vorhaben bilden werden auch in diesem Projekt einige der oben genannten Methoden verwendet. So wurden die Texte tokenisiert und die Satzgrenzen entsprechend gekennzeichnet. \\
 \\
-Durch die Tokenisierung des Dokuments lassen sich die notwendigen Worthäufigkeiten (genauer: Token)  für die Visualisierung ermitteln. Zusätzlich kann dadurch die Satzlänge und die das Auftreten von Satzzeichen ermittelt werden, was die Daten für die Ermittlung der oben beschriebenen Komplexität liefert.
+Durch die Tokenisierung des Dokuments lassen sich die notwendigen Worth\"aufigkeiten (genauer: Token)  f\"ur die Visualisierung ermitteln. Zus\"atzlich kann dadurch die Satzl\"ange und das Auftreten von Satzzeichen ermittelt werden, was die Daten f\"ur die Ermittlung der oben beschriebenen Komplexit\"at liefert.
 
 \subsubsection{Syntaktisch}
-Die syntaktische Ebene befasst sich mit der Untersuchung von Texten auf Satzebene. Dabei werden die Zeichen in Beziehung zueinander gestellt und untersucht. Beispiele dafür sind folgende:\\
+Die syntaktische Ebene befasst sich mit der Untersuchung von Texten auf Satzebene. Dabei werden die Zeichen in Beziehung zueinander gestellt und untersucht. Beispiele daf\"ur sind folgende:
 \begin{itemize}
 \item Part-of-Speech
 \item Phrase Recognition
 \end{itemize}
-Bei dem Part-of-Speech Tagging handelt es sich um das Erkennen von Wortklassen (Nomen, Verben, ...) und die Annotation der Token mit selbigen. Aufgrund der Vielfältigkeit von Sprache (und dem Umstand das eine Sprache lebt) werden hier oft statistische Ansätze verwendet.\\ 
+Bei dem Part-of-Speech Tagging handelt es sich um das Erkennen von Wortklassen (Nomen, Verben, ...) und die Annotation der Token mit selbigen. Aufgrund der Vielf\"altigkeit von Sprache (und dem Umstand das eine Sprache lebt) werden hier oft statistische Ans\"atze verwendet.\\ 
 \\
-Bei der Phrase Recognition geht es darum Phrasen in Texten zu erkennen. So können POS-Tags dabei helfen bestimmte Wortgruppen zu finden, oder einfache Form wie das "Noun phrase chunking" ermöglichen.\\
+Bei der Phrase Recognition geht es darum Phrasen in Texten zu erkennen. So k\"onnen POS-Tags dabei helfen bestimmte Wortgruppen zu finden, oder einfache Form wie das "Noun phrase chunking" erm\"oglichen.\\
 \\
-Wie bereits oben beschrieben liegt der Fokus auf diversen Messwerten, daher ist eine syntaktische Untersuchung der Texte in diesem Projekt nicht zielführend. Dennoch wurden mit Hilfe von Part-of-Speech Tagging versucht Werte für eine mögliche Erkennung des Nominalstils zu sammeln, welche im Ausblick diskutiert werden.
+Wie bereits oben beschrieben liegt der Fokus auf diversen Messwerten, daher ist eine syntaktische Untersuchung der Texte in diesem Projekt nicht zielf\"uhrend. Dennoch wurden mit Hilfe von Part-of-Speech Tagging versucht Werte für eine m\"ogliche Erkennung des Nominalstils zu sammeln, welche im Ausblick diskutiert werden.
 
 \subsubsection{Semantisch}
-Die semantische Analyse befasst sich mit der Bedeutung von Wörtern und ihrer digitalen Darstellung. Hier wird oft auf Hintergrundwissen zurück gegriffen, so werden beispielsweise Fachsprachen (Informatik, Medizin, etc) über Ontologien oder Taxonomien modelliert und in den Prozess eingebunden. Damit sollen Probleme wie beispielsweise Mehrdeutigkeit (Word Sense Disambiguation) umgangen werden. \\
+Die semantische Analyse befasst sich mit der Bedeutung von W\"ortern und ihrer digitalen Darstellung. Hier wird oft auf Hintergrundwissen zur\"uck gegriffen, so werden beispielsweise Fachsprachen (Informatik, Medizin, etc) \"uber Ontologien oder Taxonomien modelliert und in den Prozess eingebunden. Damit sollen Probleme wie beispielsweise Mehrdeutigkeit (Word Sense Disambiguation) umgangen werden. \\
 \\
-Diese Art der Untersuchung erfordert allerdings einen größeren Umfang, als es in diesem Projekt möglich war, daher wurden keine semantischen Untersuchungen durchgeführt.
+Diese Art der Untersuchung erfordert allerdings einen gr\"oßeren Umfang, als es in diesem Projekt m\"oglich war, daher wurden keine semantischen Untersuchungen durchgef\"uhrt.
 
 \subsection{Analyse}
-Der Bereich Text und Data Mining umfasst eine große Mengen an Methoden um diverse Informationen aus Texten zu extrahieren bzw zugänglich zu machen. So werden diese oft in verschiedene Kategorien eingeteilt, wie beispielsweise das Information Retrieval oder Information Extraction. Diese Methoden sind sehr weitreichend und aufwendig. Eine entsprechende Vorstellung und Durchführung sind nicht Ziel dieses Projekts, daher wird an dieser Stelle darauf verzichtet.\\
+Der Bereich Text und Data Mining umfasst eine große Mengen an Methoden um diverse Informationen aus Texten zu extrahieren bzw. zug\"anglich zu machen. So werden diese oft in verschiedene Kategorien eingeteilt, wie beispielsweise das Information Retrieval oder Information Extraction. Diese Methoden sind sehr weitreichend und aufwendig. Eine entsprechende Vorstellung und Durchf\"uhrung sind nicht Ziel dieses Projekts, daher wird an dieser Stelle darauf verzichtet.\\
 \\
-Stattdessen werden statistische Hilfsmittel genutzt um Daten für die Visualisierungen zu gewinnen. Dabei werden Mittel der deskriptiven Statistik verwendet um die in der Einleitung beschrieben Werte zu ermitteln.\\
+Stattdessen werden statistische Hilfsmittel genutzt um Daten f\"ur die Visualisierungen zu gewinnen. Dabei werden Mittel der deskriptiven Statistik verwendet um die in der Einleitung beschrieben Werte zu ermitteln.\\
 \\
-So ist insbesondere die Häufigkeit diverser Token ein wichtiger Messwert, welcher als Grundlage für eine qualitative Aussage dienen soll. Dabei handelt es sich um folgende einfache Formel:\\
+So ist insbesondere die Häufigkeit diverser Token ein wichtiger Messwert, welcher als Grundlage f\"ur eine qualitative Aussage dienen soll. Dabei handelt es sich um folgende einfache Formel:\\
 \\
 \centerline{$ tf(t,d) = f_{t,d} $}\\
 \\
-Dabei beschreibt $t$ den Term und und $d$ das Dokument. Da hier nur ein Dokument als Grundlage dient handelt es um eine einfache Summenfunktion:\\
+Dabei beschreibt $t$ den Term und $d$ das Dokument. Da hier nur ein Dokument als Grundlage dient handelt es sich um eine einfache Summenfunktion:\\
 \\
 \centerline{$\sum_{i=1}^{n} t_i$}\\
 \\
-Neben diesen recht einfachen Werten sollen zusätzliche statistische Werte einen Überblick geben. So sollen Median und Durchschnitt zusätzliche Informationen anbieten, beispielsweise ein die durchschnittliche Satzlänge oder Verwendung von Satzzeichen.
+Neben diesen recht einfachen Werten sollen zus\"atzliche statistische Werte einen \"Uberblick geben. So sollen Median und Durchschnitt zus\"atzliche Informationen anbieten, beispielsweise die durchschnittliche Satzl\"ange oder Verwendung von Satzzeichen.
 
 \subsection{Datenstruktur und Implementierung}
-Da die Visualisierung mit Hilfe von d3.js implementiert wird, werden die Daten in JSON bereitgestellt. Die Texte werden mit Hilfe von Open NLP der Apache Software Foundation aufbereitet, welches Java als Programmiersprache nutzt. Da das Dokument bereits in XML standardisiert ist, lässt es sich leicht mit Hilfe von JAXB und Data Binding in Java Objekte übersetzen. \\
+Da die Visualisierung mit Hilfe von d3.js implementiert wird, werden die Daten in JSON bereitgestellt. Die Texte werden mit Hilfe von Open NLP der Apache Software Foundation aufbereitet, welches Java als Programmiersprache nutzt. Da das Dokument bereits in XML standardisiert ist, l\"asst es sich leicht mit Hilfe von JAXB und Data Binding in Java Objekte \"ubersetzen. \\
 \\
-Open NLP stellt außerdem einige Modelle bereit um Aufgaben wie Tokenisierung oder Part-of-Speech Tagging durchzuführen. Die Daten werden im Anschluss mit einem Node.js Server gekoppelt um diverse Filteroptionen zu ermöglichen.\\
+Open NLP stellt außerdem einige Modelle bereit um Aufgaben wie Tokenisierung oder Part-of-Speech Tagging durchzuf\"uhren. Die Daten werden im Anschluss mit einem Node.js Server gekoppelt um diverse Filteroptionen zu erm\"oglichen.\\
 \\
 In den folgenden Abschnitten werden die gesammelten Daten und deren Datenstrukturen im Detail beschrieben.
-\newpage
-\subsubsection*{Worthäufigkeit}
-Die Worthäufigkeit wird durch durch ein Schlüssel-Wert-Paar dargestellt und mit Informationen über den Fundort angereichert. So wird nicht nur das Wort und die Anzahl gespeichert, sondern das Kapitel und die entsprechenden Unterkapitel mit gespeichert. Zusätzlich wurde der Wert in Abhängigkeit der gesamten Wortanzahl des Fundorts normalisiert. Daraus ergibt sich folgende Datenstruktur:
 
+\subsubsection*{Worth\"aufigkeit}
+Die Worth\"aufigkeit wird durch durch ein Schl\"ussel-Wert-Paar dargestellt und mit Informationen \"uber den Fundort angereichert. So wird nicht nur das Wort und die Anzahl gespeichert, sondern das Kapitel und die entsprechenden Unterkapitel mit gespeichert. Zus\"atzlich wurde der Wert in Abhängigkeit der gesamten Wortanzahl des Fundorts normalisiert. Daraus ergibt sich folgende Datenstruktur:\\
 \begin{lstlisting}
 {
   "word" : "visualization",
@@ -88,9 +87,8 @@ Die Worthäufigkeit wird durch durch ein Schlüssel-Wert-Paar dargestellt und mi
 }
 \end{lstlisting}
 
-\subsubsection*{Satzlänge}
-Die Sätzlänge wird ebenfalls durch die Häufigkeit dargestellt und mit ID's versehen. Hier erhält zusätzlich jeder Satz noch eine eigene ID und der Satz wird im Original mit gespeichert.
-
+\subsubsection*{Satzl\"ange}
+Die S\"atzl\"ange wird ebenfalls durch die H\"aufigkeit dargestellt und mit ID's versehen. Hier erh\"alt zus\"atzlich jeder Satz noch eine eigene ID und der Satz wird im Original mit gespeichert.
 \begin{lstlisting}
 {
   "chapterID" : 1,
@@ -104,8 +102,7 @@ Die Sätzlänge wird ebenfalls durch die Häufigkeit dargestellt und mit ID's ve
 \end{lstlisting}
 
 \subsubsection*{Satzzeichen}
-Die Struktur Satzzeichen ist an der Struktur der Sätzlänge angelehnt. Der wichtige Unterschied ist das hier eine Liste der Position der Token mit angegeben wird um im Nachhinein zu aufzuzeigen, an welcher Stelle sich die Satzzeichen befinden.
-
+Die Struktur Satzzeichen ist an der Struktur der Satzl\"ange angelehnt. Der wichtige Unterschied ist das hier eine Liste der Position der Token mit angegeben wird, um im Nachhinein aufzuzeigen, an welcher Stelle sich die Satzzeichen befinden.
 \begin{lstlisting}
 {
   "sentenceID" : 135,
@@ -119,8 +116,8 @@ Die Struktur Satzzeichen ist an der Struktur der Sätzlänge angelehnt. Der wich
 }
 \end{lstlisting}
 
-\subsubsection*{Füllwörter}
-Da die Füllwörter nicht durch einen einfachen Zähler dargestellt werden können unterscheidet sich diese Datenstruktur stark von den bisher vorgestellten. Da die Füllwörter pro Paragraph berechnet wurden erscheint hier eine zusätzliche ID. Auch eine Liste der Token ID's wurde übernommen, um die Position der Füllwörter aufzuzeigen. Da Paragraphen weder durch Text noch durch Zahlen eindeutig zu beschreiben sind werden hier auch die Titel der diversen Überschriften mit angegeben um so eine verständliche Zuordnung zu ermöglichen. 
+\subsubsection*{F\"ullw\"orter}
+Da die F\"ullw\"orter nicht durch einen einfachen Z\"ahler dargestellt werden k\"onnen, unterscheidet sich diese Datenstruktur stark von den bisher vorgestellten. Da die F\"ullw\"orter pro Paragraph berechnet wurden erscheint hier eine zus\"atzliche ID. Auch eine Liste der Token ID's wurde \"ubernommen, um die Position der F\"ullw\"orter aufzuzeigen. Da Paragraphen weder durch Text noch durch Zahlen eindeutig zu beschreiben sind, werden hier auch die Titel der diversen \"Uberschriften mit angegeben um so eine verst\"andliche Zuordnung zu erm\"oglichen. 
 \newpage
 \begin{lstlisting}
 {
