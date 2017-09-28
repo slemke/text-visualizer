@@ -58,21 +58,36 @@ let text = {
 
             this.scroll(id);
         },
-        list : function(id, list) {
+        list : function(id, list, selection) {
+            if(selection == undefined)
+                selection = 'punctuation';
+
             $('.highlight').removeClass('highlight');
             $('.sentence').removeClass('sentence-highlight');
-            $('#sentence-' + id).addClass('sentence-highlight')
+            console.log(selection);
+            if(selection == 'punctuation')
+                $('#sentence-' + id).addClass('sentence-highlight');
 
-            for(let i = 0; i < list.length; i++)
-                $('#sentence-' + id + ' span[data-id="' + list[i] + '"]').addClass('highlight');
+            for(let i = 0; i < list.length; i++) {
+                if(selection == 'punctuation')
+                    $('#sentence-' + id + ' span[data-id="' + list[i] + '"]').addClass('highlight');
+                else
+                    $('[data-id="' + id + '"] span[data-id="' + list[i] + '"]').addClass('highlight');
 
-                var scrollTo = $('.token[data-id="' + list[0] + '"]');
+            }
 
-                let container = $('#text .container-fluid');
 
-                container.animate({
-                    scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
-                }, 2000);
+                if(selection == 'punctuation') {
+                    var scrollTo = $('.token[data-id="' + list[0] + '"]');
+
+                    let container = $('#text .container-fluid');
+
+                    container.animate({
+                        scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+                    }, 2000);
+                } else {
+                    this.scroll(id);
+                }
         },
         scroll : function(id) {
             if(id == 0)
