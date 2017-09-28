@@ -1483,6 +1483,7 @@ const drawBubbleChart = function() {
         parameter = getParameterName();
         $.get( "/document/1/" + parameter + "?id=" + chapterID, function( data ) {
             keys = getKeys();
+            selectedBubbles = [];
             bubbleData = [];
             bubbleData = data.sort(function (a, b) {
                 return -(keys.value(a) - keys.value(b))
@@ -1512,14 +1513,17 @@ const getKeys = function() {
                 textValue: function (element) { return element['length']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['length']},
-                highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])}};
+                highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])},
+                id: function(element) {return element['sentenceID']}
+            };
             break;
         case 'worstSentencePunctuation':
             return {value: function (element) { return element['count']},
                 textValue: function (element) { return element['count']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['count']},
-                highlight: function(element) {text.highlight.list(element['sentenceID'], element['token'])}
+                highlight: function(element) {text.highlight.list(element['sentenceID'], element['token'])},
+                id: function(element) {return element['sentenceID']}
             };//text.highlight.completeSentence(element['sentenceID'])}};
             break;
         case 'worstStopwordCount':
@@ -1536,7 +1540,8 @@ const getKeys = function() {
                 },
                 textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(getNormalize(element)) + '%'},
                 color: function (element) { return getNormalize(element)},
-                highlight: function(element) {text.highlight.list(getChapterID(element), element['token'], 'stopwords')}
+                highlight: function(element) {text.highlight.list(getChapterID(element), element['token'], 'stopwords')},
+                id: function(element) {return element['idInChapter']}
             };
             break;
         case 'worstWordCount':
@@ -1544,7 +1549,9 @@ const getKeys = function() {
                 textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
-                highlight: function(element) {text.highlight.id(sbSelection[sbSelection.length -1].data.id, element['word'])}};
+                highlight: function(element) {text.highlight.id(sbSelection[sbSelection.length -1].data.id, element['word'])},
+                id: function(element) {return element['word']}
+            };
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};
@@ -1707,8 +1714,8 @@ const drawBubbles = function() {
                     .each(function() {self = this})
                     .on('click', function () {
                         d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
-                        selectedBubbles = [];
-                        selectedBubbles.push(d);
+                        //selectedBubbles = [];
+                        //selectedBubbles.push(keys.id(d.data));
                         d3.select(this).classed('activeCircle', true).style('stroke-width', 3);
                         keys.highlight(d.data);
                     })
@@ -1774,9 +1781,9 @@ const drawBubbles = function() {
 
                     }).on('click', function () {
                         d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
-                        selectedBubbles = [];
-                        selectedBubbles.push(d);
-                        d3.select(self).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
+                        //selectedBubbles = [];
+                        //selectedBubbles.push(keys.id(d.data));
+                        d3.select(self).classed('activeCircle', true).style('stroke-width', 3);
                         keys.highlight(d.data);
                     })
                         .transition()
@@ -1785,7 +1792,7 @@ const drawBubbles = function() {
                             return keys.text(d.data).substring(0, d.r / 4)
                         });
 
-                d3.selectAll('.activeCircle').classed('activeCircle', false).transition().duration(250).style('stroke-width', 1);
+                d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
 
             });
     } else { d3.selectAll('.leafNode').remove() }
@@ -1806,15 +1813,6 @@ const addColorBubble = function() {
             cirG.select('.leafCircle')
                 .style('fill', colorThresh(keys.color(d.data)));
         });
-};
-
-const adjustBubbleOpacity = function() {
-    d3.selectAll('.leafNode')
-        .attr('opacity', function(n) {
-            let index = selectedBubbles.findIndex(function(val) {
-                return keys.text(val.data) === keys.text(n.data)
-            });
-            return (index === -1) ? 0.3 : 1});
 };
 
 const drawBubbleSlider = function(min, max) {
