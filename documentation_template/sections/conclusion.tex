@@ -1,3 +1,27 @@
 \section{Conclusion}
-Write your conclusion and outlook here.
-How can your project be improved further?
+Zum Abschluss lässt sich sagen das die in der Aufgabendefinition formulierten Ziele gut erreicht worden sind. Durch die Kombination aus Visualisierung und Textdarstellung lassen sich die mögliche Probleme durch selbstdefinierte Filter erkennen und bieten einen Mehrwert, welcher beim Verfassen von wissenschaftlichen Arbeiten oder ähnlichen Texten Anwendung finden kann. 
+
+Im Verlauf der Projektdurchführung gab es einige Punkte die sich nicht komplett umsetzen ließen und hier nochmal aufgegriffen werden.\\
+
+\subsection*{Nominalstil}
+In der ursprünglichen Aufgabendefinition war auch die Markierung von Sätzen, welche eine Tendenz zum Nominalstil aufweisen, geplant. Dazu wurden die Token mit entsprechenden Part-of-Speech Tags versehen, welche sich durch den Text Viewer hervorheben lassen. Entsprechende Kennwerte währen ein gute Erweiterung für das Projekt gewesen, wurden allerdings aus Zeitgründen und dem notwendigen sprachlichem Wissen nicht weiter verfolgt.
+
+\subsection*{Einlesen von Dokumenten}
+Zum aktuellen Zeitpunkt ist es nur möglich vorher standardisierte Texte in XML einzulesen, zu analysieren und am Ende zu visualisieren. Ein weiteres mögliches Feature wäre die Implementierung einer automatischen Analyse, welche hochgeladene Dokumente bearbeitet und im Anschluss anzeigt.
+
+\subsection*{Visualisierung des Roten Fadens}
+Eine weitere Überlegung war die Umsetzung einer Visualisierung des Roten Fadens. Dabei sollten mit Hilfe von Part-of-Speech Tagging die Token entsprechend annotiert und gefiltert werden. Ziel war es eine einfache Alternative zum Topic Modelling zu implementieren, bei dem es darum geht aus dem Text das unbekannte Thema zu finden. Die POS-Tags sollten dabei primär nach Nomen gefiltert werden, da diese Ort, Personen oder andere Entitäten beschreiben.
+
+Diese Häufigkeit dieser annotierten Token sollte als alternative zum Topic Modelling dienen und die einzelnen Abschnitte des Textes beschreiben. Diese Häufigkeiten könnten dann in einer Baumstruktur oder einer anderen hierarchischen Visualisierung dargestellt werden und einen möglichen Roten Faden aufzeigen.
+
+\subsection*{Statistik}
+Die bereits im Text Mining Kapitel angesprochenen Mittel der deskriptiven Statistik, welche nicht umgesetzt wurden, können einen zusätzlichen Einblick in das Dokument bieten. Dabei sind einfache Visualisierungen wie Boxplots hilfreich, welche ein Verständnis für die Verteilung der Werte bieten könnte und so Ausreißer leichter erkennen ließe.
+
+\subsection*{Texteditor}
+Neben dem Einlesen von Dokumenten könnte auch eine Erweiterung des Text Viewers implementiert werden. So könnten mögliche Probleme live behoben werden bzw direktes Feedback zu dem geschriebenen Text vermittelt werden.
+
+\subsection{Mehrfachauswahl in Visualisierung}
+Ein weiterer, wichtiger Punkt ist die Möglichkeit die verschiedenen Inhalte zu vergleichen. Aktuell lassen sich zwar Kapitel und deren Unterkapitel auswählen, allerdings können beispielsweise nicht mehrere Kapitel angewählt werden. Durch eine Mehrfachauswahl und der entsprechenden Berechnung der Daten lassen sich möglicherweise Zusammenhänge zwischen einzelnen Kapiteln darstellen.
+
+\subsection*{Zusätzliche Filteroptionen}
+Zusätzliche Filteroptionen können ein noch tiefere Exploration der Daten ermöglichen. Neben einfachen Filtern wie das aktivieren bzw deaktivieren von Füllwörtern in Worthäufigkeiten, kann auch ein Filtern nach POS-Tags einen anderen Einblick ermöglichen.

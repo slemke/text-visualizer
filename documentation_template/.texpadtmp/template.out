@@ -1,13 +1,16 @@
 \BOOKMARK [1][]{section.2}{Einleitung}{}% 1
-\BOOKMARK [1][]{section.3}{Related Work}{}% 2
-\BOOKMARK [1][]{section.4}{Aufbau der Visualisierung}{}% 3
-\BOOKMARK [2][]{subsection.5}{Kapitel\374bersicht: Sunburst-Diagramm}{section.4}% 4
-\BOOKMARK [2][]{subsection.6}{Kapitel\374bersicht: Baum-Diagramm}{section.4}% 5
-\BOOKMARK [2][]{subsection.7}{Detailansicht: Blasen-Diagramm}{section.4}% 6
-\BOOKMARK [2][]{subsection.8}{Text-Viewer}{section.4}% 7
-\BOOKMARK [1][]{section.9}{Discussion}{}% 8
-\BOOKMARK [1][]{section.10}{Personal Contribution}{}% 9
-\BOOKMARK [2][]{subsection.11}{Team member 1}{section.10}% 10
-\BOOKMARK [2][]{subsection.12}{Team member 2}{section.10}% 11
-\BOOKMARK [2][]{subsection.13}{Team member 3}{section.10}% 12
-\BOOKMARK [1][]{section.14}{Conclusion}{}% 13
+\BOOKMARK [1][]{section.3}{Text Mining und Datenstrukturen}{}% 2
+\BOOKMARK [2][]{subsection.4}{Vorverarbeitung}{section.3}% 3
+\BOOKMARK [3][-]{subsubsection.5}{Morphologisch}{subsection.4}% 4
+\BOOKMARK [3][-]{subsubsection.6}{Syntaktisch}{subsection.4}% 5
+\BOOKMARK [3][-]{subsubsection.7}{Semantisch}{subsection.4}% 6
+\BOOKMARK [2][]{subsection.8}{Analyse}{section.3}% 7
+\BOOKMARK [2][]{subsection.9}{Datenstruktur und Implementierung}{section.3}% 8
+\BOOKMARK [1][]{section.60}{Aufbau der Visualisierung}{}% 9
+\BOOKMARK [2][]{subsection.62}{Kapitel\374bersicht: Sunburst-Diagramm}{section.60}% 10
+\BOOKMARK [2][]{subsection.64}{Kapitel\374bersicht: Baum-Diagramm}{section.60}% 11
+\BOOKMARK [2][]{subsection.66}{Detailansicht: Blasen-Diagramm}{section.60}% 12
+\BOOKMARK [2][]{subsection.68}{Text-Viewer}{section.60}% 13
+\BOOKMARK [1][]{section.70}{Diskussion}{}% 14
+\BOOKMARK [1][]{section.71}{Conclusion}{}% 15
+\BOOKMARK [1][]{section.72}{Personal Contribution}{}% 16
