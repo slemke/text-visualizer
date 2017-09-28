@@ -56,7 +56,7 @@ let text = {
             for(let i = 0; i < list.length; i++)
                 $('[data-id="' + id + '"] span[data-id="' + list[i] + '"]').addClass('highlight');
 
-            this.scroll(id);
+            this.scroll(list[0]);
         },
         scroll : function(id) {
             if(id == 0)
