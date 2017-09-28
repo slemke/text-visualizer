@@ -1476,6 +1476,7 @@ const getParameterName = function() {
 
 const drawBubbleChart = function() {
     if(sbSelection.length > 0) {
+        removeBubbleBorder();
         chapterID = sbSelection[sbSelection.length -1].data.id;
         parameter = getParameterName();
         $.get( "/document/1/" + parameter + "?id=" + chapterID, function( data ) {
@@ -1705,7 +1706,7 @@ const drawBubbles = function() {
                 group.selectAll('.leafCircle')
                     .each(function() {self = this})
                     .on('click', function () {
-                        d3.selectAll('.activeCircle').classed('activeCircle', false).transition().duration(250).style('stroke-width', 1);
+                        d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
                         selectedBubbles = [];
                         selectedBubbles.push(d);
                         d3.select(this).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
@@ -1882,6 +1883,7 @@ const drawBubbleSlider = function(min, max) {
                 handle.attr('cy', buY(buY.invert(d3.event.y)));
             })
             .on('end', function() {
+                removeBubbleBorder();
                 bubbleMinValue = buScale(buY.invert(d3.event.y));
                 lastPercentage =  Math.round(buY.invert(d3.event.y));
                 drawBubbles();
