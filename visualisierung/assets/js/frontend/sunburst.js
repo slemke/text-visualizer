@@ -1774,7 +1774,7 @@ const drawBubbles = function() {
                         // }) === -1) ? 0.3 : 1);
 
                     }).on('click', function () {
-                        d3.selectAll('.activeCircle').classed('activeCircle', false).transition().duration(250).style('stroke-width', 1);
+                        d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
                         selectedBubbles = [];
                         selectedBubbles.push(d);
                         d3.select(self).classed('activeCircle', true).transition().duration(250).style('stroke-width', 3);
@@ -2009,5 +2009,5 @@ function describeArc(x, y, radius, startAngle, endAngle){
 }
 
 const removeBubbleBorder = function() {
-    d3.selectAll('.activeCircle').classed('activeCircle', false).style('stroke-width', 1);
+    d3.selectAll('.leafCircle').classed('activeCircle', false).style('stroke-width', 1);
 };
