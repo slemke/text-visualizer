@@ -241,13 +241,11 @@ const redrawTree = function(chapters) {
             //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
-            setTimeout(function() {
-                setTimeout(function() {
-                    if (sbSelection.length > 0) {
-                        text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
-                    } else text.highlight.scroll(0);
-                }, 500)
-            }, 500)
+            //setTimeout(function() {
+                if (sbSelection.length > 0) {
+                    text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
+                } else text.highlight.scroll(0);
+            //}, 500)
         });
 
     chapterNodes.append('title')
@@ -513,11 +511,11 @@ const initializeAndDrawSunburst = function(chapter) {
             //redrawBreadcrumbs();
             highlightChapter(sbSelection);
             drawBubbleChart();
-            setTimeout(function() {
+            //setTimeout(function() {
                 if (sbSelection.length > 0) {
                     text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
                 } else text.highlight.scroll(0);
-            }, 500)
+            //}, 500)
         });
 
     changeColorForPercentage();
@@ -822,11 +820,11 @@ const appendCircles = function(chartSize) {
                         //redrawBreadcrumbs();
                         highlightChapter(sbSelection);
                         drawBubbleChart();
-                        setTimeout(function() {
+                        //setTimeout(function() {
                             if (sbSelection.length > 0) {
                                 text.highlight.scroll(sbSelection[sbSelection.length -1].data.id);
                             } else text.highlight.scroll(0);
-                        }, 500)
+                        //}, 500)
                     })
                     .on('mouseenter', function(d) {
                         if(d.data.id !== root.descendants()[0].data.id) {
@@ -1531,14 +1529,14 @@ const getKeys = function() {
                     if (element.idInChapter !== null) path += ('Paragraph ' + element.idInChapter);
                     return path;
                 },
-                textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(getNormalize(element)) + '%'},
+                textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(getNormalize(element)) + '%'},
                 color: function (element) { return getNormalize(element)},
                 highlight: function(element) {text.highlight.list(getChapterID(element), element['token'])}
             };
             break;
         case 'worstWordCount':
             return {value: function (element) { return element['count']},
-                textValue: function (element) { return element['count'] + ' / ' + d3.format('.2f')(element['normalized']) + '%'},
+                textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
                 highlight: function(element) {text.highlight.id(getChapterID(element), element['word'])}};
@@ -1719,8 +1717,6 @@ const drawBubbles = function() {
                 group.select('.leafText')
                     .attr('clip-path', 'url(#bubbleClip' + i + ')')
                     .on('mouseenter', function () {
-                        textField.text(keys.text(d.data) + ' (' + (keys.textValue(d.data)) + ')');
-                        textField.call(wrapY, textFieldWidth, textFieldSpacing + 2, true);
 
                         let radius = d3.max([d3.min([buWidth, buHeight]) / 10 - 1, d.r - 1]);
 
@@ -1751,6 +1747,9 @@ const drawBubbles = function() {
 
                         group.transition()
                             .attr('opacity', 1);
+
+                        textField.text(keys.text(d.data) + ' (' + keys.textValue(d.data) + ')');
+                        textField.call(wrapY, textFieldWidth, textFieldSpacing + 2, true);
 
                     }).on('mouseleave', function () {
                         textField.text('. . .');
@@ -1972,7 +1971,8 @@ const wrapY = function(text, width, minY, saveLast) {
                     tspan = text.append('tspan').attr('x', x).attr('y', newY).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
                 } else {
                     if (saveLast) {
-                        tspan = text.append('tspan').attr('x', x).attr('y', newY).attr('dy', ++lineNumber * lineHeight + dy + 'em').text('. . . ' + words[0]);
+                        let lastWord = (words.length > 0) ? words[0] : word;
+                        tspan = text.append('tspan').attr('x', x).attr('y', newY).attr('dy', ++lineNumber * lineHeight + dy + 'em').text('. . . ' + lastWord);
                     } else {
                         tspan = text.append('tspan').attr('x', x).attr('y', newY).attr('dy', ++lineNumber * lineHeight + dy + 'em').text('. . .');
                     }
@@ -2007,3 +2007,7 @@ function describeArc(x, y, radius, startAngle, endAngle){
 
     return d;
 }
+
+const removeBubbleBorder = function() {
+    d3.selectAll('.activeCircle').classed('activeCircle', false).transition().duration(250).style('stroke-width', 1);
+};
