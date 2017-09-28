@@ -1,18 +1,13 @@
 \begin{thebibliography}{1}
 
-\bibitem{Isenberg:2017:VMC}
-P.~Isenberg, F.~Heimerl, S.~Koch, T.~Isenberg, P.~Xu, C.~Stolper, M.~Sedlmair,
-  J.~Chen, T.~M{\"o}ller, and J.~Stasko.
-\newblock {vispubdata.org: A Metadata Collection about {IEEE} Visualization
-  ({VIS}) Publications}.
-\newblock {\em IEEE Transactions on Visualization and Computer Graphics}, 23,
-  2017.
-\newblock To appear. doi: {{%
-10\hspace{.1pt}\discretionary{.}{%
-}{.}\hspace{.4pt}1109\discretionary{/}{%
-}{/}TVCG\hspace{.1pt}\discretionary{.}{%
-}{.}\hspace{.4pt}2016\hspace{.1pt}\discretionary{.}{%
-}{.}\hspace{.4pt}2615308}}
+\bibitem{Hipper}
+R.~R. Hajo~Hipper.
+\newblock Text mining.
+\newblock {\em Informatik Spektrum}, 2006.
 
+\bibitem{Weiss}
+S.~M.Weiss.
+\newblock {\em FundamentalsofPredicitiveTextMining}.
+\newblock Springer-Verlag London Limited, London, 2010.
 
 \end{thebibliography}

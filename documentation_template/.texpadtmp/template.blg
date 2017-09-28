@@ -4,44 +4,44 @@ The top-level auxiliary file: /Users/RosaDoener/Desktop/VI-Projekt/git/vi-projek
 The style file: ../abbrv-doi.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ../references.bib
-You've used 1 entry,
+You've used 2 entries,
             2598 wiz_defined-function locations,
-            601 strings with 4854 characters,
-and the built_in function-call counts, 1319 in all, are:
-= -- 287
-> -- 53
-< -- 44
-+ -- 67
-- -- 21
-* -- 54
-:= -- 203
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 13
+            605 strings with 4616 characters,
+and the built_in function-call counts, 447 in all, are:
+= -- 40
+> -- 14
+< -- 0
++ -- 6
+- -- 4
+* -- 19
+:= -- 87
+add.period$ -- 6
+call.type$ -- 2
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 10
-empty$ -- 19
-format.name$ -- 20
-if$ -- 338
+cite$ -- 2
+duplicate$ -- 22
+empty$ -- 42
+format.name$ -- 4
+if$ -- 91
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 15
-num.names$ -- 2
-pop$ -- 10
+int.to.str$ -- 2
+missing$ -- 3
+newline$ -- 13
+num.names$ -- 4
+pop$ -- 11
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 6
 quote$ -- 0
-skip$ -- 8
+skip$ -- 13
 stack$ -- 0
-substring$ -- 51
-swap$ -- 1
-text.length$ -- 27
+substring$ -- 10
+swap$ -- 2
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
+type$ -- 6
 warning$ -- 0
 while$ -- 4
-width$ -- 2
-write$ -- 45
+width$ -- 3
+write$ -- 23
