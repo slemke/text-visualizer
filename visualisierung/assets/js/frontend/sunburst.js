@@ -1068,6 +1068,7 @@ const redrawSlider = function(container, svg, id) {
                 drawBubbleChart();
                 redrawLegend();
                 redrawTreeLegend();
+                removeBubbleBorder();
                 //redrawBreadcrumbs();
             }));
 
@@ -1515,7 +1516,8 @@ const getKeys = function() {
                 textValue: function (element) { return element['count']},
                 text: function (element) { return element['sentence']},
                 color: function (element) { return element['count']},
-                highlight: function(element) {text.highlight.completeSentence(element['sentenceID'])}};
+                highlight: function(element) {text.highlight.list(element['sentenceID'], element['token'])}
+            };//text.highlight.completeSentence(element['sentenceID'])}};
             break;
         case 'worstStopwordCount':
             return {
@@ -1539,7 +1541,7 @@ const getKeys = function() {
                 textValue: function (element) { return element['count'] + '/' + d3.format('.2f')(element['normalized']) + '%'},
                 text: function (element) { return element['word']},
                 color: function (element) { return element['normalized']},
-                highlight: function(element) {text.highlight.id(sbSelection[sbSelection.length -1].data.id, element['word'])}};//
+                highlight: function(element) {text.highlight.id(sbSelection[sbSelection.length -1].data.id, element['word'])}};
             break;
         default:
             return {value: function (element) { return element['size']}, text: function (element) { return element['name']}, color: function (element) { return element['size']}};

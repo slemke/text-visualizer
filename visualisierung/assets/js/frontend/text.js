@@ -54,7 +54,7 @@ let text = {
         list : function(id, list) {
             $('.highlight').removeClass('highlight');
             for(let i = 0; i < list.length; i++)
-                $('[data-id="' + id + '"] span[data-id="' + list[i] + '"]').addClass('highlight');
+                $('#sentence-' + id + ' span[data-id="' + list[i] + '"]').addClass('highlight');
 
             this.scroll(list[0]);
         },
