@@ -71,6 +71,11 @@ const traverseAndFix = function(node) {
         if(node.children[0].name === null) {
             node.hasIntroduction = true;
             if(node.children.length === 1) {
+                node.worstStopwordCount = node.children[0].worstStopwordCount;
+                node.worstWordCount = node.children[0].worstWordCount;
+                node.worstSentenceLength = node.children[0].worstSentenceLength;
+                node.worstSentencePunctuation = node.children[0].worstSentencePunctuation;
+                node.id = node.children[0].id;
                 delete node.children;
             }
         }
