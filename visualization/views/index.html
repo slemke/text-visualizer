@@ -7,13 +7,21 @@
         <link href="assets/css/index.min.css" rel="stylesheet" />
     </head>
     <body>
-        <a href="#" id="back-to-top"><span class="glyphicon glyphicon-menu-up"></span></a>
+        <!-- scroll back to top -->
+        <a href="#" id="back-to-top">
+            <span class="glyphicon glyphicon-menu-up"></span>
+        </a>
+
+        <!-- outer page container-->
         <div class="container-fluid">
             <div class="row">
+
+                <!-- visualization container -->
                 <div id="visualization">
                     <div class="container-fluid">
                         <div class="row">
 
+                            <!-- navigation container -->
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
                                     <div class="navbar-header">
@@ -41,6 +49,8 @@
                                 </div>
                             </nav>
 
+
+                            <!-- sunburst / graph container -->
                             <div id="sunburst">
                                 <ul class="nav nav-tabs" role="tablist" id="tabs">
                                     <li role="presentation" class="active">
@@ -64,6 +74,7 @@
                                 </div>
                             </div>
 
+                            <!-- data container -->
                             <div id="data">
                                 <ul class="nav nav-tabs" role="tablist" id="data-tabs">
                                     <li role="presentation" class="active">
@@ -80,10 +91,15 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
+
+                <!-- text container -->
                 <div id="text">
+
+                    <!-- overlay while text is loading (spinner) -->
                     <div id="overlay">
                         <div class="circle-container">
                             <div class="sk-fading-circle">
@@ -102,22 +118,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- article container -->
                     <div class="container-fluid">
                         <div class="row">
                             <header>
                                 <h1></h1>
                             </header>
                             <article>
-
+                                <!-- text will be inserted with JS -->
                             </article>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
+        <!-- JS dependencies -->
         <script src="assets/js/jquery-3.2.1.min.js"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/d3.min.js"></script>
         <script src="assets/js/lib/split/split.js"></script>
