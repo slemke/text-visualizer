@@ -1,8 +1,7 @@
 # Setup
 
-1. In das Verzeichnis `/visualisierung/` wechseln
-2. `npm install` ausführen
-3. Gulp installieren: `https://gulpjs.com/`
-3. Gulp ausführen: `gulp`
-4. Server mit `npm start` starten
-5. Server läuft nun auf `http://localhost:3000`
+1. Run `npm install`
+2. Install Gulp: `https://gulpjs.com/`
+3. Run gulp: `gulp`
+4. Run server with `npm start`
+5. Server available at: `http://localhost:3000`
