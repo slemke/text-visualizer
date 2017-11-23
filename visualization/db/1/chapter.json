@@ -1,0 +1,25 @@
+[ {
+  "id" : 1,
+  "title" : "Abstract",
+  "size" : 224
+}, {
+  "id" : 4,
+  "title" : "Introduction",
+  "size" : 605
+}, {
+  "id" : 11,
+  "title" : "Guidance: Terminology and General Concepts",
+  "size" : 3338
+}, {
+  "id" : 64,
+  "title" : "A review of guidance in visual analytics",
+  "size" : 4611
+}, {
+  "id" : 120,
+  "title" : "Discussion and future work",
+  "size" : 1650
+}, {
+  "id" : 134,
+  "title" : "Conclusion",
+  "size" : 161
+} ]

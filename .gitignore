@@ -122,3 +122,31 @@ config.js
 # exclude css / js
 visualisierung/assets/css/index.min.css
 visualisierung/assets/js/index.min.js
+visualisierung/.idea/
+visualisierung/package-lock.json
+
+# exclude latex stuff
+*.aux
+*.glo
+*.idx
+*.log
+*.toc
+*.ist
+*.acn
+*.acr
+*.alg
+*.bbl
+*.blg
+*.dvi
+*.glg
+*.gls
+*.ilg
+*.ind
+*.lof
+*.lot
+*.maf
+*.mtc
+*.mtc1
+*.out
+*.synctex.gz
+*.pdf

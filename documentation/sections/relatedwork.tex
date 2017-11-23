@@ -1,0 +1,141 @@
+\newpage
+\section{Text Mining und Datenstrukturen}
+Um die oben beschriebenen Eigenschaften visualisieren zu k\"onnen muss eine entsprechende Datenbasis geschaffen werden, welches durch Text Mining erm\"oglicht wird. Der Prozess teilt sich dabei in folgende Schritte auf \cite{Hipper} :
+\begin{itemize}
+\item Aufgabendefinition
+\item Dokumentselektion
+\item Dokumentaufbereitung
+\item (Text) Mining Methoden
+\item Interpretation / Evaluation
+\item Anwendung
+\end{itemize}
+Die in der Einleitung beschrieben Motivation bildet die Aufgabendefinition dieses Projekts. Der n\"achste Schritt umfasst die Recherche und Sammlung von Dokumenten, welche dem Erreichen der vorher formulierten Ziele der Aufgabendefinition dienen. Oft werden dabei Dokumente aus verschiedenen Quellen mit verschiedenen Formaten entnommen. Die Aufbereitung der Dokumente nimmt in einem Text Mining Vorhaben den gr\"oßten Zeitaufwand ein, da hier Formate, Codierungen und Zeichen standardisiert werden m\"ussen. Vor der Anwendung der Ergebnisse m\"ussen die Daten noch interpretiert und evaluiert werden. Dabei kommen oft Experten mit entsprechenden Dom\"anenwissen zum Einsatz, denn auch heute noch kommt Text Mining nicht komplett ohne menschliche Komponente aus.
+
+\subsection{Vorverarbeitung}
+Da sich dieses Projekt prim\"ar auf die Visualisierung der Daten konzentriert, wurde die Menge der Dokumente begrenzt und die Vorverarbeitung entsprechend angepasst um Zeit zu sparen. \\
+\\
+Hierbei wurde aus Zeitgr\"unden nur ein Dokument gew\"ahlt, welches die M\"oglichkeiten von Text Mining und Visualisierung verdeutlichen soll. Dieses wurde entsprechend mit Hilfe von XML standardisiert. So f\"allt ein Großteil der Zeit f\"ur die Sammlung von Dokumenten und dessen Standardisierung weg, welche stattdessen f\"ur die Visualisierung genutzt werden kann. \\
+Durch diese Standardisierung l\"asst sich das Dokument nun auf mehreren Ebenen analysieren \cite{Weiss} , \cite{Hipper} .
+
+\subsubsection{Morphologisch}
+Die morphologische Untersuchung behandelt die Texte auf Zeichenebene. Dabei werden folgende Verfahren auf Wortformen (sogenannte Token) angewendet. Hier einige Beispiele:\\
+
+\begin{itemize}
+	\item Tokenisierung
+	\item Finden von Satzenden
+	\item Stammformreduktion (Stemming)
+\end{itemize}
+
+\"Ublicherweise beginnt man damit den Text in einzelne Wortformen (Token) zu zerlegen. Dabei wird in westlichen Sprachen das "white-space-tokenizing" verwendet. Dadurch werden Strings anhand von Leerzeichen, Tabs, Zeilenumbr\"uchen und \"ahnlichen Trennzeichen separiert. Hier treten erste Herausforderungen auf, da nicht jede Sprache \"uber Leerzeichen verf\"ugt (Chinesisch) oder W\"orter wie "New York" werden als einzelne Worte betrachtet, obwohl sie zusammen geh\"oren.\\
+\\
+Der n\"achste Schritt umfasst das Finden von Satzgrenzen. Auch hier treten einige Herausforderungen auf, da beispielsweise nicht jeder Punkt ein Satzende darstellt. So bilden Abk\"urzungen wie "Dr." oder "et al." keine Satzgrenzen und d\"urfen dementsprechend nicht markiert werden..\\
+\\
+Ein weiterer Schritt ist das Stemming, welcher allerdings oft in Abh\"angigkeit der Text Mining Ziele durchgef\"uhrt wird. So gibt es hier einfache Normalisierungen wie das Aufl\"osen von Ein- und Mehrzahl, welches man auch als "Inflectional Stemming" bezeichnet \cite{Weiss}. Das Ziel dabei ist es die Genauigkeit der darauf folgenden Analyse zu erh\"ohen, etwa bei statistischen Analysen wie Worth\"aufigkeiten. Als Gegensatz dazu existiert auch das "Root Stemming", welches eine aggressivere Form des Stemmings darstellt. Dabei geht das Stemming so weit, das Token wie "Application" auf ihren eigentlichen Wortstamm zur\"uckgef\"uhrt werden ("apply").\\
+\\
+Da diese Untersuchungen oft die Grundlage von Text Mining Vorhaben bilden werden auch in diesem Projekt einige der oben genannten Methoden verwendet. So wurden die Texte tokenisiert und die Satzgrenzen entsprechend gekennzeichnet. \\
+\\
+Durch die Tokenisierung des Dokuments lassen sich die notwendigen Worth\"aufigkeiten f\"ur die Visualisierung ermitteln. Zus\"atzlich kann dadurch die Satzl\"ange und das Auftreten von Satzzeichen ermittelt werden, was die Daten f\"ur die Ermittlung der oben beschriebenen Komplexit\"at liefert.
+
+\subsubsection{Syntaktisch}
+Die syntaktische Ebene befasst sich mit der Untersuchung von Texten auf Satzebene. Dabei werden die Zeichen in Beziehung zueinander gestellt und analysiert. Beispiele daf\"ur sind folgende:
+
+\begin{itemize}
+\item Part-of-Speech
+\item Phrase Recognition
+\end{itemize}
+
+Bei dem Part-of-Speech Tagging handelt es sich um das Erkennen von Wortklassen (Nomen, Verben, ...) und die Annotation der Token mit diesen. Aufgrund der Vielf\"altigkeit von Sprache (und dem Umstand das eine Sprache lebt) werden hier oft statistische Ans\"atze verwendet.\\ 
+\\
+Bei der Phrase Recognition geht es darum Phrasen in Texten zu erkennen. So k\"onnen POS-Tags dabei helfen bestimmte Wortgruppen zu finden, oder einfache Form wie das "Noun phrase chunking" erm\"oglichen.\\
+\\
+Wie bereits oben beschrieben liegt der Fokus auf diversen Messwerten, daher ist eine syntaktische Untersuchung der Texte in diesem Projekt nicht zielf\"uhrend. Dennoch wurden mit Hilfe von Part-of-Speech Tagging versucht Werte für eine m\"ogliche Erkennung des Nominalstils zu sammeln, welche im Ausblick diskutiert werden.
+
+\subsubsection{Semantisch}
+Die semantische Analyse befasst sich mit der Bedeutung von W\"ortern und ihrer digitalen Darstellung. Hier wird oft auf Hintergrundwissen zur\"uck gegriffen, so werden beispielsweise Fachsprachen (Informatik, Medizin, etc) \"uber Ontologien oder Taxonomien modelliert und in den Prozess eingebunden. Damit sollen Probleme wie beispielsweise Mehrdeutigkeit (Word Sense Disambiguation) umgangen werden. \\
+\\
+Diese Art der Untersuchung erfordert allerdings einen gr\"oßeren Umfang, als es in diesem Projekt m\"oglich war, daher wurden keine semantischen Untersuchungen durchgef\"uhrt.
+
+\subsection{Analyse}
+Der Bereich Text und Data Mining umfasst eine große Mengen an Methoden um diverse Informationen aus Texten zu extrahieren bzw. zug\"anglich zu machen. So werden diese oft in verschiedene Kategorien eingeteilt, wie beispielsweise das Information Retrieval oder Information Extraction. Diese Methoden sind sehr weitreichend und aufwendig. Eine entsprechende Vorstellung und Durchf\"uhrung sind nicht Ziel dieses Projekts, daher wird an dieser Stelle darauf verzichtet.\\
+\\
+Stattdessen werden statistische Hilfsmittel genutzt um Daten f\"ur die Visualisierungen zu gewinnen. Dabei werden Mittel der deskriptiven Statistik verwendet um die in der Einleitung beschrieben Werte zu ermitteln.\\
+\\
+So ist insbesondere die Häufigkeit diverser Token ein wichtiger Messwert, welcher als Grundlage f\"ur eine qualitative Aussage dienen soll. Dabei handelt es sich um folgende einfache Formel \cite{Weiss}:\\
+\\
+\centerline{$ tf(t,d) = f_{t,d} $}\\
+\\
+Dabei beschreibt $t$ den Term und $d$ das Dokument. Da hier nur ein Dokument als Grundlage dient handelt es sich um eine einfache Summenfunktion:\\
+\\
+\centerline{$\sum_{i=1}^{n} t_i$}\\
+\\
+Neben diesen recht einfachen Werten sollen zus\"atzliche statistische Werte einen \"Uberblick geben. So sollen Median und Durchschnitt zus\"atzliche Informationen anbieten, beispielsweise die durchschnittliche Satzl\"ange oder Verwendung von Satzzeichen.
+
+\subsection{Datenstruktur und Implementierung}
+Da die Visualisierung mit Hilfe von d3.js implementiert wird, werden die Daten in JSON bereitgestellt. Die Texte werden mit Hilfe von Open NLP der Apache Software Foundation aufbereitet, welches Java als Programmiersprache nutzt. Da das Dokument bereits in XML standardisiert ist, l\"asst es sich leicht mit Hilfe von JAXB und Data Binding in Java Objekte \"ubersetzen. \\
+\\
+Open NLP stellt außerdem einige Modelle bereit um Aufgaben wie Tokenisierung oder Part-of-Speech Tagging durchzuf\"uhren. Die Daten werden im Anschluss mit einem Node.js Server gekoppelt um diverse Filteroptionen zu erm\"oglichen.\\
+\\
+In den folgenden Abschnitten werden die gesammelten Daten und deren Datenstrukturen im Detail beschrieben.
+
+\subsubsection*{Worth\"aufigkeit}
+Die Worth\"aufigkeit wird durch durch ein Schl\"ussel-Wert-Paar dargestellt und mit Informationen \"uber den Fundort angereichert. So wird nicht nur das Wort und die Anzahl gespeichert, sondern das Kapitel und die entsprechenden Unterkapitel mit gespeichert. Zus\"atzlich wurde der Wert in Abhängigkeit der gesamten Wortanzahl des Fundorts normalisiert. Daraus ergibt sich folgende Datenstruktur:\\
+\begin{lstlisting}
+{
+  "word" : "visualization",
+  "count" : 1,
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0,
+  "normalized" : 0.4484304932735426
+}
+\end{lstlisting}
+
+\subsubsection*{Satzl\"ange}
+Die S\"atzl\"ange wird ebenfalls durch die H\"aufigkeit dargestellt und mit ID's versehen. Hier erh\"alt zus\"atzlich jeder Satz noch eine eigene ID und der Satz wird im Original mit gespeichert.
+\begin{lstlisting}
+{
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0,
+  "sentenceID" : 135,
+  "length" : 17,
+  "sentence" : "Visual analytics (VA) is typically applied in scenarios where complex data has to be analyzed."
+}
+\end{lstlisting}
+
+\subsubsection*{Satzzeichen}
+Die Struktur Satzzeichen ist an der Struktur der Satzl\"ange angelehnt. Der wichtige Unterschied ist das hier eine Liste der Position der Token mit angegeben wird, um im Nachhinein aufzuzeigen, an welcher Stelle sich die Satzzeichen befinden.
+\begin{lstlisting}
+{
+  "sentenceID" : 135,
+  "count" : 2,
+  "sentence" : "Visual analytics (VA) is typically applied in scenarios where complex data has to be analyzed.",
+  "token" : [ 4, 17 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}
+\end{lstlisting}
+
+\subsubsection*{F\"ullw\"orter}
+Da die F\"ullw\"orter nicht durch einen einfachen Z\"ahler dargestellt werden k\"onnen, unterscheidet sich diese Datenstruktur stark von den bisher vorgestellten. Da die F\"ullw\"orter pro Paragraph berechnet wurden erscheint hier eine zus\"atzliche ID. Auch eine Liste der Token ID's wurde \"ubernommen, um die Position der F\"ullw\"orter aufzuzeigen. Da Paragraphen weder durch Text noch durch Zahlen eindeutig zu beschreiben sind, werden hier auch die Titel der diversen \"Uberschriften mit angegeben um so eine verst\"andliche Zuordnung zu erm\"oglichen. 
+\newpage
+\begin{lstlisting}
+{
+  "paragraphID" : 3,
+  "count" : 94,
+  "token" : [ 5, 8, 10, 13, 14, 15, 20, 21, 22, 25, 26, 28, 29, 31, 32, 34, 35, 37, 39, 44, 47, 48, 51, 52, 54, 59, 62, 65, 67, 70, 71, 77, 79, 81, 82, 85, 86, 87, 89, 90, 92, 95, 100, 101, 103, 108, 110, 111, 114, 118, 120, 121, 123, 126, 128, 132, 133, 142, 143, 145, 146, 148, 150, 152, 154, 156, 159, 164, 168, 169, 171, 173, 176, 177, 181, 184, 188, 191, 196, 197, 198, 199, 200, 201, 203, 205, 206, 207, 208, 211, 214, 218, 219, 221 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0,
+  "chaptername" : "abstract",
+  "sectionname" : null,
+  "subsectionname" : null,
+  "subsubsectionname" : null,
+  "idInChapter" : 1
+}
+\end{lstlisting}

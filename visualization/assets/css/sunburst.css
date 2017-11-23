@@ -1,0 +1,93 @@
+
+.tab-pane {
+    padding: 10px 5px;
+    height: 100%;
+    float: left;
+}
+
+.sunburst-container {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    height: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.legend-container {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+    height: 100%;
+    vertical-align: top;
+    float: left;
+    overflow: hidden;
+}
+
+.tree-container {
+    display: inline-block;
+    position: relative;
+    width: 95%;
+    height: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.sbSlider-container {
+    display: inline-block;
+    position: relative;
+    width: 5%;
+    height: 100%;
+    vertical-align: top;
+    float: right;
+    overflow: hidden;
+}
+
+.detail-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    float: left;
+    vertical-align: top;
+}
+
+.text-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 15%;
+    vertical-align: top;
+}
+
+.bubble-container {
+    display: inline-block;
+    position: relative;
+    width: 95%;
+    height: 85%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.buSlider-container {
+    display: inline-block;
+    position: relative;
+    width: 5%;
+    height: 85%;
+    vertical-align: top;
+    float: right;
+    overflow: hidden;
+}
+
+.breadcrumb-container {
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.link {
+    fill: none;
+}

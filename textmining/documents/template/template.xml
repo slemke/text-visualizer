@@ -1,87 +1,61 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Template for the IDF (Intermediate Document Format)  -->
-<!--
-    Elements:
-    - Document
-    - meta
-        - title
-        - subtitle
-        - authors
-            - author
-        - released
-        - isbn
-    - text
-        - chapter
-        - headline
-        - tokens
-        - token
-        - paragraph
-        - origin
-        - list
-        - item
- -->
 <document>
     <meta>
-        <title>Betriebssysteme</title>
-        <subtitle>Ein Lehrbuch mit Übungen zur Systemprogrammierung in UNIX/Linux</subtitle>
+        <title>A greate to book to be read</title>
+        <subtitle>As if a great title wouldn't be enough</subtitle>
         <authors>
-            <author>Erich Ehses</author>
-            <author>Lutz Köhler</author>
-            <author>Petra Riemer</author>
-            <author>Horst Stenzel</author>
-            <author>Frank Victor</author>
+            <author>John Doe</author>
+            <author>Jane Doe</author>
+            <author>Dr. Jimmmy Doe</author>
         </authors>
-        <released>2005</released>
-        <isbn>3-8273-7156-2</isbn>
+        <released>2017</released>
+        <isbn>1234567890</isbn>
     </meta>
     <text>
-        <chapter>
-            <headline value="Kapitel 1: Der erste Versuch">
-                <tokens>
-                    <token tag="">Kapitel</token>
-                    <token tag="">1</token>
-                    <token tag="">:</token>
-                    <token tag="">Der</token>
-                    <token tag="">erste</token>
-                    <token tag="">Versuch</token>
-                </tokens>
-            </headline>
-
-            <section value="Einleitung">
-                <headline>
-                    <tokens>
-                        <token tag="">Einleitung</token>
-                    </tokens>
-                </headline>
+        <chapter title="Chapter 1: The first chapter">
+            <section title="First Section">
                 <paragraph>
-                    <origin>Dies ist ein Beispiel</origin>
-                    <tokens>
-                        <token tag="">Dies</token>
-                        <token tag="">ist</token>
-                        <token tag="">ein</token>
-                        <token tag="">Beispiel</token>
-                    </tokens>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+                    ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                 </paragraph>
-                <section>
-                    <headline>
-                        ...
-                    </headline>
-                    <origin>
-                        ...
-                    </origin>
-                    <token>
-                        ...
-                    </token>
-                    <subsection>
-                        <headline>
-                            ...
-                        </headline>
-                        <paragraph>
-                            ...
-                        </paragraph>
-                    </subsection>
-                </section>
             </section>
+
+            <subsection title="First Subsection">
+                <paragraph>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+                    ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </paragraph>
+            </subsection>
+
+            <subsubsection title="First SubSubSection">
+                <paragraph>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+                    ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </paragraph>
+            </subsubsection>
+        </chapter>
+
+        <chapter title="Chapter 2: The Second Chapter">
+            <paragraph>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+                ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </paragraph>
         </chapter>
     </text>
 </document>

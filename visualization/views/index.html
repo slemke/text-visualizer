@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <meta name="keywords" content="visualization, nodejs, javascript, d3, opennlp, java" />
+        <meta name="description" content="Text Visualizer is a tool to visualize text data to improve your academic paper." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- document title -->
+        <title>Visualization: Text Mining</title>
+
+        <!-- include minified css files -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="assets/css/index.min.css" rel="stylesheet" />
+
+    </head>
+    <body>
+        <!-- scroll back to top -->
+        <a href="#" id="back-to-top">
+            <span class="glyphicon glyphicon-menu-up"></span>
+        </a>
+
+        <!-- outer page container-->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- visualization container -->
+                <div id="visualization">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <!-- navigation container -->
+                            <nav class="navbar navbar-default">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand" href="#">Text Mining Visualization</a>
+                                    </div>
+
+                                    <form class="navbar-form navbar-right">
+                                        <div class="form-group">
+                                            <!--<label for="document-selector">Select document</label>
+                                            <select name="document" class="form-control" id="document-selector">
+                                                <option value="1">Dokument #1</option>
+                                                <option value="2">Dokument #2</option>
+                                                <option value="3">Dokument #3</option>
+                                            </select>-->
+                                            <label for="document-analysis">Select analysis</label>
+                                            <select name="analysis" class="form-control" id="document-analysis">
+                                                <option value="worstWordCount">Wordcount</option>
+                                                <option value="worstSentenceLength">Sentence Length</option>
+                                                <option value="worstSentencePunctuation">Punctuation</option>
+                                                <option value="worstStopwordCount">Stopwords</option>
+                                            </select>
+                                            <!--<button type="submit" class="btn btn-primary" id="document-selector-submit">Auswählen</button>-->
+                                        </div>
+                                    </form>
+                                </div>
+                            </nav>
+
+
+                            <!-- sunburst / graph container -->
+                            <div id="sunburst">
+                                <ul class="nav nav-tabs" role="tablist" id="tabs">
+                                    <li role="presentation" class="active">
+                                        <a href="#sunburst-tab" data-toggle="tab">Sunburst</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tree-tab" data-toggle="tab">Tree</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content" id="nav-viz-tabContent">
+                                    <div role="tabpanel" class="tab-pane active" id="sunburst-tab">
+                                        <div class="legend-container" id="LContainer"></div>
+                                        <div class="sunburst-container" id="SBContainer"></div>
+                                        <div class="sbSlider-container" id="SBSliderContainer"></div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="tree-tab">
+                                        <div class="tree-container" id="TreeContainer"></div>
+                                        <div class="sbSlider-container" id="TreeSliderContainer"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- data container -->
+                            <div id="data">
+                                <ul class="nav nav-tabs" role="tablist" id="data-tabs">
+                                    <li role="presentation" class="active">
+                                        <a href="#bubble-tab" data-toggle="tab">Bubble Chart</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div role="tabpanel" class="tab-pane active" id="bubble-tab">
+                                        <div class="detail-container" id="DTContainer">
+                                            <div class="text-container" id="TContainer"></div>
+                                            <div class="bubble-container" id="BUContainer"></div>
+                                            <div class="buSlider-container" id="BUSliderContainer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- text container -->
+                <div id="text">
+
+                    <!-- overlay while text is loading (spinner) -->
+                    <div id="overlay">
+                        <div class="circle-container">
+                            <div class="sk-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- article container -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <header>
+                                <h1></h1>
+                            </header>
+                            <article>
+                                <!-- text will be inserted with JS -->
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- JS dependencies -->
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/d3.min.js"></script>
+        <script src="assets/js/lib/split/split.js"></script>
+        <script src="assets/js/index.min.js"></script>
+    </body>
+</html>
