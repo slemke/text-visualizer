@@ -11,7 +11,7 @@ public class Wordcount {
     private int sectionID;
     private int subsectionID;
     private int subsubsectionID;
-    private int paragraphID;
+    private double normalized;
 
     public String getWord() {
         return word;
@@ -61,11 +61,11 @@ public class Wordcount {
         this.subsubsectionID = subsubsectionID;
     }
 
-    public int getParagraphID() {
-        return paragraphID;
+    public double getNormalized() {
+        return normalized;
     }
 
-    public void setParagraphID(int paragraphID) {
-        this.paragraphID = paragraphID;
+    public void setNormalized(double normalized) {
+        this.normalized = normalized;
     }
 }

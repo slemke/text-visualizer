@@ -9,6 +9,11 @@ public class Node {
     private ArrayList<Node> children;
     private int size;
 
+    private int worstSentenceLength;
+    private int worstSentencePunctuation;
+    private int worstStopwordCount;
+    private int worstWordCount;
+
     public int getId() {
         return id;
     }
@@ -39,5 +44,37 @@ public class Node {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public int getWorstSentenceLength() {
+        return worstSentenceLength;
+    }
+
+    public void setWorstSentenceLength(int worstSentenceLength) {
+        this.worstSentenceLength = worstSentenceLength;
+    }
+
+    public int getWorstSentencePunctuation() {
+        return worstSentencePunctuation;
+    }
+
+    public void setWorstSentencePunctuation(int worstSentencePunctuation) {
+        this.worstSentencePunctuation = worstSentencePunctuation;
+    }
+
+    public int getWorstStopwordCount() {
+        return worstStopwordCount;
+    }
+
+    public void setWorstStopwordCount(int worstStopwordCount) {
+        this.worstStopwordCount = worstStopwordCount;
+    }
+
+    public int getWorstWordCount() {
+        return worstWordCount;
+    }
+
+    public void setWorstWordCount(int worstWordCount) {
+        this.worstWordCount = worstWordCount;
     }
 }

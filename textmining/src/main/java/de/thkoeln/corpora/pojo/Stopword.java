@@ -11,6 +11,51 @@ public class Stopword {
     private int sectionID;
     private int subsectionID;
     private int subsubsectionID;
+    private String chaptername;
+    private String sectionname;
+    private String subsectionname;
+    private String subsubsectionname;
+    private int idInChapter;
+
+    public int getIdInChapter() {
+        return idInChapter;
+    }
+
+    public void setIdInChapter(int idInChapter) {
+        this.idInChapter = idInChapter;
+    }
+
+    public String getChaptername() {
+        return chaptername;
+    }
+
+    public void setChaptername(String chaptername) {
+        this.chaptername = chaptername;
+    }
+
+    public String getSectionname() {
+        return sectionname;
+    }
+
+    public void setSectionname(String sectionname) {
+        this.sectionname = sectionname;
+    }
+
+    public String getSubsectionname() {
+        return subsectionname;
+    }
+
+    public void setSubsectionname(String subsectionname) {
+        this.subsectionname = subsectionname;
+    }
+
+    public String getSubsubsectionname() {
+        return subsubsectionname;
+    }
+
+    public void setSubsubsectionname(String subsubsectionname) {
+        this.subsubsectionname = subsubsectionname;
+    }
 
     public int getChapterID() {
         return chapterID;

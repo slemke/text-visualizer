@@ -18,7 +18,6 @@ public class Document {
     private String title;
     private String subtitle;
     private List<Chapter> chapters = new ArrayList<>();
-    private HashMap<Integer, ArrayList<Sentence>> sentences;
 
     public String getTitle() {
         return title;
@@ -45,13 +44,5 @@ public class Document {
 
     public void setChapters(List<Chapter> chapters) {
         this.chapters = chapters;
-    }
-
-    public void setData(HashMap<Integer, ArrayList<Sentence>> sentences) {
-        this.sentences = sentences;
-    }
-
-    public HashMap<Integer, ArrayList<Sentence>> getData() {
-        return this.sentences;
     }
 }

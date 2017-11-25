@@ -25,6 +25,8 @@ public class StopwordTask extends AbstractTask {
 
         for(Chapter c : doc.getChapters()) {
 
+            int idInChapter = 1;
+
             for(Section s : c.getSections()) {
 
                 for(Paragraph p : s.getParagraphs()) {
@@ -49,6 +51,11 @@ public class StopwordTask extends AbstractTask {
 
                     stopword.setChapterID(c.getId());
                     stopword.setSectionID(s.getId());
+
+                    stopword.setChaptername(c.getTitle());
+                    stopword.setSectionname(s.getTitle());
+
+                    stopword.setIdInChapter(idInChapter++);
 
                     stopwords.add(stopword);
                 }
@@ -79,6 +86,13 @@ public class StopwordTask extends AbstractTask {
                         stopword.setSectionID(s.getId());
                         stopword.setSubsectionID(ss.getId());
 
+
+                        stopword.setChaptername(c.getTitle());
+                        stopword.setSectionname(s.getTitle());
+                        stopword.setSubsectionname(ss.getTitle());
+
+                        stopword.setIdInChapter(idInChapter++);
+
                         stopwords.add(stopword);
                     }
 
@@ -108,6 +122,13 @@ public class StopwordTask extends AbstractTask {
                             stopword.setSectionID(s.getId());
                             stopword.setSubsectionID(ss.getId());
                             stopword.setSubsubsectionID(sss.getId());
+
+                            stopword.setChaptername(c.getTitle());
+                            stopword.setSectionname(s.getTitle());
+                            stopword.setSubsectionname(ss.getTitle());
+                            stopword.setSubsubsectionname(sss.getTitle());
+
+                            stopword.setIdInChapter(idInChapter++);
 
                             stopwords.add(stopword);
                         }

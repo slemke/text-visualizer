@@ -2,9 +2,9 @@
 <document>
     <title>Characterizing Guidance in Visual Analytics</title>
     <subtitle></subtitle>
-    <chapter title="abstract">
+    <chapter title="Abstract">
         <section>
-            <paragraph>Visual analytics (VA) is typically applied in scenarios where complex data has to be analyzed. Unfortunately, there is a natural correlation between the complexity of the data and the complexity of the tools to study them. An adverse effect of complicated tools is that analytical goals are more difficult to reach. Therefore, it makes sense to consider methods that guide or assist users in the visual analysis process. Several such methods already exist in the literature, yet we are lacking a general model that facilitatesin-depth reasoning about guidance. We establish such a model by extending van Wijk’s model of visualization with the fundamental components of guidance. Guidance is defined as a process that gradually narrows the gap that hinders effective continuation of the data analysis. We describe diverse inputs based on which guidance can be generated and discuss different degrees of guidance and means to incorporate guidance into VA tools. We use existing guidance approaches from the literature to illustrate the various aspects of our model. As a conclusion, we identify research challenges and suggest directions for future studies. With our work we take a necessary step to pave the way to a systematic development of guidance techniques that effectively support users in the context of VA.</paragraph>
+            <paragraph>Visual analytics (VA) is typically applied in scenarios where complex data has to be analyzed. Unfortunately, there is a natural correlation between the complexity of the data and the complexity of the tools to study them. An adverse effect of complicated tools is that analytical goals are more difficult to reach. Therefore, it makes sense to consider methods that guide or assist users in the visual analysis process. Several such methods already exist in the literature, yet we are lacking a general model that facilitates in-depth reasoning about guidance. We establish such a model by extending van Wijk’s model of visualization with the fundamental components of guidance. Guidance is defined as a process that gradually narrows the gap that hinders effective continuation of the data analysis. We describe diverse inputs based on which guidance can be generated and discuss different degrees of guidance and means to incorporate guidance into VA tools. We use existing guidance approaches from the literature to illustrate the various aspects of our model. As a conclusion, we identify research challenges and suggest directions for future studies. With our work we take a necessary step to pave the way to a systematic development of guidance techniques that effectively support users in the context of VA.</paragraph>
         </section>
     </chapter>
     <chapter title="Introduction">
@@ -55,15 +55,19 @@
 
         <section title="Conceptual Model of Guidance">
 
-            <paragraph>As a starting point for a first model of guidance in the context of VA, we use van Wijk’s [47] model of visualization. We make a slight modification though in that we replace the term visualization by visual analytics. This makes clear that our model covers both visual and analytical methods. The model is shown in gray in Fig. 2. Boxes represent artifacts, such as data or images, while circles represent functions that process some input and generate some output. Visual and analytical means (V) transform data [D] into images [I] based on some specifications [S]. The images are then perceived (P) to generate some knowledge [K]. Based on their accumulated knowledge, users can interactively explore (E) the data by adjusting the specifications (e.g., choose a different clustering algorithm or change the perspective on the data). As such, van Wijk’s model effectively conveys the iterative and dynamic nature of knowledge generation mediated through VA. This makes it perfectly suited to be expanded to a model of guided VA.</paragraph>
+            <subsection title="Einleitung">
 
-            <paragraph>We attach new guidance-related components to the model, shown in blue in Fig. 2. A central position is taken by the guidance generation process (G). It is hooked up first and foremost with the user’s knowledge [K]. The reason is that before we can take any measures of guidance, we need to know what the particular problem of the user is. Similar to the worldview gap [2], we coin the term knowledge gap to capture the actual deficit that hinders continuation of the data analysis. The guidance generation process (G) is further connected to sources of information based on which guidance can be generated. These sources include the original data [D], visualization images [I], interaction history or provenance [H], and domain conventions or models [D]. Taken together, these components represent the input to the guidance generation process.</paragraph>
+                <paragraph>As a starting point for a first model of guidance in the context of VA, we use van Wijk’s [47] model of visualization. We make a slight modification though in that we replace the term visualization by visual analytics. This makes clear that our model covers both visual and analytical methods. The model is shown in gray in Fig. 2. Boxes represent artifacts, such as data or images, while circles represent functions that process some input and generate some output. Visual and analytical means (V) transform data [D] into images [I] based on some specifications [S]. The images are then perceived (P) to generate some knowledge [K]. Based on their accumulated knowledge, users can interactively explore (E) the data by adjusting the specifications (e.g., choose a different clustering algorithm or change the perspective on the data). As such, van Wijk’s model effectively conveys the iterative and dynamic nature of knowledge generation mediated through VA. This makes it perfectly suited to be expanded to a model of guided VA.</paragraph>
 
-            <paragraph>On the output side, results of a guidance generation process can be delivered in various ways. Fig. 2 illustrates three different scenarios. Orienting provides basic guidance through visual cues [C]. Directing offers useful options or alternatives [O] that the user may or may not choose to follow. Prescribing directly operates on the specification [S] in order to automatically generate suitable visual results.</paragraph>
+                <paragraph>We attach new guidance-related components to the model, shown in blue in Fig. 2. A central position is taken by the guidance generation process (G). It is hooked up first and foremost with the user’s knowledge [K]. The reason is that before we can take any measures of guidance, we need to know what the particular problem of the user is. Similar to the worldview gap [2], we coin the term knowledge gap to capture the actual deficit that hinders continuation of the data analysis. The guidance generation process (G) is further connected to sources of information based on which guidance can be generated. These sources include the original data [D], visualization images [I], interaction history or provenance [H], and domain conventions or models [D]. Taken together, these components represent the input to the guidance generation process.</paragraph>
 
-            <paragraph>The main goal of guidance is to create and maintain an environment in which users are able to make progress and perform their tasks effectively. This dynamic progressive procedure is well expressed by the knowledge change (dK/dt) occurring as a consequence of the guided visual analysis and the interactive adjustment (dS/dt) of the specification. A critical concern is that knowledge is acquired through perception and cognition (P). So the leverage point of guidance is to facilitate perception and cognition at different degrees, for example, by showing visual cues alongside the visualization, by offering options that, if chosen, lead to an improved visualization, or by taking over control and circumventing progress-hindering obstacles automatically.</paragraph>
+                <paragraph>On the output side, results of a guidance generation process can be delivered in various ways. Fig. 2 illustrates three different scenarios. Orienting provides basic guidance through visual cues [C]. Directing offers useful options or alternatives [O] that the user may or may not choose to follow. Prescribing directly operates on the specification [S] in order to automatically generate suitable visual results.</paragraph>
 
-            <paragraph>In summary, we can identify three main characteristics of guidance: (1) the reasons why guidance is needed, i.e., the knowledge gap, (2) the inputs that are used to provide guidance as well as the output, and how the output is conveyed to the user, and (3) the expressed guidance degree. In the following, we will describe these aspects in detail.</paragraph>
+                <paragraph>The main goal of guidance is to create and maintain an environment in which users are able to make progress and perform their tasks effectively. This dynamic progressive procedure is well expressed by the knowledge change (dK/dt) occurring as a consequence of the guided visual analysis and the interactive adjustment (dS/dt) of the specification. A critical concern is that knowledge is acquired through perception and cognition (P). So the leverage point of guidance is to facilitate perception and cognition at different degrees, for example, by showing visual cues alongside the visualization, by offering options that, if chosen, lead to an improved visualization, or by taking over control and circumventing progress-hindering obstacles automatically.</paragraph>
+
+                <paragraph>In summary, we can identify three main characteristics of guidance: (1) the reasons why guidance is needed, i.e., the knowledge gap, (2) the inputs that are used to provide guidance as well as the output, and how the output is conveyed to the user, and (3) the expressed guidance degree. In the following, we will describe these aspects in detail.</paragraph>
+
+            </subsection>
 
             <subsection title="Knowledge Gap">
 
@@ -98,7 +102,7 @@
 
                 <paragraph>Data includes all kinds of information readily available or derivable from the data to be analyzed. Concrete examples are raw data, statistical properties of the data, data topology, or meta-data.</paragraph>
 
-                <paragraph>Domain Knowledge refers to information that originates from the application domain. This could be expert systems, domain models, workflows, or conventions.a</paragraph>
+                <paragraph>Domain Knowledge refers to information that originates from the application domain. This could be expert systems, domain models, workflows, or conventions.</paragraph>
 
                 <paragraph>Visualization Images include the visual data representations and information about mapping parameters. They can be useful for understanding what the user is actually seeing.</paragraph>
 
@@ -204,7 +208,11 @@
 
         <section title="Guidance Degree">
 
-            <paragraph>Another important aspect of guidance methods is the degree of assistance provided, which should meet the user’s needs. It is a continuous spectrum that spreads from orienting to prescribing.</paragraph>
+            <subsection title="Einleitung">
+
+                <paragraph>Another important aspect of guidance methods is the degree of assistance provided, which should meet the user’s needs. It is a continuous spectrum that spreads from orienting to prescribing.</paragraph>
+
+            </subsection>
 
             <subsection title="Orienting">
 
@@ -236,7 +244,10 @@
 
         <section title="A Detailed Look at Selected Examples">
 
-            <paragraph>In the previous paragraphs, we provided an exemplification of each single characteristics of guidance in VA. Next, we will be looking at three approaches in detail. To the best of our knowledge, no approach covers the whole guidance spectrum. Yet, the following examples highlight the most relevant factors when characterizing guidance.</paragraph>
+            <subsection title="Einleitung">
+                <paragraph>In the previous paragraphs, we provided an exemplification of each single characteristics of guidance in VA. Next, we will be looking at three approaches in detail. To the best of our knowledge, no approach covers the whole guidance spectrum. Yet, the following examples highlight the most relevant factors when characterizing guidance.</paragraph>
+
+            </subsection>
 
             <subsection title="Example 1: Heterogeneity-Based Guidance">
                 <paragraph>Luboschik et al. [29] facilitate the exploration of multiscale data. The approach points the analyst to scales and regions within the data (unknown targets) that exhibit behavior of interest without the need for an exhaustive search. The main idea is to take the most fine-grained data as a guidance input and to step-wise aggregate it into more coarsegrained data. Pairs of subsequent data scales can then be compared by various metrics, detecting data features that were observable in the more detailed scale, but can no longer be found in the less-detailed aggregated scale. In other words, subsequent scales exhibit heterogeneous behavior. This information is then communicated to the user by means of visual cues, in this case colored heterogeneity bands that provide orientation towards regions that are worthwhile to zoom into. This way, the analyst is given a direct answer to the question where deviating behavior from the currently shown will emerge, while at the same time not having to bother with investigating other parts of the data where no such deviation occurs.</paragraph>
