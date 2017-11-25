@@ -1,47 +1,33 @@
 package de.thkoeln.corpora.parser;
 
 import de.thkoeln.corpora.Document;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Parser {
 
+    public Document read(Path path) throws JAXBException {
 
-    public static Document read(Path path) {
+        File file = new File(path.toString());
+        JAXBContext context = JAXBContext.newInstance(Document.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        Document d = (Document) unmarshaller.unmarshal(file);
 
-        Document d = null;
-
-        try {
-            String content = new String(Files.readAllBytes(path));
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-
-            ByteArrayInputStream input = new ByteArrayInputStream(content.getBytes("UTF-8"));
-            org.w3c.dom.Document document = builder.parse(input);
-
-            Node title = document.getElementsByTagName("title").item(0);
-            String titleText = title.getTextContent();
-
-            String text = document.getElementsByTagName("text").item(0).getTextContent();
-
-            d = new Document(titleText, text);
-
-        } catch (IOException | SAXException | ParserConfigurationException e) {
-            e.printStackTrace();
-        }
         return d;
     }
 
-    public static void write(Document document) {
-        System.out.println(document.getOriginalText());
+    public static void write(Document document, Path path) throws JAXBException {
+        File file = new File(path.toString());
+        JAXBContext context = JAXBContext.newInstance(Document.class);
+        Marshaller marshaller = context.createMarshaller();
+
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        marshaller.marshal(document, file);
     }
 }

@@ -1,116 +1,48 @@
 package de.thkoeln.corpora;
 
-import de.thkoeln.corpora.document.Element;
+import de.thkoeln.corpora.document.Chapter;
+import de.thkoeln.corpora.document.Sentence;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
+import java.util.List;
 
-public class Document implements Iterable<Element> {
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.NONE)
+public class Document {
 
     private String title;
     private String subtitle;
-    private ArrayList<String> authors;
-    private String released;
-    private String isbn;
-    private ArrayList<Element> elements = new ArrayList<>();
-    private String text;
-
-    public Document(String title, String text) {
-        this.title = title;
-        this.text = text;
-    }
-
-    public Document(String title, String subtitle, String author, String text) {
-        this.title = title;
-        this.subtitle = subtitle;
-        this.authors.add(author);
-        this.text = text;
-    }
-
-    public Document(String title, String subtitle, String author, String text, String released, String isbn) {
-        this.title = title;
-        this.subtitle = subtitle;
-        this.authors.add(author);
-        this.text = text;
-        this.released = released;
-        this.isbn = isbn;
-    }
-
-    public Document(String title, String subtitle, ArrayList<String> authors, String text, String released, String isbn) {
-        this.title = title;
-        this.subtitle = subtitle;
-        this.authors = authors;
-        this.text = text;
-        this.released = released;
-        this.isbn = isbn;
-    }
-
-    public ArrayList<Element> getText() {
-        return this.elements;
-    }
-
-    public void setText(ArrayList<Element> text) {
-        this.elements = text;
-    }
-
-    public String getOriginalText() {
-        return this.text;
-    }
-
-    public void setOriginalText(String text) {
-        this.text = text;
-    }
+    private List<Chapter> chapters = new ArrayList<>();
 
     public String getTitle() {
         return title;
     }
 
+    @XmlElement
     public void setTitle(String title) {
         this.title = title;
     }
 
     public String getSubtitle() {
-        return subtitle;
+        return this.subtitle;
     }
 
+    @XmlElement
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
     }
 
-    public ArrayList<String> getAuthors() {
-        return authors;
+    @XmlElement( name = "chapter")
+    public List<Chapter> getChapters() {
+        return chapters;
     }
 
-    public String getAuthor(int index) {
-        return authors.get(index);
-    }
-
-    public void addAuthor(String author) {
-        this.authors.add(author);
-    }
-
-    public int numberOfAuthors() {
-        return this.authors.size();
-    }
-
-    public String getReleased() {
-        return released;
-    }
-
-    public void setReleased(String released) {
-        this.released = released;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    @Override
-    public Iterator<Element> iterator() {
-        return this.elements.iterator();
+    public void setChapters(List<Chapter> chapters) {
+        this.chapters = chapters;
     }
 }

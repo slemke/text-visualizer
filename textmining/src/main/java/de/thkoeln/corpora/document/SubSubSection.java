@@ -1,27 +1,37 @@
 package de.thkoeln.corpora.document;
 
-public class SubSubSection implements Element {
+import javax.xml.bind.annotation.XmlAttribute;
+import java.util.ArrayList;
+import java.util.List;
 
-    private int id;
+public class SubSubSection {
+
     private String title;
+    private int id;
+    private List<Paragraph> paragraphs = new ArrayList<>();
 
-    public SubSubSection(int id, String title) {
-        this.id = id;
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    @Override
-    public int getID() {
+    public List<Paragraph> getParagraphs() {
+        return this.paragraphs;
+    }
+
+    public void setParagraphs(List<Paragraph> paragraphs) {
+        this.paragraphs = paragraphs;
+    }
+
+    public int getId() {
         return this.id;
     }
 
-    @Override
-    public String getType() {
-        return "subsubsection";
-    }
-
-    @Override
-    public String getText() {
-        return this.title;
+    @XmlAttribute
+    public void setId(int id) {
+        this.id = id;
     }
 }

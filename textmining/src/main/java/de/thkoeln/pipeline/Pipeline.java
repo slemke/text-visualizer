@@ -4,25 +4,26 @@ import de.thkoeln.corpora.Document;
 import de.thkoeln.corpora.parser.Parser;
 import de.thkoeln.tasks.Task;
 
+import javax.xml.bind.JAXBException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class PreProcessor {
+public class Pipeline {
 
-    private static PreProcessor instance;
+    private static Pipeline instance;
 
     private ArrayList<Path> documents = new ArrayList<>();
 
     private ArrayList<Task> tasks = new ArrayList<>();
 
-    private PreProcessor() {}
+    private Pipeline() {}
 
-    public static PreProcessor getInstance() {
-        if(PreProcessor.instance == null)
-            PreProcessor.instance = new PreProcessor();
+    public static Pipeline getInstance() {
+        if(Pipeline.instance == null)
+            Pipeline.instance = new Pipeline();
 
-        return PreProcessor.instance;
+        return Pipeline.instance;
     }
 
     public void addDocument(Path... path) {
@@ -69,13 +70,18 @@ public class PreProcessor {
             throw new NullPointerException("No tasks in preprocessor pipeline");
 
         for(final Path p : this.documents) {
-            Document document = Parser.read(p);
+            Parser parser = new Parser();
+            try {
+                Document document = parser.read(p);
 
-            for(final Task task : this.tasks) {
-                document = task.apply(document);
+                for(final Task task : this.tasks) {
+                    document = task.apply(document);
+                }
+
+                //Parser.write(document, p);
+            } catch (JAXBException e) {
+                e.printStackTrace();
             }
-
-            Parser.write(document);
         }
     }
 

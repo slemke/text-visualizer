@@ -20,9 +20,9 @@ public abstract class AbstractTask implements Task {
 
     public AbstractTask() {
         try {
-            loadTokenizer("models/en-token.bin");
-            loadSentenceModel("models/en-sent.bin");
-            loadTaggerModel("models/en-pos-maxent.bin");
+            loadTokenizer("textmining/models/en-token.bin");
+            loadSentenceModel("textmining/models/en-sent.bin");
+            loadTaggerModel("textmining/models/en-pos-maxent.bin");
         } catch (IOException e) {
             e.printStackTrace();
         }

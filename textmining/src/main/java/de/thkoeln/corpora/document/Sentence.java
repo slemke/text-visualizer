@@ -1,85 +1,44 @@
 package de.thkoeln.corpora.document;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.*;
 
-public final class Sentence extends AbstractList<Token> implements Element {
+@XmlAccessorType(XmlAccessType.NONE)
+public final class Sentence {
 
-    private ArrayList<Token> tokens = new ArrayList<Token>();
+    private List<Token> tokens;
     private int id;
-    private int parent;
-    private String originalSentence;
 
-    public Sentence() {}
-
-    public Sentence(String[] tokens) {
-        for(String token : tokens) {
-            Token t = new Token(token);
-            this.tokens.add(t);
-        }
+    public String getSentence() {
+        return sentence;
     }
 
-    public Sentence(int id, String[] tokens) {
+    public void setSentence(String sentence) {
+        this.sentence = sentence;
+    }
+
+    private String sentence;
+
+
+    @XmlElement
+    public List<Token> getToken() {
+        return this.tokens;
+    }
+
+    public void setToken(List<Token> token) {
+        this.tokens = token;
+    }
+
+    @XmlAttribute
+    public void setId(int id) {
         this.id = id;
-
-        for(String token : tokens)
-            this.tokens.add(new Token(token));
     }
 
-    public Sentence(int id, Token[] tokens) {
-        this.id = id;
-        this.tokens.addAll(Arrays.asList(tokens));
-    }
-
-    public Sentence(int id, List tokens) {
-        this.id = id;
-        this.tokens.addAll(tokens);
-    }
-
-    public void setParent(int parent) {
-        this.parent = parent;
-    }
-
-    public int getParent() {
-        return this.parent;
-    }
-
-    public boolean add(Token token) {
-        return tokens.add(token);
-    }
-
-    public Token get(int index) {
-        return tokens.get(index);
-    }
-
-    public int size() {
-        return tokens.size();
-    }
-
-    public Iterator<Token> iterator() {
-        return tokens.iterator();
-    }
-
-    public String getOriginalSentence() {
-        return originalSentence;
-    }
-
-    public void setOriginalSentence(String originalSentence) {
-        this.originalSentence = originalSentence;
-    }
-
-    @Override
-    public int getID() {
+    public int getId() {
         return this.id;
     }
 
-    @Override
-    public String getType() {
-        return "sentence";
-    }
-
-    @Override
-    public String getText() {
-        // TODO überarbeiten
-        return this.tokens.toString();
-    }
 }
