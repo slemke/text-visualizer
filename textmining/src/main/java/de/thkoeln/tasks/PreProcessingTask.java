@@ -73,6 +73,8 @@ public class PreProcessingTask extends AbstractTask {
 
                 for(Paragraph p : s.getParagraphs()) {
 
+                    //System.out.println(p.getText());
+
                     // compute text
                     String text = p.getText().get(0);
                     text = text.replace("\t", "");
@@ -102,16 +104,6 @@ public class PreProcessingTask extends AbstractTask {
                         sentenceList.add(sentenceObject);
                     }
                     p.setSentences(sentenceList);
-
-                    chapter.merge(c.getId(), sentenceList, (a, b) -> {
-                        a.addAll(b);
-                        return a;
-                    });
-
-                    section.merge(s.getId(), sentenceList, (a, b) -> {
-                        a.addAll(b);
-                        return a;
-                    });
                 }
 
                 for(Subsection ss : s.getSubsections()) {
@@ -147,20 +139,6 @@ public class PreProcessingTask extends AbstractTask {
                         }
                         p.setSentences(sentenceList);
 
-                        chapter.merge(c.getId(), sentenceList, (a, b) -> {
-                            a.addAll(b);
-                            return a;
-                        });
-
-                        section.merge(s.getId(), sentenceList, (a, b) -> {
-                            a.addAll(b);
-                            return a;
-                        });
-
-                        subsection.merge(ss.getId(), sentenceList, (a, b) -> {
-                            a.addAll(b);
-                            return a;
-                        });
                     }
 
                     for(SubSubSection sss : ss.getSubSubSections()) {
@@ -195,38 +173,11 @@ public class PreProcessingTask extends AbstractTask {
                                 sentenceList.add(sentenceObject);
                             }
                             p.setSentences(sentenceList);
-                            chapter.merge(c.getId(), sentenceList, (a, b) -> {
-                                a.addAll(b);
-                                return a;
-                            });
-
-                            section.merge(s.getId(), sentenceList, (a, b) -> {
-                                a.addAll(b);
-                                return a;
-                            });
-
-                            subsection.merge(ss.getId(), sentenceList, (a, b) -> {
-                                a.addAll(b);
-                                return a;
-                            });
-
-                            subsubsection.merge(sss.getId(), sentenceList, (a, b) -> {
-                                a.addAll(b);
-                                return a;
-                            });
                         }
                     }
                 }
             }
         }
-
-        HashMap<Integer, ArrayList<Sentence>> data = new HashMap<>();
-        data.putAll(chapter);
-        data.putAll(section);
-        data.putAll(subsection);
-        data.putAll(subsubsection);
-
-        doc.setData(data);
 
         return doc;
     }

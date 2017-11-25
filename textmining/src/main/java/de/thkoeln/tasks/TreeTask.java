@@ -259,7 +259,10 @@ public class TreeTask extends AbstractTask {
             // set worst word count
             int worstWordCount = 0;
             for(Wordcount count : wordcountArrayList) {
-                if(count.getChapterID() == c.getId()) {
+                if(count.getChapterID() == c.getId()
+                        && count.getSectionID() == 0
+                        && count.getSubsectionID() == 0
+                        && count.getSubsubsectionID() == 0) {
                     if(count.getCount() > worstWordCount)
                         worstWordCount = count.getCount();
                 }
@@ -269,7 +272,10 @@ public class TreeTask extends AbstractTask {
             // set worst stopwords
             int worstStopwordsCount = 0;
             for(Stopword stopword : stopwordArrayList) {
-                if(stopword.getChapterID() == c.getId()) {
+                if(stopword.getChapterID() == c.getId()
+                        && stopword.getSectionID() == 0
+                        && stopword.getSubsectionID() == 0
+                        && stopword.getSubsubsectionID() == 0) {
                     if(stopword.getCount() > worstStopwordsCount)
                         worstStopwordsCount = stopword.getCount();
                 }
@@ -279,7 +285,10 @@ public class TreeTask extends AbstractTask {
             // set worst punctuation
             int worstPunctuation = 0;
             for(Punctuation punctuation : punctuationArrayList) {
-                if(punctuation.getChapterID() == c.getId()) {
+                if(punctuation.getChapterID() == c.getId()
+                        && punctuation.getSectionID() == 0
+                        && punctuation.getSubsectionID() == 0
+                        && punctuation.getSubsubsectionID() == 0) {
                     if(punctuation.getCount() > worstPunctuation)
                         worstPunctuation = punctuation.getCount();
                 }
@@ -289,7 +298,10 @@ public class TreeTask extends AbstractTask {
             // set worst length
             int worstLength = 0;
             for(SentenceLength length : sentenceLengthArrayList) {
-                if(length.getChapterID() == c.getId())
+                if(length.getChapterID() == c.getId()
+                        && length.getSectionID() == 0
+                        && length.getSubsectionID() == 0
+                        && length.getSubsubsectionID() == 0)
                     if(length.getLength() > worstLength)
                         worstLength = length.getLength();
             }

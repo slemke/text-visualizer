@@ -29,6 +29,8 @@ public class WordcountTask extends AbstractTask {
         stopWords.add(";");
         stopWords.add("!");
         stopWords.add("?");
+        stopWords.add(")");
+        stopWords.add("(");
 
         for(Chapter c : doc.getChapters()) {
 
