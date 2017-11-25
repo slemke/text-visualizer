@@ -1,0 +1,3196 @@
+[ {
+  "sentenceID" : 98,
+  "count" : 4,
+  "sentence" : "We propose Hashedcubes, a data structure that enables real-time visual exploration of large datasets that improves the state of the art by virtue of its low memory requirements, low query latencies, and implementation simplicity.",
+  "token" : [ 4, 30, 34, 38 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 99,
+  "count" : 2,
+  "sentence" : "In some instances, Hashedcubes notably requires two orders of magnitude less space than recent data cube visualization proposals.",
+  "token" : [ 42, 58 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 100,
+  "count" : 4,
+  "sentence" : "In this paper, we describe the algorithms to build and query Hashedcubes, and how it can drive well-known interactive visualizations such as binned scatterplots, linked histograms and heatmaps.",
+  "token" : [ 62, 72, 85, 90 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 101,
+  "count" : 4,
+  "sentence" : "We report memory usage, build time and query latencies for a variety of synthetic and real-world datasets, and find that although sometimes Hashedcubes offers slightly slower querying times to the state of the art, the typical query is answered fast enough to easily sustain a interaction.",
+  "token" : [ 95, 109, 127, 140 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 102,
+  "count" : 2,
+  "sentence" : "In datasets with hundreds of millions of elements, only about 2% of the queries take longer than 40ms.",
+  "token" : [ 149, 161 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 103,
+  "count" : 4,
+  "sentence" : "Finally, we discuss the limitations of data structure, potential spacetime tradeoffs, and future research directions.",
+  "token" : [ 163, 171, 175, 180 ],
+  "chapterID" : 1,
+  "sectionID" : 2,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 104,
+  "count" : 2,
+  "sentence" : "Designers of interactive visualization systems face serious challenges in the presence of large, multidimensional datasets.",
+  "token" : [ 194, 197 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 105,
+  "count" : 3,
+  "sentence" : "On one side, naive implementations of repeated linear scans of the dataset of interest no longer offer acceptable latencies: this makes simple data structures no longer attractive.",
+  "token" : [ 201, 218, 227 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 106,
+  "count" : 2,
+  "sentence" : "On the other side, sophisticated implementations of precomputed indices built specifically for visualization have been proposed recently.",
+  "token" : [ 232, 246 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 107,
+  "count" : 5,
+  "sentence" : "These offer attractive query times, but their imple- mentations are not trivial to integrate with existing systems, require GPU support, or have another similar downside.",
+  "token" : [ 252, 256, 266, 270, 276 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 108,
+  "count" : 3,
+  "sentence" : "This paper provides an affirmative answer to the following question: is there a simple data structure that offers much of the performance of the more sophisticated indices, while maintaining a relatively-low memory footprint and implementation simplicity?",
+  "token" : [ 287, 305, 315 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 109,
+  "count" : 5,
+  "sentence" : "Specifically, we present Hashedcubes, a novel data structure that enables fast querying for interactive visualizations of large, multidimensional, spatiotemporal datasets.",
+  "token" : [ 317, 321, 335, 337, 340 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 110,
+  "count" : 4,
+  "sentence" : "Hashedcubes supports spatial queries, such as counting events in a particular spatial region; categorical queries over subsets of attribute values; and temporal queries over intervals of any granularity.",
+  "token" : [ 345, 355, 363, 372 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 111,
+  "count" : 2,
+  "sentence" : "As we report on Section 6, a typical query is returned in under 30 milliseconds in single-threaded execution.",
+  "token" : [ 379, 392 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 112,
+  "count" : 5,
+  "sentence" : "As a practical matter, Hashedcubes was designed to target the amount of main mem- ory of a modern desktop or laptop personal computer (on the order of 16 to 32GB of main memory).",
+  "token" : [ 397, 408, 418, 429, 430 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 113,
+  "count" : 2,
+  "sentence" : "In summary, this paper contributes:",
+  "token" : [ 433, 437 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 114,
+  "count" : 3,
+  "sentence" : "a simple data structure for real-time exploratory visualization of large multidimensional, spatiotemporal datasets, advancing the state of the art especially with respect to implementation simplicity and memory usage,",
+  "token" : [ 449, 452, 468 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 115,
+  "count" : 4,
+  "sentence" : "an experimental validation of a prototype implementation of Hashedcubes, including a suite of experiments to assess query time, memory usage, and build time of the data structure on synthetic and real-world datasets, and",
+  "token" : [ 478, 488, 491, 504 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 116,
+  "count" : 2,
+  "sentence" : "an extended discussion of the trade-offs enabled by Hashedcubes, including limitations and open research questions.",
+  "token" : [ 515, 522 ],
+  "chapterID" : 4,
+  "sectionID" : 5,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 117,
+  "count" : 1,
+  "sentence" : "In this section we will focus on work directly related to interactive visual analysis of big data.",
+  "token" : [ 540 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 118,
+  "count" : 4,
+  "sentence" : "For a more comprehensive list of papers, we refer the reader to the surveys on big data analysis, big data visualization, geospatial big data analysis and challenges in big data implementation.",
+  "token" : [ 548, 560, 564, 575 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 119,
+  "count" : 1,
+  "sentence" : "The need for low latency in large databases is a popular theme in the literature.",
+  "token" : [ 591 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 120,
+  "count" : 2,
+  "sentence" : "BlinkDB builds a carefully-constructed stratified sample of the dataset, which allows interactive latencies in approximate queries over multiple terabytes of data.",
+  "token" : [ 601, 614 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 121,
+  "count" : 2,
+  "sentence" : "In essence, BlinkDB provides infrastructure such that Hellerstein et al.’s online aggregation has fast convergence properties.",
+  "token" : [ 617, 633 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 122,
+  "count" : 3,
+  "sentence" : "ScalarR improves performance by manipulating physical query plans and computing a dynamic reduction of query sets based on screen resolution; it is an early, central example of explicitly taking peculiarities of a visualization setup in a DB account.",
+  "token" : [ 654, 659, 674 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 123,
+  "count" : 1,
+  "sentence" : "3W is a search framework for geo-temporal stamped documents that allows fast searches over spatial and text dimensions.",
+  "token" : [ 693 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 124,
+  "count" : 1,
+  "sentence" : "Forecache improves performance by predicting user actions ahead of the actual queries being issued.",
+  "token" : [ 708 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 125,
+  "count" : 4,
+  "sentence" : "The seminal paper of Gray et al. introduced the data cube concept, which laid the foundation for many other methods, including our proposal.",
+  "token" : [ 716, 722, 731, 735 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 126,
+  "count" : 1,
+  "sentence" : "A data cube can be seen as a hierarchical aggregation of all data dimensions in an n-dimensional lattice.",
+  "token" : [ 754 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 127,
+  "count" : 2,
+  "sentence" : "Its main disadvantage is its memory consumption, which becomes impractical as the number of dimensions increases.",
+  "token" : [ 762, 772 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 128,
+  "count" : 4,
+  "sentence" : "To address this problem, some approaches describe ways to compress data cubes, such as Dwarf, or build on distributed databases to cope with scale requirements.",
+  "token" : [ 777, 786, 790, 801 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 129,
+  "count" : 1,
+  "sentence" : "VisReduce is an approach to data aggregation which computes visualization results in a distributed fashion.",
+  "token" : [ 817 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 130,
+  "count" : 1,
+  "sentence" : "It uses a modified MapReduce algorithm and data compression.",
+  "token" : [ 827 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 131,
+  "count" : 1,
+  "sentence" : "Its main drawback is that interaction operations require on-demand aggregations.",
+  "token" : [ 838 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 132,
+  "count" : 2,
+  "sentence" : "Thus, the final result is obtained only after the costly transfer over the network of partial and final aggregations.",
+  "token" : [ 840, 859 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 133,
+  "count" : 2,
+  "sentence" : "As a rule of thumb, on-demand computation is problematic for visual analysis because of latency.",
+  "token" : [ 865, 876 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 134,
+  "count" : 2,
+  "sentence" : "As Liu and Heer describe, latencies of as little as half a second can affect the overall quality of an analyst’s data exploration process.",
+  "token" : [ 882, 902 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 135,
+  "count" : 2,
+  "sentence" : "A popular alternative to hide latency is to use sampling, and report uncertainty estimates as soon as they are available.",
+  "token" : [ 913, 924 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 136,
+  "count" : 3,
+  "sentence" : "Similarly, Stolper et al. describe a general framework for progressive approach for visual analytics.",
+  "token" : [ 926, 930, 941 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 137,
+  "count" : 1,
+  "sentence" : "The most recent trend in research at the intersection of data management and visualizations is the explicit acknowledgement of the human perceptual system.",
+  "token" : [ 965 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 138,
+  "count" : 3,
+  "sentence" : "Wu et al. suggest that database engines should explicitly optimize for perceptual constraints, by for example including the visual specification into the physical query planning process.",
+  "token" : [ 969, 980, 994 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 139,
+  "count" : 5,
+  "sentence" : "Jugel et al. offer a technique that is one such example: the query algorithms described there return approximate results which nevertheless rasterize to the same image as the exact query result would; ScalarR is another example, mentioned earlier in this section.",
+  "token" : [ 998, 1007, 1029, 1034, 1040 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 140,
+  "count" : 1,
+  "sentence" : "Closest to Hashedcubes are imMens and Nanocubes.",
+  "token" : [ 1048 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 141,
+  "count" : 3,
+  "sentence" : "The imMens approach combines data reduction, multivariate data tiles, and parallel query processing (using a GPU) to minimize both data cube memory usage and query latency.",
+  "token" : [ 1055, 1059, 1077 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 142,
+  "count" : 2,
+  "sentence" : "Its multivariate data tile methods are based on the observation that for any pair of 1D or 2D binned plots, the maximum number of dimensions needed to support brushing and linking is four.",
+  "token" : [ 1098, 1112 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 143,
+  "count" : 2,
+  "sentence" : "Thus, an n-dimensional data cube can be decomposed into a collection of smaller 3- or 4-dimensional projections.",
+  "token" : [ 1114, 1131 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 144,
+  "count" : 3,
+  "sentence" : "Furthermore, these decomposed data cubes are segmented into multivariate tiles, like the ones used by Google Maps.",
+  "token" : [ 1133, 1143, 1151 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 145,
+  "count" : 2,
+  "sentence" : "On the other hand, imMens lacks support for compound brushing in more than four dimensions.",
+  "token" : [ 1156, 1168 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 146,
+  "count" : 3,
+  "sentence" : "In comparison, Hashedcubes support any number of dimensions, even if at a potential cost in query latency.",
+  "token" : [ 1171, 1178, 1188 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 147,
+  "count" : 1,
+  "sentence" : "Nanocubes is a compact variation of a data cube that can handle a large number of dimensions.",
+  "token" : [ 1206 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 148,
+  "count" : 1,
+  "sentence" : "It defines a search key that is used to combine aggregations of independent dimensions at varying levels of detail and to maximize shared links across the data structure.",
+  "token" : [ 1235 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 149,
+  "count" : 2,
+  "sentence" : "Hashedcubes is an alternative to Nanocubes that eschews a large number of aggregations, allowing both a more compact representation and a much simpler implementation.",
+  "token" : [ 1249, 1261 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 150,
+  "count" : 1,
+  "sentence" : "Hashedcubes uses a partial ordering scheme combined with the notion of pivots to allow fast queries and a simple data structure layout.",
+  "token" : [ 1284 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 151,
+  "count" : 1,
+  "sentence" : "BigVis is an R package for the visualization of large datasets and statistical modeling that can store more sophisticated event statistics of events in its bins.",
+  "token" : [ 1311 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 152,
+  "count" : 1,
+  "sentence" : "Hashedcubes can be extended to include the additional functionality of BigVis.",
+  "token" : [ 1323 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 153,
+  "count" : 3,
+  "sentence" : "The support for the visualization of origin-destination (OD) data is requested in several applications that handle trajectory data.",
+  "token" : [ 1331, 1333, 1344 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 154,
+  "count" : 1,
+  "sentence" : "OD Taxi data visualization and taxi trajectory data visualizations are discussed in.",
+  "token" : [ 1357 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 155,
+  "count" : 1,
+  "sentence" : "One particularly favorable use case for Hashedcubes is in fact the visual analysis of origin-destination data.",
+  "token" : [ 1374 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 156,
+  "count" : 2,
+  "sentence" : "The interleaved scheme used in Hashedcubes allows sufficiently-fast queries, while requiring significantly less memory than Nanocubes and imMens.",
+  "token" : [ 1384, 1394 ],
+  "chapterID" : 11,
+  "sectionID" : 12,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 157,
+  "count" : 1,
+  "sentence" : "In this section we will describe the algorithms for building and querying a Hashedcubes.",
+  "token" : [ 1409 ],
+  "chapterID" : 20,
+  "sectionID" : 21,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 158,
+  "count" : 3,
+  "sentence" : "Before giving the full algorithms, however, we will give some intuition on how it works.",
+  "token" : [ 1415, 1417, 1427 ],
+  "chapterID" : 20,
+  "sectionID" : 21,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 159,
+  "count" : 2,
+  "sentence" : "Hashedcubes combines a few different ideas, and it is easier to see how they work together by progressively building on the properties it exploits.",
+  "token" : [ 1434, 1453 ],
+  "chapterID" : 20,
+  "sectionID" : 21,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 160,
+  "count" : 3,
+  "sentence" : "These include hierarchical array partitions, stable sorting, and commutativity of the summaries of a list under permutations of the list.",
+  "token" : [ 1459, 1462, 1476 ],
+  "chapterID" : 20,
+  "sectionID" : 21,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 161,
+  "count" : 6,
+  "sentence" : "First, we note that the fundamental unit we want to visualize in large-scale visualizations such as heatmaps and histograms is a count: \"how many events happened within this region at some point in time?\" \"How many events happened on a Tuesday?\", and so on.",
+  "token" : [ 1478, 1500, 1513, 1523, 1525, 1529 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 162,
+  "count" : 1,
+  "sentence" : "We describe below the intuition behind answering such queries from data stored in arrays.",
+  "token" : [ 1544 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 163,
+  "count" : 3,
+  "sentence" : "The following observation is trivial but important: the size of an array does not change when we shuffle it, and so we have much freedom in choosing the order of its elements.",
+  "token" : [ 1552, 1565, 1579 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 164,
+  "count" : 5,
+  "sentence" : "The second observation is that when data is stored in a contiguous array, there is a convenient representation for some subsets of this array: we can represent a subset S of elements from an array A by a pair of indices (b,e) such that all elements A[i] for which b <= i < e are considered to belong to S. We call this pair a pivot.",
+  "token" : [ 1593, 1605, 1623, 1626, 1652 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 165,
+  "count" : 5,
+  "sentence" : "If we partition the elements of an array in a certain set of non-overlapping subsets, we can always rearrange the elements such that the chosen subsets of the partition can be represented by pivots (i.e. the subsets are contiguous along the array).",
+  "token" : [ 1668, 1688, 1691, 1699, 1700 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 166,
+  "count" : 2,
+  "sentence" : "In other words, we can represent a partition by permuting the array and storing the corresponding array of pivots.",
+  "token" : [ 1704, 1721 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 167,
+  "count" : 4,
+  "sentence" : "This representation of a partition allows us to, among other things, quickly skip large runs of the data array, while remaining simple and compact.",
+  "token" : [ 1730, 1734, 1743, 1749 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 168,
+  "count" : 4,
+  "sentence" : "Thirdly, this rearrangement of a partition also has significant freedom in its choice: as long as the partition is respected, we can choose the internal order of each subset arbitrarily.",
+  "token" : [ 1751, 1764, 1772, 1783 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 169,
+  "count" : 4,
+  "sentence" : "Crucially, we can think of each subset of the partition as an array in itself — after all, its elements are all contiguously stored as wel l— and so we can impose further partitions on these subsets, hierarchically.",
+  "token" : [ 1785, 1803, 1823, 1825 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 170,
+  "count" : 2,
+  "sentence" : "This reordering does not invalidate the first pivot representation, as long as our sorting is stable with respect to the first partition.",
+  "token" : [ 1835, 1849 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 171,
+  "count" : 11,
+  "sentence" : "Now imagine a hypothetical network logging dataset in which we log packets that reach a particular server, and that we are interested in three attributes: day of week (d), hour of day (h), and network port (p) requested.",
+  "token" : [ 1867, 1876, 1880, 1882, 1883, 1887, 1889, 1890, 1894, 1896, 1898 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 172,
+  "count" : 4,
+  "sentence" : "In order to build a Hashedcubes data structure, we need to decide on an ordering of these attributes with which to sort the array hierarchically (note that we discuss performance consequences of these choices in Section 7).",
+  "token" : [ 1907, 1925, 1938, 1939 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 173,
+  "count" : 2,
+  "sentence" : "For this example, assume we will sort in the order we just gave.",
+  "token" : [ 1943, 1954 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 174,
+  "count" : 2,
+  "sentence" : "As we partition the array along each of the attributes, we store the array of pivots that represents the partitions.",
+  "token" : [ 1965, 1976 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 175,
+  "count" : 8,
+  "sentence" : "Note that in dimensions other than the first, this means that the finer partitions will respect the previous sorting: for example, even though all events on a Monday (or any given day of week) will be laid out contiguously in an array, not all events with a given hour of day will be: only the events with a given hour and day of week.",
+  "token" : [ 1985, 1997, 2000, 2008, 2015, 2024, 2036, 2048 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 176,
+  "count" : 4,
+  "sentence" : "Thus, as we go down the list of dimensions in which we are partitioning, the array of pivots becomes larger, and the partitions themselves become smaller.",
+  "token" : [ 2050, 2064, 2071, 2078 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 177,
+  "count" : 2,
+  "sentence" : "When the sorting process is finally finished, we will have as many arrays of pivots as there are dimensions in which we are interested in querying the dataset.",
+  "token" : [ 2086, 2108 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 178,
+  "count" : 12,
+  "sentence" : "In our specific case, we will have three pivot arrays: one for the d partition, one for the (d, h) partition, and one for the (d, h, p) partition.",
+  "token" : [ 2113, 2120, 2126, 2130, 2132, 2134, 2136, 2141, 2143, 2145, 2147, 2149 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 179,
+  "count" : 1,
+  "sentence" : "How does this hierarchical sorting help answer queries quickly?",
+  "token" : [ 2159 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 180,
+  "count" : 3,
+  "sentence" : "For example, if we are interested in plotting a histogram of requests in which bins represent different hours of the day, it is clear that the second pivot array is central for this query.",
+  "token" : [ 2162, 2182, 2196 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 181,
+  "count" : 5,
+  "sentence" : "Instead of scanning the data array one element at a time, we can scan the array of pivots that represent the sorting on (d, h).",
+  "token" : [ 2208, 2221, 2223, 2225, 2226 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 182,
+  "count" : 2,
+  "sentence" : "If we annotate the pivot arrays with information about the range of attributes of the data they contain, we will be able to make decisions about entire subsets of contiguous data at once.",
+  "token" : [ 2245, 2261 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 183,
+  "count" : 5,
+  "sentence" : "This is already somewhat useful, but imagine, for example, a natural interactive query in which users are interested in studying the same histogram as before, but for a particular subset of days of the week.",
+  "token" : [ 2267, 2270, 2273, 2290, 2301 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 184,
+  "count" : 3,
+  "sentence" : "As we have currently described Hashedcubes, there is no connection between the different pivot arrays, and so we cannot use information about values in one dimension to speed up queries of a different dimension.",
+  "token" : [ 2308, 2318, 2338 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 185,
+  "count" : 3,
+  "sentence" : "But this is easy to fix: after sorting on a finer attribute, we annotate the \"coarse pivots\" with the range of pivots that they represent in the next finer dimension.",
+  "token" : [ 2345, 2352, 2373 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 186,
+  "count" : 16,
+  "sentence" : "In our example, the array of d pivots will be annotated with the boundaries they represent on the array of (d, h) pivots; the (d, h) pivots, in turn, will be annotated with the boundaries they represent in (d, h, p) pivots, and so on.",
+  "token" : [ 2377, 2395, 2397, 2399, 2401, 2403, 2405, 2407, 2409, 2412, 2422, 2424, 2426, 2428, 2430, 2434 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 187,
+  "count" : 1,
+  "sentence" : "Now consider our working queries above again.",
+  "token" : [ 2442 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 188,
+  "count" : 8,
+  "sentence" : "In the same way that we exploited the query attribute values to skip entire ranges of data values by scanning the (d, h) pivot array, we can scan the d pivot array to skip entire ranges of the (d, h) pivot array itself.",
+  "token" : [ 2464, 2466, 2468, 2471, 2485, 2487, 2489, 2493 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 189,
+  "count" : 1,
+  "sentence" : "This is the central insight behind Hashedcubes.",
+  "token" : [ 2501 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 190,
+  "count" : 6,
+  "sentence" : "The astute reader will have undoutedbly noticed that if we instead wanted to filter on network ports, we could not escape a scan of a relatively large (d, h, p) pivot array.",
+  "token" : [ 2519, 2530, 2532, 2534, 2536, 2539 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 191,
+  "count" : 2,
+  "sentence" : "This is correct, and we discuss this further in Section 3.6.",
+  "token" : [ 2543, 2552 ],
+  "chapterID" : 20,
+  "sectionID" : 23,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 192,
+  "count" : 2,
+  "sentence" : "The algorithm for building Hashedcubes requires an ordering of dataset dimensions (e.g.",
+  "token" : [ 2564, 2567 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 193,
+  "count" : 4,
+  "sentence" : "first spatial, then categorical, and finally temporal).",
+  "token" : [ 2570, 2573, 2577, 2578 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 194,
+  "count" : 2,
+  "sentence" : "In what follows, we will sometimes use terms like \"above\" and \"below\" to refer to precedence relationships in this ordering.",
+  "token" : [ 2582, 2602 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 195,
+  "count" : 4,
+  "sentence" : "Once defined, a linear array called Hash is associated with a root pivot [0, n − 1], which represents the initial partition containing the universe of n elements.",
+  "token" : [ 2605, 2618, 2622, 2634 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 196,
+  "count" : 1,
+  "sentence" : "Each element of the Hash array is an integer that points to a record in the dataset.",
+  "token" : [ 2652 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 197,
+  "count" : 1,
+  "sentence" : "The Hash array can be stored in a random or sequential ordering.",
+  "token" : [ 2665 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 198,
+  "count" : 4,
+  "sentence" : "For every dimension of the indexing scheme, each partition (here forth referred as a bin) of each object is indexed using pivots.",
+  "token" : [ 2673, 2676, 2683, 2691 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 199,
+  "count" : 1,
+  "sentence" : "Bins have different interpretations for each dimension.",
+  "token" : [ 2699 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 200,
+  "count" : 5,
+  "sentence" : "Bins represent regions for a spatial dimension, specific values or ranges for a categorical dimension, or time intervals for a temporal dimension.In a input array of n elements all entries belong to the same bin, represented by a pivot [i0 , i1 ].",
+  "token" : [ 2707, 2716, 2738, 2744, 2747 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 201,
+  "count" : 1,
+  "sentence" : "Each dimension receives as input a list of pivots and outputs a list of pivots.",
+  "token" : [ 2763 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 202,
+  "count" : 1,
+  "sentence" : "The first dimension receives as input the root pivot.",
+  "token" : [ 2773 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 203,
+  "count" : 1,
+  "sentence" : "Subsequent dimensions receive the list of pivots created from the previous dimensions.",
+  "token" : [ 2786 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 204,
+  "count" : 1,
+  "sentence" : "Sorting is performed in each bin to group elements.",
+  "token" : [ 2796 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 205,
+  "count" : 2,
+  "sentence" : "The bin delimited by a given pivot is further refined as necessary to create subset bins, represented by a new list of pivots.",
+  "token" : [ 2813, 2821 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 206,
+  "count" : 1,
+  "sentence" : "After processing each dimension a new list of pivots is generated.",
+  "token" : [ 2833 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 207,
+  "count" : 1,
+  "sentence" : "A hierarchy of pivot lists connects the bins created in each dimension.",
+  "token" : [ 2846 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 208,
+  "count" : 3,
+  "sentence" : "Hashedcubes supports three distinct dimension types: spatial, categorical and temporal.",
+  "token" : [ 2853, 2855, 2859 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 209,
+  "count" : 1,
+  "sentence" : "The pivot hierarchy for these three dimension types can be built in any order.",
+  "token" : [ 2874 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 210,
+  "count" : 2,
+  "sentence" : "Since a bin at a given dimension is a subset of a bin in the previous dimension, a list of pivots represents subsets for all previously defined dimensions.",
+  "token" : [ 2892, 2904 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 211,
+  "count" : 2,
+  "sentence" : "This allows to remove dimensions from the representation, which is useful for managing memory consumption.",
+  "token" : [ 2913, 2921 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 212,
+  "count" : 3,
+  "sentence" : "The pivot hierarchy mimics a tree hierarchy since each pivot represents a set that can be further divided into a variable number of subset pivots, but notably, it does not store edges from one dimension to another.",
+  "token" : [ 2947, 2950, 2961 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 213,
+  "count" : 3,
+  "sentence" : "Sibling pivots (nodes) are stored as lists.",
+  "token" : [ 2964, 2966, 2971 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 214,
+  "count" : 3,
+  "sentence" : "Because each dimension stores collections of pivots, and pivot indices are always offsets into the data array, dimensions can be treated independently of each other.",
+  "token" : [ 2979, 2990, 2999 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 215,
+  "count" : 1,
+  "sentence" : "This allows the algorithm which executes queries to skip dimensions that are not referred to by in the query.",
+  "token" : [ 3019 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 216,
+  "count" : 4,
+  "sentence" : "Furthermore, the cardinality of the subset represented by a pivot can be directly obtained from the pivot indices; this way, the size of an aggregation can be directly determined by the list of pivots themselves.",
+  "token" : [ 3021, 3039, 3042, 3058 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 217,
+  "count" : 1,
+  "sentence" : "We use the Figure 2 to illustrate different aspects of Hashedcubes.",
+  "token" : [ 3070 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 218,
+  "count" : 4,
+  "sentence" : "The input data consists of 10 points using the schema [[Latitude, Lonn- gitude], [Device], [Time]].",
+  "token" : [ 3083, 3086, 3089, 3091 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 219,
+  "count" : 5,
+  "sentence" : "In Figure 2b step 1, the array is re-ordered along the first level of the quadtree and three partitions are created associated to quadrants 0, 2, and 3 (the quadrants that contain points).",
+  "token" : [ 3097, 3119, 3122, 3128, 3129 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 220,
+  "count" : 5,
+  "sentence" : "Three pivots are created ([0-5], [6-7], [8-9]) to delimit these partitions.",
+  "token" : [ 3134, 3136, 3138, 3140, 3145 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 221,
+  "count" : 1,
+  "sentence" : "In step 2 the array is re-ordered along the second level of the quadtree.",
+  "token" : [ 3160 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 222,
+  "count" : 8,
+  "sentence" : "Note that only the first quadrant of the quadtree is subdivided in this step, and therefore only the partition affected (associated to the pivot [0..5])) is updated, leading to two new pivots ([0..2] and [3..5]).",
+  "token" : [ 3175, 3182, 3188, 3189, 3192, 3198, 3202, 3203 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 223,
+  "count" : 2,
+  "sentence" : "In steps 3 and 4 the process is similar, but using the categorical and temporal dimensions to create further partitions in the data.",
+  "token" : [ 3213, 3228 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 224,
+  "count" : 1,
+  "sentence" : "In the top of Figure 2c we compare the input values of the array to the final re-ordering obtained after successive partitions of the data.",
+  "token" : [ 3254 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 225,
+  "count" : 1,
+  "sentence" : "In Hashedcubes it suffices to keep the final array along the pivots created at each step to recover the partitions created during these steps.",
+  "token" : [ 3279 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 226,
+  "count" : 1,
+  "sentence" : "In the bottom of Figure 2c we show the list of pivots created at each step and stored by Hashedcubes.",
+  "token" : [ 3300 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 227,
+  "count" : 7,
+  "sentence" : "The list of pivots correspond to partitions induced in the first and second levels of the quadtree, and the categorical partition, in this case if device used was Windows (W) or Linux (L).",
+  "token" : [ 3318, 3323, 3332, 3334, 3337, 3339, 3340 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 228,
+  "count" : 2,
+  "sentence" : "In contrast to other data cube alternatives, Hashedcubes does not precompute aggregations across every possible set of dimensions.",
+  "token" : [ 3348, 3360 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 229,
+  "count" : 2,
+  "sentence" : "Instead, it leverages the pivot hierarchy to compute missing pre-aggregations on-the-fly.",
+  "token" : [ 3362, 3373 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 230,
+  "count" : 1,
+  "sentence" : "Consider in Figure 3 the problem of computing the number of all objects labeled as Android or iPhone in the categorical dimension.",
+  "token" : [ 3396 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 231,
+  "count" : 1,
+  "sentence" : "Hashedcubes does not pre-compute this information.",
+  "token" : [ 3403 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 232,
+  "count" : 4,
+  "sentence" : "Although this means that such queries will require a scan over a potentially large portion of the array, the fact that Hashedcubes stores these in an array (as opposed to a pointer-based data structure) means that the aggregations can be computed relatively efficiently.",
+  "token" : [ 3422, 3432, 3440, 3450 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 233,
+  "count" : 2,
+  "sentence" : "In fact, allowing these worst-case scenarios to occur is precisely what is responsible for the low memory consumption in Hashedcubes.",
+  "token" : [ 3453, 3472 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 234,
+  "count" : 1,
+  "sentence" : "The query algorithm is described in Section 3.6.",
+  "token" : [ 3481 ],
+  "chapterID" : 20,
+  "sectionID" : 28,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 235,
+  "count" : 1,
+  "sentence" : "Efficiently answering queries involving spatial attributes typically requires the use of hierarchical spatial data structures.",
+  "token" : [ 3497 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 236,
+  "count" : 2,
+  "sentence" : "In Hashedcubes the spatial dimension is represented as a quadtree, a hierarchical data structure often used to represent geo-spatial data where the space is recursively divided into 4 regions.",
+  "token" : [ 3508, 3528 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 237,
+  "count" : 1,
+  "sentence" : "Each quadtree node is associated with a pivot that delimits the objects contained in that quadrant.",
+  "token" : [ 3545 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 238,
+  "count" : 2,
+  "sentence" : "If a query matches the exact region represented by a node, then the pivot represents the aggregation result for that query.",
+  "token" : [ 3557, 3568 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 239,
+  "count" : 2,
+  "sentence" : "Otherwise, we compute the minimal disjoint set of nodes that cover the query region.",
+  "token" : [ 3570, 3584 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 240,
+  "count" : 2,
+  "sentence" : "We note that during an interactive session, the viewport region of the screen can be interpreted as a spatial query.",
+  "token" : [ 3592, 3606 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 241,
+  "count" : 2,
+  "sentence" : "Although Hashedcubes can process dimensions in any given order, in our experiments we chose to use the spatial dimension first in the ordering of dimensions to increase the speed in which geo-spatial queries can be answered.",
+  "token" : [ 3616, 3644 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 242,
+  "count" : 1,
+  "sentence" : "The algorithm for building spatial dimensions associates each record within each pivot range to its current quadtree quadrant.",
+  "token" : [ 3663 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 243,
+  "count" : 3,
+  "sentence" : "Sorting is used to group records belonging to the same region, and consequently, quadtree nodes store the pivot that delimits the records for that specific subdivision.",
+  "token" : [ 3675, 3678, 3692 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 244,
+  "count" : 2,
+  "sentence" : "As we mentioned above, the schemas we use typically start with spatial dimensions.",
+  "token" : [ 3697, 3707 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 245,
+  "count" : 4,
+  "sentence" : "Therefore, the input is a single pivot (root) representing the data universe and only a unique quadtree is allocated.",
+  "token" : [ 3709, 3716, 3718, 3730 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 246,
+  "count" : 2,
+  "sentence" : "Hashedcubes supports multiple spatial dimensions, but this process is different from single spatial dimensions.",
+  "token" : [ 3736, 3746 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 247,
+  "count" : 1,
+  "sentence" : "Each spatial dimension is associated with a quadtree.",
+  "token" : [ 3755 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 248,
+  "count" : 3,
+  "sentence" : "Instead of building each spatial dimension sequentially, Hashedcubes interleaves the construction of each quadtree, refining one level of each quadtree at a time.",
+  "token" : [ 3763, 3771, 3781 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 249,
+  "count" : 3,
+  "sentence" : "Consider a dataset of phone calls, with two geographical locations, one from the caller and another from the receiver.",
+  "token" : [ 3788, 3793, 3803 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 250,
+  "count" : 1,
+  "sentence" : "The root of the quadtree represents all data.",
+  "token" : [ 3812 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 251,
+  "count" : 2,
+  "sentence" : "At each level of the quadtree the records are subdivided according to the current spatial attribute (e.g.",
+  "token" : [ 3829, 3832 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 252,
+  "count" : 2,
+  "sentence" : "odd and even levels can be associated to origin and destination locations respectively).",
+  "token" : [ 3846, 3847 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 253,
+  "count" : 3,
+  "sentence" : "By using an interleaved quadtree, queries with multiple region constraints are answered by traversing a unique data structure, since quadtree nodes stores the bounding box and the pivot that matches precisely to all aggregates from that regions.",
+  "token" : [ 3853, 3867, 3887 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 254,
+  "count" : 1,
+  "sentence" : "Figure 4 illustrates this process.",
+  "token" : [ 3893 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 255,
+  "count" : 1,
+  "sentence" : "Another important aspect of the Hashedcubes quadtree implementation is the minimum leaf size.",
+  "token" : [ 3907 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 256,
+  "count" : 2,
+  "sentence" : "Every dimension output is the input for the following dimensions, while each pivot is subsequently refined to represent subsets of specific attributes.",
+  "token" : [ 3918, 3931 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 257,
+  "count" : 1,
+  "sentence" : "Smaller pivots cause the creation of a greater number of subsets.",
+  "token" : [ 3943 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 258,
+  "count" : 1,
+  "sentence" : "Consider Figure 2d.",
+  "token" : [ 3947 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 259,
+  "count" : 3,
+  "sentence" : "For every input of the spatial dimension, it can at most output 22n subsets, where n is the maximum quadtree subdivision.",
+  "token" : [ 3955, 3963, 3971 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 260,
+  "count" : 3,
+  "sentence" : "For every input of categorical dimension it can output at most two subsets (windows or linux).",
+  "token" : [ 3985, 3989, 3990 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 261,
+  "count" : 2,
+  "sentence" : "Thus, the output size is directly dependent on the input size.",
+  "token" : [ 3992, 4003 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 262,
+  "count" : 2,
+  "sentence" : "The leaf size is a crucial factor for memory usage and performance of Hashedcubes, and is discussed in Section 7.",
+  "token" : [ 4018, 4024 ],
+  "chapterID" : 20,
+  "sectionID" : 33,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 263,
+  "count" : 1,
+  "sentence" : "Categorical attributes of multidimensional datasets are usually divided into specific values or ranges.",
+  "token" : [ 4038 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 264,
+  "count" : 1,
+  "sentence" : "The processing of such attributes in Hashedcubes produces a list of pivots that groups data in bins for each categorical value or range.",
+  "token" : [ 4062 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 265,
+  "count" : 3,
+  "sentence" : "By varying the granularity of the Hashedcubes query results, categorical queries form the basis for histograms, binned scatterplots and time series plots.",
+  "token" : [ 4072, 4080, 4087 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 266,
+  "count" : 2,
+  "sentence" : "To process a categorical dimension, each record attribute is tagged and a position in the output list of pivots is computed.",
+  "token" : [ 4093, 4110 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 267,
+  "count" : 1,
+  "sentence" : "This algorithm compares an element against all dimension attributes and returns a bin tag.",
+  "token" : [ 4125 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 268,
+  "count" : 2,
+  "sentence" : "Once this finishes, the sorted list of pivots is created.",
+  "token" : [ 4129, 4137 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 269,
+  "count" : 2,
+  "sentence" : "For a categorical dimension of n distinct values or ranges, at most n pivots can be created.",
+  "token" : [ 4148, 4156 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 270,
+  "count" : 1,
+  "sentence" : "Hashedcubes stores a structure called CategoricalNode which implements a dense vector based on the number of unique attributes.",
+  "token" : [ 4175 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 271,
+  "count" : 4,
+  "sentence" : "Consider the categorical dimension in Figure 2d, which has as input a list of pivots of size 4. Every input creates a CategoricalNode that has a vector with two pivots, representing either Windows or Linux.",
+  "token" : [ 4183, 4195, 4208, 4214 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 272,
+  "count" : 11,
+  "sentence" : "The result of processing this dimension creates a list of pivots of size 6, with 4 CategoricalNode objects (object 1: [0-0],[1,2]; object 2: [3,4],[5,5]; object 3: [6-7]; object 4: [8-9]).",
+  "token" : [ 4229, 4234, 4237, 4240, 4243, 4246, 4249, 4251, 4254, 4256, 4257 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 273,
+  "count" : 4,
+  "sentence" : "Unlike the processing of multiple spatial dimensions (which are processed in an interleaving fashion), multiple categorical dimensions are generated in sequence.",
+  "token" : [ 4265, 4273, 4274, 4282 ],
+  "chapterID" : 20,
+  "sectionID" : 38,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 274,
+  "count" : 1,
+  "sentence" : "We take advantage of the fact that a pivot represents an interval to represent temporal dimensions.",
+  "token" : [ 4299 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 275,
+  "count" : 1,
+  "sentence" : "Consider the example of a temporal dimension that needs to be processed to create bins for each different day.",
+  "token" : [ 4319 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 276,
+  "count" : 1,
+  "sentence" : "The building algorithm classifies each element of the input in the corresponding bin.",
+  "token" : [ 4333 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 277,
+  "count" : 3,
+  "sentence" : "The result of this process is a sparse list of sets since a bin is created if it has, at least, one record.",
+  "token" : [ 4353, 4356, 4359 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 278,
+  "count" : 3,
+  "sentence" : "From this list, a compact list of timestamped pivots is created, as illustrated in Figure 5.",
+  "token" : [ 4363, 4372, 4378 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 279,
+  "count" : 1,
+  "sentence" : "The algorithm for building the temporal dimension is similar to the one for categorical dimensions.",
+  "token" : [ 4394 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 280,
+  "count" : 1,
+  "sentence" : "It tags each record with its respective bin since epoch time.",
+  "token" : [ 4406 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 281,
+  "count" : 9,
+  "sentence" : "Hashedcubes supports any granularity multiple of milliseconds, and the time interval is defined by the building schema (e.g., 15 minutes, 1 hour, 4 hours, 1 week, etc).",
+  "token" : [ 4414, 4425, 4428, 4431, 4434, 4437, 4440, 4442, 4443 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 282,
+  "count" : 2,
+  "sentence" : "Take as an example a schema that aggregates time by the hour, and two records with a difference of 40 minutes.",
+  "token" : [ 4456, 4466 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 283,
+  "count" : 3,
+  "sentence" : "These records are tagged to the same bin, and consequently, represented by a single pivot.",
+  "token" : [ 4475, 4478, 4484 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 284,
+  "count" : 1,
+  "sentence" : "This algorithm enables temporal queries to be efficiently answered without requiring a hierarchical data structure.",
+  "token" : [ 4500 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 285,
+  "count" : 2,
+  "sentence" : "This is accomplished with two executions of a binary search algorithm, which finds the pivot with the smallest and greatest values from the period of time.",
+  "token" : [ 4512, 4528 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 286,
+  "count" : 1,
+  "sentence" : "This is precisely the same algorithm used by Lins et al.’s Nanocubes.",
+  "token" : [ 4542 ],
+  "chapterID" : 20,
+  "sectionID" : 42,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 287,
+  "count" : 1,
+  "sentence" : "A query into a Hashedcubes comprises a set of clauses.",
+  "token" : [ 4553 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 288,
+  "count" : 4,
+  "sentence" : "Each clause corresponds uniquely to a dimension, and defines either constraints on values or group-by directives (often a dimension will contain both a group-by directive and a value constraint).",
+  "token" : [ 4561, 4571, 4585, 4586 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 289,
+  "count" : 3,
+  "sentence" : "Constraint clauses specify regions of the dataset to be aggregated over, while group-by clauses indicate partition boundaries for the result, in direct analogy to SQL’s group by clause (eg.",
+  "token" : [ 4598, 4608, 4618 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 290,
+  "count" : 3,
+  "sentence" : "different bins of a monthly histogram as in a \"group by month\" SQL clause, or nodes of a quadtree for a multiresolution heatmap plot).",
+  "token" : [ 4634, 4645, 4646 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 291,
+  "count" : 1,
+  "sentence" : "The result of a Hashedcubes query is a list of aggregated pivots.",
+  "token" : [ 4659 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 292,
+  "count" : 2,
+  "sentence" : "As discussed in Section 3, Hashedcubes does not store precomputed aggregations across every possible set of dimensions.",
+  "token" : [ 4665, 4678 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 293,
+  "count" : 4,
+  "sentence" : "Instead, it materializes only a portion of all combinations (corresponding to a strict prefix ordering of the dimensions as alluded above).",
+  "token" : [ 4680, 4689, 4702, 4703 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 294,
+  "count" : 2,
+  "sentence" : "The query execution algorithm takes advantage of the pivot hierarchy to compute the missing aggregations on-the-fly, scanning subintervals of dimensions as necessary.",
+  "token" : [ 4720, 4727 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 295,
+  "count" : 1,
+  "sentence" : "Most queries contain a group-by clause.",
+  "token" : [ 4734 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 296,
+  "count" : 4,
+  "sentence" : "In queries broken down by latitude and longitude (as in those which generate heatmaps), the spatial dimension is that clause.",
+  "token" : [ 4743, 4750, 4751, 4758 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 297,
+  "count" : 2,
+  "sentence" : "In queries broken down by categorical attributes or timestamps, any of the multiple categorical or temporal dimensions can be the group-by clause.",
+  "token" : [ 4768, 4782 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 298,
+  "count" : 1,
+  "sentence" : "Take as example the schema in Figure 2d.",
+  "token" : [ 4791 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 299,
+  "count" : 1,
+  "sentence" : "Assume we are interested in the count of all objects with quadrants 0 and 1 as spatial coordinates and categorical attribute Windows.",
+  "token" : [ 4814 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 300,
+  "count" : 3,
+  "sentence" : "In this case, the result of the query is exactly the contents of a single pivot in that dimension, and no aggregations are necessary.",
+  "token" : [ 4818, 4835, 4841 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 301,
+  "count" : 4,
+  "sentence" : "This query is efficient because the constraint clauses form a prefix over the ordering of the dimensions (in fact, it’s the entire dimension set).",
+  "token" : [ 4859, 4862, 4869, 4870 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 302,
+  "count" : 4,
+  "sentence" : "Consider, on the other hand, a query that requests the count of all objects with categorical attribute Windows, regardless of spatial coordinates.",
+  "token" : [ 4872, 4877, 4891, 4896 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 303,
+  "count" : 3,
+  "sentence" : "In this case, there is no single pivot storing the final result, and so it is clear that some on-the-fly aggregation will be required.",
+  "token" : [ 4900, 4910, 4923 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 304,
+  "count" : 1,
+  "sentence" : "The full algorithm proceeds as follows.",
+  "token" : [ 4930 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 305,
+  "count" : 3,
+  "sentence" : "Initially, the query range is the dataset universe represented by the root pivot [0, n − 1].",
+  "token" : [ 4932, 4946, 4950 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 306,
+  "count" : 5,
+  "sentence" : "The query result in each dimension is a delimiting list of pivots of the selected data, thus, these lists become the new range query, similar to a breadth first search algorithm that uses two lists, one for expanding and one for temporary storage.",
+  "token" : [ 4967, 4969, 4977, 4989, 4998 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 307,
+  "count" : 1,
+  "sentence" : "This process is iteratively repeated until the last dimension.",
+  "token" : [ 5008 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 308,
+  "count" : 3,
+  "sentence" : "Note that, unlike tree-based data structures, scans happen along arrays.",
+  "token" : [ 5011, 5016, 5021 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 309,
+  "count" : 2,
+  "sentence" : "Such approach tend to offer appealing performance, since the CPU cache automatically optimizes burst memory operations.",
+  "token" : [ 5029, 5039 ],
+  "chapterID" : 20,
+  "sectionID" : 46,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 310,
+  "count" : 1,
+  "sentence" : "The current implementation of Hashedcubes uses a simple client-server architecture.",
+  "token" : [ 5050 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 311,
+  "count" : 2,
+  "sentence" : "The server reads the data from a file (e.g.",
+  "token" : [ 5059, 5062 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 312,
+  "count" : 3,
+  "sentence" : "CSV tabular files), builds the data structure and enters an event loop that waits for queries from the client.",
+  "token" : [ 5066, 5067, 5084 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 313,
+  "count" : 1,
+  "sentence" : "The server is implemented in C++.",
+  "token" : [ 5091 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 314,
+  "count" : 3,
+  "sentence" : "Since Hashedcubes uses linear-based memory structures such as sorted arrays, it preallocates chunks of memory to avoid the overhead of repeated memory allocations and deallocations, which are common operations in tree-based data structures.",
+  "token" : [ 5102, 5118, 5127 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 315,
+  "count" : 2,
+  "sentence" : "Besides the sorting of the index arrays, Hashedcubes does not require any data precomputation prior to building its data structure.",
+  "token" : [ 5135, 5149 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 316,
+  "count" : 2,
+  "sentence" : "The sorting of the data array dominates the construction time, as we discuss in Section 6.2.",
+  "token" : [ 5160, 5166 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 317,
+  "count" : 2,
+  "sentence" : "For the representation of spatial values, Hashedcubes uses the spherical Mercator projection popular with map tile providers such as OpenStreetMap.",
+  "token" : [ 5173, 5188 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 318,
+  "count" : 6,
+  "sentence" : "Typically, map tiles providers use coordinates (x, y, z) for each tile image.",
+  "token" : [ 5190, 5196, 5198, 5200, 5202, 5207 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 319,
+  "count" : 8,
+  "sentence" : "The tuple [x,y] corresponds to integer addresses, while z represents the zoom level, in most cases varying from 0 (maximum zoom out) to 18 (maximum zoom in).",
+  "token" : [ 5211, 5216, 5223, 5230, 5234, 5237, 5241, 5242 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 320,
+  "count" : 3,
+  "sentence" : "Each zoom increment doubles the [x, y] resolution, and consists of 4n tiles.",
+  "token" : [ 5249, 5253, 5259 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 321,
+  "count" : 3,
+  "sentence" : "We choose to limit the spatial coordinates to a maximum of 26 levels: the maximum zoom value plus 8, corresponding to the typical tile size of 256x256.",
+  "token" : [ 5273, 5280, 5289 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 322,
+  "count" : 2,
+  "sentence" : "The 26-level subdivision naturally yields a 26-bit address for each of the x and y coordinates, and these addresses can be easily employed for the hierarchical sorting in spatial coordinates.",
+  "token" : [ 5306, 5321 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 323,
+  "count" : 1,
+  "sentence" : "The server is easily parallelizable since the data structure does not change after building.",
+  "token" : [ 5336 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 324,
+  "count" : 3,
+  "sentence" : "It exposes the querying API via HTTP (as in Table 1) through a web service implementation that handles concurrent requests in multiple threads.",
+  "token" : [ 5344, 5349, 5362 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 325,
+  "count" : 6,
+  "sentence" : "In the front-end, the prototype client is written in Javascript, SVG, and HTML5; notable libraries include D3 and Leaflet, as shown in Figure 6.",
+  "token" : [ 5366, 5374, 5376, 5379, 5386, 5392 ],
+  "chapterID" : 51,
+  "sectionID" : 52,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 326,
+  "count" : 2,
+  "sentence" : "In this section, we report an evaluation of Hashedcubes using a collection of publicly-available datasets.",
+  "token" : [ 5396, 5409 ],
+  "chapterID" : 56,
+  "sectionID" : 57,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 327,
+  "count" : 3,
+  "sentence" : "We collected seven datasets that range from 4.7 million to 1 billion records, including some used in other data cube visualization proposals, as well as the schema they used.",
+  "token" : [ 5423, 5433, 5441 ],
+  "chapterID" : 56,
+  "sectionID" : 57,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 328,
+  "count" : 2,
+  "sentence" : "In addition, we introduced some variations on the schemata used in previous experiments in order to properly stress the features of both Hashedcubes and previous systems.",
+  "token" : [ 5444, 5469 ],
+  "chapterID" : 56,
+  "sectionID" : 57,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 329,
+  "count" : 1,
+  "sentence" : "We summarize all of the schema variations and datasets in Table 2.",
+  "token" : [ 5481 ],
+  "chapterID" : 56,
+  "sectionID" : 57,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 330,
+  "count" : 2,
+  "sentence" : "Brightkite and Gowalla are two former location-based social networks: users participated by sharing their locations via check-ins events.",
+  "token" : [ 5491, 5501 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 331,
+  "count" : 1,
+  "sentence" : "Both datasets are publicly available in Leskovec’s Stanford Large Network Dataset Collection.",
+  "token" : [ 5514 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 332,
+  "count" : 2,
+  "sentence" : "They consist of time and location information of user check-ins, collected by Cho et al.",
+  "token" : [ 5525, 5531 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 333,
+  "count" : 2,
+  "sentence" : "Brightkite check-ins range from April 2008 to October 2010, and Gowalla from February 2009 to October 2010.",
+  "token" : [ 5541, 5550 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 334,
+  "count" : 1,
+  "sentence" : "We built Hashedcubes using two different schemas for these datasets.",
+  "token" : [ 5561 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 335,
+  "count" : 3,
+  "sentence" : "The first one replicates the schema used by Nanocubes and encodes latitude and longitude as spatial information, hour of the day and day of the week as categorical variables, and check-in time as temporal variables.",
+  "token" : [ 5579, 5592, 5599 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 336,
+  "count" : 3,
+  "sentence" : "The second one replicates the imMens schema and encodes latitude and longitude as spatial information, hour of the day, and day of the month as categorical information.",
+  "token" : [ 5615, 5620, 5629 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 337,
+  "count" : 2,
+  "sentence" : "In Figure 1, we use Hashedcubes to visualize Brightkite check-ins in Europe and to highlight Brightkite releases of its iOS app and its 2.0 platform version.",
+  "token" : [ 5633, 5657 ],
+  "chapterID" : 56,
+  "sectionID" : 59,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 338,
+  "count" : 1,
+  "sentence" : "The U.S. Department of Transportation tracks the on-time performance of domestic flights by U.S. air carriers.",
+  "token" : [ 5674 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 339,
+  "count" : 3,
+  "sentence" : "This dataset was made publicly available in, and covers over 121 million flights in a 20 year period, from 1987 to 2008.",
+  "token" : [ 5682, 5694, 5699 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 340,
+  "count" : 1,
+  "sentence" : "Records include over 29 fields.",
+  "token" : [ 5705 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 341,
+  "count" : 1,
+  "sentence" : "We used three different schemas for this dataset.",
+  "token" : [ 5714 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 342,
+  "count" : 3,
+  "sentence" : "The first one encodes the origin airport as spatial information, departure delay and carrier delay as categorical information, and departure delay as temporal information.",
+  "token" : [ 5725, 5734, 5741 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 343,
+  "count" : 1,
+  "sentence" : "This is the same schema used in Nanocubes.",
+  "token" : [ 5750 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 344,
+  "count" : 2,
+  "sentence" : "The second schema is the one used by imMens, and encodes only categorical information.",
+  "token" : [ 5760, 5766 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 345,
+  "count" : 4,
+  "sentence" : "The day of the week, year, carrier, arrival delay and departure delay are the categorical information.",
+  "token" : [ 5772, 5774, 5776, 5786 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 346,
+  "count" : 2,
+  "sentence" : "Note that the arrival delay and departure delay are encoded as 15 minutes interval bins, and were designed to be visualized using a scatter plot.",
+  "token" : [ 5802, 5813 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 347,
+  "count" : 2,
+  "sentence" : "The last schema is designed to exploit the Hashedcubes ability to work with multiple spatial dimensions, so we encoded origin and destination airports as spatial information.",
+  "token" : [ 5830, 5841 ],
+  "chapterID" : 56,
+  "sectionID" : 61,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 348,
+  "count" : 3,
+  "sentence" : "The ScatterPlot Matrix (SPLOM) benchmark was designed to stress test the data cube technology, and has been used as validation in recent big data visualization proposals.",
+  "token" : [ 5845, 5857, 5870 ],
+  "chapterID" : 56,
+  "sectionID" : 63,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 349,
+  "count" : 1,
+  "sentence" : "It consists of a collection of synthetic elements with up to five dimensions.",
+  "token" : [ 5884 ],
+  "chapterID" : 56,
+  "sectionID" : 63,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 350,
+  "count" : 2,
+  "sentence" : "The first, second and fifth dimensions are independent and normally distributed.",
+  "token" : [ 5887, 5897 ],
+  "chapterID" : 56,
+  "sectionID" : 63,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 351,
+  "count" : 3,
+  "sentence" : "The third and fourth dimensions are, respectively, linearly and log-linearly dependent with the first.",
+  "token" : [ 5904, 5906, 5914 ],
+  "chapterID" : 56,
+  "sectionID" : 63,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 352,
+  "count" : 6,
+  "sentence" : "As a synthetic dataset, we used five different bin sizes per dimension, from 10 to 50, and varied the elements from 100 million up to 1 billion to stress test Hashedcubes (Figure 7a).",
+  "token" : [ 5919, 5928, 5933, 5949, 5952, 5953 ],
+  "chapterID" : 56,
+  "sectionID" : 63,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 353,
+  "count" : 3,
+  "sentence" : "The data consists of geolocated tweets collected from the (formerly open) Twitter API between November 2011 and June 2012 that originated in the United States.",
+  "token" : [ 5963, 5966, 5981 ],
+  "chapterID" : 56,
+  "sectionID" : 65,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 354,
+  "count" : 2,
+  "sentence" : "We used two different schemas, namely twitter-small and twitter.",
+  "token" : [ 5987, 5992 ],
+  "chapterID" : 56,
+  "sectionID" : 65,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 355,
+  "count" : 3,
+  "sentence" : "The first one encodes the record origin as spatial information, device used as categorical information, and record collection time as temporal information.",
+  "token" : [ 6003, 6009, 6017 ],
+  "chapterID" : 56,
+  "sectionID" : 65,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 356,
+  "count" : 3,
+  "sentence" : "The second schema adds the application and language, respectively 4 and 15 distinct values, as categorical informations.",
+  "token" : [ 6026, 6033, 6037 ],
+  "chapterID" : 56,
+  "sectionID" : 65,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 357,
+  "count" : 2,
+  "sentence" : "In Figure 1 we present and overview of tweets in USA, and a close-up in the date and region of Superbowl 2012.",
+  "token" : [ 6049, 6061 ],
+  "chapterID" : 56,
+  "sectionID" : 65,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 358,
+  "count" : 3,
+  "sentence" : "The NYC Taxi and Limousine Commission (TLC) collects and provides monthly trips records from yellow and green taxis from New York City.",
+  "token" : [ 6068, 6070, 6086 ],
+  "chapterID" : 56,
+  "sectionID" : 67,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 359,
+  "count" : 8,
+  "sentence" : "Records include over 21 fields that capture pick-up and drop-off times, pick-up and drop-off locations, trip distances, itemized fares, rate types, payment types, driver-reported passenger counts, and others.",
+  "token" : [ 6098, 6103, 6106, 6109, 6112, 6115, 6119, 6122 ],
+  "chapterID" : 56,
+  "sectionID" : 67,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 360,
+  "count" : 2,
+  "sentence" : "While yellow taxis are able to pick-up passengers in any of the five NYC boroughs, green taxis are only allowed to pick-up passengers in outer boroughs and in Manhattan above East 96th and West 110th Streets.",
+  "token" : [ 6138, 6160 ],
+  "chapterID" : 56,
+  "sectionID" : 67,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 361,
+  "count" : 3,
+  "sentence" : "For each dataset, we used two different schemas, both encoding pick-up and drop-off locations as spatial information.",
+  "token" : [ 6164, 6170, 6180 ],
+  "chapterID" : 56,
+  "sectionID" : 67,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 362,
+  "count" : 2,
+  "sentence" : "The first schema encodes time as week bins along with categorical information: day of the week and hour of the day.",
+  "token" : [ 6193, 6203 ],
+  "chapterID" : 56,
+  "sectionID" : 67,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 363,
+  "count" : 1,
+  "sentence" : "The second schema encodes time as hour bins.",
+  "token" : [ 6212 ],
+  "chapterID" : 56,
+  "sectionID" : 67,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 364,
+  "count" : 2,
+  "sentence" : "In Figure 1, we highlight the use of Hashedcubes to analyze pick-up locations from the green taxis dataset.",
+  "token" : [ 6216, 6232 ],
+  "chapterID" : 56,
+  "sectionID" : 67,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 365,
+  "count" : 1,
+  "sentence" : "In this Section we discuss the performance results of Hashedcubes.",
+  "token" : [ 6243 ],
+  "chapterID" : 69,
+  "sectionID" : 70,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 366,
+  "count" : 3,
+  "sentence" : "We compare the Hashedcubes memory usage, construction and query time to recent data cube visualization proposals, namely Nanocubes and imMens.",
+  "token" : [ 6250, 6261, 6266 ],
+  "chapterID" : 69,
+  "sectionID" : 70,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 367,
+  "count" : 1,
+  "sentence" : "Table 2 summarizes benchmark results for all schema variations and datasets.",
+  "token" : [ 6278 ],
+  "chapterID" : 69,
+  "sectionID" : 70,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 368,
+  "count" : 8,
+  "sentence" : "The number of records (N) in the dataset, quadtree leaf-size, memory usage, time to build and the accumulated number of pivots (P) across all data structure are reported.",
+  "token" : [ 6283, 6285, 6289, 6292, 6295, 6305, 6307, 6314 ],
+  "chapterID" : 69,
+  "sectionID" : 70,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 369,
+  "count" : 4,
+  "sentence" : "Memory usage in Hashedcubes is directly proportional to the number of pivots, i.e., the number of used bins per dimension.",
+  "token" : [ 6327, 6330, 6331, 6339 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 370,
+  "count" : 1,
+  "sentence" : "Figure 7a shows the memory growth for the SPLOM dataset ranging from zero to one billion inserted records.",
+  "token" : [ 6358 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 371,
+  "count" : 1,
+  "sentence" : "We used five schema variations that range bin size from ten to fifty in each dimension.",
+  "token" : [ 6375 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 372,
+  "count" : 3,
+  "sentence" : "Records from this dataset are collected from synthetic generators that have a normal distribution, which means that the set of high probability values are quickly sampled, making harder for new records with an unseen bin.",
+  "token" : [ 6390, 6403, 6413 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 373,
+  "count" : 1,
+  "sentence" : "It highlights an effect known as key saturation.",
+  "token" : [ 6422 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 374,
+  "count" : 3,
+  "sentence" : "Due to the key saturation effect, most inserted records does not require additional memory since their pivots were already present in the Hashedcubes index, a phenomenon that performs an important role to reduce memory requirements.",
+  "token" : [ 6429, 6448, 6460 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 375,
+  "count" : 3,
+  "sentence" : "When comparing Hashedcubes to recent data cube strategies, memory usage sees a breakthrough from current state-of-the-art data cube proposals, enabling the visualization of a much larger set of scales and more complex schema configurations than imMens and Nanocubes.",
+  "token" : [ 6469, 6481, 6501 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 376,
+  "count" : 3,
+  "sentence" : "Compared to Nanocubes, we find a reduction factor of up to 5.2x in the best case, as shown in Figure 7c.",
+  "token" : [ 6505, 6519, 6525 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 377,
+  "count" : 7,
+  "sentence" : "Building the Hashedcubes for brightkite, flights, twitter-small and twitter schemas, requires 366MB, 457MB, 4GB and 9.4GB of memory, respectively.",
+  "token" : [ 6531, 6533, 6538, 6541, 6543, 6549, 6551 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 378,
+  "count" : 6,
+  "sentence" : "For the same schemas, Nanocubes requires 1.6GB, 2.3GB, 10.2GB and 46.4GB, enough for present day servers, but above that of typical notebooks and workstations.",
+  "token" : [ 6556, 6560, 6562, 6566, 6572, 6581 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 379,
+  "count" : 2,
+  "sentence" : "imMens uses a dense indexing to speed up aggregation time and to simplify parallel query processing, but this implies that memory usage is proportional to the cardinality of its key space.",
+  "token" : [ 6598, 6614 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 380,
+  "count" : 3,
+  "sentence" : "Furthermore, it lacks support for compound brushing of more than four dimensions, once it requires computing prohibitively large 5-dimensional data tiles for the adopted approach.",
+  "token" : [ 6616, 6628, 6642 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 381,
+  "count" : 2,
+  "sentence" : "We also evaluated Hashedcubes for schemas with multiple spatial dimensions, a feature that was not supported by Nanocubes and imMens in their initial public releases.",
+  "token" : [ 6653, 6669 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 382,
+  "count" : 4,
+  "sentence" : "For that, we introduced schema variations and two unstudied datasets, namely, the green and yellow NYC taxis.",
+  "token" : [ 6672, 6681, 6683, 6690 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 383,
+  "count" : 2,
+  "sentence" : "These datasets are particularly hard because both have a very restrict spatial region, thus pushing spatial dimensions data structures to deeper levels of subdivision.",
+  "token" : [ 6704, 6716 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 384,
+  "count" : 3,
+  "sentence" : "Moreover, we tested two time resolutions, by hour and over a week along with day of week and hour of day categorical attributes.",
+  "token" : [ 6718, 6724, 6742 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 385,
+  "count" : 2,
+  "sentence" : "We have attempted to create Nanocubes for these schemas, but found them to take a prohibitively large amount of memory.",
+  "token" : [ 6752, 6764 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 386,
+  "count" : 5,
+  "sentence" : "Before killing the nanocube process, we estimated the eventual memory usage of the yellow-taxis-small schema to be around 124GB for a pair of 20-bit quadtree addresses, and 321GB for 25-bit addresses (and an estimated five hours of construction time).",
+  "token" : [ 6770, 6792, 6798, 6807, 6808 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 387,
+  "count" : 1,
+  "sentence" : "We made no attempt to generate a nanocube of the full yellow taxis schema.",
+  "token" : [ 6823 ],
+  "chapterID" : 69,
+  "sectionID" : 72,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 388,
+  "count" : 1,
+  "sentence" : "Construction time was a relevant factor when designing Hashedcubes.",
+  "token" : [ 6833 ],
+  "chapterID" : 69,
+  "sectionID" : 76,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 389,
+  "count" : 1,
+  "sentence" : "The construction algorithm was optimized for speed by avoiding repeated memory allocations and deallocations.",
+  "token" : [ 6848 ],
+  "chapterID" : 69,
+  "sectionID" : 76,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 390,
+  "count" : 2,
+  "sentence" : "The bottleneck of this algorithm are the sorting phases, specially when handling spatial dimensions.",
+  "token" : [ 6858, 6864 ],
+  "chapterID" : 69,
+  "sectionID" : 76,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 391,
+  "count" : 3,
+  "sentence" : "The pivot hierarchy uses a sorting step for every quadtree, which can be very demanding for datasets with restricted geographical coverage and multiple spatial dimensions, since these cases tend to generate trees next to the maximum recursion depth supported.",
+  "token" : [ 6875, 6891, 6906 ],
+  "chapterID" : 69,
+  "sectionID" : 76,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 392,
+  "count" : 3,
+  "sentence" : "Compared to Nanocubes, we obtained a reduction factor of up to 30x in the best case, as shown in Figure 7b.",
+  "token" : [ 6910, 6924, 6930 ],
+  "chapterID" : 69,
+  "sectionID" : 76,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 393,
+  "count" : 2,
+  "sentence" : "On average, the construction time is about 10 times faster.",
+  "token" : [ 6933, 6942 ],
+  "chapterID" : 69,
+  "sectionID" : 76,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 394,
+  "count" : 1,
+  "sentence" : "We used a set of real-world queries graciously provided by AT&T Research to assess query latency.",
+  "token" : [ 6959 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 395,
+  "count" : 4,
+  "sentence" : "Query requests were collected on the public Nanocubes web site, in which users performed brushing and linking across dimensions of Brightkite, Gowalla, Flights and Twitter datasets.",
+  "token" : [ 6970, 6982, 6984, 6989 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 396,
+  "count" : 1,
+  "sentence" : "This set provides a sample of common actions when exploring real-time interactive systems using a wide range of visual encodings.",
+  "token" : [ 7010 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 397,
+  "count" : 2,
+  "sentence" : "Unlike synthetic benchmarks, it allows to validate Hashedcubes in an uncontrolled environment.",
+  "token" : [ 7014, 7024 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 398,
+  "count" : 1,
+  "sentence" : "We implemented a script that translates Nanocube queries to Hashedcubes queries and compares the results of both proposals.",
+  "token" : [ 7043 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 399,
+  "count" : 2,
+  "sentence" : "For that, we used the same schema from Nanocubes.",
+  "token" : [ 7046, 7054 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 400,
+  "count" : 1,
+  "sentence" : "Figure 8 shows the percentages when the set of queries is executed in an Intel Core i7 4790 CPU.",
+  "token" : [ 7073 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 401,
+  "count" : 4,
+  "sentence" : "We report the median, mode, mean, standard deviation and maximum latency for each of the tested schemas.",
+  "token" : [ 7078, 7080, 7082, 7094 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 402,
+  "count" : 5,
+  "sentence" : "Typically, Hashedcubes performance level is within the real-time budget (<40ms or >25fps); only one in fifty queries takes more than 40ms.",
+  "token" : [ 7096, 7105, 7109, 7110, 7120 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 403,
+  "count" : 1,
+  "sentence" : "The most time-consuming queries are those which require a large number of aggregations of many small pivots.",
+  "token" : [ 7138 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 404,
+  "count" : 2,
+  "sentence" : "These typically happen when the query constraints are specified over a variable that has been \"finely split\" over a large range of indices, and yet no filtering in previous dimension rejects has occurred.",
+  "token" : [ 7163, 7174 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 405,
+  "count" : 2,
+  "sentence" : "In the worst case, this might degenerate to a linear scan over the dataset.",
+  "token" : [ 7179, 7190 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 406,
+  "count" : 3,
+  "sentence" : "For other schemas and datasets, Hashedcubes presented similar frequency distribution, consistently answering many queries under 40ms for various rollups and drill down test combinations.",
+  "token" : [ 7196, 7202, 7217 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 407,
+  "count" : 1,
+  "sentence" : "The server to client latency was dominated by transference of geographical tiles information.",
+  "token" : [ 7231 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 408,
+  "count" : 3,
+  "sentence" : "Nanocubes have a very small worst-case value, around 12ms. imMens sustains a 20ms update time on average.",
+  "token" : [ 7239, 7242, 7251 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 409,
+  "count" : 3,
+  "sentence" : "It has to be noted, however, that both solutions uses pre-computation and a higher memory footprint in favor of faster queries.",
+  "token" : [ 7257, 7259, 7275 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 410,
+  "count" : 3,
+  "sentence" : "Hashedcubes, instead, balances these two variables and allows the real-time exploration and analysis of datasets that previously required a prohibitory amount of space.",
+  "token" : [ 7277, 7279, 7301 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 411,
+  "count" : 3,
+  "sentence" : "Moreover, it supports more flexible schema configurations that enables re-ordering and multiple spatial, categorical and temporal dimensions.",
+  "token" : [ 7303, 7316, 7321 ],
+  "chapterID" : 69,
+  "sectionID" : 78,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 412,
+  "count" : 3,
+  "sentence" : "The underlying concept behind Hashedcubes, the pivot hierarchy, can be constructed in any given order.",
+  "token" : [ 7327, 7331, 7339 ],
+  "chapterID" : 82,
+  "sectionID" : 83,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 413,
+  "count" : 2,
+  "sentence" : "In addition, it allows a natural integration with an external database to complement visual queries.",
+  "token" : [ 7342, 7356 ],
+  "chapterID" : 82,
+  "sectionID" : 83,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 414,
+  "count" : 2,
+  "sentence" : "In this Section, we discuss these two extensions and how the quadtree leaf size impacts memory usage and visual accuracy.",
+  "token" : [ 7360, 7378 ],
+  "chapterID" : 82,
+  "sectionID" : 83,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 415,
+  "count" : 1,
+  "sentence" : "Exchanging the order in which the variables are sorted impacts both memory usage and running time of specific queries.",
+  "token" : [ 7398 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 416,
+  "count" : 2,
+  "sentence" : "In Figure 8 we compare two schemas of the same dataset: brightkite and brightkite-alternative.",
+  "token" : [ 7410, 7414 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 417,
+  "count" : 1,
+  "sentence" : "The set of real-world queries described in Section 6 was used to test the Hashedcubes implementation.",
+  "token" : [ 7431 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 418,
+  "count" : 5,
+  "sentence" : "The alternative schema, using a spatial-temporal-categorical ordering, notably increases both standard deviation and maximum query time from 4.21ms and 94ms to, respectively, 11.02ms and 281ms.",
+  "token" : [ 7435, 7440, 7455, 7457, 7461 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 419,
+  "count" : 2,
+  "sentence" : "Moreover, it increases memory consumption by 25%.",
+  "token" : [ 7463, 7471 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 420,
+  "count" : 2,
+  "sentence" : "On the other hand, in this schema temporal queries answer much faster since there are fewer pivots that need to be processed by the querying algorithm.",
+  "token" : [ 7476, 7499 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 421,
+  "count" : 1,
+  "sentence" : "Such tradeoffs can be considered by a database administrator to choose one layout over another.",
+  "token" : [ 7515 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 422,
+  "count" : 3,
+  "sentence" : "Automatically tuning the ordering of variables, or possibly creating redundant Hashedcubes instances to process different queries, is a natural area for future research.",
+  "token" : [ 7522, 7533, 7541 ],
+  "chapterID" : 82,
+  "sectionID" : 85,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 423,
+  "count" : 4,
+  "sentence" : "Large data visualization systems like imMens and Nanocubes, along with Hashedcubes, can be considered approximate databases, which means that they use data aggregation which might discard some information of the original record.",
+  "token" : [ 7550, 7554, 7560, 7577 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 424,
+  "count" : 1,
+  "sentence" : "The underlying concept behind Hashedcubes allows a simple integration with external databases.",
+  "token" : [ 7590 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 425,
+  "count" : 5,
+  "sentence" : "The retrieval of complementary information can be useful, for example, when datasets have text attributes along with spatial, categorical and temporal values, or when these values are not relevant for the exploratory interactive system itself.",
+  "token" : [ 7599, 7602, 7611, 7616, 7630 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 426,
+  "count" : 1,
+  "sentence" : "All real-world datasets used to validate Hashedcubes contain additional information that is ignored by the schema configurations.",
+  "token" : [ 7648 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 427,
+  "count" : 1,
+  "sentence" : "In Figure 6 we show the visual exploration of a large dataset associated with the retrieval of complementary data from an external SQL server.",
+  "token" : [ 7673 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 428,
+  "count" : 3,
+  "sentence" : "Hashedcubes allows to recover original data by associating the pivot indexes with an external index, for instance, an SQL index.",
+  "token" : [ 7689, 7692, 7696 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 429,
+  "count" : 5,
+  "sentence" : "As shown in Figure 9, data is loaded from our intermediary binary format (to obtain faster building times) or directly from the SQL server, and sorted out accordingly to the external ordering.",
+  "token" : [ 7702, 7711, 7717, 7724, 7733 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 430,
+  "count" : 1,
+  "sentence" : "Hashedcubes answers queries in real-time and simultaneously triggers asynchronous SQL queries based on the pivot selection.",
+  "token" : [ 7750 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 431,
+  "count" : 1,
+  "sentence" : "This natural extension encourages the complement of visual queries with external information.",
+  "token" : [ 7763 ],
+  "chapterID" : 82,
+  "sectionID" : 87,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 432,
+  "count" : 3,
+  "sentence" : "During the construction of Hashedcubes, the output of every dimension serves as input for the following dimension, and each pivot is subsequently refined to represent smaller data subsets.",
+  "token" : [ 7769, 7782, 7794 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 433,
+  "count" : 10,
+  "sentence" : "Spatial dimensions adopt a minimum quadtree leaf-size to balance running time, memory usage and visual accuracy, as shown in Figure 10 (a), (b) and (c).",
+  "token" : [ 7806, 7812, 7818, 7820, 7821, 7822, 7824, 7826, 7828, 7829 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 434,
+  "count" : 1,
+  "sentence" : "The leaf-size threshold creates a phenomenon called truncated pivot.",
+  "token" : [ 7839 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 435,
+  "count" : 1,
+  "sentence" : "This indicates that a given spatial region will be no longer subdivided if a minimum leaf-size is reached.",
+  "token" : [ 7858 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 436,
+  "count" : 4,
+  "sentence" : "Since visual accuracy was a relevant factor when designing Hashedcubes, we implemented a specific heatmap visualization that allows identifying truncated pivot occurrences (Figure 10a).",
+  "token" : [ 7869, 7882, 7885, 7886 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 437,
+  "count" : 2,
+  "sentence" : "Truncated pivots are typically found in smaller geographical regions with very low data sampling, an arrangement which might mask outliers.",
+  "token" : [ 7901, 7908 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 438,
+  "count" : 3,
+  "sentence" : "As a workaround to this issue, Hashedcubes users can integrate external databases to recover precise spatial information of a specific region, as discussed previously.",
+  "token" : [ 7915, 7931, 7935 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 439,
+  "count" : 3,
+  "sentence" : "It has to be noted, however, that Hashedcubes supports any leaf-size threshold.",
+  "token" : [ 7941, 7943, 7950 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 440,
+  "count" : 3,
+  "sentence" : "The default values for the schemas in Table 2 were chosen to achieve a good balance between running time and memory usage while producing a similar visual result when compared to the other data cube visualization proposals (Figure 11).",
+  "token" : [ 7988, 7991, 7992 ],
+  "chapterID" : 82,
+  "sectionID" : 90,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 441,
+  "count" : 4,
+  "sentence" : "In this paper, we presented Hashedcubes, a fast, easy to implement and memory efficient data structure to answer queries from interactive visualization tools that explore and analyzes large multidimensional datasets.",
+  "token" : [ 7996, 8000, 8003, 8026 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 442,
+  "count" : 4,
+  "sentence" : "Pivot hierarchy, the underlying concept behind Hashedcubes, enables traversal in any order and allows to include multiple spatial dimensions, which is useful to visualize origin-destinations datasets.",
+  "token" : [ 8029, 8035, 8048, 8056 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 443,
+  "count" : 2,
+  "sentence" : "Furthermore, it supports access to the original data by integrating the data structure with an external database.",
+  "token" : [ 8058, 8075 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 444,
+  "count" : 9,
+  "sentence" : "Our major contributions have shown that (i) is possible to represent hierarchical and flat data structures using an optimized pivot schema that is stored in a linear fashion way, and (ii) demonstrated that this leads to memory savings over other data cube visualization proposals, as shown in Section 6. Taking advantage of the performance level given by Hashedcubes, researchers can develop richer and seamless interactive visualization tools.",
+  "token" : [ 8082, 8084, 8107, 8109, 8111, 8125, 8131, 8141, 8151 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 445,
+  "count" : 2,
+  "sentence" : "Moreover, it enables the visual exploration of datasets and schemas that previously take a prohibitory amount of space or time.",
+  "token" : [ 8153, 8173 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 446,
+  "count" : 2,
+  "sentence" : "As future work, we would like to expand pivot hierarchy concept to automatically find optimal pivoting ordering by calculating a metric that balances running time and memory usage.",
+  "token" : [ 8177, 8203 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 447,
+  "count" : 2,
+  "sentence" : "Since Hashedcubes building algorithms mainly require careful sorting operations that can be adopted to current Web technologies, we also want to explore an exclusively browser-side implementation.",
+  "token" : [ 8221, 8231 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 448,
+  "count" : 3,
+  "sentence" : "Hashedcubes uses a querying algorithm similar to a breadth-first search, with two working lists, one for expanding and another for temporary storage.",
+  "token" : [ 8242, 8247, 8256 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 449,
+  "count" : 2,
+  "sentence" : "We envision an alternative approach that use just one list, but that require significant enhancements to the data structure and are left for future work.",
+  "token" : [ 8267, 8283 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 450,
+  "count" : 1,
+  "sentence" : "Another promising research area is the handle of dynamic datasets or streaming data.",
+  "token" : [ 8297 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 451,
+  "count" : 2,
+  "sentence" : "Hashedcubes can benefit from existing approaches like Packed-Memory Arrays, a concept that aligns surprisingly well with Hashedcubes pivot notion and its worth to be further investigated.",
+  "token" : [ 8307, 8325 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+}, {
+  "sentenceID" : 452,
+  "count" : 1,
+  "sentence" : "Hashedcubes is available as open source software at https://github.com/cicerolp/hashedcubes.",
+  "token" : [ 8336 ],
+  "chapterID" : 93,
+  "sectionID" : 94,
+  "subsectionID" : 0,
+  "subsubsectionID" : 0
+} ]

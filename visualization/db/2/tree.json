@@ -1,0 +1,325 @@
+{
+  "id" : 0,
+  "name" : "Hashedcubes: Simple, Low Memory, Real-Time Visual Exploration of Big Data",
+  "children" : [ {
+    "id" : 1,
+    "name" : "Abstract",
+    "children" : [ {
+      "id" : 2,
+      "name" : null,
+      "children" : [ ],
+      "size" : 180,
+      "worstSentenceLength" : 50,
+      "worstSentencePunctuation" : 4,
+      "worstStopwordCount" : 64,
+      "worstWordCount" : 4
+    } ],
+    "size" : 180,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 4
+  }, {
+    "id" : 4,
+    "name" : "Introduction",
+    "children" : [ {
+      "id" : 5,
+      "name" : null,
+      "children" : [ ],
+      "size" : 342,
+      "worstSentenceLength" : 39,
+      "worstSentencePunctuation" : 5,
+      "worstStopwordCount" : 50,
+      "worstWordCount" : 5
+    } ],
+    "size" : 342,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 5
+  }, {
+    "id" : 11,
+    "name" : "Related Work",
+    "children" : [ {
+      "id" : 12,
+      "name" : null,
+      "children" : [ ],
+      "size" : 872,
+      "worstSentenceLength" : 46,
+      "worstSentencePunctuation" : 5,
+      "worstStopwordCount" : 99,
+      "worstWordCount" : 28
+    } ],
+    "size" : 872,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 28
+  }, {
+    "id" : 20,
+    "name" : "Hashedcubes",
+    "children" : [ {
+      "id" : 21,
+      "name" : null,
+      "children" : [ ],
+      "size" : 82,
+      "worstSentenceLength" : 26,
+      "worstSentencePunctuation" : 3,
+      "worstStopwordCount" : 42,
+      "worstWordCount" : 2
+    }, {
+      "id" : 23,
+      "name" : "Some Intuition",
+      "children" : [ ],
+      "size" : 1076,
+      "worstSentenceLength" : 73,
+      "worstSentencePunctuation" : 16,
+      "worstStopwordCount" : 196,
+      "worstWordCount" : 24
+    }, {
+      "id" : 28,
+      "name" : "Construction Algorithm",
+      "children" : [ ],
+      "size" : 929,
+      "worstSentenceLength" : 48,
+      "worstSentencePunctuation" : 8,
+      "worstStopwordCount" : 115,
+      "worstWordCount" : 16
+    }, {
+      "id" : 33,
+      "name" : "Spatial Dimensions",
+      "children" : [ ],
+      "size" : 543,
+      "worstSentenceLength" : 40,
+      "worstSentencePunctuation" : 4,
+      "worstStopwordCount" : 68,
+      "worstWordCount" : 14
+    }, {
+      "id" : 38,
+      "name" : "Categorical Dimensions",
+      "children" : [ ],
+      "size" : 258,
+      "worstSentenceLength" : 43,
+      "worstSentencePunctuation" : 11,
+      "worstStopwordCount" : 56,
+      "worstWordCount" : 7
+    }, {
+      "id" : 42,
+      "name" : "Temporal Dimensions",
+      "children" : [ ],
+      "size" : 260,
+      "worstSentenceLength" : 37,
+      "worstSentencePunctuation" : 9,
+      "worstStopwordCount" : 44,
+      "worstWordCount" : 5
+    }, {
+      "id" : 46,
+      "name" : "Queries",
+      "children" : [ ],
+      "size" : 497,
+      "worstSentenceLength" : 48,
+      "worstSentencePunctuation" : 5,
+      "worstStopwordCount" : 88,
+      "worstWordCount" : 9
+    } ],
+    "size" : 3645,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 39
+  }, {
+    "id" : 51,
+    "name" : "Implementation",
+    "children" : [ {
+      "id" : 52,
+      "name" : null,
+      "children" : [ ],
+      "size" : 353,
+      "worstSentenceLength" : 36,
+      "worstSentencePunctuation" : 8,
+      "worstStopwordCount" : 52,
+      "worstWordCount" : 7
+    } ],
+    "size" : 353,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 7
+  }, {
+    "id" : 56,
+    "name" : "Datasets And Schemas",
+    "children" : [ {
+      "id" : 57,
+      "name" : null,
+      "children" : [ ],
+      "size" : 89,
+      "worstSentenceLength" : 32,
+      "worstSentencePunctuation" : 3,
+      "worstStopwordCount" : 37,
+      "worstWordCount" : 3
+    }, {
+      "id" : 59,
+      "name" : "Location-Based Social Networks",
+      "children" : [ ],
+      "size" : 176,
+      "worstSentenceLength" : 38,
+      "worstSentencePunctuation" : 3,
+      "worstStopwordCount" : 58,
+      "worstWordCount" : 4
+    }, {
+      "id" : 61,
+      "name" : "Airline On-Time Performance",
+      "children" : [ ],
+      "size" : 184,
+      "worstSentenceLength" : 28,
+      "worstSentencePunctuation" : 4,
+      "worstStopwordCount" : 68,
+      "worstWordCount" : 7
+    }, {
+      "id" : 63,
+      "name" : "SPLOM",
+      "children" : [ ],
+      "size" : 112,
+      "worstSentenceLength" : 39,
+      "worstSentencePunctuation" : 6,
+      "worstStopwordCount" : 40,
+      "worstWordCount" : 3
+    }, {
+      "id" : 65,
+      "name" : "Twitter",
+      "children" : [ ],
+      "size" : 108,
+      "worstSentenceLength" : 28,
+      "worstSentencePunctuation" : 3,
+      "worstStopwordCount" : 37,
+      "worstWordCount" : 3
+    }, {
+      "id" : 67,
+      "name" : "NYC Yellow and Green Taxis",
+      "children" : [ ],
+      "size" : 171,
+      "worstSentenceLength" : 38,
+      "worstSentencePunctuation" : 8,
+      "worstStopwordCount" : 51,
+      "worstWordCount" : 6
+    } ],
+    "size" : 840,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 16
+  }, {
+    "id" : 69,
+    "name" : "Performance Results",
+    "children" : [ {
+      "id" : 70,
+      "name" : null,
+      "children" : [ ],
+      "size" : 82,
+      "worstSentenceLength" : 36,
+      "worstSentencePunctuation" : 8,
+      "worstStopwordCount" : 23,
+      "worstWordCount" : 2
+    }, {
+      "id" : 72,
+      "name" : "Memory Usage",
+      "children" : [ ],
+      "size" : 509,
+      "worstSentenceLength" : 44,
+      "worstSentencePunctuation" : 7,
+      "worstStopwordCount" : 71,
+      "worstWordCount" : 8
+    }, {
+      "id" : 76,
+      "name" : "Construction Time",
+      "children" : [ ],
+      "size" : 119,
+      "worstSentenceLength" : 42,
+      "worstSentencePunctuation" : 3,
+      "worstStopwordCount" : 45,
+      "worstWordCount" : 3
+    }, {
+      "id" : 78,
+      "name" : "Query Time",
+      "children" : [ ],
+      "size" : 379,
+      "worstSentenceLength" : 36,
+      "worstSentencePunctuation" : 5,
+      "worstStopwordCount" : 71,
+      "worstWordCount" : 8
+    } ],
+    "size" : 1089,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 13
+  }, {
+    "id" : 82,
+    "name" : "Discussion",
+    "children" : [ {
+      "id" : 83,
+      "name" : null,
+      "children" : [ ],
+      "size" : 57,
+      "worstSentenceLength" : 22,
+      "worstSentencePunctuation" : 3,
+      "worstStopwordCount" : 21,
+      "worstWordCount" : 2
+    }, {
+      "id" : 85,
+      "name" : "Exchanging the Pivoting Order",
+      "children" : [ ],
+      "size" : 163,
+      "worstSentenceLength" : 30,
+      "worstSentencePunctuation" : 5,
+      "worstStopwordCount" : 63,
+      "worstWordCount" : 4
+    }, {
+      "id" : 87,
+      "name" : "Integration with Database of Record",
+      "children" : [ ],
+      "size" : 222,
+      "worstSentenceLength" : 40,
+      "worstSentencePunctuation" : 5,
+      "worstStopwordCount" : 52,
+      "worstWordCount" : 5
+    }, {
+      "id" : 90,
+      "name" : "Leaf-Size Trade-off vs Visual Accuracy",
+      "children" : [ ],
+      "size" : 229,
+      "worstSentenceLength" : 42,
+      "worstSentencePunctuation" : 10,
+      "worstStopwordCount" : 39,
+      "worstWordCount" : 4
+    } ],
+    "size" : 671,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 12
+  }, {
+    "id" : 93,
+    "name" : "Conclusions And Future Work",
+    "children" : [ {
+      "id" : 94,
+      "name" : null,
+      "children" : [ ],
+      "size" : 344,
+      "worstSentenceLength" : 76,
+      "worstSentencePunctuation" : 9,
+      "worstStopwordCount" : 67,
+      "worstWordCount" : 8
+    } ],
+    "size" : 344,
+    "worstSentenceLength" : 0,
+    "worstSentencePunctuation" : 0,
+    "worstStopwordCount" : 0,
+    "worstWordCount" : 8
+  } ],
+  "size" : 0,
+  "worstSentenceLength" : 0,
+  "worstSentencePunctuation" : 0,
+  "worstStopwordCount" : 0,
+  "worstWordCount" : 0
+}

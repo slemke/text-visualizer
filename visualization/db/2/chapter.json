@@ -1,0 +1,37 @@
+[ {
+  "id" : 1,
+  "title" : "Abstract",
+  "size" : 180
+}, {
+  "id" : 4,
+  "title" : "Introduction",
+  "size" : 342
+}, {
+  "id" : 11,
+  "title" : "Related Work",
+  "size" : 872
+}, {
+  "id" : 20,
+  "title" : "Hashedcubes",
+  "size" : 3645
+}, {
+  "id" : 51,
+  "title" : "Implementation",
+  "size" : 353
+}, {
+  "id" : 56,
+  "title" : "Datasets And Schemas",
+  "size" : 840
+}, {
+  "id" : 69,
+  "title" : "Performance Results",
+  "size" : 1089
+}, {
+  "id" : 82,
+  "title" : "Discussion",
+  "size" : 671
+}, {
+  "id" : 93,
+  "title" : "Conclusions And Future Work",
+  "size" : 344
+} ]
