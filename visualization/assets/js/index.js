@@ -79,6 +79,32 @@ $(document).ready(function() {
         });
     });
 
+    $('#document-selector-form').submit(function(event) {
+        event.preventDefault();
+        $('#overlay').fadeIn(0);
+
+        $selected = $('#document-selector').val();
+
+        $.get('document/' + $selected + '/', function(data) {
+
+            // render loaded text
+            text.render(data, function() {
+
+                // hide text loading overlay, when text rendering is done
+                $('#overlay').fadeOut(1000);
+
+            });
+        });
+
+
+        $.get( "/document/" + $selected + "/meta/", function( data ) {
+            setBubbleData(bubbleData);
+            setData(data);
+            traverseAndFix(dataDocument);
+            initializeCharts();
+        });
+    });
+
     // scroll back to top of textview
     $('#back-to-top').click(function() {
 

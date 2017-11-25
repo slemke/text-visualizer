@@ -7,6 +7,8 @@ router.get('/:documentid', function(req, res) {
 
     const documentID = req.params.documentid;
 
+    console.log(path.join(__dirname, '../../db/' + documentID, 'document.json'));
+
     res.sendFile(path.join(__dirname, '../../db/' + documentID, 'document.json'));
 });
 

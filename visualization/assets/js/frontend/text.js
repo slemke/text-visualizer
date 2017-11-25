@@ -108,6 +108,8 @@ let text = {
 
         $body = $('#text .row article');
 
+        $body.html('');
+
         for (var i = 0; i < data.chapters.length; i++) {
             let chapter = data.chapters[i];
             let $headlineElement = $('<h1></h1>').text(chapter.title);

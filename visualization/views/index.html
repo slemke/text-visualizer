@@ -33,26 +33,32 @@
                             <!-- navigation container -->
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
+
                                     <div class="navbar-header">
                                         <a class="navbar-brand" href="#">Text Mining Visualization</a>
                                     </div>
 
+                                    <form class="navbar-form navbar-right" id="document-selector-form">
+                                        <div class="form-group">
+                                            <label for="document-selector" class="sr-only">Select document</label>
+                                            <select name="document" class="form-control" id="document-selector">
+                                                <option value="1">Guidance</option>
+                                                <option value="2">Hashedcubes</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-primary">Auswählen</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="container-fluid">
                                     <form class="navbar-form navbar-right">
                                         <div class="form-group">
-                                            <!--<label for="document-selector">Select document</label>
-                                            <select name="document" class="form-control" id="document-selector">
-                                                <option value="1">Dokument #1</option>
-                                                <option value="2">Dokument #2</option>
-                                                <option value="3">Dokument #3</option>
-                                            </select>-->
-                                            <label for="document-analysis">Select analysis</label>
+                                            <label for="document-analysis" class="sr-only">Select analysis</label>
                                             <select name="analysis" class="form-control" id="document-analysis">
                                                 <option value="worstWordCount">Wordcount</option>
                                                 <option value="worstSentenceLength">Sentence Length</option>
                                                 <option value="worstSentencePunctuation">Punctuation</option>
                                                 <option value="worstStopwordCount">Stopwords</option>
                                             </select>
-                                            <!--<button type="submit" class="btn btn-primary" id="document-selector-submit">Auswählen</button>-->
                                         </div>
                                     </form>
                                 </div>
