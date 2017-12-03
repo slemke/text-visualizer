@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    $selected = 1;
     // define delay function
     var delay = (function(){
 		var timer = 0;
@@ -101,6 +102,11 @@ $(document).ready(function() {
             setBubbleData(bubbleData);
             setData(data);
             traverseAndFix(dataDocument);
+            sbSelection = [];
+            selectedBubbles = [];
+            text.highlight.scroll(0);
+            highlightChapter([]);
+            updateInformationTexts();
             initializeCharts();
         });
     });

@@ -8,15 +8,16 @@
   },
   "author": "",
   "dependencies": {
-    "express": "^4.15.4"
-  },
-  "devDependencies": {
+    "babel": "^6.23.0",
     "babel-core": "^6.26.0",
-    "gulp": "^3.9.1",
+    "express": "^4.16.2",
     "gulp-babel": "^7.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

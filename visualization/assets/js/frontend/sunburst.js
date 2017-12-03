@@ -1486,7 +1486,8 @@ const drawBubbleChart = function() {
         removeBubbleBorder();
         chapterID = sbSelection[sbSelection.length -1].data.id;
         parameter = getParameterName();
-        $.get( "/document/1/" + parameter + "?id=" + chapterID, function( data ) {
+
+        $.get( "/document/" + $selected + "/" + parameter + "?id=" + chapterID, function( data ) {
             keys = getKeys();
             selectedBubbles = [];
             bubbleData = [];
