@@ -1487,7 +1487,99 @@ const drawBubbleChart = function() {
         chapterID = sbSelection[sbSelection.length -1].data.id;
         parameter = getParameterName();
 
-        $.get( "/document/" + $selected + "/" + parameter + "?id=" + chapterID, function( data ) {
+        $.get( "document/" + $selected + "/" + parameter + ".json", function( data ) {
+
+            if(parameter == 'wordcount') {
+                data = data.filter(function(obj) {
+                  let found = false;
+
+                  if(chapterID == obj.chapterID)
+                      found = true;
+
+                  if(chapterID == obj.sectionID)
+                      found = true;
+
+                  if(chapterID == obj.subsectionID)
+                      found = true;
+
+                  if(chapterID == obj.subsubsectionid)
+                      found = true;
+
+                  return found;
+                });
+            }
+
+            if(parameter == 'length') {
+                data = data.filter(function(obj) {
+                  let found = false;
+
+                  if(chapterID == obj.chapterID)
+                      found = true;
+
+                  if(chapterID == obj.sectionID)
+                      found = true;
+
+                  if(chapterID == obj.subsectionID)
+                      found = true;
+
+                  if(chapterID == obj.subsubsectionID)
+                      found = true;
+
+                  if(chapterID == obj.sentenceID)
+                      found = true;
+
+                  return found;
+                });
+            }
+
+            if(parameter == 'stopwords') {
+
+                data = data.filter(function(obj) {
+                  let found = false;
+
+                  if(chapterID == obj.chapterID)
+                      found = true;
+
+                  if(chapterID == obj.sectionID)
+                      found = true;
+
+                  if(chapterID == obj.subsectionID)
+                      found = true;
+
+                  if(chapterID == obj.subsubsectionID)
+                      found = true;
+
+                  if(chapterID == obj.paragraphID)
+                      found = true;
+
+                  return found;
+
+                });
+            }
+
+            if(parameter == 'punctuation') {
+                data = data.filter(function(obj) {
+                    let found = false;
+
+                    if(chapterID == obj.chapterID)
+                        found = true;
+
+                    if(chapterID == obj.sectionID)
+                        found = true;
+
+                    if(chapterID == obj.subsectionID)
+                        found = true;
+
+                    if(chapterID == obj.subsubsectionID)
+                        found = true;
+
+                    if(chapterID == obj.sentenceID)
+                        found = true;
+
+                    return found;
+                });
+            }
+
             keys = getKeys();
             selectedBubbles = [];
             bubbleData = [];

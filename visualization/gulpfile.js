@@ -2,8 +2,9 @@
 
 var paths = {
 	scripts: [
-		'assets/js/frontend/*.js',
-		'assets/js/index.js'
+		'assets/js/index.js',
+		'assets/js/sunburst.js',
+		'assets/js/text.js'
 	],
 	css: [
 		'assets/css/index.css',

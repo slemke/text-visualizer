@@ -6,11 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Dennis Dubbert and Sascha Lemke",
   "dependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
-    "express": "^4.16.2",
     "gulp-babel": "^7.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",

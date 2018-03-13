@@ -58,7 +58,7 @@ $(document).ready(function() {
         drawSunburst();
     };
 
-    $.get( "/document/1/meta/", function( data ) {
+    $.get( "document/1/tree.json", function( data ) {
         setBubbleData(bubbleData);
         setData(data);
         traverseAndFix(dataDocument);
@@ -68,8 +68,8 @@ $(document).ready(function() {
     // on page load display text loading overlay
     $('#overlay').fadeIn(0);
 
-    // load document on page load
-    $.get('document/1/', function(data) {
+   // load document on page load
+    $.get('document/1/document.json', function(data) {
 
         // render loaded text
         text.render(data, function() {
@@ -80,13 +80,14 @@ $(document).ready(function() {
         });
     });
 
+
     $('#document-selector-form').submit(function(event) {
         event.preventDefault();
         $('#overlay').fadeIn(0);
 
         $selected = $('#document-selector').val();
 
-        $.get('document/' + $selected + '/', function(data) {
+        $.get('document/' + $selected + '/document.json', function(data) {
 
             // render loaded text
             text.render(data, function() {
@@ -98,7 +99,7 @@ $(document).ready(function() {
         });
 
 
-        $.get( "/document/" + $selected + "/meta/", function( data ) {
+        $.get( "document/" + $selected + "/tree.json", function( data ) {
             setBubbleData(bubbleData);
             setData(data);
             traverseAndFix(dataDocument);
