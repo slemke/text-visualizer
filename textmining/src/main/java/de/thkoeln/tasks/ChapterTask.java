@@ -54,7 +54,7 @@ public class ChapterTask extends AbstractTask {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("textmining/output/chapter.json"), list);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("output/chapter.json"), list);
         } catch (IOException e) {
             e.printStackTrace();
         }

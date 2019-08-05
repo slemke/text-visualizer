@@ -80,7 +80,7 @@ public class SentenceLengthTask extends AbstractTask {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("textmining/output/length.json"), sentenceLengths);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("output/length.json"), sentenceLengths);
         } catch (IOException e) {
             e.printStackTrace();
         }

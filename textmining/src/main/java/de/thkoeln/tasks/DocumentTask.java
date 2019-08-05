@@ -13,7 +13,7 @@ public class DocumentTask extends AbstractTask {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("textmining/output/document.json"), doc);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("output/document.json"), doc);
         } catch (IOException e) {
             e.printStackTrace();
         }

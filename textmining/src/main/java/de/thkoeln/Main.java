@@ -13,9 +13,9 @@ public class Main {
 
         // prepare processing task
         final PreProcessingTask task = new PreProcessingTask(
-                "textmining/models/en-token.bin",
-                "textmining/models/en-sent.bin",
-                "textmining/models/en-pos-maxent.bin"
+                "models/en-token.bin",
+                "models/en-sent.bin",
+                "models/en-pos-maxent.bin"
         );
 
         final SentenceLengthTask task2 = new SentenceLengthTask();
@@ -50,7 +50,7 @@ public class Main {
         instance.addTask(task6);
 
         // add documents
-        instance.addDocument(Paths.get("textmining/documents/guidance.xml"));
+        instance.addDocument(Paths.get("documents/guidance.xml"));
 
         // apply tasks to documents
         instance.apply();

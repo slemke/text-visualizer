@@ -28,10 +28,10 @@ public class TreeTask extends AbstractTask {
         ArrayList<Wordcount> wordcountArrayList = new ArrayList<>();
 
         try {
-            sentenceLengthArrayList = mapper.readValue(new File("textmining/output/length.json"), new TypeReference<ArrayList<SentenceLength>>() {});
-            punctuationArrayList = mapper.readValue(new File("textmining/output/punctuation.json"), new TypeReference<ArrayList<Punctuation>>() {});
-            stopwordArrayList = mapper.readValue(new File("textmining/output/stopwords.json"), new TypeReference<ArrayList<Stopword>>() {});
-            wordcountArrayList = mapper.readValue(new File("textmining/output/wordcount.json"), new TypeReference<ArrayList<Wordcount>>() {});
+            sentenceLengthArrayList = mapper.readValue(new File("output/length.json"), new TypeReference<ArrayList<SentenceLength>>() {});
+            punctuationArrayList = mapper.readValue(new File("output/punctuation.json"), new TypeReference<ArrayList<Punctuation>>() {});
+            stopwordArrayList = mapper.readValue(new File("output/stopwords.json"), new TypeReference<ArrayList<Stopword>>() {});
+            wordcountArrayList = mapper.readValue(new File("output/wordcount.json"), new TypeReference<ArrayList<Wordcount>>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -316,7 +316,7 @@ public class TreeTask extends AbstractTask {
         root.setChildren(nodeList);
 
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("textmining/output/tree.json"), root);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("output/tree.json"), root);
         } catch (IOException e) {
             e.printStackTrace();
         }

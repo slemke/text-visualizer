@@ -160,7 +160,7 @@ public class PunctuationTask extends AbstractTask {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("textmining/output/punctuation.json"), punctuations);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("output/punctuation.json"), punctuations);
         } catch (IOException e) {
             e.printStackTrace();
         }

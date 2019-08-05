@@ -20,7 +20,7 @@ public class WordcountTask extends AbstractTask {
 
         ArrayList<Wordcount> counterList = new ArrayList<>();
 
-        StopwordFilter filter = new StopwordFilter("textmining/lists/stopwords.txt");
+        StopwordFilter filter = new StopwordFilter("lists/stopwords.txt");
         ArrayList<String> stopWords = filter.getStopWords();
 
         stopWords.add(",");
@@ -193,7 +193,7 @@ public class WordcountTask extends AbstractTask {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("textmining/output/wordcount.json"), counterList);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("output/wordcount.json"), counterList);
         } catch (IOException e) {
             e.printStackTrace();
         }

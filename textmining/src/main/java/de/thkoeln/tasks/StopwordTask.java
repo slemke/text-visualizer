@@ -5,13 +5,10 @@ import de.thkoeln.corpora.Document;
 import de.thkoeln.corpora.document.*;
 import de.thkoeln.corpora.language.StopwordFilter;
 import de.thkoeln.corpora.pojo.Stopword;
-import javafx.scene.paint.Stop;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class StopwordTask extends AbstractTask {
 
@@ -20,7 +17,7 @@ public class StopwordTask extends AbstractTask {
 
         ArrayList<Stopword> stopwords = new ArrayList<>();
 
-        StopwordFilter filter = new StopwordFilter("textmining/lists/stopwords.txt");
+        StopwordFilter filter = new StopwordFilter("lists/stopwords.txt");
         ArrayList<String> stopWords = filter.getStopWords();
 
         for(Chapter c : doc.getChapters()) {
@@ -139,7 +136,7 @@ public class StopwordTask extends AbstractTask {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("textmining/output/stopwords.json"), stopwords);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("output/stopwords.json"), stopwords);
         } catch (IOException e) {
             e.printStackTrace();
         }
