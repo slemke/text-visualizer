@@ -3,20 +3,14 @@
   "version": "1.0.0",
   "description": "Text Visualizer is a tool to visualize text data to improve your academic paper",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Dennis Dubbert and Sascha Lemke",
   "dependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
+    "gulp": "^4.0.2",
     "gulp-babel": "^7.0.0",
+    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp-minify": "^3.1.0"
   }
 }
