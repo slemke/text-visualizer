@@ -4,8 +4,8 @@ Text Visualizer is a concept to visualize text data to improve your academic pap
 
 This project was implemented by:
 
-* (Sascha Lemke)[https://github.com/slemke]
-* (Dennis Dubbert)[https://github.com/ddubbert]
+* [Sascha Lemke](https://github.com/slemke)
+* [Dennis Dubbert](https://github.com/ddubbert)
 
 This project is the result of the visualization course for [media computer science](https://www.medieninformatik.th-koeln.de/) at the [cologne university of applied sciences](https://www.th-koeln.de/). You can find the documentation for the different parts of this program in the corresponding subfolders.
 
